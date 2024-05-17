@@ -32,21 +32,16 @@ Adriano Fonseca Carvalho Costa.
 
 ### 2. Elaboração do Documento de Arquitetura
 **Discussão:**
-Juntos começamos a escrever o documento de arquitetura.
-
-
-
-Foram levantadas questões sobre o projeto e seu funcionamento. Nesse tópico, foi feito contato com o cliente sobre a aplicação desktop a fim de definir os problemas que o software pretende resolver e das principais funcionalidades que devem ser incluídas.
+Foi iniciado a elaboração do documento de Arquitetura, seguindo o modelo disponibilizado pelo professor.
 
 **Decisões:**
-- Definição dos objetivos principais do projeto, incluindo as funcionalidades essenciais e os requisitos do cliente.
-- Estabelecimento do público-alvo e das necessidades que a aplicação deve atender.
-- Delimitação das funcionalidades prioritárias para a primeira versão do software.
-- Identificação de possíveis desafios e riscos, bem como estratégias para mitigá-los.
+O documento de arquitetura incluirá:
+- justificativa da escolha arquitetural;
+- detalhamento da arquitetura escolhida;
+- diagramas e visões com o objetivo de representar diferentes aspectos da aplicação, sejam eles estruturais ou comportamentais;
 
 **Responsáveis:**
 - Todos os integrantes do grupo Cygni.
-
 
 ## Próxima Reunião
 **Data:** 15/05/2024  
@@ -54,5 +49,4 @@ Foram levantadas questões sobre o projeto e seu funcionamento. Nesse tópico, f
 **Horário:** 20:00
 
 ## Observações
-
-
+Finalização da prototipação de telas no Figma e iniciar o desenvolvimento dessas telas (frontEnd).
