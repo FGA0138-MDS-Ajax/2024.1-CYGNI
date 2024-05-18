@@ -71,4 +71,4 @@ eficiente e otimizado.
 | NodeJS     | Runtime JavaScript para desenvolvimento Back-End                        | https://nodejs.org                         |
 | NestJS     | Framework Back-End para NodeJS para desenvolvimento de APIs             | https://nestjs.com                         |
 | ExpressJS  | Biblioteca JavaScript para o desenvolvimento de APIs                    | https://nestjs.com                         |
-| MongoDB    | Banco de Dados NO-SQL para persistencia de dados                        | https://www.mongodb.com/docs/              |
+| MongoDB    | Banco de Dados NO-SQL para persistencia de dados                        | https://www.mongodb.com/docs/              | 
