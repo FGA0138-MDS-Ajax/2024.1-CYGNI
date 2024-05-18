@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - Docs/** 
+      - Docs/**
+      - .github/workflows/deploy-docs.yml
 
 defaults:
   run:
@@ -35,7 +36,7 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: Docs/build
+          path: build
 
   deploy:
     name: Deploy to GitHub Pages
