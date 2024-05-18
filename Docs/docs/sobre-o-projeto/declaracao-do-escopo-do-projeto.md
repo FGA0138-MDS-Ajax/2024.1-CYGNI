@@ -5,7 +5,7 @@ sidebar_positionL: 8
 # Declaração do escopo do projeto
 
 ### Backlog do produto
-
+ 
 O backlog do produto é uma lista dinâmica de todos os requisitos, funcionalidades,
 correções e melhorias que precisam ser feitas em um produto. O backlog é constantemente
 revisado e atualizado com o decorrer do tempo, novos itens serão adicionados, prioridades
