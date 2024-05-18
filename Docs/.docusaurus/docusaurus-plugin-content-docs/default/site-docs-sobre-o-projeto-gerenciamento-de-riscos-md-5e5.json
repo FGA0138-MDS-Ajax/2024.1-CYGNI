@@ -1,0 +1,27 @@
+{
+  "id": "sobre-o-projeto/gerenciamento-de-riscos",
+  "title": "Gerenciamento de riscos",
+  "description": "| Risco | Grau de Exposição | Mitigação | Plano de Contingência |",
+  "source": "@site/docs/sobre-o-projeto/gerenciamento-de-riscos.md",
+  "sourceDirName": "sobre-o-projeto",
+  "slug": "/sobre-o-projeto/gerenciamento-de-riscos",
+  "permalink": "/2024.1-CYGNI/docs/sobre-o-projeto/gerenciamento-de-riscos",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_label": "Gerenciamento de riscos",
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Matriz de comunicação",
+    "permalink": "/2024.1-CYGNI/docs/sobre-o-projeto/matriz-de-comunicação"
+  },
+  "next": {
+    "title": "Critérios de replanejamento",
+    "permalink": "/2024.1-CYGNI/docs/sobre-o-projeto/criterios-de-replanejamento"
+  }
+}

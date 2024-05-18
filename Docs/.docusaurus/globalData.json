@@ -1,0 +1,123 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/2024.1-CYGNI/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/2024.1-CYGNI/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "atas-reuniao/AtaReuniao01-05",
+              "path": "/2024.1-CYGNI/docs/atas-reuniao/AtaReuniao01-05",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "atas-reuniao/AtaReunião08-05",
+              "path": "/2024.1-CYGNI/docs/atas-reuniao/AtaReunião08-05",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "atas-reuniao/AtaReuniao12-05",
+              "path": "/2024.1-CYGNI/docs/atas-reuniao/AtaReuniao12-05",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "atas-reuniao/AtaReuniao24-04",
+              "path": "/2024.1-CYGNI/docs/atas-reuniao/AtaReuniao24-04",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "atas-reuniao/AtasReunioesModelo",
+              "path": "/2024.1-CYGNI/docs/atas-reuniao/AtasReunioesModelo",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/2024.1-CYGNI/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-agis/equipe",
+              "path": "/2024.1-CYGNI/docs/sobre-o-agis/equipe",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-agis/o-agis",
+              "path": "/2024.1-CYGNI/docs/sobre-o-agis/o-agis",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/ciclo-de-vida",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/ciclo-de-vida",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/criterios-de-replanejamento",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/criterios-de-replanejamento",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/declaracao-do-escopo-do-projeto",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/declaracao-do-escopo-do-projeto",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/funcoesdelegadas",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/funcoesdelegadas",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/gerenciamento-de-riscos",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/gerenciamento-de-riscos",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/matriz-de-comunicação",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/matriz-de-comunicação",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/planejamento-de-fases",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/planejamento-de-fases",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "sobre-o-projeto/processos-de-desenvolvimento-de-software",
+              "path": "/2024.1-CYGNI/docs/sobre-o-projeto/processos-de-desenvolvimento-de-software",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/sobre-o-agis",
+              "path": "/2024.1-CYGNI/docs/category/sobre-o-agis",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/sobre-o-projeto",
+              "path": "/2024.1-CYGNI/docs/category/sobre-o-projeto",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/atas-de-reunião",
+              "path": "/2024.1-CYGNI/docs/category/atas-de-reunião",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/2024.1-CYGNI/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
