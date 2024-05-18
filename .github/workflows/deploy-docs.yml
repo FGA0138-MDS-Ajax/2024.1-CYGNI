@@ -28,11 +28,13 @@ jobs:
           node-version: 18
           cache: npm
           cache-dependency-path: '**/package-lock.json'
+          
       - name: Install dependencies
         run: cd Docs/ && npm ci
       - name: Build website
         run: cd Docs/ && npm run build
-
+      - name: Find the build folder
+        run: find / -name build -type d
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
