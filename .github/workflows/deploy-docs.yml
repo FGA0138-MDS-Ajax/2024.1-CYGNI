@@ -33,12 +33,10 @@ jobs:
         run: cd Docs/ && npm ci
       - name: Build website
         run: cd Docs/ && npm run build
-      - name: Find the build folder
-        run: find / -name build -type d
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./Docs/build"
+          path: "/home/runner/work/2024.1-CYGNI/2024.1-CYGNI/Docs/Docs/build"
 
   deploy:
     name: Deploy to GitHub Pages
