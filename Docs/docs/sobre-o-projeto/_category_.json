@@ -1,0 +1,8 @@
+{
+  "label": "Sobre o projeto",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Informações sobre o processo de desenvolvimento da AGIS"
+  }
+}

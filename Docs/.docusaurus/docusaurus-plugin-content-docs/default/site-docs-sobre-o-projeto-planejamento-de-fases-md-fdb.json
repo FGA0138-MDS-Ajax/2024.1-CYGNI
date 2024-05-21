@@ -1,0 +1,27 @@
+{
+  "id": "sobre-o-projeto/planejamento-de-fases",
+  "title": "Planejamento de fases",
+  "description": "| Sprint | Produto (Entrega) | Data Início | Data Fim  | Entregáveis                                      | Responsáveis | Conclusão |",
+  "source": "@site/docs/sobre-o-projeto/planejamento-de-fases.md",
+  "sourceDirName": "sobre-o-projeto",
+  "slug": "/sobre-o-projeto/planejamento-de-fases",
+  "permalink": "/2024.1-CYGNI/docs/sobre-o-projeto/planejamento-de-fases",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_label": "Planejamento de fases",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Funções delegadas",
+    "permalink": "/2024.1-CYGNI/docs/sobre-o-projeto/funcoesdelegadas"
+  },
+  "next": {
+    "title": "Matriz de comunicação",
+    "permalink": "/2024.1-CYGNI/docs/sobre-o-projeto/matriz-de-comunicação"
+  }
+}
