@@ -1,0 +1,93 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.tela-login {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #E6E6E6;
+}
+
+.tela-login-img {
+  width: 70vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#imagem-login {
+  object-fit: fill;
+}
+
+.container-login {
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #032026;
+}
+
+#icone {
+  width: 25%;
+  height: 7%;
+  margin-top: 0%;
+  margin-bottom: 20%;
+}
+
+.container-login p, a {
+  text-decoration: none;
+  color: #ffffff;
+  margin: 5vh 0 0 0;
+}
+
+.container-login a {
+  color: #FFA800;
+}
+
+.container-formulario h2 {
+  color: white;
+  margin: 0 0 6vh 0;
+}
+
+.formulario-login {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formulario-login input {
+  width: 20vw;
+  height: 5vh;
+  border-radius: 12px;
+  border: none;
+  margin: 8px 0 8px 0;
+}
+
+.formulario-login button {
+  width: 20vw;
+  height: 5vh;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin: 5vh 0 0 0;
+  border: 2px solid white;
+  background-color: #032026;
+  color: white;
+  text-align: center;
+
+  transition: background 0.2s;
+}
+
+.formulario-login button:hover{
+  background-color: white;
+  color: black;
+}
+
+.container-login a:hover{
+  text-decoration: underline;
+}
