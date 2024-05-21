@@ -1,0 +1,21 @@
+{
+  "id": "atas-reuniao/AtasReunioesModelo",
+  "title": "Ata da Reunião",
+  "description": "Data: [Data da Reunião]",
+  "source": "@site/docs/atas-reuniao/AtasReunioesModelo.md",
+  "sourceDirName": "atas-reuniao",
+  "slug": "/atas-reuniao/AtasReunioesModelo",
+  "permalink": "/2024.1-CYGNI/docs/atas-reuniao/AtasReunioesModelo",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Modelo de Ata"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "12/05/2024",
+    "permalink": "/2024.1-CYGNI/docs/atas-reuniao/AtaReuniao12-05"
+  }
+}

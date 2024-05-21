@@ -1,0 +1,22 @@
+{
+  "id": "bibliografia",
+  "title": "Bibliografia",
+  "description": "Aqui nesta página constam todas as referências bibliográficas usadas no decorrer do projeto",
+  "source": "@site/docs/bibliografia.md",
+  "sourceDirName": ".",
+  "slug": "/bibliografia",
+  "permalink": "/agis-docs/docs/bibliografia",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Modelo de Ata",
+    "permalink": "/agis-docs/docs/atas-reuniao/AtasReunioesModelo"
+  }
+}
