@@ -88,6 +88,23 @@
   color: black;
 }
 
+.formulario-login input::placeholder{
+  color: #9D9D9D;
+  font-size: 12px;
+  padding-left: 15px;
+}
+
 .container-login a:hover{
   text-decoration: underline;
+}
+
+.formulario-login .error-message{
+  color: rgb(255, 72, 72);
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0;
+}
+
+.formulario-login .input-error {
+  margin: 5px 0;
 }

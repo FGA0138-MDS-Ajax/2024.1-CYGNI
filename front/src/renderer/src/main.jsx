@@ -8,8 +8,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<TelaInicial />}></Route>
-        {/* <Route path="/" element={<TelaLogin />}></Route>  */}
+        {/* <Route path="/" element={<TelaInicial />}></Route> */}
+        <Route path="/" element={<TelaLogin />}></Route> 
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
