@@ -48,7 +48,7 @@ const TelaLogin = () => {
               Necessário senha.
               </p>)}
 
-            <button onClick={() => handleSubmit(onSubmit)()} >Login</button>
+              <button onClick={(e) => {e.preventDefault(); handleSubmit(onSubmit)();}} >Login</button>
           </form>
 
         </div>

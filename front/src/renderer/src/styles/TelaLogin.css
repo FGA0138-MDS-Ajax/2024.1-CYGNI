@@ -49,8 +49,10 @@
 }
 
 .container-formulario h2 {
+  display: flex;
+  justify-content: flex-start;
   color: white;
-  margin: 0 0 6vh 0;
+  margin-bottom: 1.5vh;
 }
 
 .formulario-login {
