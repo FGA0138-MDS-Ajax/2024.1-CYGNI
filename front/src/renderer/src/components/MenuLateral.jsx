@@ -18,7 +18,7 @@ const MenuLateral = () => {
                 <ul>
                     <li>
                         <img src={Inicio} alt="tela inicial" />
-                        <Link to="/">Tela Inicial</Link>
+                        <Link to="/inicial">Tela Inicial</Link>
                     </li>
                     <li>
                         <img src={Campanha} alt="campanha" />
@@ -36,7 +36,7 @@ const MenuLateral = () => {
             </div>
             <div className="conteiner-saida">
                 <img src={Sair} alt="sair" />
-                <a href="">Sair</a>
+                <Link to="/">Sair</Link>
             </div>
         </div>
     )
