@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.tela-cadastro {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.cadastro-geral span {
+  color: black;
+}

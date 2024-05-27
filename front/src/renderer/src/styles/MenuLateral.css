@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.menu-lateral {
+    background-color: #032026;
+    width: 20vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.conteiner-superior {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;  
+    height: 130px;
+}
+
+.menu-lateral.fechado {
+    width: 5vw;
+}
+
+.conteiner-superior button {
+    width: 5vw;
+    height: 5vh;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;  
+}
+
+.menu-lateral.fechado .conteiner-conteudo li a img,
+.menu-lateral.fechado .conteiner-saida img {
+    margin-left: -0.4vw;
+}
+
+.menu-lateral.fechado #icone {
+    display: none;
+}
+
+#icone {
+    width: 9vw;
+    height: 7vh;
+}
+
+.conteiner-conteudo {
+    display: flex;
+    flex-direction: column;
+    margin: 18vh 0 35vh 2vw;
+}
+
+.conteiner-conteudo ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    list-style: none;  
+}
+
+.conteiner-conteudo li a {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: auto;
+    padding: 1vw 0;
+}
+
+.conteiner-conteudo li img {
+    margin-right: 1.5vw;
+}
+
+.conteiner-saida a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 0 0 0 2vw;
+}
+
+.conteiner-saida img {
+    margin-right: 1.5vw;
+}
