@@ -10,14 +10,22 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const users_module_1 = require("./users/users.module");
 const mongoose_1 = require("@nestjs/mongoose");
+const config_1 = require("@nestjs/config");
+const usuarios_module_1 = require("./usuarios/usuarios.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot('mongodb://192.168.1.64:27017/agis')],
+        imports: [
+            config_1.ConfigModule.forRoot({
+                envFilePath: '.env.example',
+                isGlobal: true,
+            }),
+            mongoose_1.MongooseModule.forRoot(process.env.MONGODB_URI),
+            usuarios_module_1.UsuariosModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
