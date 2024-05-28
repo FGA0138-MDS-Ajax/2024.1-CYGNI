@@ -17,11 +17,10 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
-    "electron-updater": "^6.1.7",
-    "react-hook-form": "^7.51.5",
-    "react-router-dom": "^6.23.1"
+    "electron-updater": "^6.1.7"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "@electron-toolkit/eslint-config": "^1.0.2",
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
     "@vitejs/plugin-react": "^4.2.1",
@@ -30,6 +29,8 @@
     "electron-vite": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.5",
+    "react-router-dom": "^6.23.1",
     "vite": "^5.0.12"
   }
 }

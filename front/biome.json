@@ -1,0 +1,17 @@
+{
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineWidth": 120
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"indentWidth": 2
+		}
+	},
+	"linter": {
+		"enabled": true
+	}
+}
