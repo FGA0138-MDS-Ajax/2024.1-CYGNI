@@ -1,4 +1,4 @@
-import {Prop, Schema} from '@nestjs/mongoose';
+import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Documentacao } from './documentacao.schema';
 import { FichaGerencial } from './fichaGerencial.schema';
@@ -52,3 +52,5 @@ export class Usuario {
 
     
 }
+
+export const UsuarioModel = SchemaFactory.createForClass(Usuario)
