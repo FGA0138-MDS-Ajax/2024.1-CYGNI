@@ -3,13 +3,101 @@
   padding: 0;
 }
 
-
 .tela-cadastro {
   display: flex;
-  height: 100%;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+}
+
+#matricula, #nomeGuerra, #nomeCompleto, #nascimento,
+#nomeMae, #nomePai, #email, #telefone,
+#postGrad, #escolaridade {
   width: 100%;
 }
 
-.cadastro-geral span {
-  color: black;
+#rg, #cpf, #matSiape
+#cnhCategoria, #cnhValidade, #cnhProntuario {
+  width: 90%;
+}
+
+#cep, #cidade, #bairro {
+  width: 90%;
+}
+
+#logradouro {
+  width: 100%;
+}
+
+#uf {
+  width: 35px;
+}
+
+#classificacao, #funcao, #escala, #horario,
+#lotacao, #comportamento, #porteArma, #apresentacao,
+#admissao, #validadeBienal, #validadeTAF {
+  width: 100%;
+}
+
+#secao1, #secao2 {
+  width: 30%;
+}
+
+#secao3 {
+  width: 15%;
+}
+
+#secao4, #secao5 {
+  width: 100%;
+}
+
+#secao6{
+  width: 90%;
+}
+
+.dados-pessoais, .ficha-gerencial {
+  width: 100%;
+}
+
+.documentacao, .endereco {
+  width: 43%;
+}
+
+.mid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.formulario-cadastro,
+.formulario-ficha-gerencial {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.conteiner fieldset {
+  border: none;
+}
+
+.conteiner fieldset legend {
+  display: none;
+}
+
+.conteiner span {
+  display: block;
+}
+
+.conteiner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  width: 95%;
+  gap: 10%;
 }

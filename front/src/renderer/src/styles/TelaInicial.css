@@ -17,7 +17,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100vw;
+    width: 80vw;
     height: 15vh;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .conteiner-header button {
-    width: 18vw;
+    width: 12vw;
     height: 5.93vh;
     background-color: #032026;
     color: white;
