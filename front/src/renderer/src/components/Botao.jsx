@@ -1,6 +1,6 @@
 import react from "react";
 
-const Botao = ({ icone, texto, cor, largura }) => {
+const Botao = ({ icone, texto, cor, largura, aoClicar }) => {
 	return (
 		<button
 			type="submit"
@@ -12,6 +12,7 @@ const Botao = ({ icone, texto, cor, largura }) => {
 				justifyContent: "center",
 				alignItems: "center",
 			}}
+			onClick={aoClicar}
 		>
 			{icone}
 			{texto}

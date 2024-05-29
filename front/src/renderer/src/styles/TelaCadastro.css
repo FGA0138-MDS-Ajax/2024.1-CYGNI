@@ -28,7 +28,7 @@ h3{
   
 }
 
-.mid {
+.bloco-central {
   display: flex;
   flex-direction: row;
   align-items: center;

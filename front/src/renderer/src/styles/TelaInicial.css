@@ -13,7 +13,7 @@
     background-color: #E6E6E6;
 }
 
-.conteiner-header {
+.conteiner-cabecalho {
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
@@ -23,7 +23,7 @@
     height: 15vh;
 }
 
-.suspensa {
+.lista-suspensa {
     display: flex;
     position: relative;
     justify-content: space-around;
@@ -35,12 +35,12 @@
     align-items: center;
 }
 
-.suspensa span {
+.lista-suspensa span {
     color: white;
     font-size: 16px;
 }
 
-.lista-suspensa {
+.opcoes-lista-suspensa {
     position: absolute;
     max-height: 0;
     top: 3.3rem;
@@ -53,17 +53,17 @@
     transition: max-height 0.5s ease-out;
 }
 
-.suspensa:hover .lista-suspensa {
+.lista-suspensa:hover .opcoes-lista-suspensa {
     max-height: 300px;
 }
 
-.lista-suspensa li {
+.opcoes-lista-suspensa li {
     padding: 0.5rem 0 0.5rem 0.5rem;
     cursor: pointer;
     transition: margin-left 0.25s;
 }
 
-.lista-suspensa li:hover {
+.opcoes-lista-suspensa li:hover {
     margin-left: 0.5rem;
     color: #004373;
 }
@@ -98,7 +98,7 @@
     color: #919191;
 }
 
-.conteiner-header button {
+.conteiner-cabecalho button {
     width: 12vw;
     height: 5.93vh;
     background-color: #032026;
@@ -115,7 +115,7 @@
     border: 2px solid #FAF9F6;
 }
 
-.conteiner-header button:hover {
+.conteiner-cabecalho button:hover {
     background-color: #13515E;
 }
 

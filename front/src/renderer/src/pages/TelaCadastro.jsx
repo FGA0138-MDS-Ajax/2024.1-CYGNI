@@ -1,5 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 
 import MenuLateral from "../components/MenuLateral.jsx";
 import Campo from "../components/Campo.jsx";
@@ -64,7 +63,7 @@ const TelaCadastro = () => {
 						</form>
 					</div>
 
-					<div className="mid">
+					<div className="bloco-central">
 						<div className="documentacao">
 							<h3>Documentação</h3>
 							<form className="formulario-documentacao">

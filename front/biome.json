@@ -12,9 +12,6 @@
 		}
 	},
 	"linter": {
-		"enabled": true,
-		"ally": {
-			"useKeyWithClickEvents": false
-		}
+		"enabled": true
 	}
 }
