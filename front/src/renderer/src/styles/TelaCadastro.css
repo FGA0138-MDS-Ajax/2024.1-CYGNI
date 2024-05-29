@@ -6,7 +6,7 @@
 
 h3{
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   font-weight: bold;
 }
 
@@ -43,41 +43,47 @@ h3{
   margin-top: 40px; 
 }
 
-#matricula, #nomeGuerra, #nomeCompleto, #nascimento,
+
+#matricula, #nomeGuerra, #nomeCompleto,
 #nomeMae, #nomePai, #email, #telefone,
 #postGrad, #escolaridade {
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
-#rg, #cpf, #matSiape
-#cnhCategoria, #cnhValidade, #cnhProntuario {
+
+#rg, #cpf, #matSiape,
+#cnhCategoria, #cnhProntuario {
   width: 90%;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
 #cep, #cidade, #bairro {
   width: 90%;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
 #logradouro {
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
 #uf {
   width: 35px;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
 #classificacao, #funcao, #escala, #horario,
-#lotacao, #comportamento, #apresentacao,
-#admissao, #validadeBienal, #validadeTAF {
+#lotacao, #comportamento, #apresentacao, #admissao {
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
+#nascimento, #cnhValidade, #validadeBienal, #validadeTAF {
+  width: 86%;
+  margin-bottom: 9px;
+  padding: 0 7px 0px 7px;
+}
 #secao1, #secao2 {
   width: 32%;
 }
@@ -102,8 +108,6 @@ h3{
   width: 45%;
 }
 
-
-
 .formulario-cadastro,
 .formulario-ficha-gerencial {
   display: flex;
@@ -115,7 +119,8 @@ h3{
   background-color: white;
   border:none;
   border-radius: 8px;
-  height: 23px;
+  padding-left: 4px;
+  height: 30px;
 }
 
 .conteiner fieldset {
@@ -128,6 +133,9 @@ h3{
 
 .conteiner span {
   display: block;
+  color: #898989;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .conteiner {
@@ -139,7 +147,6 @@ h3{
   flex-shrink: 1;
   flex-basis: 80vw;
   height: 80%;
-  /* gap: 8%; */
 }
 
 .conteudo-principal {
@@ -158,9 +165,11 @@ h3{
 }
 
 .botoes button {
-  margin-right: 2.5%;
-  padding: 12px;
+  margin-right: 2.7%;
+  padding: 10px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }
