@@ -8,6 +8,7 @@ import { HiArrowDownTray } from "react-icons/hi2";
 import { HiArrowPathRoundedSquare } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
+import RadioBotao from "../components/RadioBotao.jsx";
 
 const TelaCadastro = () => {
   return (
@@ -101,13 +102,18 @@ const TelaCadastro = () => {
                     <Campo id="lotacao" texto="Lotação" tipo="text" />
                     <Campo id="comportamento" texto="Comportamento" tipo="text" />
                   </div>
+
                   <div className="linha">
-                    <Campo id="porteArma" texto="Porte de Arma" tipo="radio" />
+                    <div className="botao-porte-arma">
+                      <label htmlFor="porteArma">Porte de Arma</label>
+                      <RadioBotao id="porteArma" />
+                    </div>
                     <Campo id="apresentacao" texto="Apresentação" tipo="text" />
                     <Campo id="admissao" texto="Admissão" tipo="text" />
                     <Campo id="validadeBienal" texto="Validade Bienal" tipo="date" />
                     <Campo id="validadeTAF" texto="Validade TAF" tipo="date" />
                   </div>
+
               </fieldset>
             </form>
           </div>
