@@ -5,3 +5,15 @@
     list-style: none;
 }
 
+.error-message {
+    color: rgb(255, 72, 72);
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 0 0 0 0;
+    padding: 0;
+  }
+  
+.input-error {
+    margin: 5px 0;
+  }
+
