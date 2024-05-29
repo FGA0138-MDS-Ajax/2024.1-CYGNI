@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -21,8 +21,25 @@ export class UsuariosService {
     return `This action returns a #${id} usuario`;
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+
+    try {
+
+      const atualizaUsuario = await this.usuarioModel.findOneAndUpdate({ id }, updateUsuarioDto, { new: true}).exec();
+
+      if(!atualizaUsuario) {
+        throw new NotFoundException('Usuario não encontrado'); 
+      }
+
+      return atualizaUsuario;
+
+    } catch (error) {
+      if (error instanceof NotFoundException){
+        throw error;
+      }
+
+    }
+    
   }
 
   remove(id: number) {
