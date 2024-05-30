@@ -173,3 +173,9 @@ h3{
   font-size: 14px;
   font-weight: bold;
 }
+
+.mensagem-erro {
+  margin-top: 0px;
+  margin-bottom: -5px;
+  transform: translateY(-5px);
+}

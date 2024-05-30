@@ -1,20 +1,17 @@
 import React from "react";
 import "../styles/Campo.css";
 
-const Campo = ({ texto, tipo, id, registro, erros}) => {
-	
+const Campo = ({ texto, tipo, id, registro, erros, opcoes }) => {
 	return (
 		<div>
 			<span>{texto}</span>
-			<input 
-			className={erros?.id && "input-error"}
-			id={id} 
-			type={tipo} 
-			{...registro(id, {required: true})}
-		    />
-			{erros?.[id]?.type === "required" && (<p className="error-message">
-            Campo obrigatório.
-          	</p>)}
+			<input
+				className={erros?.[id] ? "erro-input" : ""}
+				id={id}
+				type={tipo}
+				{...registro(id, opcoes)}
+			/>
+			{erros?.[id] && <p className="mensagem-erro">{erros[id].message}</p>}
 		</div>
 	);
 };
