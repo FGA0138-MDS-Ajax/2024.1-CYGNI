@@ -24,7 +24,7 @@ export class Usuario {
     sexo: string
 
     @Prop({required: true})
-    dataDeNaschimento: number
+    dataDeNascimento: number
 
     @Prop({required: true})
     tipoSanguineo: string

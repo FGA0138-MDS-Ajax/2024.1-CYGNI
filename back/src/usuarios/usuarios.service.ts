@@ -4,6 +4,8 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from './schemas/usuario.schema';
+import { BadRequestException } from '@nestjs/common';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class UsuariosService {
@@ -13,12 +15,15 @@ export class UsuariosService {
     return 'This action adds a new usuario';
   }
 
-  findAll() {
-    return `This action returns all usuarios`;
+  async findAll() {
+    return await this.usuarioModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+  async findOne(id: number) {
+    if (!Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid ID!');
+    }
+    return await this.usuarioModel.findById(id).exec();
   }
 
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
