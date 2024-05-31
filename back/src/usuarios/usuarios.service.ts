@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -20,10 +20,14 @@ export class UsuariosService {
   }
 
   async findOne(id: number) {
-    if (!Types.ObjectId.isValid(id)) {
-      throw new BadRequestException('Invalid ID!');
+    try{
+      if (!Types.ObjectId.isValid(id)) {
+        throw new BadRequestException('Invalid ID!');
+      }
+      return await this.usuarioModel.findById(id).exec();
+    } catch (error) {
+      throw new InternalServerErrorException('Error finding user', error.message);
     }
-    return await this.usuarioModel.findById(id).exec();
   }
 
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
