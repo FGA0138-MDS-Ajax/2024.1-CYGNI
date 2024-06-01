@@ -4,12 +4,3 @@
     font-family: 'Roboto', sans-serif;
     list-style: none;
 }
-
-.mensagem-erro {
-    color: red;
-    font-size: 0.55rem;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-    min-height: 20px;
-  }

@@ -6,6 +6,7 @@ const Campo = ({ texto, tipo, id, registro, erros, opcoes }) => {
 		<div>
 			<span>{texto}</span>
 			<input
+				spellCheck={false}
 				className={erros?.[id] ? "erro-input" : ""}
 				id={id}
 				type={tipo}
