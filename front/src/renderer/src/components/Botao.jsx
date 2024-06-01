@@ -1,9 +1,4 @@
-import react from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
-
 const Botao = ({ icone, texto, cor, largura, aoClicar }) => {
-	
 	return (
 		<button
 			type="submit"
@@ -22,6 +17,5 @@ const Botao = ({ icone, texto, cor, largura, aoClicar }) => {
 		</button>
 	);
 };
-
 
 export default Botao;

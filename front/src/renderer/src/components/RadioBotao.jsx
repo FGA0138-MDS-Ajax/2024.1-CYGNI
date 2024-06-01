@@ -11,6 +11,7 @@ const RadioBotao = () => {
 		marginRight: "5px",
 		width: "15px",
 		height: "15px",
+		marginTop: "7px",
 	};
 
 	return (
