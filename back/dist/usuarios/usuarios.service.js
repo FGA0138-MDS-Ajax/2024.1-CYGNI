@@ -17,18 +17,29 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const usuario_schema_1 = require("./schemas/usuario.schema");
+const common_2 = require("@nestjs/common");
+const mongoose_3 = require("mongoose");
 let UsuariosService = class UsuariosService {
     constructor(usuarioModel) {
         this.usuarioModel = usuarioModel;
     }
-    create(createUsuarioDto) {
-        return 'This action adds a new usuario';
+    async create(createUsuarioDto) {
+        const newUser = new this.usuarioModel(createUsuarioDto);
+        return await newUser.save();
     }
-    findAll() {
-        return `This action returns all usuarios`;
+    async findAll() {
+        return await this.usuarioModel.find().exec();
     }
-    findOne(id) {
-        return `This action returns a #${id} usuario`;
+    async findOne(id) {
+        try {
+            if (!mongoose_3.Types.ObjectId.isValid(id)) {
+                throw new common_2.BadRequestException('ID inválido');
+            }
+            return await this.usuarioModel.findById(id).exec();
+        }
+        catch (error) {
+            throw new common_1.InternalServerErrorException('Falha ao encontrar usuário', error.message);
+        }
     }
     update(id, updateUsuarioDto) {
         return `This action updates a #${id} usuario`;

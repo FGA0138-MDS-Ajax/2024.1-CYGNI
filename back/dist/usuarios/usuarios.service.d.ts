@@ -27,12 +27,19 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Model } from 'mongoose';
 import { Usuario } from './schemas/usuario.schema';
+import { Types } from 'mongoose';
 export declare class UsuariosService {
     private usuarioModel;
     constructor(usuarioModel: Model<Usuario>);
-    create(createUsuarioDto: CreateUsuarioDto): string;
-    findAll(): string;
-    findOne(id: number): string;
+    create(createUsuarioDto: CreateUsuarioDto): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: Types.ObjectId;
+    }>;
+    findAll(): Promise<(import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: Types.ObjectId;
+    })[]>;
+    findOne(id: number): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: Types.ObjectId;
+    }>;
     update(id: number, updateUsuarioDto: UpdateUsuarioDto): string;
     remove(id: number): string;
 }

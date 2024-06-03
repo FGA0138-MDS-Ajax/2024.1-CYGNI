@@ -23,29 +23,11 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
-import mongoose, { HydratedDocument } from 'mongoose';
-import { Documentacao } from './documentacao.schema';
-import { FichaGerencial } from '../../ficha-gerencial/schema/fichaGerencial.schema';
-import { Endereco } from './endereco.schema';
-export type UsuarioDocument = HydratedDocument<Usuario>;
-export declare class Usuario {
-    id: number;
-    nomeCompleto: string;
-    nomeDaMae: string;
-    nomeDoPai: string;
-    sexo: string;
-    dataDeNascimento: number;
-    tipoSanguineo: string;
-    estadoCivil: string;
-    email: string;
-    telefone: string;
-    privilegios: number;
-    endereco: Endereco;
-    documentacao: Documentacao;
-    fichaGerencial: FichaGerencial;
+import { FichaGerencial } from './schema/fichaGerencial.schema';
+import * as mongoose from 'mongoose';
+export declare class FichaGerencialService {
+    private fichaGerencialModel;
+    constructor(fichaGerencialModel: mongoose.Model<FichaGerencial>);
+    create(fichaGerencial: FichaGerencial): Promise<FichaGerencial>;
+    findAll(): Promise<FichaGerencial[]>;
 }
-export declare const UsuarioModel: mongoose.Schema<Usuario, mongoose.Model<Usuario, any, any, any, mongoose.Document<unknown, any, Usuario> & Usuario & {
-    _id: mongoose.Types.ObjectId;
-}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Usuario, mongoose.Document<unknown, {}, mongoose.FlatRecord<Usuario>> & mongoose.FlatRecord<Usuario> & {
-    _id: mongoose.Types.ObjectId;
-}>;
