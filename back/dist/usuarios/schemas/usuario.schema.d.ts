@@ -34,7 +34,7 @@ export declare class Usuario {
     nomeDaMae: string;
     nomeDoPai: string;
     sexo: string;
-    dataDeNaschimento: number;
+    dataDeNascimento: number;
     tipoSanguineo: string;
     estadoCivil: string;
     email: string;

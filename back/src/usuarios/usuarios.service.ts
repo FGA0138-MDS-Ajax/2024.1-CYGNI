@@ -11,8 +11,9 @@ import { Types } from 'mongoose';
 export class UsuariosService {
   constructor(@InjectModel(Usuario.name) private usuarioModel: Model<Usuario>) {}
   
-  create(createUsuarioDto: CreateUsuarioDto) {
-    return 'This action adds a new usuario';
+  async create(createUsuarioDto: CreateUsuarioDto) {
+    const newUser = new this.usuarioModel(createUsuarioDto);
+    return await newUser.save();
   }
 
   async findAll() {

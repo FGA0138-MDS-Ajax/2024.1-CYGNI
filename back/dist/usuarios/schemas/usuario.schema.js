@@ -41,7 +41,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
-], Usuario.prototype, "dataDeNaschimento", void 0);
+], Usuario.prototype, "dataDeNascimento", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
