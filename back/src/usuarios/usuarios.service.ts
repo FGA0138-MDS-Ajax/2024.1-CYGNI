@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -35,7 +35,19 @@ export class UsuariosService {
     return `This action updates a #${id} usuario`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+  async remove(id: string) {
+    try {
+      if (!Types.ObjectId.isValid(id)) {
+        throw new BadRequestException('ID inválido');
+      }
+      const result = await this.usuarioModel.findByIdAndDelete(id).exec();
+      if (result) {
+        return 'Usuário removido com sucesso';
+      } else {
+        throw new NotFoundException('Usuário não encontrado');
+      }
+    } catch (error) {
+      throw new InternalServerErrorException('Falha ao remover usuário', error.message);
+    }
   }
 }
