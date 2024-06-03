@@ -22,11 +22,11 @@ export class UsuariosService {
   async findOne(id: number) {
     try{
       if (!Types.ObjectId.isValid(id)) {
-        throw new BadRequestException('Invalid ID!');
+        throw new BadRequestException('ID inválido');
       }
       return await this.usuarioModel.findById(id).exec();
     } catch (error) {
-      throw new InternalServerErrorException('Error finding user', error.message);
+      throw new InternalServerErrorException('Falha ao encontrar usuário', error.message);
     }
   }
 
