@@ -13,7 +13,7 @@ exports.UsuarioModel = exports.Usuario = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const documentacao_schema_1 = require("./documentacao.schema");
-const fichaGerencial_schema_1 = require("./fichaGerencial.schema");
+const fichaGerencial_schema_1 = require("../../ficha-gerencial/schema/fichaGerencial.schema");
 const endereco_schema_1 = require("./endereco.schema");
 let Usuario = class Usuario {
 };

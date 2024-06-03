@@ -39,3 +39,8 @@ export declare class FichaGerencial {
     validadeBienal: number;
     validadeTAF: number;
 }
+export declare const FichaGerencialSchema: import("mongoose").Schema<FichaGerencial, import("mongoose").Model<FichaGerencial, any, any, any, import("mongoose").Document<unknown, any, FichaGerencial> & FichaGerencial & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FichaGerencial, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FichaGerencial>> & import("mongoose").FlatRecord<FichaGerencial> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;

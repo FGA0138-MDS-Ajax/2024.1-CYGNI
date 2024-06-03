@@ -1,7 +1,7 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Documentacao } from './documentacao.schema';
-import { FichaGerencial } from './fichaGerencial.schema';
+import { FichaGerencial } from '../../ficha-gerencial/schema/fichaGerencial.schema';
 import { Endereco } from './endereco.schema';
 
 export type UsuarioDocument = HydratedDocument<Usuario>;

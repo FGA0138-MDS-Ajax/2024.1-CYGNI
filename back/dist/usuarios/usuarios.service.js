@@ -31,10 +31,15 @@ let UsuariosService = class UsuariosService {
         return await this.usuarioModel.find().exec();
     }
     async findOne(id) {
-        if (!mongoose_3.Types.ObjectId.isValid(id)) {
-            throw new common_2.BadRequestException('Invalid ID!');
+        try {
+            if (!mongoose_3.Types.ObjectId.isValid(id)) {
+                throw new common_2.BadRequestException('ID inválido');
+            }
+            return await this.usuarioModel.findById(id).exec();
         }
-        return await this.usuarioModel.findById(id).exec();
+        catch (error) {
+            throw new common_1.InternalServerErrorException('Falha ao encontrar usuário', error.message);
+        }
     }
     update(id, updateUsuarioDto) {
         return `This action updates a #${id} usuario`;

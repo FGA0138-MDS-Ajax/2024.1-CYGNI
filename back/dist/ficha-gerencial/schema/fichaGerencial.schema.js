@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FichaGerencial = void 0;
+exports.FichaGerencialSchema = exports.FichaGerencial = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let FichaGerencial = class FichaGerencial {
 };
@@ -65,4 +65,5 @@ __decorate([
 exports.FichaGerencial = FichaGerencial = __decorate([
     (0, mongoose_1.Schema)()
 ], FichaGerencial);
+exports.FichaGerencialSchema = mongoose_1.SchemaFactory.createForClass(FichaGerencial);
 //# sourceMappingURL=fichaGerencial.schema.js.map
