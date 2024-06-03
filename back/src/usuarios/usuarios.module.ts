@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { UsuariosController } from './usuarios.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsuarioModel } from './schemas/usuario.schema';
+import { IsAdminMiddleware } from './isAdmin.middleware';
 
 
 
@@ -11,4 +12,4 @@ import { UsuarioModel } from './schemas/usuario.schema';
   controllers: [UsuariosController],
   providers: [UsuariosService],
 })
-export class UsuariosModule {}
+export class UsuariosModule{}
