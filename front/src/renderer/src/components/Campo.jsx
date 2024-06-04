@@ -10,7 +10,7 @@ const Campo = ({ texto, tipo, id, registro, erros, opcoes }) => {
 				className={erros?.[id] ? "erro-input" : ""}
 				id={id}
 				type={tipo}
-				{...registro(id, opcoes)}
+				{...(typeof registro === "function" ? registro(id, opcoes) : {})}
 			/>
 			{erros?.[id] && <p className="mensagem-erro">{erros[id].message}</p>}
 		</div>

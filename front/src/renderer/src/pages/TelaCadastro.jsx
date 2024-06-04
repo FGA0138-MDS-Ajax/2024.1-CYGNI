@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import MenuLateral from "../components/MenuLateral.jsx";
@@ -16,25 +16,23 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 import "../styles/TelaCadastro.css";
 
 const TelaCadastro = () => {
+	const [afastamento, setAfastamento] = useState(false);
 	const navegar = useNavigate();
-
 	const {
 		register,
 		handleSubmit,
+		trigger,
 		formState: { errors },
 	} = useForm();
 
 	const aoEnviar = (dadosFormulario) => {
-		console.log(dadosFormulario);
+		/*console.log(dadosFormulario);*/
 		navegar("/inicial");
 	};
 
-	const [afastamento, setAfastamento] = useState(false);
-	const [botaoSelecionado, setBotaoSelecionado] = useState(false);
-
-	const botaoMudanca = () => {
-		setBotaoSelecionado(!botaoSelecionado);
-		setAfastamento(!afastamento);
+	const botaoMudanca = async () => {
+		const camposPreenchidos = await trigger(["matricula", "nomeCompleto"]);
+		if (camposPreenchidos) setAfastamento(!afastamento);
 	};
 
 	return (
@@ -44,20 +42,18 @@ const TelaCadastro = () => {
 			<div className="conteudo-principal">
 				<div className="linha-horizontal">
 					<div className="classe-botao">
-						<button
-							type="button"
-							className={`botao-dados ${botaoSelecionado ? "" : "selecionado"}`}
-							onClick={botaoMudanca}
-						> Dados pessoais
+						<button type="button" className={`botao-dados ${afastamento ? "" : "selecionado"}`} onClick={botaoMudanca}>
+							Dados pessoais
 						</button>
 						<button
 							type="button"
-							className={`botao-afastamento ${botaoSelecionado ? "selecionado" : ""}`}
+							className={`botao-afastamento ${afastamento ? "selecionado" : ""}`}
 							onClick={botaoMudanca}
-						>	Afastamento
+						>
+							Afastamento
 						</button>
 					</div>
-					<hr/>
+					<hr />
 				</div>
 				<div className="conteiner">
 					<div className={`dados-pessoais ${afastamento ? "modoLeitor" : ""}`}>
@@ -70,7 +66,7 @@ const TelaCadastro = () => {
 										id="matricula"
 										texto="Matrícula"
 										tipo="text"
-										registro={register}
+										registro={afastamento ? undefined : register}
 										erros={errors}
 										opcoes={{
 											required: "*Campo obrigatório",
@@ -82,7 +78,7 @@ const TelaCadastro = () => {
 									id="nomeCompleto"
 									texto="Nome Completo"
 									tipo="text"
-									registro={register}
+									registro={afastamento ? undefined : register}
 									erros={errors}
 									opcoes={{
 										required: "*Campo obrigatório",
@@ -231,7 +227,7 @@ const TelaCadastro = () => {
 									<div className="linha">
 										<Campo id="comportamento" texto="Comportamento" tipo="text" registro={register} erros={errors} />
 										<div className="botao-porte-arma">
-											<label style={{ color: "#898989", fontWeight: "bold", fontSize: "14px"}} htmlFor="porteArma">
+											<label style={{ color: "#898989", fontWeight: "bold", fontSize: "14px" }} htmlFor="porteArma">
 												Porte de Arma
 											</label>
 											<RadioBotao id="porteArma" />
@@ -269,7 +265,8 @@ const TelaCadastro = () => {
 												"Recesso Final de Ano",
 												"Atestado de Comparecimento",
 												"Atestado de Acompanhamento",
-												"Outros"]}
+												"Outros",
+											]}
 										/>
 										<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
 										<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
@@ -277,7 +274,7 @@ const TelaCadastro = () => {
 										<Campo id="dias" texto="Dias" tipo="text" registro={register} erros={errors} />
 									</div>
 									<span>Observações</span>
-									<textarea name="Observação" id="observacoes">veveto e´gay</textarea>
+									<textarea name="Observacao" id="observacoes" />
 								</section>
 							</form>
 						</div>
