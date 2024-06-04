@@ -38,6 +38,9 @@ export class Usuario {
     @Prop({required: true})
     telefone: string
 
+    @Prop({required: true})
+    senha: string
+
     @Prop()
     privilegios: number
     
