@@ -31,8 +31,25 @@ export class UsuariosService {
     }
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+
+    try {
+
+      const atualizaUsuario = await this.usuarioModel.findOneAndUpdate({ id }, updateUsuarioDto, { new: true}).exec();
+
+      if(!atualizaUsuario) {
+        throw new NotFoundException('Usuario não encontrado'); 
+      }
+
+      return atualizaUsuario;
+
+    } catch (error) {
+      if (error instanceof NotFoundException){
+        throw error;
+      }
+
+    }
+    
   }
 
   async remove(id: string) {
