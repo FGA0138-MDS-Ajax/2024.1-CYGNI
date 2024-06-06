@@ -3,7 +3,7 @@ import "../styles/Campo.css";
 
 const Campo = ({ texto, tipo, id, registro, erros, opcoes }) => {
 	return (
-		<div>
+		<div className="campo">
 			<span>{texto}</span>
 			<input
 				spellCheck={false}

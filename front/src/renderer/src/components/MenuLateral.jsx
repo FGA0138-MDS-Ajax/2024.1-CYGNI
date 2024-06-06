@@ -22,7 +22,7 @@ const MenuLateral = () => {
 		<div className={`menu-lateral ${menu ? "" : "fechado"}`}>
 			<div className="conteiner-superior">
 				<img src={Icone} alt="icone" id="icone" />
-				<button onClick={abrirMenu}>
+				<button onClick={abrirMenu} type="button">
 					<img src={hamburguer} alt="menu" />
 				</button>
 			</div>
@@ -47,9 +47,9 @@ const MenuLateral = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to="">
+						<Link to="/tela-relatorio">
 							<img src={Relatorio} alt="relatorio mensal" />
-							{menu ? "Relatório Mensal" : ""}
+							{menu ? "Relatório" : ""}
 						</Link>
 					</li>
 				</ul>
