@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  user-select: none;
 }
 
 .tela-login {
@@ -11,14 +12,14 @@
   background-color: #E6E6E6;
 }
 
-.tela-login-img {
+.imagem-tela-login {
   width: 70vw;
   height: 100vh;
   display: flex;
   justify-content: center;
 }
 
-.tela-login-img h1 {
+.imagem-tela-login-img h1 {
   font-size: 48px;
   margin-top: 50vh;
 }
@@ -110,7 +111,7 @@ a {
   padding-left: 5px;
 }
 
-.formulario-login .error-message {
+.formulario-login .mensagem-erro {
   color: rgb(255, 72, 72);
   font-size: 0.75rem;
   font-weight: bold;
@@ -118,6 +119,6 @@ a {
   padding: 0;
 }
 
-.formulario-login .input-error {
+.formulario-login .erro-input {
   margin: 5px 0;
 }
