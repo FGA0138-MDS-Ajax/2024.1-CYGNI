@@ -50,13 +50,13 @@
 
 }
 
-.campo {
+.conteiner-relatorio-mensal .campo {
   display: flex;
   flex-direction: column;
   width: 190px;
 }
 
-.menu-suspenso {
+.conteiner-relatorio-mensal .menu-suspenso {
   display: flex;
   flex-direction: column;
   margin: 0 50px;
