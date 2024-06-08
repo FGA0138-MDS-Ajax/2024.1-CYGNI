@@ -34,7 +34,7 @@ let UsuariosController = class UsuariosController {
         return this.usuariosService.update(+id, updateUsuarioDto);
     }
     remove(id) {
-        return this.usuariosService.remove(+id);
+        return this.usuariosService.remove(id);
     }
 };
 exports.UsuariosController = UsuariosController;

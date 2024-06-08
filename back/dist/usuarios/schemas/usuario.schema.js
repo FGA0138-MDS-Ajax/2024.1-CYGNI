@@ -59,6 +59,10 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "telefone", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Usuario.prototype, "senha", void 0);
+__decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
 ], Usuario.prototype, "privilegios", void 0);

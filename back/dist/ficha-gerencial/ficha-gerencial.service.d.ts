@@ -30,4 +30,7 @@ export declare class FichaGerencialService {
     constructor(fichaGerencialModel: mongoose.Model<FichaGerencial>);
     create(fichaGerencial: FichaGerencial): Promise<FichaGerencial>;
     findAll(): Promise<FichaGerencial[]>;
+    findOne(id: string): Promise<FichaGerencial>;
+    update(id: string, fichaGerencial: FichaGerencial): Promise<FichaGerencial>;
+    delete(id: string): Promise<void>;
 }

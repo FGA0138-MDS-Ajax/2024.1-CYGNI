@@ -41,11 +41,36 @@ let UsuariosService = class UsuariosService {
             throw new common_1.InternalServerErrorException('Falha ao encontrar usuário', error.message);
         }
     }
-    update(id, updateUsuarioDto) {
-        return `This action updates a #${id} usuario`;
+    async update(id, updateUsuarioDto) {
+        try {
+            const atualizaUsuario = await this.usuarioModel.findOneAndUpdate({ id }, updateUsuarioDto, { new: true }).exec();
+            if (!atualizaUsuario) {
+                throw new common_1.NotFoundException('Usuario não encontrado');
+            }
+            return atualizaUsuario;
+        }
+        catch (error) {
+            if (error instanceof common_1.NotFoundException) {
+                throw error;
+            }
+        }
     }
-    remove(id) {
-        return `This action removes a #${id} usuario`;
+    async remove(id) {
+        try {
+            if (!mongoose_3.Types.ObjectId.isValid(id)) {
+                throw new common_2.BadRequestException('ID inválido');
+            }
+            const result = await this.usuarioModel.findByIdAndDelete(id).exec();
+            if (result) {
+                return 'Usuário removido com sucesso';
+            }
+            else {
+                throw new common_1.NotFoundException('Usuário não encontrado');
+            }
+        }
+        catch (error) {
+            throw new common_1.InternalServerErrorException('Falha ao remover usuário', error.message);
+        }
     }
 };
 exports.UsuariosService = UsuariosService;

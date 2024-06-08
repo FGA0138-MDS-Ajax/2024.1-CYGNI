@@ -22,12 +22,57 @@ let FichaGerencialService = class FichaGerencialService {
         this.fichaGerencialModel = fichaGerencialModel;
     }
     async create(fichaGerencial) {
-        const res = await this.fichaGerencialModel.create(fichaGerencial);
-        return res;
+        try {
+            const res = await this.fichaGerencialModel.create(fichaGerencial);
+            return res;
+        }
+        catch (error) {
+            throw new Error(`Error creating ficha: ${error.message}`);
+        }
     }
     async findAll() {
-        const fichaGerencial = await this.fichaGerencialModel.find();
-        return fichaGerencial;
+        try {
+            const fichaGerencial = await this.fichaGerencialModel.find();
+            return fichaGerencial;
+        }
+        catch (error) {
+            throw new Error(`Error fetching all fichas: ${error.message}`);
+        }
+    }
+    async findOne(id) {
+        try {
+            const ficha = await this.fichaGerencialModel.findById(id);
+            if (!ficha) {
+                throw new common_1.NotFoundException(`Ficha with id ${id} not found`);
+            }
+            return ficha;
+        }
+        catch (error) {
+            throw new Error(`Error fetching ficha with id ${id}: ${error.message}`);
+        }
+    }
+    async update(id, fichaGerencial) {
+        try {
+            const updatedFicha = await this.fichaGerencialModel.findByIdAndUpdate(id, fichaGerencial, { new: true });
+            if (!updatedFicha) {
+                throw new common_1.NotFoundException(`Ficha with id ${id} not found`);
+            }
+            return updatedFicha;
+        }
+        catch (error) {
+            throw new Error(`Error updating ficha with id ${id}: ${error.message}`);
+        }
+    }
+    async delete(id) {
+        try {
+            const result = await this.fichaGerencialModel.findByIdAndDelete(id);
+            if (!result) {
+                throw new common_1.NotFoundException(`Ficha with id ${id} not found`);
+            }
+        }
+        catch (error) {
+            throw new Error(`Error deleting ficha with id ${id}: ${error.message}`);
+        }
     }
 };
 exports.FichaGerencialService = FichaGerencialService;

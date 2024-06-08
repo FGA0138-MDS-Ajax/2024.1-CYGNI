@@ -40,6 +40,8 @@ export declare class UsuariosService {
     findOne(id: number): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
         _id: Types.ObjectId;
     }>;
-    update(id: number, updateUsuarioDto: UpdateUsuarioDto): string;
-    remove(id: number): string;
+    update(id: number, updateUsuarioDto: UpdateUsuarioDto): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: Types.ObjectId;
+    }>;
+    remove(id: string): Promise<string>;
 }

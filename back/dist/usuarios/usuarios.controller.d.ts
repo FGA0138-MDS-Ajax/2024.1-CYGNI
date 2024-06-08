@@ -39,6 +39,8 @@ export declare class UsuariosController {
     findOne(id: number): Promise<import("mongoose").Document<unknown, {}, import("./schemas/usuario.schema").Usuario> & import("./schemas/usuario.schema").Usuario & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    update(id: string, updateUsuarioDto: UpdateUsuarioDto): string;
-    remove(id: string): string;
+    update(id: string, updateUsuarioDto: UpdateUsuarioDto): Promise<import("mongoose").Document<unknown, {}, import("./schemas/usuario.schema").Usuario> & import("./schemas/usuario.schema").Usuario & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    remove(id: string): Promise<string>;
 }

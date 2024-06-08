@@ -4,5 +4,8 @@ export declare class FichaGerencialController {
     private fichaGerencialService;
     constructor(fichaGerencialService: FichaGerencialService);
     getAllFichas(): Promise<FichaGerencial[]>;
-    createFichaGerencial(FichaGerencial: any): Promise<FichaGerencial>;
+    getFichaGerencial(id: string): Promise<FichaGerencial>;
+    createFichaGerencial(fichaGerencial: FichaGerencial): Promise<FichaGerencial>;
+    updateFichaGerencial(id: string, fichaGerencial: FichaGerencial): Promise<FichaGerencial>;
+    deleteFichaGerencial(id: string): Promise<void>;
 }

@@ -39,6 +39,7 @@ export declare class Usuario {
     estadoCivil: string;
     email: string;
     telefone: string;
+    senha: string;
     privilegios: number;
     endereco: Endereco;
     documentacao: Documentacao;
