@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import MenuLateral from "../components/MenuLateral.jsx";
-import Campo from "../components/Campo.jsx";
-import MenuSuspenso from "../components/MenuSuspenso.jsx";
-import Botao from "../components/Botao.jsx";
-import RadioBotao from "../components/RadioBotao.jsx";
+import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
+import Campo from "../../components/Campo/Campo.jsx";
+import MenuSuspenso from "../../components/MenuSuspenso/MenuSuspenso.jsx";
+import Botao from "../../components/Botao/Botao.jsx";
+import RadioBotao from "../../components/RadioBotao/RadioBotao.jsx";
 
 import { HiArrowDownTray } from "react-icons/hi2";
 import { HiArrowPathRoundedSquare } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
-import "../styles/TelaCadastro.css";
+import "./TelaCadastro.css";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
@@ -82,7 +82,7 @@ const TelaCadastro = () => {
 									erros={errors}
 									opcoes={{
 										required: "*Campo obrigatório",
-										pattern: { value: /^[A-Za-z\s]+$/, message: "*Somente letras" },
+										pattern: { value: /^[A-Za-z\u00C0-\u00FF\s]+$/, message: "*Somente letras" },
 									}}
 								/>
 								<div className="linha">

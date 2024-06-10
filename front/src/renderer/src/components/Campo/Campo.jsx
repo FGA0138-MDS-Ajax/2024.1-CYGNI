@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Campo.css";
+import "./Campo.css";
 
 const Campo = ({ texto, tipo, id, registro, erros, opcoes }) => {
 	return (

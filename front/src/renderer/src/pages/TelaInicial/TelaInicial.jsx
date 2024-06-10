@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import MenuLateral from "../components/MenuLateral.jsx";
-import busca from "../assets/img/busca.svg";
 import { useNavigate } from "react-router-dom";
-import "../styles/TelaInicial.css";
-import seta from "../assets/img/setinha.svg";
-import Botao from "../components/Botao.jsx";
+
+import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
+import Botao from "../../components/Botao/Botao.jsx";
+
+import busca from "../../assets/img/busca.svg";
+import seta from "../../assets/img/setinha.svg";
+
+import "./TelaInicial.css";
 
 const TelaInicial = () => {
 	const navegar = useNavigate();

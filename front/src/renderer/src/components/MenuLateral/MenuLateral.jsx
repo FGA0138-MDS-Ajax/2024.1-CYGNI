@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Icone from "../assets/img/IconeAGIS.svg";
-import Inicio from "../assets/img/Inicio.svg";
-import Campanha from "../assets/img/Calendário.svg";
-import Escala from "../assets/img/Escalas.svg";
-import Relatorio from "../assets/img/Relatorio.svg";
-import Sair from "../assets/img/Sair.svg";
-import hamburguer from "../assets/img/Hamburguer.svg";
-
 import { Link } from "react-router-dom";
 
-import "../styles/MenuLateral.css";
+import Icone from "../../assets/img/IconeAGIS.svg";
+import Inicio from "../../assets/img/Inicio.svg";
+import Campanha from "../../assets/img/Calendário.svg";
+import Escala from "../../assets/img/Escalas.svg";
+import Relatorio from "../../assets/img/Relatorio.svg";
+import Sair from "../../assets/img/Sair.svg";
+import hamburguer from "../../assets/img/Hamburguer.svg";
+
+import "./MenuLateral.css";
 
 const MenuLateral = () => {
 	const [menu, setMenu] = useState(true);
