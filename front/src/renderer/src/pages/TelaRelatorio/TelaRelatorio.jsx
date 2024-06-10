@@ -1,9 +1,10 @@
 import React from "react";
-import "../styles/TelaRelatorio.css";
 import { useForm } from "react-hook-form";
 
-import MenuSuspenso from "../components/MenuSuspenso";
-import MenuLateral from "../components/MenuLateral";
+import MenuSuspenso from "../../components/MenuSuspenso/MenuSuspenso";
+import MenuLateral from "../../components/MenuLateral/MenuLateral";
+
+import "./TelaRelatorio.css";
 
 const TelaRelatorio = () => {
 	const {

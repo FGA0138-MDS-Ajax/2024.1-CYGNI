@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import TelaLogin from "./pages/TelaLogin";
-import TelaInicial from "./pages/TelaInicial";
-import TelaCadastro from "./pages/TelaCadastro";
-import TelaRelatorio from "./pages/TelaRelatorio";
+import TelaLogin from "./pages/TelaLogin/TelaLogin.jsx";
+import TelaInicial from "./pages/TelaInicial/TelaInicial.jsx";
+import TelaCadastro from "./pages/TelaCadastro/TelaCadastro.jsx";
+import TelaRelatorio from "./pages/TelaRelatorio/TelaRelatorio.jsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
