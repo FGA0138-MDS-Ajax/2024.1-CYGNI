@@ -19,6 +19,7 @@ const mongoose_2 = require("mongoose");
 const usuario_schema_1 = require("./schemas/usuario.schema");
 const common_2 = require("@nestjs/common");
 const mongoose_3 = require("mongoose");
+
 let UsuariosService = class UsuariosService {
     constructor(usuarioModel) {
         this.usuarioModel = usuarioModel;
