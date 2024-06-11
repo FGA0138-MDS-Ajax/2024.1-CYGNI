@@ -7,6 +7,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { FichaGerencialModule } from './ficha-gerencial/ficha-gerencial.module';
 import { DocumentoModule } from './documento/documento.module';
 import { EnderecoModule } from './endereco/endereco.module';
+import { AdministradoresModule } from './administradores/administradores.module';
 
 
 
@@ -17,7 +18,7 @@ import { EnderecoModule } from './endereco/endereco.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI), 
-    UsuariosModule, FichaGerencialModule, DocumentoModule, EnderecoModule,
+    UsuariosModule, FichaGerencialModule, DocumentoModule, EnderecoModule, AdministradoresModule,
   ],
   controllers: [AppController],
   providers: [AppService],
