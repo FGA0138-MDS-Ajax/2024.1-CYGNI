@@ -24,8 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
 import { HydratedDocument } from "mongoose";
-export type DocumentacaoDocument = HydratedDocument<Documentacao>;
-export declare class Documentacao {
+export type DocumentacaoDocument = HydratedDocument<Documento>;
+export declare class Documento {
     id: number;
     RG: string;
     matSiape: string;
@@ -33,3 +33,8 @@ export declare class Documentacao {
     CNHCategoria: string;
     CNHValidade: number;
 }
+export declare const DocumentoSchema: import("mongoose").Schema<Documento, import("mongoose").Model<Documento, any, any, any, import("mongoose").Document<unknown, any, Documento> & Documento & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Documento, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Documento>> & import("mongoose").FlatRecord<Documento> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;

@@ -9,36 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Documentacao = void 0;
+exports.DocumentoSchema = exports.Documento = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-let Documentacao = class Documentacao {
+let Documento = class Documento {
 };
-exports.Documentacao = Documentacao;
+exports.Documento = Documento;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
-], Documentacao.prototype, "id", void 0);
+], Documento.prototype, "id", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Documentacao.prototype, "RG", void 0);
+], Documento.prototype, "RG", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Documentacao.prototype, "matSiape", void 0);
+], Documento.prototype, "matSiape", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Documentacao.prototype, "CNHProntuario", void 0);
+], Documento.prototype, "CNHProntuario", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Documentacao.prototype, "CNHCategoria", void 0);
+], Documento.prototype, "CNHCategoria", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
-], Documentacao.prototype, "CNHValidade", void 0);
-exports.Documentacao = Documentacao = __decorate([
+], Documento.prototype, "CNHValidade", void 0);
+exports.Documento = Documento = __decorate([
     (0, mongoose_1.Schema)()
-], Documentacao);
+], Documento);
+exports.DocumentoSchema = mongoose_1.SchemaFactory.createForClass(Documento);
 //# sourceMappingURL=documentacao.schema.js.map

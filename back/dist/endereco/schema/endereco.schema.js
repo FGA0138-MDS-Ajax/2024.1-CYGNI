@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Endereco = void 0;
+exports.EnderecoSchema = exports.Endereco = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let Endereco = class Endereco {
 };
@@ -49,4 +49,5 @@ __decorate([
 exports.Endereco = Endereco = __decorate([
     (0, mongoose_1.Schema)()
 ], Endereco);
+exports.EnderecoSchema = mongoose_1.SchemaFactory.createForClass(Endereco);
 //# sourceMappingURL=endereco.schema.js.map

@@ -35,3 +35,8 @@ export declare class Endereco {
     cidade: string;
     UF: string;
 }
+export declare const EnderecoSchema: import("mongoose").Schema<Endereco, import("mongoose").Model<Endereco, any, any, any, import("mongoose").Document<unknown, any, Endereco> & Endereco & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Endereco, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Endereco>> & import("mongoose").FlatRecord<Endereco> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;

@@ -1,8 +1,8 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { Documentacao } from './documentacao.schema';
+import { Documento } from '../../documento/schema/documentacao.schema';
 import { FichaGerencial } from '../../ficha-gerencial/schema/fichaGerencial.schema';
-import { Endereco } from './endereco.schema';
+import { Endereco } from '../../endereco/schema/endereco.schema';
 
 export type UsuarioDocument = HydratedDocument<Usuario>;
 
@@ -47,8 +47,8 @@ export class Usuario {
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Endereco', required: false})
     endereco: Endereco
 
-    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Documentacao', required: false})
-    documentacao: Documentacao
+    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Documento', required: false})
+    documento: Documento
 
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'FichaGerencial', required: false})
     fichaGerencial: FichaGerencial

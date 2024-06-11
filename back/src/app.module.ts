@@ -5,6 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {ConfigModule} from '@nestjs/config'
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { FichaGerencialModule } from './ficha-gerencial/ficha-gerencial.module';
+import { DocumentoModule } from './documento/documento.module';
+import { EnderecoModule } from './endereco/endereco.module';
 
 
 @Module({
@@ -14,7 +16,7 @@ import { FichaGerencialModule } from './ficha-gerencial/ficha-gerencial.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI), 
-    UsuariosModule, FichaGerencialModule,
+    UsuariosModule, FichaGerencialModule, DocumentoModule, EnderecoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
