@@ -1,31 +1,70 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from './schemas/usuario.schema';
+import { BadRequestException } from '@nestjs/common';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class UsuariosService {
   constructor(@InjectModel(Usuario.name) private usuarioModel: Model<Usuario>) {}
   
-  create(createUsuarioDto: CreateUsuarioDto) {
-    return 'This action adds a new usuario';
+  async create(createUsuarioDto: CreateUsuarioDto) {
+    const newUser = new this.usuarioModel(createUsuarioDto);
+    return await newUser.save();
   }
 
-  findAll() {
-    return `This action returns all usuarios`;
+  async findAll() {
+    return await this.usuarioModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+  async findOne(id: number) {
+    try{
+      if (!Types.ObjectId.isValid(id)) {
+        throw new BadRequestException('ID inválido');
+      }
+      return await this.usuarioModel.findById(id).exec();
+    } catch (error) {
+      throw new InternalServerErrorException('Falha ao encontrar usuário', error.message);
+    }
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+
+    try {
+
+      const atualizaUsuario = await this.usuarioModel.findOneAndUpdate({ id }, updateUsuarioDto, { new: true}).exec();
+
+      if(!atualizaUsuario) {
+        throw new NotFoundException('Usuario não encontrado'); 
+      }
+
+      return atualizaUsuario;
+
+    } catch (error) {
+      if (error instanceof NotFoundException){
+        throw error;
+      }
+
+    }
+    
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+  async remove(id: string) {
+    try {
+      if (!Types.ObjectId.isValid(id)) {
+        throw new BadRequestException('ID inválido');
+      }
+      const result = await this.usuarioModel.findByIdAndDelete(id).exec();
+      if (result) {
+        return 'Usuário removido com sucesso';
+      } else {
+        throw new NotFoundException('Usuário não encontrado');
+      }
+    } catch (error) {
+      throw new InternalServerErrorException('Falha ao remover usuário', error.message);
+    }
   }
 }

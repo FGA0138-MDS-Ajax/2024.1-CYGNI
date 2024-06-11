@@ -24,9 +24,9 @@
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
 import mongoose, { HydratedDocument } from 'mongoose';
-import { Documentacao } from './documentacao.schema';
-import { FichaGerencial } from './fichaGerencial.schema';
-import { Endereco } from './endereco.schema';
+import { Documento } from '../../documento/schema/documentacao.schema';
+import { FichaGerencial } from '../../ficha-gerencial/schema/fichaGerencial.schema';
+import { Endereco } from '../../endereco/schema/endereco.schema';
 export type UsuarioDocument = HydratedDocument<Usuario>;
 export declare class Usuario {
     id: number;
@@ -34,14 +34,15 @@ export declare class Usuario {
     nomeDaMae: string;
     nomeDoPai: string;
     sexo: string;
-    dataDeNaschimento: number;
+    dataDeNascimento: number;
     tipoSanguineo: string;
     estadoCivil: string;
     email: string;
     telefone: string;
+    senha: string;
     privilegios: number;
     endereco: Endereco;
-    documentacao: Documentacao;
+    documento: Documento;
     fichaGerencial: FichaGerencial;
 }
 export declare const UsuarioModel: mongoose.Schema<Usuario, mongoose.Model<Usuario, any, any, any, mongoose.Document<unknown, any, Usuario> & Usuario & {

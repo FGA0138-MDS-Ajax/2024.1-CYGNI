@@ -13,6 +13,9 @@ const app_service_1 = require("./app.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const config_1 = require("@nestjs/config");
 const usuarios_module_1 = require("./usuarios/usuarios.module");
+const ficha_gerencial_module_1 = require("./ficha-gerencial/ficha-gerencial.module");
+const documento_module_1 = require("./documento/documento.module");
+const endereco_module_1 = require("./endereco/endereco.module");]
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,7 +27,8 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGODB_URI),
-            usuarios_module_1.UsuariosModule,
+
+            usuarios_module_1.UsuariosModule, ficha_gerencial_module_1.FichaGerencialModule, documento_module_1.DocumentoModule, endereco_module_1.EnderecoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioModel = exports.Usuario = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const documentacao_schema_1 = require("./documentacao.schema");
-const fichaGerencial_schema_1 = require("./fichaGerencial.schema");
-const endereco_schema_1 = require("./endereco.schema");
+const documentacao_schema_1 = require("../../documento/schema/documentacao.schema");
+const fichaGerencial_schema_1 = require("../../ficha-gerencial/schema/fichaGerencial.schema");
+const endereco_schema_1 = require("../../endereco/schema/endereco.schema");
 let Usuario = class Usuario {
 };
 exports.Usuario = Usuario;
@@ -41,7 +41,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
-], Usuario.prototype, "dataDeNaschimento", void 0);
+], Usuario.prototype, "dataDeNascimento", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
@@ -59,6 +59,11 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "telefone", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Usuario.prototype, "senha", void 0);
+__decorate([
+
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
 ], Usuario.prototype, "privilegios", void 0);
@@ -67,9 +72,9 @@ __decorate([
     __metadata("design:type", endereco_schema_1.Endereco)
 ], Usuario.prototype, "endereco", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Documentacao', required: false }),
-    __metadata("design:type", documentacao_schema_1.Documentacao)
-], Usuario.prototype, "documentacao", void 0);
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Documento', required: false }),
+    __metadata("design:type", documentacao_schema_1.Documento)
+], Usuario.prototype, "documento", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'FichaGerencial', required: false }),
     __metadata("design:type", fichaGerencial_schema_1.FichaGerencial)

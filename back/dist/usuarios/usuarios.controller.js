@@ -28,13 +28,13 @@ let UsuariosController = class UsuariosController {
         return this.usuariosService.findAll();
     }
     findOne(id) {
-        return this.usuariosService.findOne(+id);
+        return this.usuariosService.findOne(id);
     }
     update(id, updateUsuarioDto) {
         return this.usuariosService.update(+id, updateUsuarioDto);
     }
     remove(id) {
-        return this.usuariosService.remove(+id);
+        return this.usuariosService.remove(id);
     }
 };
 exports.UsuariosController = UsuariosController;
@@ -55,7 +55,8 @@ __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
+
     __metadata("design:returntype", void 0)
 ], UsuariosController.prototype, "findOne", null);
 __decorate([

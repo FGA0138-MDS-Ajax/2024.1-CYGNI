@@ -1,4 +1,4 @@
-import { Prop, Schema } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 
 export type enderecoDocument = HydratedDocument<Endereco>;
@@ -29,3 +29,5 @@ export class Endereco {
     @Prop({required: true})
     UF: string
 }
+
+export const EnderecoSchema = SchemaFactory.createForClass(Endereco)

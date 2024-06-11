@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+}
+
+hr {
+  background-color: #898989;
+  height: 0px;
+  width: 90%;
+  margin: 0 auto;
+  
+}
+
+.linha-horizontal hr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+
+}
+
+.linha-horizontal button {
+  font-size: 13px;
+  font-weight: bold;
+  color: #898989;
+  background-color: transparent;
+  border: none;
+  
+  margin-left: 5%;
+}
+
+.linha-horizontal button:hover {
+  color: #004373;
+}
+
+.linha-horizontal {
+  margin-top: 30px;
+  display: block;
+}
+
+.botao-dados.selecionado {
+  color: #004373;
+  
+}
+
+.botao-afastamento.selecionado {
+  color: #004373;
+}
+
+h3{
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.cadastro {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: #E6E6E6;
+}
+
+.linha {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.dados-pessoais{
+  margin-top: 30px;
+}
+
+.bloco-central {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.ficha-gerencial{ 
+  margin-bottom: 40px;
+}
+
+#matricula, #nomeGuerra, #nomeCompleto,
+#nomeMae, #nomePai, #email, #telefone,
+#postGrad, #escolaridade, #rg, #cpf, #matSiape,
+#cnhCategoria, #cnhProntuario, #classificacao, #funcao, #escala, #horario,
+#lotacao, #comportamento  {
+  width: 100%;
+  margin-bottom: 9px;
+}
+
+
+#cep, #cidade, #bairro {
+  width: 90%;
+  margin-bottom: 9px;
+}
+
+#logradouro {
+  width: 100%;
+
+}
+
+#uf {
+  width: 35px;
+  margin-bottom: 9px;
+}
+
+#nascimento, #cnhValidade, #validadeBienal, #validadeTAF, #apresentacao, #admissao, #dataInicio, #dataTermino {
+  width: 90%;
+  padding: 0 7px 0px 7px;
+  
+}
+
+#secao1, #secao2 {
+  width: 35%;
+}
+
+#secao3 {
+  width: 15%;
+}
+
+#secao4, #secao5, #secao6 {
+  width: 100%;
+}
+
+.documentacao {
+  width: 51%;
+}
+
+.endereco {
+  width: 44%;
+}
+
+.ficha-gerencial{
+  width: 100%;
+}
+
+.formulario-cadastro,
+.formulario-ficha-gerencial {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.conteiner input {
+  background-color: white;
+  border:none;
+  border-radius: 8px;
+  padding-left: 4px;
+  height: 30px;
+}
+
+.conteiner fieldset {
+  border: none;
+}
+
+.conteiner fieldset legend {
+  display: none;
+}
+
+.conteiner span {
+  display: block;
+  color: #898989;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.conteiner {
+  display: flex;
+  padding: 0 5% 0 5%;
+  
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 80vw;
+  height: 80%;
+
+}
+
+.conteudo-principal {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 80%;
+}
+
+.botoes {
+  display: flex;
+  height: 20%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.botoes button {
+  margin-right: 2.7%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.mensagem-erro {
+  margin-top: 0px;
+  margin-bottom: -1px;
+  transform: translateY(-8px);
+  color: rgb(255, 72, 72);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Afastamento */
+
+.afastamento{
+  width: 85.5%;
+  margin-top: 50px;
+}
+
+#dias, #anoReferencia {
+  margin-bottom: 9px;
+  width: 100%;
+}
+
+#observacoes {
+  display: flex;
+  
+  width: 100%;
+  height: 200px;
+
+  max-width: 100%;
+}
+
+.dados-pessoais.modoLeitor input, .dados-pessoais.modoLeitor select {
+  pointer-events: none;
+  background-color: #dedede;
+  box-shadow: 0.5px 0.5px 2px 0px rgba(0,0,0, 0.2);  
+}
+
+textarea {
+  resize: none;
+  border: none;
+  margin-top: 6px;
+  border-radius: 8px;
+}
