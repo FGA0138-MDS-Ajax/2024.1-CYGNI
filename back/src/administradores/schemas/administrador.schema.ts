@@ -10,6 +10,9 @@ export class Administrador {
 
     @Prop({required: true})
     senha: string
+
+    @Prop({required: true})
+    privilegios : boolean
 }
 
 export const AdministradorModel = SchemaFactory.createForClass(Administrador)

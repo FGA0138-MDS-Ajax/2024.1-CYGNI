@@ -9,37 +9,31 @@ export type UsuarioDocument = HydratedDocument<Usuario>;
 @Schema()
 export class Usuario {
     @Prop({required: true})
-    id: number
-
-    @Prop({required: true})
     nomeCompleto: string
 
-    @Prop({required: true})
+    @Prop({required: false})
     nomeDaMae: string
 
     @Prop({required: false})
     nomeDoPai: string
 
-    @Prop({required: true})
+    @Prop({required: false})
     sexo: string
 
-    @Prop({required: true})
+    @Prop({required: false})
     dataDeNascimento: number
 
-    @Prop({required: true})
+    @Prop({required: false})
     tipoSanguineo: string
 
-    @Prop({required: true})
+    @Prop({required: false})
     estadoCivil: string
 
-    @Prop({required: true})
+    @Prop({required: false})
     email: string
 
-    @Prop({required: true})
+    @Prop({required: false})
     telefone: string
-
-    @Prop()
-    privilegios: number
     
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Endereco', required: false})
     endereco: Endereco
