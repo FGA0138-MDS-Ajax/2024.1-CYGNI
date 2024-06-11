@@ -1,11 +1,11 @@
 import React from "react";
-import ImagemLogin from "../assets/img/ParteBrancaLogin.svg";
-import Icone from "../assets/img/IconeAGIS.svg";
-
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import "../styles/TelaLogin.css";
+//import ImagemLogin from "../assets/img/ParteBrancaLogin.svg";
+import Icone from "../../assets/img/IconeAGIS.svg";
+
+import "./TelaLogin.css";
 
 const TelaLogin = () => {
 	const navegar = useNavigate();
