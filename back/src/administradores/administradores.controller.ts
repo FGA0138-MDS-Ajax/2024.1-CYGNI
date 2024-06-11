@@ -1,15 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { AdministradorService } from './administradores.service';
-import { CreateAdministradorDto } from './dto/create-administrador.dto';
-import { UpdateAdministradorDto } from './dto/update-administrador.dto';
+import { AdministradoresService } from './administradores.service';
+import { CreateAdministradorDto } from './dto/create-administradore.dto';
+import { UpdateAdministradorDto } from './dto/update-administradore.dto';
 
 @Controller('administradores')
 export class AdministradoresController {
-  constructor(private readonly administradoresService: AdministradorService) {}
+  constructor(private readonly administradoresService: AdministradoresService) {}
 
   @Post()
-  create(@Body() createAdministradoreDto: CreateAdministradorDto) {
-    return this.administradoresService.create(createAdministradoreDto);
+  create(@Body() createAdministradorDto: CreateAdministradorDto) {
+    return this.administradoresService.create(createAdministradorDto);
   }
 
   @Get()
@@ -23,8 +23,8 @@ export class AdministradoresController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAdministradoreDto: UpdateAdministradorDto) {
-    return this.administradoresService.update(+id, updateAdministradoreDto);
+  update(@Param('id') id: string, @Body() updateAdministradorDto: UpdateAdministradorDto) {
+    return this.administradoresService.update(+id, updateAdministradorDto);
   }
 
   @Delete(':id')

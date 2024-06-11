@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { CreateAdministradorDto } from './dto/create-administrador.dto';
-import { UpdateAdministradorDto } from './dto/update-administrador.dto';
+import { CreateAdministradorDto } from './dto/create-administradore.dto';
+import { UpdateAdministradorDto } from './dto/update-administradore.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Administrador } from './schemas/administrador.schema';
@@ -8,16 +8,16 @@ import { BadRequestException } from '@nestjs/common';
 import { Types } from 'mongoose';
 
 @Injectable()
-export class AdministradorService {
-  constructor(@InjectModel(Administrador.name) private usuarioModel: Model<Administrador>) {}
+export class AdministradoresService {
+  constructor(@InjectModel(Administrador.name) private administradorModel: Model<Administrador>) {}
   
-  async create(createUsuarioDto: CreateAdministradorDto) {
-    const newUser = new this.usuarioModel(createUsuarioDto);
-    return await newUser.save();
+  async create(CreateAdministradorDto: CreateAdministradorDto) {
+    const newAdmin = new this.administradorModel(CreateAdministradorDto);
+    return await newAdmin.save();
   }
 
   async findAll() {
-    return await this.usuarioModel.find().exec();
+    return await this.administradorModel.find().exec();
   }
 
   async findOne(id: number) {
@@ -25,7 +25,7 @@ export class AdministradorService {
       if (!Types.ObjectId.isValid(id)) {
         throw new BadRequestException('ID inválido');
       }
-      return await this.usuarioModel.findById(id).exec();
+      return await this.administradorModel.findById(id).exec();
     } catch (error) {
       throw new InternalServerErrorException('Falha ao encontrar administrador', error.message);
     }
@@ -35,13 +35,13 @@ export class AdministradorService {
 
     try {
 
-      const atualizaUsuario = await this.usuarioModel.findOneAndUpdate({ id }, updateUsuarioDto, { new: true}).exec();
+      const atualizaAdministrador = await this.administradorModel.findOneAndUpdate({ id }, UpdateAdministradorDto, { new: true}).exec();
 
-      if(!atualizaUsuario) {
+      if(!atualizaAdministrador) {
         throw new NotFoundException('Administrador não encontrado'); 
       }
 
-      return atualizaUsuario;
+      return atualizaAdministrador;
 
     } catch (error) {
       if (error instanceof NotFoundException){
@@ -57,14 +57,14 @@ export class AdministradorService {
       if (!Types.ObjectId.isValid(id)) {
         throw new BadRequestException('ID inválido');
       }
-      const result = await this.usuarioModel.findByIdAndDelete(id).exec();
+      const result = await this.administradorModel.findByIdAndDelete(id).exec();
       if (result) {
         return 'Administrador removido com sucesso';
       } else {
         throw new NotFoundException('Administrador não encontrado');
       }
     } catch (error) {
-      throw new InternalServerErrorException('Falha ao remover administrador', error.message);
+      throw new InternalServerErrorException('Falha ao remover administador', error.message);
     }
   }
 }

@@ -1,5 +1,5 @@
-import { Prop, Schema } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
 
 export type AdministradorDocument = HydratedDocument<Administrador>;
 
@@ -11,3 +11,5 @@ export class Administrador {
     @Prop({required: true})
     senha: string
 }
+
+export const AdministradorModel = SchemaFactory.createForClass(Administrador)
