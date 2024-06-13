@@ -1,13 +1,12 @@
----
-sidebar_position: 2
----
+# AGIS
 
+Somos o grupo CYGNI
 
-# A equipe CYGNI
+## Sobre
 
-Somos um time criado na disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília - Faculdade do Gama.
+O AGIS é uma aplicação desktop de gestão de recursos humanos, que visa fornecer todas as funcionalidades desejadas pelo cliente, como a geração de relatórios, criação de escalas de trabalho e comunicação interna das fichas dos funcionários, além da geração de campanhas - calendário que mostra quem está apto a trabalhar no dia e mês.
 
-##### Nossos Membros:
+##### Autores:
 
 <table>
     <tr>
@@ -53,3 +52,7 @@ Somos um time criado na disciplina de Métodos de Desenvolvimento de Software da
       <br />
     </tr>
 </table>
+
+### Licença
+
+Esse projeto está sob licença: [MIT](LICENSE).
