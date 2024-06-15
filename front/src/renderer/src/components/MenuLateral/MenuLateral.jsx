@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FiHome, FiCalendar, FiClipboard } from "react-icons/fi";
 import { BiLogOut } from "react-icons/bi";
 
-import Logo from "../../assets/img/testeLogo.svg";
+import Logo from "../../assets/img/IconeAGIS.svg";
 
 import "./MenuLateral.css";
 
