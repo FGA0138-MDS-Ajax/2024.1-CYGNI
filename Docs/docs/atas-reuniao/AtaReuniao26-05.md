@@ -1,5 +1,5 @@
 ---
-sidebar_label: "AtaReuniao26-05"
+sidebar_label: "26/05/2024"
 sidebar_position: 7
 ---
 
