@@ -13,6 +13,12 @@ export class Administrador {
 
     @Prop()
     privilegios: number
+
+    @Prop()
+    nome: string
+
+    @Prop()
+    email: string
 }
 
 export const AdministradorModel = SchemaFactory.createForClass(Administrador)
