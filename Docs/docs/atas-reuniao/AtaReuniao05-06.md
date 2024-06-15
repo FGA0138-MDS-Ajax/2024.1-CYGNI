@@ -1,5 +1,5 @@
 ---
-sidebar_label: "AtaReuniao05-06"
+sidebar_label: "05/06/2024"
 sidebar_position: 10
 ---
 # Ata da Reunião
