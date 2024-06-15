@@ -11,13 +11,13 @@ export class Administrador {
     @Prop({required:true})
     senha: string
 
-    @Prop()
+    @Prop({required:true})
     privilegios: number
 
-    @Prop()
+    @Prop({required:true})
     nome: string
 
-    @Prop()
+    @Prop({required:true})
     email: string
 }
 
