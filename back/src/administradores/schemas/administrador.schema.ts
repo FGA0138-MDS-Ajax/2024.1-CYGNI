@@ -12,7 +12,7 @@ export class Administrador {
     senha: string
 
     @Prop({required:true})
-    privilegios: number
+    privilegios: boolean
 
     @Prop({required:true})
     nome: string
