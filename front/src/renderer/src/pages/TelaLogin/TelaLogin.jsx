@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import * as api from "../../services/api.jsx";
 
 //import ImagemLogin from "../assets/img/ParteBrancaLogin.svg";
 import Icone from "../../assets/img/IconeAGIS.svg";
@@ -8,6 +9,15 @@ import Icone from "../../assets/img/IconeAGIS.svg";
 import "./TelaLogin.css";
 
 const TelaLogin = () => {
+	const [formData, setFormData] = useState({
+		login: "",
+		senha: ""
+	});
+
+	const lidarComMudancaNoInput = ({target}) => {
+		setFormData({...formData, [target.name]: target.value});
+	}
+
 	const navegar = useNavigate();
 	const {
 		register,
@@ -33,21 +43,31 @@ const TelaLogin = () => {
 						className={errors?.name && "erro-input"}
 						type="text"
 						placeholder="Usuário"
-						{...register("name", { required: true })}
+						name="login"
+						{...register("login", { required: true })}
+						onChange={(e) => lidarComMudancaNoInput(e)}
 					/>
 					{errors?.name?.type === "required" && <p className="mensagem-erro">Preenchimento obrigatório.</p>}
 					<input
 						className={errors?.password && "input-error"}
 						type="password"
+						name="senha"
 						placeholder="Senha"
-						{...register("password", { required: true })}
+						{...register("senha", { required: true })}
+						onChange={(e) => lidarComMudancaNoInput(e)}
 					/>
 					{errors?.password?.type === "required" && <p className="mensagem-erro">Preenchimento obrigatório.</p>}
 					<button
 						type="submit"
-						onClick={(e) => {
+						onClick={async (e) => {
 							e.preventDefault();
-							handleSubmit(aoEnviar)();
+							try {
+								const resposta = await api.login(formData);
+								localStorage.setItem("token", resposta.data);
+								handleSubmit(aoEnviar)();
+							} catch (error) {
+								alert(error);
+							}
 						}}
 					>
 						Login
