@@ -1,6 +1,6 @@
 ---
 sidebar_label: "Matriz de comunicação"
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Matriz de comunicação
