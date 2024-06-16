@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+}
+
+.botao-voltar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 0;
+}
+
+.container-recuperacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+  width: 100%;
+  background-color: #032026;
+}
+
+.container-verificacao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #032026;
+  width: 30%;
+  margin-top: 2%;
+}
+
+.container-recuperacao input {
+  width: 24.5%;
+  height: 5vh;
+  margin: 1% 0;
+  border-radius: 8px;
+  border: none;
+  padding: 0 1%;
+  font-size: 1.2em;
+  background-color: #03161A;
+  box-shadow: 0.5px 0.5px 0px #FFA800;
+}
+
+.container-recuperacao input::placeholder {
+  color: white;
+  font-size: 16px;
+}
+
+/* .container-recuperacao button {
+  height: 4vh;
+  margin: 1vh 0;
+  padding: 0 1vw;
+  border-radius: 8px 0px 0px 8px;
+  border: none;
+  background-color: #004373;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+} */
+
+.container-verificacao input {
+  width: 62%;
+  height: 5vh;
+  margin: 1vh 0;
+  border-radius: 8px 0px 0px 8px;
+  border: none;
+  padding: 0 1vw;
+  font-size: 1em;
+  background-color: #03161A;
+}
+
+.container-recuperacao button {
+  height: 5vh;
+  margin: 1vh 0;
+  border-radius: 8px;
+  border: none;
+  padding: 0 1vw;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.container-verificacao button {
+  height: 5vh;
+  margin: 1.5vh 0;
+  border-radius: 0px 8px 8px 0px;
+  border: none;
+  padding: 0 1vw;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+
+.container-recuperacao h1 {
+  color: white;
+  font-size: 1.5em;
+  margin: 2vh 0;
+}
+
+#img-icone {
+  width: 25%;
+  height: 10%;
+  margin: 0 0 3% 0;
+
+}
+
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
