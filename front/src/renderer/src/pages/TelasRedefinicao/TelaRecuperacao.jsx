@@ -9,18 +9,6 @@ const TelaRecuperacao = () => {
 
   const navegar = useNavigate();
 
-  const [email, setEmail] = useState(null);
-  const [chave, setChave] = useState(null);
-
-  function handleInputChange({target}){
-    setEmail(target.value)
-  } 
-
-  function handleChaveChange({target}){
-    setChave(target.value)
-  }
-
-
   return (
 
     <div className="container-recuperacao">
@@ -39,20 +27,14 @@ const TelaRecuperacao = () => {
       <div className="formulario">
         <img id='img-icone' src={Icone} alt="icone" />
         <h1>Recuperação de senha</h1>
-        <input type="email" name="" id="email" placeholder="Digite o seu e-mail" onChange={(e) => handleInputChange(e)}/>
+        <input type="email" name="" id="" placeholder="Digite o seu e-mail" />
         <Botao id='botao-rec' largura={'26.5%'} cor={'#FFA800'} corTexto={'#032026'} texto={'Enviar'} />
         <div className="container-verificacao">
-          <input type="text" name="" id="" placeholder="Digite o código de recuperação" onChange={(e) => handleChaveChange(e)}/>
+          <input type="text" name="" id="" placeholder="Digite o código de recuperação" />
           <Botao id='botao-val' largura={'20%'} cor={'#FFA800'} corTexto={'#032026'} texto={'Verificar'}
-            aoClicar={async (e) => {
+            aoClicar={(e) => {
               e.preventDefault();
-              
-              try{
-                navegar('/tela-redefinicao');
-              }
-              catch(error){
-                
-              }
+              navegar('/tela-redefinicao');
             }}
           />
         </div>

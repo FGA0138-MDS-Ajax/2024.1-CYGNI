@@ -54,7 +54,10 @@ const TelaLogin = () => {
 					</button>
 				</form>
 				<p>
-					Esqueceu a senha? <a href="">Recupere aqui!</a>
+					Esqueceu a senha? <a href="" onClick={(e) => {
+						e.preventDefault();
+						navegar('/tela-recuperacao');
+					}}>Recupere aqui!</a>
 				</p>
 			</div>
 		</div>

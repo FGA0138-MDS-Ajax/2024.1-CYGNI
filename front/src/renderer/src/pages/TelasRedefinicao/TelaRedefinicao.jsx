@@ -21,7 +21,9 @@ const TelaRedefinicao = () => {
     navegar("/");
   };
 
-  
+  const aoVoltar = () => {
+    navegar("/tela-recuperacao");
+  };
 
   const senha = watch("senha");
 
@@ -63,6 +65,10 @@ const TelaRedefinicao = () => {
 
 
     </div>
+
+
+
+
   );
 };
 export default TelaRedefinicao; 
