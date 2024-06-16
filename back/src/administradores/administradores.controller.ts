@@ -2,14 +2,20 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AdministradoresService } from './administradores.service';
 import { CreateAdministradorDto } from './dto/create-administrador.dto';
 import { UpdateAdministradorDto } from './dto/update-administrador.dto';
+import { LoginDTO } from './dto/login.dto';
 
 @Controller('administradores')
 export class AdministradoresController {
-  constructor(private readonly administradoresService: AdministradoresService) {}
+  constructor(private readonly administradoresService: AdministradoresService) { }
 
   @Post()
   create(@Body() createAdministradorDto: CreateAdministradorDto) {
     return this.administradoresService.create(createAdministradorDto);
+  }
+
+  @Post('login')
+  login(@Body() loginDTO: LoginDTO) {
+    return this.administradoresService.login(loginDTO);
   }
 
   @Get()

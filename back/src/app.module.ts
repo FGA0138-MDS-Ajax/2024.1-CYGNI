@@ -14,7 +14,7 @@ import { AdministradoresModule } from './administradores/administradores.module'
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env.example',
+      envFilePath: '.env',
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI), 
