@@ -67,7 +67,6 @@ eficiente e otimizado.
 |------------|-------------------------------------------------------------------------|--------------------------------------------|
 | ElectronJS | Framework Fron-End para criacao de aplicacoes Desktop usando stacks Web | https://www.electronjs.org/pt/docs/latest/ |
 | ReactJS    | Biblioteca do JavaScript para a criaçao de Single Page Applications     | https://react.dev                          |
-| Bootstrap  | Framework CSS para desenvolvimento Front-End                            | https://getbootstrap.com/docs/3.4/css/     |
 | NodeJS     | Runtime JavaScript para desenvolvimento Back-End                        | https://nodejs.org                         |
 | NestJS     | Framework Back-End para NodeJS para desenvolvimento de APIs             | https://nestjs.com                         |
 | ExpressJS  | Biblioteca JavaScript para o desenvolvimento de APIs                    | https://nestjs.com                         |
