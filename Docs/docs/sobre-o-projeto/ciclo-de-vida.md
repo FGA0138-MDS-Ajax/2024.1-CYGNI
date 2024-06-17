@@ -13,5 +13,5 @@ sidebar_position: 2
 | Ferramentas: | Utilizaremos o GitHub para gerenciar submissões e alterações de código, o Discord para reuniões, que oferece controle sobre interações e é reconhecido por sua segurança, e o Figma para a criação de protótipos, designs e colaboração na interface do usuário. Para manter a comunicação síncrona e assíncrona, utilizaremos o Discord, Teams e WhatsApp.          |
 | Métodos:     | Como anteriormente citado, aproveitamos dos métodos provenientes do SCRUM/XP como por exemplo: Pair Programming, Code Review Sprint Daily, Sprint Planning, Sprint Review, Sprint Retrospective e Refinamento de Backlog de Produto. Agendaremos encontros semanais para manter a equipe em sintonia e fomentar uma comunicação eficiente durante nossas atividades. |
 
-![Representação gráfica do ciclo de vida do projeto.](/static/img/CiclodeVida.png)
+![Representação gráfica do ciclo de vida do projeto.](../../static/img/CiclodeVida.png)
 *Representação gráfica do ciclo de vida do projeto.*
