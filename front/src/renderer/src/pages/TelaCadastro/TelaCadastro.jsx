@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, createPath } from "react-router-dom";
+import * as api from "../../services/api.jsx";
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
 import Campo from "../../components/Campo/Campo.jsx";
@@ -17,18 +18,93 @@ import "./TelaCadastro.css";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
+	const location = useLocation();
+	const funcionario = location.state?.funcionario;
 	const navegar = useNavigate();
 	const {
 		register,
+		setValue,
+		reset,
 		handleSubmit,
 		trigger,
 		formState: { errors },
 	} = useForm();
 
-	const aoEnviar = (dadosFormulario) => {
-		/*console.log(dadosFormulario);*/
-		navegar("/inicial");
+	useEffect(() => {
+		if (funcionario) {
+			reset({
+				//cadastro geral
+				matricula: funcionario.matricula,
+				nomeGuerra: funcionario.nomeGuerra,
+				nomeCompleto: funcionario.nomeCompleto,
+				sexo: funcionario.sexo,
+				nascimento: funcionario.nascimento,
+				tipoSanguineo: funcionario.tipoSanguineo,
+				nomeMae: funcionario.nomeDaMae,
+				nomePai: funcionario.nomeDoPai,
+				email: funcionario.email,
+				telefone: funcionario.telefone,
+				postGrad: funcionario.postGrad,
+				escolaridade: funcionario.escolaridade,
+				estadoCivil: funcionario.estadoCivil,
+
+				//documentacao
+				rg: funcionario.RG,
+				cpf: funcionario.CPF,
+				matSiape: funcionario.matSiape,
+				cnhCategoria: funcionario.CNHCategoria,
+				cnhValidade: funcionario.CNHValidade,
+				cnhProntuario: funcionario.CNHProntuario,
+
+				//endereco
+				cep: funcionario.CEP,
+				cidade: funcionario.cidade,
+				bairro: funcionario.bairro,
+				uf: funcionario.uf,
+				logradouro: funcionario.logradouro,
+
+				//ficha gerencial
+				classificacao: funcionario.classificacao,
+				funcao: funcionario.funcao,
+				escala: funcionario.escala,
+				horario: funcionario.horarioEscala,
+				lotacao: funcionario.lotacao,
+				comportamento: funcionario.comportamento,
+				porteArma: funcionario.porteDeArma,
+				apresentacao: funcionario.apresentacao,
+				admissao: funcionario.admissao,
+				validadeBienal: funcionario.validadeBienal,
+				validadeTAF: funcionario.validadeTAF,
+			})
+		}
+	}, [funcionario, reset, setValue]);
+
+	const aoEnviar = async (dadosFormulario) => {
+		try {
+			await api.CadastrarUsuario(dadosFormulario);
+			navegar("/inicial");
+		} catch (error) {
+			throw new Error("Erro ao cadastrar usuário");
+		}
 	};
+
+	const excluirUsuario = async (data) => {
+		try {
+			await api.excluirUsuario(data._id);
+			navegar("/inicial");
+		} catch (error) {
+			throw new Error("Erro ao excluir usuário");
+		}
+	}
+
+	const editarUsuario = async (data) => {
+		try {
+			await api.editarUsuario(data._id, data);
+			console.log("Usuário editado com sucesso");
+		} catch (error) {
+			throw new Error("Erro ao editar usuário");
+		}
+	}
 
 	const botaoMudanca = async () => {
 		const camposPreenchidos = await trigger(["matricula", "nomeCompleto"]);
@@ -220,7 +296,12 @@ const TelaCadastro = () => {
 									<div className="linha">
 										<Campo id="classificacao" texto="Classificação" tipo="text" registro={register} erros={errors} />
 										<Campo id="funcao" texto="Função" tipo="text" registro={register} erros={errors} />
-										<Campo id="escala" texto="Escala" tipo="text" registro={register} erros={errors} />
+										<MenuSuspenso
+											id="escala"
+											texto="Escala"
+											largura="125px"
+											opcoes={["12 x 36", "24 x 72", "8 x 40", "12 x 60"]}
+										/>
 										<Campo id="horario" texto="Horário" tipo="text" registro={register} erros={errors} />
 										<Campo id="lotacao" texto="Lotação" tipo="text" registro={register} erros={errors} />
 									</div>
@@ -283,37 +364,57 @@ const TelaCadastro = () => {
 
 				<div className="botoes">
 					<Botao
-						id="cancelar"
+						id="voltar"
 						icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
-						texto="Cancelar"
+						texto="Voltar"
 						cor="#032026"
 						largura={"130px"}
+						aoClicar={(e) => {navegar("/inicial")}}
 					/>
-					<Botao
-						id="excluir"
-						icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
-						texto="Excluir"
-						cor="#8C1C45"
-						largura={"130px"}
-					/>
-					<Botao
-						id="editar"
-						icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
-						texto="Editar"
-						cor="#F29B30"
-						largura={"130px"}
-					/>
-					<Botao
-						id="salvar"
-						icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
-						texto="Salvar"
-						cor="#588C7E"
-						largura={"130px"}
-						aoClicar={(e) => {
-							e.preventDefault();
-							handleSubmit(aoEnviar)();
-						}}
-					/>
+
+					{funcionario && (
+
+						<Botao
+							id="excluir"
+							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
+							texto="Excluir"
+							cor="#8C1C45"
+							largura={"130px"}
+							aoClicar={(e) => {
+								e.preventDefault();
+								excluirUsuario(funcionario);
+							}}
+						/>
+					)}
+
+					{funcionario && (
+						<Botao
+							id="atualizar"
+							icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
+							texto="Atualizar"
+							cor="#F29B30"
+							largura={"130px"}
+							aoClicar={(e) => {
+								e.preventDefault();
+								editarUsuario(funcionario);
+							}}
+						/>
+					)}
+
+
+					{!funcionario && (
+						<Botao
+							id="salvar"
+							icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
+							texto="Salvar"
+							cor="#588C7E"
+							largura={"130px"}
+							aoClicar={(e) => {
+								e.preventDefault();
+								handleSubmit(aoEnviar)();
+							}}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

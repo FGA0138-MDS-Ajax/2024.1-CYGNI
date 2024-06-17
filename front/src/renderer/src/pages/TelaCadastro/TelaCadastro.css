@@ -90,7 +90,7 @@ h3{
 #matricula, #nomeGuerra, #nomeCompleto,
 #nomeMae, #nomePai, #email, #telefone,
 #postGrad, #escolaridade, #rg, #cpf, #matSiape,
-#cnhCategoria, #cnhProntuario, #classificacao, #funcao, #escala, #horario,
+#cnhCategoria, #cnhProntuario, #classificacao, #funcao, #horario,
 #lotacao, #comportamento  {
   width: 100%;
   margin-bottom: 9px;
@@ -209,7 +209,7 @@ h3{
   font-weight: bold;
 }
 
-.mensagem-erro {
+.formulario-cadastro .mensagem-erro {
   margin-top: 0px;
   margin-bottom: -1px;
   transform: translateY(-8px);
