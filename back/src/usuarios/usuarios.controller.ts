@@ -39,22 +39,4 @@ export class UsuariosController {
     return this.usuariosService.remove(id);
   }
 
-  @Post('email-redefinicao')
-  async enviaRedefinicaoDeSenha(@Body('email') email: string) {
-    return this.usuariosService.enviaTokenRedefinirSenha(email);
-  }
-
-  @Post('verifica-token')
-  async verificaToken(@Body() verificaTokenDto: VerificaTokenDto) {
-    const { token, email } = verificaTokenDto;
-    return await this.usuariosService.verificaToken(email, token);
-  }
-
-  @Post('redefine-senha')
-  async trocaSenha(@Body() redefineSenhaDto: RedefineSenhaDto) {
-    const { email, novaSenha, novaSenhaConfirmacao, token } = redefineSenhaDto;
-
-    return await this.usuariosService.redefineSenha(email, novaSenha, novaSenhaConfirmacao, token);
-  }
-
 }
