@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as api from "../../services/api.jsx";
+import { debounce } from 'lodash';
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
 
@@ -14,13 +16,36 @@ import { FiFile } from "react-icons/fi";
 import { FiClipboard } from "react-icons/fi";
 
 import "./TelaInicial.css";
+import { set } from "react-hook-form";
 
 const TelaInicial = () => {
-	const navigate = useNavigate();
+	const [funcionarios, setFuncionarios] = useState([]);
+	const [pesquisa, setPesquisa] = useState("");
+	const navegar = useNavigate();
 
 	const irParaTelaCadastro = () => {
-		navigate("/tela-cadastro");
+		navegar("/tela-cadastro");
 	};
+
+	useEffect(() => {
+		const fetchFuncionarios = async () => {
+			const response = await api.buscarUsuarios();
+			setFuncionarios(response.data);
+		};
+		fetchFuncionarios();
+	}, []);
+
+	const handleSearch = debounce((searchTerm) => {
+		setPesquisa(searchTerm);
+	}, 300);
+
+	const funcionariosFiltrados = pesquisa.trim() ? funcionarios.filter(funcionario =>
+		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase())
+	) : [];
+
+	const handleFuncionarioSelecionado = (funcionario) => {
+		navegar('/tela-cadastro', { state: { funcionario } });
+	}
 
 	return (
 		<div className="tela-inicial">
@@ -29,7 +54,14 @@ const TelaInicial = () => {
 				<div className="div-superior">
 					<div className="barra-de-pesquisa">
 						<FaSearch size={24} className="icone-pesquisa" color="#777777" />
-						<input type="text" placeholder="Pesquise por matrícula ou nome do funcionário..." />
+						<input type="text" placeholder="Pesquise por matrícula ou nome do funcionário..." onChange={(e) => handleSearch(e.target.value)} />
+						<div className="lista-funcionarios">
+							{funcionariosFiltrados.map((funcionario) => (
+								<ul key={funcionario.id} className="funcionario-item" onClick={() => handleFuncionarioSelecionado(funcionario)}>
+									<li>{funcionario.nomeCompleto}</li>
+								</ul>
+							))}
+						</div>
 					</div>
 					<button type="button" onClick={irParaTelaCadastro}>
 						<FiUserPlus size={20} style={{ marginRight: "8px" }} />
