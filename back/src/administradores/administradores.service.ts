@@ -1,4 +1,4 @@
-import { BadRequestException, ForbiddenException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Get, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import * as crypto from "crypto";
@@ -102,15 +102,19 @@ export class AdministradoresService {
 
   async enviaTokenRedefinirSenha(email: string): Promise<void> {
     try {
+      Logger.log("início da função");
       const usuario = await this.administradorModel.findOne({ email });
       if (!usuario) {
         throw new NotFoundException("Usuario nao encontrado");
       }
+      Logger.log(usuario, email);
       const token = crypto.randomBytes(3).toString('hex');
+      Logger.log(token);
       await new this.TokenDeConfirmacaoModel({
-        email: usuario.email,
+        email: email,
         token
-      }).save()
+      }).save();
+      Logger.log("token salvo");
       const text = `Seu código de redefinição de senha é: ${token}`;
       const html = `
       <div style="font-family: Arial, sans-serif; line-height: 1.5;">
@@ -171,4 +175,9 @@ export class AdministradoresService {
       }
     }
   }
+
+
+  async findAllTokens(){
+    return this.TokenDeConfirmacaoModel.find().exec();
+  } 
 }
