@@ -2,18 +2,23 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  list-style: none;
+  user-select: none;
 }
 
 .conteiner-relatorio-mensal {
   display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
   background-color: #F2F2F2;
 }
 
 .conteiner-conteudo-principal {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  width: 80%;
+  width: 93.5%;
+
 }
 
 .filtros {
@@ -21,8 +26,10 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
-  height: 25vh;
-  
+  width: auto;
+  height: 30%;
+  background-color: #03161A;
+
 }
 
 .filtros input {
@@ -34,7 +41,8 @@
 }
 
 .filtros span {
-  color: #898989;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 #mes, #situacao, #ordem {
@@ -46,8 +54,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50vh;
+  height: 70%;
 
+  
 }
 
 .conteiner-relatorio-mensal .campo {
