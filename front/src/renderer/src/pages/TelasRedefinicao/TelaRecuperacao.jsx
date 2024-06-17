@@ -46,7 +46,7 @@ const TelaRecuperacao = () => {
           aoClicar={async (e) => {
             e.preventDefault()
             try {
-              await api.enviarEmailDeRedefinicao(email);
+              await api.enviarEmailDeRedefinicao({email: email});
             } catch (error) {
               alert(error)
             }
@@ -60,7 +60,8 @@ const TelaRecuperacao = () => {
             aoClicar={async (e) => {
               e.preventDefault();
               try {
-                await api.verificaToken({token, email})
+                alert(email);
+                await api.verificaToken({token: token, email: email})
                 navegar('/tela-redefinicao');
               } catch (error) {
                 alert(error);

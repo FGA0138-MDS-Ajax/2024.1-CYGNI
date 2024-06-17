@@ -76,7 +76,14 @@ const TelaRedefinicao = () => {
           aoClicar={async (e) => {
             e.preventDefault();
             try {
-              await api.redefineSenha({email, novaSenha, novaSenhaConfirmacao, token})
+              const payload = {
+                email: email, 
+                novaSenha: formData.novaSenha,
+                novaSenhaConfirmacao: formData.novaSenhaConfirmacao, 
+                token: token
+              }
+              console.log(payload);
+              await api.redefineSenha(payload);
               navegar("/");
             } catch (error) {
               alert(error);
