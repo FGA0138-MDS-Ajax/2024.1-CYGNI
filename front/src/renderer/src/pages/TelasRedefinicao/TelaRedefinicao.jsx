@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Botao from "../../components/Botao/Botao.jsx";
 import { useNavigate } from "react-router-dom";
 import Icone from "../../assets/img/IconeAGIS.svg";
 import "./TelaRedefinicao.css";
-
+import * as api from "../../services/api.jsx";
 import { useForm } from "react-hook-form";
 import { HiArrowUturnLeft } from "react-icons/hi2";
+import { RedefinicaoContext } from "./redefinicaoContext.jsx";
 
 const TelaRedefinicao = () => {
   const {
@@ -16,6 +17,17 @@ const TelaRedefinicao = () => {
   } = useForm();
 
   const navegar = useNavigate();
+
+  const [formData, setFormData] = useState({
+    novaSenha: "",
+    novaSenhaConfirmacao: ""
+  })
+
+  function lidarComMudancaNoInput({ target }) {
+    setFormData({ ...formData, [target.name]: target.value });
+  }
+
+  const {email, token} = useContext(RedefinicaoContext);
 
   const aoEnviar = () => {
     navegar("/");
@@ -47,17 +59,28 @@ const TelaRedefinicao = () => {
         <form className="formulario-senha" onSubmit={handleSubmit(aoEnviar)}>
           <input
             type="password" id="senha" placeholder="Digite a nova senha"
-            {...register("senha", { required: "Este campo é obrigatório" })} />
+            {...register("senha", { required: "Este campo é obrigatório" })} 
+            onChange={(e) => lidarComMudancaNoInput(e)}
+            name="novaSenha"
+            />
           {errors.senha && <p className="mensagem-erro">{errors.senha.message}</p>}
           <input type="password" id="confirmarSenha"
             {...register("confirmarSenha", { required: "Confirmação de senha é obrigatória", validate: value => value === senha || "As senhas não coincidem" })}
-            placeholder="Digite novamente a senha" />
+            placeholder="Digite novamente a senha" 
+            onChange={(e) => lidarComMudancaNoInput(e)}
+            name="novaSenhaConfirmacao"
+            />
           {errors.confirmarSenha && <p className="mensagem-erro">{errors.confirmarSenha.message}</p>}
         </form>
         <Botao id='botao-red' largura={'26%'} cor={'#FFA800'} corTexto={'#032026'} texto={'Recuperar'}
-          aoClicar={(e) => {
+          aoClicar={async (e) => {
             e.preventDefault();
-            handleSubmit(aoEnviar)();
+            try {
+              await api.redefineSenha({email, novaSenha, novaSenhaConfirmacao, token})
+              navegar("/");
+            } catch (error) {
+              alert(error);
+            }
           }}
         />
       </div>
