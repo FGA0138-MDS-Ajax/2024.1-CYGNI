@@ -2,8 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Ba
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-import { VerificaTokenDto } from './dto/verifica-token.dto';
-import { RedefineSenhaDto } from './dto/troca-senha.dto';
+
 //import { AuthGuard } from 'src/auth-guard/auth-guard.guard';
 
 @Controller('usuarios')

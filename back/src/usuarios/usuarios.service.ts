@@ -6,16 +6,12 @@ import { Model } from 'mongoose';
 import { Usuario } from './schemas/usuario.schema';
 import { BadRequestException } from '@nestjs/common';
 import { Types } from 'mongoose';
-import { TokenDeConfirmacao, TokenDeConfirmacaoDocument } from './schemas/tokenDeConfirmacao.schema';
-import { EmailService } from 'src/email/email.services';
-import * as crypto from 'crypto';
 
 @Injectable()
 export class UsuariosService {
   constructor(
     @InjectModel(Usuario.name) private usuarioModel: Model<Usuario>,
-    @InjectModel(TokenDeConfirmacao.name) private TokenDeConfirmacaoModel: Model<TokenDeConfirmacaoDocument>,
-    private readonly emailService: EmailService
+
   ) { }
 
   async create(createUsuarioDto: CreateUsuarioDto) {
@@ -71,5 +67,4 @@ export class UsuariosService {
       throw new InternalServerErrorException('Falha ao remover usuário', error.message);
     }
   }
-
 }
