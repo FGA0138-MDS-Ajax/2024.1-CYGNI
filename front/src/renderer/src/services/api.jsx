@@ -14,14 +14,18 @@ export const login = async (data) => {
     return axios.post(`${BASE_URL}/administradores/login`, data)
 }
 
-export const enviarEmailDeRedefinicao = async (email) => {
-    return axios.post(`${BASE_URL}/administradores/email-redefinicao`, email);
+export const buscarUsuarios = async () => {
+    return axios.get(`${BASE_URL}/usuarios`)
 }
 
-export const verificaToken = async (data) => {
-    return axios.post(`${BASE_URL}/administradores/verifica-token`, data);
+export const CadastrarUsuario = async (data) => {
+    return axios.post(`${BASE_URL}/usuarios`, data)
 }
 
-export const redefineSenha = async (data) => {
-    return axios.post(`${BASE_URL}/administradores/redefine-senha`, data);
+export const excluirUsuario = async (id) => {
+    return await axios.delete(`${BASE_URL}/usuarios/${id}`)
+}
+
+export const editarUsuario = async (id, data) => {
+    return await axios.patch(`${BASE_URL}/usuarios/${id}`, data)
 }
