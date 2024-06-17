@@ -9,7 +9,7 @@ sidebar_position: 1
 A utilização de múltiplas plataformas para desempenhar tarefas semelhantes resulta em uma série de desafios. Em uma sessão de administração de recursos humanos, por exemplo, é comum a necessidade de recorrer a mais de um sistema para a realização do trabalho, gerando uma repetição das mesmas atividades. Esse trabalho não integrado, onde as informações muitas vezes estão dispersas em sistemas isolados, não apenas consome tempo e recursos, mas também aumenta as chances de erros e inconsistência nos dados. Como resultado, a produtividade pode ser afetada e a tomada de decisões baseada em dados pode se tornar menos precisa, limitando a capacidade de uma organização de alcançar seus objetivos de forma eficaz e eficiente.
 
 
-![Diagrama de Ishikawa do projeto.](/static/img/Ishikawa.png)
+![Diagrama de Ishikawa do projeto.](../../static/img/Ishikawa.png)
 *Representação do Diagrama Ishikawa para identificar possíveis problemas que o software se propõe a resolver.*
 
 ## Declaração de Posição do Produto
