@@ -6,16 +6,12 @@ import { Model } from 'mongoose';
 import { Usuario } from './schemas/usuario.schema';
 import { BadRequestException } from '@nestjs/common';
 import { Types } from 'mongoose';
-import { TokenDeConfirmacao, TokenDeConfirmacaoDocument } from './schemas/tokenDeConfirmacao.schema';
-import { EmailService } from 'src/email/email.services';
-import * as crypto from 'crypto';
 
 @Injectable()
 export class UsuariosService {
   constructor(
     @InjectModel(Usuario.name) private usuarioModel: Model<Usuario>,
-    @InjectModel(TokenDeConfirmacao.name) private TokenDeConfirmacaoModel: Model<TokenDeConfirmacaoDocument>,
-    private readonly emailService: EmailService
+
   ) { }
 
   async create(createUsuarioDto: CreateUsuarioDto) {
@@ -69,74 +65,6 @@ export class UsuariosService {
       }
     } catch (error) {
       throw new InternalServerErrorException('Falha ao remover usuário', error.message);
-    }
-  }
-  async enviaTokenRedefinirSenha(email: string): Promise<void> {
-    try {
-      const usuario = await this.usuarioModel.findOne({ email });
-      if (!usuario) {
-        throw new NotFoundException("Usuario nao encontrado");
-      }
-      const token = crypto.randomBytes(3).toString('hex');
-      await new this.TokenDeConfirmacaoModel({
-        email: usuario.email,
-        token
-      }).save()
-      const text = `Seu código de redefinição de senha é: ${token}`;
-      const html = `
-      <div style="font-family: Arial, sans-serif; line-height: 1.5;">
-        <p>Olá,</p>
-        <p>Você solicitou a redefinição de senha. Use o código abaixo para redefinir sua senha:</p>
-        <h2 style="color: blue; background-color: #f0f0f0; padding: 10px; display: inline-block;">${token}</h2>
-        <p>Se você não solicitou a redefinição de senha, por favor, ignore este email.</p>
-        <p>Obrigado,</p>
-        <p><strong>Equipe AGIS</strong></p>
-        <hr>
-        <p style="font-size: 0.9em; color: #888;">Este é um email automático, por favor, não responda.</p>
-      </div>
-    `;
-
-      await this.emailService.enviaEmail(usuario.email, "Redefinição de senha AGIS", text, html);
-
-    } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
-    }
-  }
-  async verificaToken(email: string, token: string): Promise<boolean> {
-    try {
-      const confirmaToken = await this.TokenDeConfirmacaoModel.findOne({ email, token });
-      if (!confirmaToken) {
-        throw new NotFoundException('Token Invalido');
-      }
-
-      return true
-    } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
-    }
-
-  }
-  async redefineSenha(email: string, novaSenha: string, novaSenhaConfirmacao: string, token: string) {
-    try {
-      const tokenValidado = await this.verificaToken(email, token);
-      if (!tokenValidado) {
-        throw new NotFoundException('Token inválido ou expirado');
-      }
-      const usuario = await this.usuarioModel.findOne({ email });
-      if (!usuario) {
-        throw new NotFoundException('Usuário não encontrado');
-      }
-      usuario.senha = novaSenha;
-      await usuario.save();
-      await this.TokenDeConfirmacaoModel.deleteOne({ email, token });
-      return 'Senha Alterada'
-    } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
     }
   }
 }
