@@ -27,12 +27,9 @@ export class UsuariosService {
     return await this.usuarioModel.find().exec();
   }
 
-  async findOne(id: number) {
+  async findByName(nomeCompleto: string) {
     try {
-      if (!Types.ObjectId.isValid(id)) {
-        throw new BadRequestException('ID inválido');
-      }
-      return await this.usuarioModel.findById(id).exec();
+      return await this.usuarioModel.find({ nomeCompleto: { $regex: nomeCompleto, $options: 'i' } }).exec();
     } catch (error) {
       throw new InternalServerErrorException('Falha ao encontrar usuário', error.message);
     }
