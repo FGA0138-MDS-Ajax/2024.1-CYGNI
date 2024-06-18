@@ -18,10 +18,10 @@ export class Usuario {
     nomeGuerra: string | null
 
     @Prop({required: false, default: null})
-    nomeDaMae: string | null
+    nomeMae: string | null
 
     @Prop({required: false, default: null})
-    nomeDoPai: string | null
+    nomePai: string | null
 
     @Prop({required: false, default: null})
     sexo: string | null
@@ -67,7 +67,7 @@ export class Usuario {
     comportamento: string | null
 
     @Prop({required: false, default: null})
-    porteDeArma: boolean | null
+    porteArma: boolean | null
 
     @Prop({required: false, default: null, type: Date})
     admissao: Date | null
@@ -93,29 +93,29 @@ export class Usuario {
     cidade: string | null
 
     @Prop({required: false,default:null})
-    UF: string | null
+    uf: string | null
 
     @Prop({required: false,default:null})
     logradouro: string | null
 
     //documentação
     @Prop({required: false, default: null})
-    RG: string | null
+    rg: string | null
 
     @Prop({required: false, default: null})
-    CPF: string | null
+    cpf: string | null
 
     @Prop({required: false, default: null})
     matSiape: string | null
 
     @Prop({required: false, default: null})
-    CNHProntuario: string | null
+    cnhProntuario: string | null
     
     @Prop({required: false, default: null})
-    CNHCategoria: string | null
+    cnhCategoria: string | null
 
     @Prop({required: false, default: null, type: Date})
-    CNHValidade: Date | null
+    cnhValidade: Date | null
 
 }
 
