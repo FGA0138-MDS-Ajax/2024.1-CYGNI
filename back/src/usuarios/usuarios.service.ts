@@ -31,7 +31,7 @@ export class UsuariosService {
     }
   }
 
-  async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+  async update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
 
     try {
 
