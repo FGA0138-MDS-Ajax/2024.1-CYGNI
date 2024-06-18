@@ -1,16 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 
-//import { AuthGuard } from 'src/auth-guard/auth-guard.guard';
-
 @Controller('usuarios')
 export class UsuariosController {
-  constructor(private readonly usuariosService: UsuariosService) { }
+  constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post()
-  //@UseGuards(AuthGuard)
   create(@Body() createUsuarioDto: CreateUsuarioDto) {
     return this.usuariosService.create(createUsuarioDto);
   }
@@ -20,22 +17,40 @@ export class UsuariosController {
     return this.usuariosService.findAll();
   }
 
-  @Get(':nomeCompleto')
-  async findByName(@Param('nomeCompleto') nomeCompleto: string) {
-    if (!nomeCompleto) {
-      throw new BadRequestException('O parâmetro nomeCompleto é obrigatório');
+  @Get('buscar')
+  async findByNameOrMatriculaOrId(
+    @Query('nomeCompleto') nomeCompleto?: string, 
+    @Query('matricula') matricula?: string,
+    @Query('id') id?: string
+  ) {
+    if (!nomeCompleto && !matricula && !id) {
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
     }
-    return this.usuariosService.findByName(nomeCompleto);
+    return this.usuariosService.findByNameOrMatriculaOrId(nomeCompleto, matricula, id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
-    return this.usuariosService.update(+id, updateUsuarioDto);
+  @Patch('atualizar')
+  async update(
+    @Body() updateUsuarioDto: UpdateUsuarioDto,
+    @Query('nomeCompleto') nomeCompleto?: string, 
+    @Query('matricula') matricula?: string,
+    @Query('id') id?: string
+  ) {
+    if (!nomeCompleto && !matricula && !id) {
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+    }
+    return this.usuariosService.update(updateUsuarioDto, nomeCompleto, matricula, id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usuariosService.remove(id);
+  @Delete('remover')
+  async remove(
+    @Query('nomeCompleto') nomeCompleto?: string, 
+    @Query('matricula') matricula?: string,
+    @Query('id') id?: string
+  ) {
+    if (!nomeCompleto && !matricula && !id) {
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+    }
+    return this.usuariosService.remove(nomeCompleto, matricula, id);
   }
-
 }
