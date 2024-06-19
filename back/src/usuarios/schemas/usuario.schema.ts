@@ -8,6 +8,7 @@ export class Usuario {
     @Prop({required: false, default: null})
     id: number | null
 
+    // Dados pessoais gerais
     @Prop({required: true})
     nomeCompleto: string
     
@@ -47,7 +48,42 @@ export class Usuario {
     @Prop({required: false, default: null})
     escolaridade: string | null
 
-    //ficha gerencial
+    // Documentação
+    @Prop({required: false, default: null})
+    rg: string | null
+
+    @Prop({required: false, default: null})
+    cpf: string | null
+
+    @Prop({required: false, default: null})
+    matSiape: string | null
+
+    @Prop({required: false, default: null})
+    cnhProntuario: string | null
+    
+    @Prop({required: false, default: null})
+    cnhCategoria: string | null
+
+    @Prop({required: false, default: null, type: Date})
+    cnhValidade: Date | null
+    
+    // Endereço
+    @Prop({required: false, default: null})
+    cep: string | null
+
+    @Prop({required: false,default:null})
+    bairro: string | null
+
+    @Prop({required: false,default:null})
+    cidade: string | null
+
+    @Prop({required: false,default:null})
+    uf: string | null
+
+    @Prop({required: false,default:null})
+    logradouro: string | null
+
+    // Ficha gerencial
     @Prop({required: false, default: null})
     classificacao: string | null
     
@@ -81,42 +117,25 @@ export class Usuario {
     @Prop({required: false, default: null, type: Date})
     validadeTAF: Date | null
 
-
-    //campos relacionados a endereço
-    @Prop({required: false, default: null})
-    cep: string | null
-
-    @Prop({required: false,default:null})
-    bairro: string | null
-
-    @Prop({required: false,default:null})
-    cidade: string | null
-
-    @Prop({required: false,default:null})
-    uf: string | null
-
-    @Prop({required: false,default:null})
-    logradouro: string | null
-
-    //documentação
-    @Prop({required: false, default: null})
-    rg: string | null
+    // Afastamento
 
     @Prop({required: false, default: null})
-    cpf: string | null
+    motivo: string | null
 
     @Prop({required: false, default: null})
-    matSiape: string | null
-
-    @Prop({required: false, default: null})
-    cnhProntuario: string | null
-    
-    @Prop({required: false, default: null})
-    cnhCategoria: string | null
+    anoReferencia: number | null
 
     @Prop({required: false, default: null, type: Date})
-    cnhValidade: Date | null
+    dataInicio: Date | null
 
+    @Prop({required: false, default: null, type: Date})
+    dataTermino: Date | null
+
+    @Prop({required: false, default: null})
+    dias: number | null
+    
+    @Prop({required: false, default: null})
+    observacoes: string | null
 }
 
 export const UsuarioModel = SchemaFactory.createForClass(Usuario)
