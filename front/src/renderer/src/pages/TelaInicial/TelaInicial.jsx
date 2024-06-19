@@ -23,10 +23,6 @@ const TelaInicial = () => {
 	const [pesquisa, setPesquisa] = useState("");
 	const navegar = useNavigate();
 
-	const irParaTelaCadastro = () => {
-		navegar("/tela-cadastro");
-	};
-
 	useEffect(() => {
 		const fetchFuncionarios = async () => {
 			const response = await api.buscarUsuarios();
@@ -34,19 +30,24 @@ const TelaInicial = () => {
 		};
 		fetchFuncionarios();
 	}, []);
-
+	
 	const handleSearch = debounce((searchTerm) => {
 		setPesquisa(searchTerm);
 	}, 300);
 
 	const funcionariosFiltrados = pesquisa.trim() ? funcionarios.filter(funcionario =>
-		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase())
+		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase()) || 
+		funcionario.matricula.includes(pesquisa)
 	) : [];
-
+	
 	const handleFuncionarioSelecionado = (funcionario) => {
 		navegar('/tela-cadastro', { state: { funcionario } });
 	}
 
+	const irParaTelaCadastro = () => {
+		navegar("/tela-cadastro");
+	};
+	
 	return (
 		<div className="tela-inicial">
 			<MenuLateral />
@@ -57,8 +58,8 @@ const TelaInicial = () => {
 						<input type="text" placeholder="Pesquise por matrícula ou nome do funcionário..." onChange={(e) => handleSearch(e.target.value)} />
 						<div className="lista-funcionarios">
 							{funcionariosFiltrados.map((funcionario) => (
-								<ul key={funcionario.id} className="funcionario-item" onClick={() => handleFuncionarioSelecionado(funcionario)}>
-									<li>{funcionario.nomeCompleto}</li>
+								<ul key={funcionario._id} className="funcionario-item" onClick={() => handleFuncionarioSelecionado(funcionario)}>
+									<li>{`${funcionario.matricula} | ${funcionario.nomeCompleto}`}</li>
 								</ul>
 							))}
 						</div>

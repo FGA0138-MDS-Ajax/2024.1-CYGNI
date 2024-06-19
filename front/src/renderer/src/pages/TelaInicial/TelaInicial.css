@@ -25,10 +25,8 @@
 .div-superior {
     display: flex;
     justify-content: space-around;
-
     width: 100%;
     height: 20vh;
-
     position: relative;
     align-items: center;
 }
@@ -100,8 +98,8 @@
 }
 
 .barra-de-pesquisa ul li:hover {
-    color: #004373d1;
-    font-weight: bold;
+    color: #028090;
+    
     transition: 0.1s;
 }
 
@@ -113,23 +111,27 @@
     top: 74%;
     background-color: white;
     border-radius: 8px;
-    max-height: 100px;
+    max-height: 150px;
     width: 40%;
     overflow-y: auto;
     z-index: 1;
 }
 
-::-webkit-scrollbar {
+.funcionario-item {
+    cursor: pointer;
+}
+
+.lista-funcionarios::-webkit-scrollbar {
     width: 7.5px;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #004373d1; 
+.lista-funcionarios::-webkit-scrollbar-thumb {
+    background: #028090; 
     border-radius: 3px 3px 3px 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #013458d1; 
+.lista-funcionarios::-webkit-scrollbar-thumb:hover {
+    background: #028090e4; 
 }
 
 .cartoes-definicoes {
@@ -150,7 +152,6 @@
     font-weight: bold;
     background-color: #032026;
     color: white;
-
     border-radius: 8px;
     border: none;
     cursor: none;
@@ -159,11 +160,9 @@
 }
 
 .cartoes-conteiner {
-
     display: flex;
     flex-direction: column;
     word-break: break-word;
-
     width: 100%;
     height: fit-content;
 }
@@ -171,7 +170,6 @@
 .titulo-cartoes h2 {
     font-size: 1rem;
     color: #FFA800;
-    
 }
 
 .cartoes-conteiner p {
