@@ -88,7 +88,7 @@ h3{
 }
 
 #matricula, #nomeGuerra, #nomeCompleto,
-#nomeMae, #nomePai, #email, #telefone,
+#nomeMae, #nomePai, #telefone,
 #postGrad, #escolaridade, #rg, #cpf, #matSiape,
 #cnhCategoria, #cnhProntuario, #classificacao, #funcao, #horario,
 #lotacao, #comportamento  {
@@ -96,6 +96,9 @@ h3{
   margin-bottom: 9px;
 }
 
+#email{
+  width: 117%;
+ }
 
 #cep, #cidade, #bairro {
   width: 90%;
@@ -230,24 +233,34 @@ h3{
   width: 100%;
 }
 
-#observacoes {
-  display: flex;
-  
-  width: 100%;
-  height: 200px;
-
-  max-width: 100%;
-}
-
 .dados-pessoais.modoLeitor input, .dados-pessoais.modoLeitor select {
   pointer-events: none;
   background-color: #dedede;
   box-shadow: 0.5px 0.5px 2px 0px rgba(0,0,0, 0.2);  
 }
 
+.formulario-afastamento p{
+  font-size: 12px;
+  color: #028090;
+}
+
+.container-observacao {
+  display: flex;
+}
+
+ .container-observacao p{
+  margin-left: 6px;
+  margin-top: 2px;
+ }
+
 textarea {
+  display: flex;
+  width: 96.5%;
+  height: 180px;
+
   resize: none;
   border: none;
   margin-top: 6px;
   border-radius: 8px;
+  padding: 10px 15px;
 }

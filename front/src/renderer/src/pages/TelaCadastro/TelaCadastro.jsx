@@ -38,6 +38,7 @@ const TelaCadastro = () => {
 	const cnhCategoriaValor = watch("cnhCategoria", 'A');
 	const escalaValor = watch("escala", '8 x 40');
 	const motivoValor = watch("motivo", 'Abono');
+	const observacoes = watch("observacoes", '');
 
 	useEffect(() => {
 		if (funcionario) {
@@ -84,6 +85,14 @@ const TelaCadastro = () => {
 				admissao: funcionario.admissao ? new Date(funcionario.admissao).toISOString().split('T')[0] : '',
 				validadeBienal: funcionario.validadeBienal ? new Date(funcionario.validadeBienal).toISOString().split('T')[0] : '',
 				validadeTAF: funcionario.validadeTAF ? new Date(funcionario.validadeTAF).toISOString().split('T')[0] : '',
+
+				//afastamento
+				motivo: funcionario.motivo,
+				anoReferencia: funcionario.anoReferencia,
+				dataInicio: funcionario.dataInicio ? new Date(funcionario.dataInicio).toISOString().split('T')[0] : '',
+				dataTermino: funcionario.dataTermino ? new Date(funcionario.dataTermino).toISOString().split('T')[0] : '',
+				dias: funcionario.dias,
+				observacoes: funcionario.observacoes,
 			})
 		}
 	}, [funcionario, reset, setValue]);
@@ -197,7 +206,7 @@ const TelaCadastro = () => {
 										tipo="text"
 										registro={register}
 										erros={errors}
-										opcoes={{ pattern: { value: /^[0-9]*$/, message: "*Somente números" } }}
+										opcoes={{ pattern: { value: /[0-9]{11}$/, message: "*Somente números" } }}
 									/>
 								</div>
 							</fieldset>
@@ -375,8 +384,15 @@ const TelaCadastro = () => {
 										<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
 										<Campo id="dias" texto="Dias" tipo="text" registro={register} erros={errors} />
 									</div>
+									<div className="container-observacao">
 									<span>Observações</span>
-									<textarea name="Observacao" id="observacoes" />
+									<p>*opcional</p>
+									</div>
+									<textarea
+									name="Observacao" 
+									id="observacoes" 
+									value={observacoes} 
+									onChange={(value) => setValue("observacoes", event.target.value)} />
 								</section>
 							</form>
 						</div>
