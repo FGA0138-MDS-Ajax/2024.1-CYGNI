@@ -30,9 +30,9 @@ export const redefineSenha = async (data) => {
 }
 
 export const excluirUsuario = async (id) => {
-    return await axios.delete(`${BASE_URL}/usuarios/${id}`)
+    return await axios.delete(`${BASE_URL}/usuarios/remover?id=${id}`)
 }
 
 export const editarUsuario = async (id, data) => {
-    return await axios.patch(`${BASE_URL}/usuarios/${id}`, data)
+    return await axios.patch(`${BASE_URL}/usuarios/atualizar?id=${id}`, data)
 }
