@@ -58,7 +58,7 @@ export class Usuario {
     escala: string | null
 
     @Prop({required: false, default: null})
-    horarioEscala: number | null
+    horarioEscala: string | null
 
     @Prop({required: false, default: null})
     lotacao: string | null

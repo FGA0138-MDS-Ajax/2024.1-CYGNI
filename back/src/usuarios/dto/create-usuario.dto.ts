@@ -15,7 +15,7 @@ export class CreateUsuarioDto {
     classificacao: string
     funcao: string
     escala: string
-    horarioEscala: number
+    horarioEscala: string
     lotacao: string
     comportamento: string
     porteArma: boolean
