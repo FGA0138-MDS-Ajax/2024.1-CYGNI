@@ -27,8 +27,17 @@ const TelaCadastro = () => {
 		reset,
 		handleSubmit,
 		trigger,
+		watch,
 		formState: { errors },
 	} = useForm();
+
+	const porteArmaValor = watch("porteArma", true);
+	const sexoValor = watch("sexo", 'M');
+	const tipoSanguineoValor = watch("tipoSanguineo", 'AB+');
+	const estadoCivilValor = watch("estadoCivil", 'Solteiro(a)');
+	const cnhCategoriaValor = watch("cnhCategoria", 'A');
+	const escalaValor = watch("escala", '8 x 40');
+	const motivoValor = watch("motivo", 'Abono');
 
 	useEffect(() => {
 		if (funcionario) {
@@ -38,10 +47,10 @@ const TelaCadastro = () => {
 				nomeGuerra: funcionario.nomeGuerra,
 				nomeCompleto: funcionario.nomeCompleto,
 				sexo: funcionario.sexo,
-				nascimento: funcionario.nascimento,
+				dataDeNascimento: funcionario.dataDeNascimento ? new Date(funcionario.dataDeNascimento).toISOString().split('T')[0] : '',
 				tipoSanguineo: funcionario.tipoSanguineo,
-				nomeMae: funcionario.nomeDaMae,
-				nomePai: funcionario.nomeDoPai,
+				nomeMae: funcionario.nomeMae,
+				nomePai: funcionario.nomePai,
 				email: funcionario.email,
 				telefone: funcionario.telefone,
 				postGrad: funcionario.postGrad,
@@ -49,15 +58,15 @@ const TelaCadastro = () => {
 				estadoCivil: funcionario.estadoCivil,
 
 				//documentacao
-				rg: funcionario.RG,
-				cpf: funcionario.CPF,
+				rg: funcionario.rg,
+				cpf: funcionario.cpf,
 				matSiape: funcionario.matSiape,
-				cnhCategoria: funcionario.CNHCategoria,
-				cnhValidade: funcionario.CNHValidade,
-				cnhProntuario: funcionario.CNHProntuario,
+				cnhCategoria: funcionario.cnhCategoria,
+				cnhValidade: funcionario.cnhValidade ? new Date(funcionario.cnhValidade).toISOString().split('T')[0] : '',
+				cnhProntuario: funcionario.cnhProntuario,
 
 				//endereco
-				cep: funcionario.CEP,
+				cep: funcionario.cep,
 				cidade: funcionario.cidade,
 				bairro: funcionario.bairro,
 				uf: funcionario.uf,
@@ -67,24 +76,28 @@ const TelaCadastro = () => {
 				classificacao: funcionario.classificacao,
 				funcao: funcionario.funcao,
 				escala: funcionario.escala,
-				horario: funcionario.horarioEscala,
+				horarioEscala: funcionario.horarioEscala,
 				lotacao: funcionario.lotacao,
 				comportamento: funcionario.comportamento,
-				porteArma: funcionario.porteDeArma,
-				apresentacao: funcionario.apresentacao,
-				admissao: funcionario.admissao,
-				validadeBienal: funcionario.validadeBienal,
-				validadeTAF: funcionario.validadeTAF,
+				porteArma: funcionario.porteArma,
+				apresentacao: funcionario.apresentacao ? new Date(funcionario.apresentacao).toISOString().split('T')[0] : '',
+				admissao: funcionario.admissao ? new Date(funcionario.admissao).toISOString().split('T')[0] : '',
+				validadeBienal: funcionario.validadeBienal ? new Date(funcionario.validadeBienal).toISOString().split('T')[0] : '',
+				validadeTAF: funcionario.validadeTAF ? new Date(funcionario.validadeTAF).toISOString().split('T')[0] : '',
 			})
 		}
 	}, [funcionario, reset, setValue]);
 
-	const aoEnviar = async (dadosFormulario) => {
+	const aoEnviar = async (dadosDoFormulario) => {
 		try {
-			await api.CadastrarUsuario(dadosFormulario);
+			if (funcionario)
+				await api.editarUsuario(funcionario._id, dadosDoFormulario);
+
+			else
+				await api.CadastrarUsuario(dadosDoFormulario);
 			navegar("/inicial");
 		} catch (error) {
-			throw new Error("Erro ao cadastrar usuário");
+			throw new Error(error);
 		}
 	};
 
@@ -94,15 +107,6 @@ const TelaCadastro = () => {
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error("Erro ao excluir usuário");
-		}
-	}
-
-	const editarUsuario = async (data) => {
-		try {
-			await api.editarUsuario(data._id, data);
-			console.log("Usuário editado com sucesso");
-		} catch (error) {
-			throw new Error("Erro ao editar usuário");
 		}
 	}
 
@@ -162,13 +166,22 @@ const TelaCadastro = () => {
 									}}
 								/>
 								<div className="linha">
-									<MenuSuspenso id="sexo" texto="Sexo" opcoes={["M", "F"]} largura="40px" />
-									<Campo id="nascimento" texto="Nascimento" tipo="date" registro={register} erros={errors} />
+									<MenuSuspenso 
+									id="sexo" 
+									texto="Sexo" 
+									opcoes={["M", "F"]} 
+									largura="40px" 
+									value={sexoValor} 
+									onChange={(value) => setValue("sexo", value)} /> 
+						
+									<Campo id="dataDeNascimento" texto="Nascimento" tipo="date" registro={register} erros={errors} />
 									<MenuSuspenso
 										id="tipoSanguineo"
 										texto="Tipo Sanguíneo"
 										largura="100%"
 										opcoes={["AB+", "AB-", "A+", "A-", "B+", "B-", "O+", "O-"]}
+										value={tipoSanguineoValor} 
+										onChange={(value) => setValue("tipoSanguineo", value)}
 									/>
 								</div>
 							</fieldset>
@@ -197,6 +210,8 @@ const TelaCadastro = () => {
 									texto="Estado Civil"
 									opcoes={["Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)"]}
 									largura="100%"
+									value={estadoCivilValor} 
+									onChange={(value) => setValue("estadoCivil", value)}
 								/>
 							</fieldset>
 						</form>
@@ -241,6 +256,8 @@ const TelaCadastro = () => {
 												texto="CNH Categoria"
 												largura="100%"
 												opcoes={["A", "AB", "AC", "AD", "AE", "B", "C", "D", "E"]}
+												value={cnhCategoriaValor} 
+												onChange={(value) => setValue("cnhCategoria", value)}
 											/>
 											<Campo id="cnhValidade" texto="CNH Validade" tipo="date" registro={register} erros={errors} />
 											<Campo
@@ -300,9 +317,11 @@ const TelaCadastro = () => {
 											id="escala"
 											texto="Escala"
 											largura="125px"
-											opcoes={["12 x 36", "24 x 72", "8 x 40", "12 x 60"]}
+											opcoes={["8 x 40", "12 x 36", "12 x 60", "24 x 72", "Expediente"]}
+											value={escalaValor} 
+											onChange={(value) => setValue("escala", value)}
 										/>
-										<Campo id="horario" texto="Horário" tipo="text" registro={register} erros={errors} />
+										<Campo id="horarioEscala" texto="Horário" tipo="text" registro={register} erros={errors} />
 										<Campo id="lotacao" texto="Lotação" tipo="text" registro={register} erros={errors} />
 									</div>
 									<div className="linha">
@@ -311,7 +330,7 @@ const TelaCadastro = () => {
 											<label style={{ color: "#898989", fontWeight: "bold", fontSize: "14px" }} htmlFor="porteArma">
 												Porte de Arma
 											</label>
-											<RadioBotao id="porteArma" />
+											<RadioBotao id="porteArma" value={porteArmaValor} onChange={(value) => setValue("porteArma", value)} />
 										</div>
 										<Campo id="apresentacao" texto="Apresentação" tipo="date" registro={register} erros={errors} />
 										<Campo id="admissao" texto="Admissão" tipo="date" registro={register} erros={errors} />
@@ -348,6 +367,8 @@ const TelaCadastro = () => {
 												"Atestado de Acompanhamento",
 												"Outros",
 											]}
+											value={motivoValor} 
+											onChange={(value) => setValue("motivo", value)}
 										/>
 										<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
 										<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
@@ -369,7 +390,7 @@ const TelaCadastro = () => {
 						texto="Voltar"
 						cor="#032026"
 						largura={"130px"}
-						aoClicar={(e) => {navegar("/inicial")}}
+						aoClicar={(e) => { navegar("/inicial") }}
 					/>
 
 					{funcionario && (
@@ -396,7 +417,7 @@ const TelaCadastro = () => {
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();
-								editarUsuario(funcionario);
+								handleSubmit(aoEnviar)();
 							}}
 						/>
 					)}

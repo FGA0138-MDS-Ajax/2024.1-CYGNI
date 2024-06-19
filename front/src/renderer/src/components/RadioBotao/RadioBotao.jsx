@@ -1,12 +1,4 @@
-import React, { useState } from "react";
-
-const RadioBotao = () => {
-	const [valorSelecionado, setValorSelecionado] = useState("opcao1");
-
-	const mudarOpcao = (event) => {
-		setValorSelecionado(event.target.value);
-	};
-
+const RadioBotao = ({value, onChange}) => {
 	const estiloRadio = {
 		marginRight: "5px",
 		width: "15px",
@@ -20,9 +12,9 @@ const RadioBotao = () => {
 				<input
 					style={estiloRadio}
 					type="radio"
-					value="opcao1"
-					checked={valorSelecionado === "opcao1"}
-					onChange={mudarOpcao}
+					value="true"
+					checked={value === true}
+					onChange={() => onChange(true)}
 				/>
 				Sim
 			</label>
@@ -31,9 +23,9 @@ const RadioBotao = () => {
 				<input
 					style={estiloRadio}
 					type="radio"
-					value="opcao2"
-					checked={valorSelecionado === "opcao2"}
-					onChange={mudarOpcao}
+					value="false"
+					checked={value === false}
+					onChange={() => onChange(false)}
 				/>
 				Não
 			</label>
