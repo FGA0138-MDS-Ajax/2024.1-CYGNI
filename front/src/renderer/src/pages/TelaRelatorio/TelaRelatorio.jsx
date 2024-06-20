@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import MenuSuspenso from "../../components/MenuSuspenso/MenuSuspenso";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 
+
 import "./TelaRelatorio.css";
+import {DataTable} from '../../components/TabelaRel/Tabela'
 
 const TelaRelatorio = () => {
 	const {
@@ -96,7 +98,7 @@ const TelaRelatorio = () => {
 					<MenuSuspenso id="ordem" texto="Ordem" largura="190px" opcoes={["A-Z", "Z-A"]} />
 				</div>
 				<div className="conteiner-relatorio">
-					<h2>LISTA DE FUNCIONÁRIOS FILTRADOS</h2>
+					<DataTable/>
 				</div>
 			</div>
 		</div>
