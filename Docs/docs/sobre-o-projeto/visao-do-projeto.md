@@ -26,16 +26,6 @@ Os usuários-alvo são gestores de pessoas, especificamente escalantes (caso do 
 #### Por que os clientes deveriam utilizar / comprar este produto?
 O produto oferece uma solução confiável e eficiente para a criação de escalas e manuseio de fichas de funcionários. Com o servidor operando internamente na empresa, garantimos segurança e controle sobre os dados. Além disso, proporcionamos funcionalidades como a geração automática de relatórios, campanhas e escalas de trabalho, simplificando processos e tornando o trabalho mais eficiente e otimizado.
 
-## Tabela 02 - Tabela de organização do Projeto
-
-| Para:                   | Gestores de pessoas, especialmente aqueles responsáveis por construir escalas |
-|-------------------------|-------------------------------------------------------------------------------|
-| Necessidade:            | Gerenciamento dos funcionários, geração de relatórios de pessoal              |
-| O AGIS:                 | É uma aplicação desktop.                                                      |
-| Que:                    | Visa a economia de tempo, eficiência e confiabilidade para a administração de RH |
-| Ao contrário:           | Da utilização de múltiplos sistemas e plataformas não integradas              |
-| Nosso produto:          | Proporciona a centralização de dados e processos, além de fornecer a geração automática de relatórios, campanhas e escalas, funcionando em um servidor interno. |
-
 ## Objetivos do Produto
 
 **Objetivo geral:** Desenvolver uma aplicação desktop que visa a gestão eficiente de pessoas, otimize a administração dos dias de trabalho e integre funcionalidades de softwares de gerência, incluso a criação de escalas e campanhas.
@@ -54,3 +44,8 @@ O produto oferece uma solução confiável e eficiente para a criação de escal
 - **Arquitetura do Banco de Dados:** Optamos pelo MongoDB, um banco de dados No-SQL que oferece praticidade e flexibilidade no controle de coleções de dados e, devido a maturidade do projeto, também oferece de forma nativa ferramentas para sua gestão, dispensando o uso de ORMs e ferramentas de visualização de dados à parte.
 
 - **Ferramentas:** A fim de organizar as atas de reuniões, funções e tarefas utilizamos o Miro (com o uso dos quadros Kanban). Para as reuniões, usamos o Discord. Electron para desenvolvimento da aplicação.
+
+## Atualização do escopo do projeto
+| Versão | Alteração | Motivo |
+|--------|-----------|--------|
+| 2.0    | Corte na criação de escalas de trabalho | Essa decisão foi tomada porque a escala era um objetivo secundário e, devido à sua complexidade de implementação, o grupo optou por concentrar seus esforços nas funcionalidades principais. |
