@@ -6,19 +6,24 @@ import TelaCadastro from "./pages/TelaCadastro/TelaCadastro.jsx";
 import TelaRelatorio from "./pages/TelaRelatorio/TelaRelatorio.jsx";
 import TelaRecuperacao from "./pages/TelasRedefinicao/TelaRecuperacao.jsx";
 import TelaRedefinicao from "./pages/TelasRedefinicao/TelaRedefinicao.jsx";
+
+import { RedefinicaoProvider } from "./pages/TelasRedefinicao/redefinicaoContext.jsx";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<TelaLogin />} />
-				<Route path="/inicial" element={<TelaInicial />} />
-				<Route path="/tela-cadastro" element={<TelaCadastro />} />
-				<Route path="/tela-relatorio" element={<TelaRelatorio />} />
-				<Route path="/tela-recuperacao" element={<TelaRecuperacao />} />
-				<Route path="/tela-redefinicao" element={<TelaRedefinicao />} />
-			</Routes>
-		</BrowserRouter>
+		<RedefinicaoProvider>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<TelaLogin />} />
+					<Route path="/inicial" element={<TelaInicial />} />
+					<Route path="/tela-cadastro" element={<TelaCadastro />} />
+					<Route path="/tela-relatorio" element={<TelaRelatorio />} />
+					<Route path="/tela-recuperacao" element={<TelaRecuperacao />} />
+					<Route path="/tela-redefinicao" element={<TelaRedefinicao />} />
+				</Routes>
+			</BrowserRouter>
+		</RedefinicaoProvider>
 	</React.StrictMode>,
 );
