@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as api from "../../services/api.jsx";
-
-//import ImagemLogin from "../assets/img/ParteBrancaLogin.svg";
+import Alert from "../../components/Alerta/Alerta.jsx"; // Importe o componente de alerta
 import Icone from "../../assets/img/IconeAGIS.svg";
-
+import ImagemOficial from "../../assets/img/oficial-imagem-login.svg";
 import "./TelaLogin.css";
 
 const TelaLogin = () => {
 	const [formData, setFormData] = useState({
 		login: "",
-		senha: ""
+		senha: "",
 	});
+	const [alert, setAlert] = useState(null); // Estado para o alerta
 
-	const lidarComMudancaNoInput = ({target}) => {
-		setFormData({...formData, [target.name]: target.value});
-	}
+	const lidarComMudancaNoInput = ({ target }) => {
+		setFormData({ ...formData, [target.name]: target.value });
+	};
 
 	const navegar = useNavigate();
 	const {
@@ -29,16 +29,20 @@ const TelaLogin = () => {
 		navegar("/inicial");
 	};
 
+	const handleCloseAlert = () => {
+		setAlert(null);
+	};
+
 	return (
 		<div className="tela-login">
 			<div className="imagem-tela-login">
-				<h1>EM DESENVOLVIMENTO</h1>
-				{/* <img src={ImagemLogin} alt="imagem-login" id='imagem-login' /> */}
+				<img src={ImagemOficial} alt="imagem-oficial" />
 			</div>
 			<div className="container-login">
 				<img src={Icone} alt="icone" id="icon" />
-				<h2>Entrar</h2>
+
 				<form className="formulario-login">
+					<h2>Entrar</h2>
 					<input
 						className={errors?.name && "erro-input"}
 						type="text"
@@ -64,9 +68,17 @@ const TelaLogin = () => {
 							try {
 								const resposta = await api.login(formData);
 								localStorage.setItem("token", resposta.data);
-								handleSubmit(aoEnviar)();
+								setAlert({ type: "success", message: "Login realizado com sucesso!" });
+								setTimeout(() => {
+									handleSubmit(aoEnviar)();
+								}, 1000);
 							} catch (error) {
-								alert(error);
+								const errorMessage =
+									error.response && error.response.data && error.response.data.message
+										? error.response.data.message
+										: error.message;
+								setAlert({ type: "error", message: `Erro ao realizar login: ${errorMessage}` });
+								// <Alert type={"error"} message={`Erro ao realizar login: ${errorMessage}`} />;
 							}
 						}}
 					>
@@ -74,12 +86,19 @@ const TelaLogin = () => {
 					</button>
 				</form>
 				<p>
-					Esqueceu a senha? <a href="" onClick={(e) => {
-						e.preventDefault();
-						navegar('/tela-recuperacao');
-					}}>Recupere aqui!</a>
+					Esqueceu a senha?{" "}
+					<a
+						href=""
+						onClick={(e) => {
+							e.preventDefault();
+							navegar("/tela-recuperacao");
+						}}
+					>
+						Recupere aqui!
+					</a>
 				</p>
 			</div>
+			{alert && <Alert message={alert.message} type={alert.type} onClose={handleCloseAlert} />}
 		</div>
 	);
 };

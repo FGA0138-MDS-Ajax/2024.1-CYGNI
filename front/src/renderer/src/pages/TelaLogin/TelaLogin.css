@@ -9,57 +9,54 @@
   display: flex;
   height: 100vh;
   width: 100vw;
-  background-color: #E6E6E6;
+  background-color: #f2f2f2;
 }
 
 .imagem-tela-login {
-  width: 70vw;
-  height: 100vh;
+  width: 70%;
+  height: 100%;
   display: flex;
   justify-content: center;
 }
 
-.imagem-tela-login-img h1 {
-  font-size: 48px;
-  margin-top: 50vh;
+.imagem-tela-login img {
+  width: 100%;
 }
 
-/* #imagem-login {
-  object-fit: fill;
-} */
-
 .container-login {
-  width: 35vw;
+  width: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #032026;
+  background-color: #03161A;
 }
 
 #icon {
   width: 25%;
   height: 10%;
-  margin: 0 0 150px 0;
+  margin: 0 0 15% 0;
 }
 
 .container-login h2 {
-  font-size: 1.8em;
   color: white;
-  margin: 0 0 2.5vh 0;
-  transform: translateX(-8vw);
+  font-size: 1.25rem;
+  margin: 0 0 16px 0;
 }
 
-.container-login p,
-a {
+.container-login p {
   text-decoration: none;
   color: #ffffff;
-  margin: 5vh 0 0 0;
+  font-size: 0.9rem;
+  font-weight: medium;
+
 }
 
 .container-login a {
-  font-size: 1em;
-  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
   color: #FFA800;
 }
 
@@ -69,6 +66,8 @@ a {
 }
 
 .formulario-login {
+  width: 70%;
+  height: 40%;
   color: white;
   display: flex;
   flex-direction: column;
@@ -77,38 +76,45 @@ a {
 }
 
 .formulario-login input {
-  width: 20vw;
-  height: 5vh;
-  border-radius: 12px;
+  width: 96%;
+  height: 14%;
+  border-radius: 8px;
   border: none;
   margin: 8px 0 16px 0;
-  padding-left: 10px;
+  padding-left: 4%;
+  background-color: #032026;
+  color: white;
+  font-size: 0.9rem;
+  box-shadow: 1px 1px 0 0 #FFA800;
 }
 
 .formulario-login button {
-  width: 20vw;
-  height: 5vh;
-  border-radius: 12px;
+  height: 14%;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   margin: 5vh 0 0 0;
   border: 2px solid white;
-  background-color: #032026;
-  color: white;
+  background-color: #ffffff;
+  color: #03161A;
   text-align: center;
-  transition: background 0.25s;
+  transition: background 0.1s;
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .formulario-login button:hover {
-  background-color: white;
-  color: #FFA800;
+  background-color: #032026;
+  color: #ffffff;
+  border: 1px solid #FFA800;
 }
 
 .formulario-login input::placeholder {
-  color: #9D9D9D;
+  color: #979797;
   font-size: 12px;
-  padding-left: 5px;
+  padding-left: 1px;
+  font-weight: bold;
+
 }
 
 .formulario-login .mensagem-erro {
