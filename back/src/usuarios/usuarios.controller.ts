@@ -11,7 +11,7 @@ export class UsuariosController {
   create(@Body() createUsuarioDto: CreateUsuarioDto,@Req() req: Request) {
     const nomeDoAdministrador = req['usuario'];
     createUsuarioDto.ultimoEditor = nomeDoAdministrador;
-    Logger.log(nomeDoAdministrador);
+    //Logger.log(nomeDoAdministrador);
     return this.usuariosService.create(createUsuarioDto);
   }
 
@@ -46,6 +46,7 @@ export class UsuariosController {
 
     const nomeDoAdministrador = req['usuario'];
     updateUsuarioDto.ultimoEditor = nomeDoAdministrador;
+    //Logger.log(nomeDoAdministrador);
     return this.usuariosService.update(updateUsuarioDto, nomeCompleto, matricula, id);
   }
 

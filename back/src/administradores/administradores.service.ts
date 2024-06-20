@@ -63,6 +63,9 @@ export class AdministradoresService {
       throw new InternalServerErrorException('Falha ao encontrar administrador', error.message);
     }
   }
+
+
+
   async update(id: string, updateAdministradorDto: UpdateAdministradorDto) {
 
     try {
