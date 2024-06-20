@@ -36,3 +36,7 @@ export const excluirUsuario = async (id) => {
 export const editarUsuario = async (id, data) => {
     return await axios.patch(`${BASE_URL}/usuarios/atualizar?id=${id}`, data)
 }
+
+export const verificaToken = async ({ token, email }) => {
+    return await axios.post(`${BASE_URL}/administradores/verifica-token`, { token, email });
+};
