@@ -39,7 +39,7 @@ export class AdministradoresService {
       const token = this.jwtService.sign(
         {
           login: administrador.login,
-          privilegios: administrador.privilegios,
+          privilegios: administrador.privilegios
         },
         {
           secret: process.env.JWT_SECRET
