@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException, Req, Logger } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -8,7 +8,10 @@ export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto) {
+  create(@Body() createUsuarioDto: CreateUsuarioDto,@Req() req: Request) {
+    const nomeDoAdministrador = req['usuario'];
+    createUsuarioDto.ultimoEditor = nomeDoAdministrador;
+    //Logger.log(nomeDoAdministrador);
     return this.usuariosService.create(createUsuarioDto);
   }
 
@@ -32,6 +35,7 @@ export class UsuariosController {
   @Patch('atualizar')
   async update(
     @Body() updateUsuarioDto: UpdateUsuarioDto,
+    @Req() req: Request,
     @Query('nomeCompleto') nomeCompleto?: string, 
     @Query('matricula') matricula?: string,
     @Query('id') id?: string
@@ -39,6 +43,10 @@ export class UsuariosController {
     if (!nomeCompleto && !matricula && !id) {
       throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
     }
+
+    const nomeDoAdministrador = req['usuario'];
+    updateUsuarioDto.ultimoEditor = nomeDoAdministrador;
+    //Logger.log(nomeDoAdministrador);
     return this.usuariosService.update(updateUsuarioDto, nomeCompleto, matricula, id);
   }
 

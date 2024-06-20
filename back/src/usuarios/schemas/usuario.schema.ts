@@ -136,6 +136,11 @@ export class Usuario {
     
     @Prop({required: false, default: null})
     observacoes: string | null
+
+
+    //ultimo adm a editar esta ficha
+    @Prop({required: false, default: null})
+    ultimoEditor: string | null
 }
 
 export const UsuarioModel = SchemaFactory.createForClass(Usuario)

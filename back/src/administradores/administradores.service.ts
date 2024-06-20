@@ -1,5 +1,6 @@
 import { BadRequestException, ForbiddenException, Get, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { verify } from 'jsonwebtoken';
 import { InjectModel } from '@nestjs/mongoose';
 import * as crypto from "crypto";
 import { Model, Types } from 'mongoose';
@@ -16,7 +17,7 @@ export class AdministradoresService {
   constructor(
     @InjectModel(TokenDeConfirmacao.name) private TokenDeConfirmacaoModel: Model<TokenDeConfirmacaoDocument>,
     @InjectModel(Administrador.name) private administradorModel: Model<Administrador>,
-    private jwtService: JwtService, 
+    private jwtService: JwtService,
     private readonly emailService: EmailService
   ) { }
 
@@ -63,11 +64,11 @@ export class AdministradoresService {
     }
   }
 
+
+
   async update(id: string, updateAdministradorDto: UpdateAdministradorDto) {
 
     try {
-
-
       const atualizaAdministrador = await this.administradorModel.findOneAndUpdate({ _id: id }, updateAdministradorDto, { new: true }).exec();
 
       if (!atualizaAdministrador) {
@@ -130,7 +131,7 @@ export class AdministradoresService {
     `;
 
       await this.emailService.enviaEmail(usuario.email, "Redefinição de senha AGIS", text, html);
-      
+
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
@@ -157,7 +158,7 @@ export class AdministradoresService {
       if (novaSenha !== novaSenhaConfirmacao) throw new BadRequestException;
 
       const tokenValidado = await this.verificaToken(email, token);
-      
+
       if (!tokenValidado) {
         throw new NotFoundException('Token inválido ou expirado');
       }
@@ -179,5 +180,5 @@ export class AdministradoresService {
 
   async findAllTokens(){
     return this.TokenDeConfirmacaoModel.find().exec();
-  } 
+  }
 }
