@@ -43,6 +43,7 @@ const TelaCadastro = () => {
 	useEffect(() => {
 		if (funcionario) {
 			reset({
+				
 				//cadastro geral
 				matricula: funcionario.matricula,
 				nomeGuerra: funcionario.nomeGuerra,
@@ -398,8 +399,11 @@ const TelaCadastro = () => {
 						</div>
 					)}
 				</div>
-
 				<div className="botoes">
+					{funcionario && (
+						<p id="ultimoEditor">{`Editado por ${funcionario.ultimoEditor}`}</p>
+					)}
+
 					<Botao
 						id="voltar"
 						icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
