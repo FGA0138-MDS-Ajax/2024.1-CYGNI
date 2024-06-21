@@ -6,7 +6,7 @@ import MenuLateral from "../../components/MenuLateral/MenuLateral";
 
 
 import "./TelaRelatorio.css";
-import {DataTable} from '../../components/TabelaRel/Tabela'
+import {DataTable} from '../../components/TabelaRelatorio/Tabela.jsx'
 
 const TelaRelatorio = () => {
 	const {

@@ -1,4 +1,4 @@
-const Botao = ({ icone, texto, cor, largura, aoClicar, altura }) => {
+const Botao = ({ icone, texto, cor, largura, aoClicar }) => {
 	return (
 		<button
 			type="submit"
@@ -6,7 +6,6 @@ const Botao = ({ icone, texto, cor, largura, aoClicar, altura }) => {
 				color: "white",
 				backgroundColor: cor,
 				width: largura,
-				height: altura,
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",

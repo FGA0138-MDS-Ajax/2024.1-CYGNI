@@ -4,6 +4,7 @@ import * as api from "../../services/api.jsx";
 import { debounce } from 'lodash';
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
+import ModalPerfil from "../../components/ModalPerfil/ModalPerfil.jsx";
 
 import { FiUserPlus } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
@@ -128,6 +129,9 @@ const TelaInicial = () => {
 							</div>
 							<p>Acompanhamento detalhado dos resultados mensais, proporcionando agilidade na gestão dos dados.</p>
 						</div>
+					</div>
+					<div className="cadastro-perfil">
+						<ModalPerfil />
 					</div>
 				</div>
 			</div>

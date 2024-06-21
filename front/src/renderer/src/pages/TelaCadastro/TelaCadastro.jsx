@@ -104,7 +104,7 @@ const TelaCadastro = () => {
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
 
 			else
-				await api.CadastrarUsuario(dadosDoFormulario);
+				await api.cadastrarUsuario(dadosDoFormulario);
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error(error);
