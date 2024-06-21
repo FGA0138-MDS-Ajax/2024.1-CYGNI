@@ -233,6 +233,16 @@ h3{
   width: 100%;
 }
 
+#ultimoEditor {
+  width: 35%;
+  display: flex;
+  color: #032026;
+  margin: 0 23% 0 5%; 
+  align-items: flex-end; 
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
 .dados-pessoais.modoLeitor input, .dados-pessoais.modoLeitor select {
   pointer-events: none;
   background-color: #dedede;
