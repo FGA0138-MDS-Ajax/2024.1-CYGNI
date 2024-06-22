@@ -5,12 +5,11 @@ import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
 import Backdrop from '@mui/material/Backdrop';
 import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import BotaoRadio from "../../components/BotaoRadio/BotaoRadio.jsx";
 import Botao from "../../components/Botao/Botao.jsx";
 import Campo from '../../components/Campo/Campo.jsx';
 import * as api from '../../services/api.jsx'
+
 
 import './ModalPerfil.css';
 
@@ -32,21 +31,17 @@ export default function TransitionsModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
   const {
     register,
     setValue,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
+  const privilegioValor = watch("privilegios", false);
+
   const aoEnviar = async (data) => {
-    console.log({ data });
     try {
       await api.cadastrarAdministrador(data);
       handleClose();
@@ -79,19 +74,7 @@ export default function TransitionsModal() {
               </Typography>
               <div className='teste'>
                 <Campo
-                  className="campo-perfil"
-                  id="nome-perfil"
-                  placeholder="Nome"
-                  tipo="text"
-                  registro={register}
-                  erros={errors}
-                  opcoes={{
-                    required: "*Campo obrigatório",
-                  }}
-
-                />
-                <Campo
-                  id="email-perfil"
+                  id="email"
                   placeholder="Email"
                   tipo="email"
                   registro={register}
@@ -101,7 +84,7 @@ export default function TransitionsModal() {
                   }}
                 />
                 <Campo
-                  id="usuario"
+                  id="login"
                   placeholder="Usuário"
                   tipo="text"
                   registro={register}
@@ -119,21 +102,25 @@ export default function TransitionsModal() {
                     required: "*Campo obrigatório",
                   }} />
 
-              <FormGroup>
-                <FormControlLabel control={<Checkbox checked={checked}
-                  onChange={handleChange} />} label="Editar" />
-              </FormGroup>
+                <BotaoRadio
+                  id="privilegios"
+                  value={privilegioValor}
+                  onChange={(value) => setValue("privilegios", value)}
+                  opcao1={"Editor"}
+                  opcao2={"Leitor"}
+                  nome={""}
+                />
 
-              <Botao
-                id="salvar"
-                icone=""
-                texto="Cadastrar"
-                cor="#588C7E"
-                largura={"130px"}
-                aoClicar={(e) => {
-                  e.preventDefault();
-                  handleSubmit(aoEnviar)();
-                }} />
+                <Botao
+                  id="salvar"
+                  icone=""
+                  texto="Cadastrar"
+                  cor="#588C7E"
+                  largura={"130px"}
+                  aoClicar={(e) => {
+                    e.preventDefault();
+                    handleSubmit(aoEnviar)();
+                  }} />
               </div>
             </Box>
           </Fade>

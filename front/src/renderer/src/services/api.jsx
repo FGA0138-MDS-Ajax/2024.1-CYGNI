@@ -17,6 +17,7 @@ export const login = async (data) => {
 export const enviarEmailDeRedefinicao = async (email) => {
     return axios.post(`${BASE_URL}/administradores/email-redefinicao`, email);
 }
+
 export const buscarUsuarios = async () => {
     return axios.get(`${BASE_URL}/usuarios`,createConfig());
 }
@@ -26,7 +27,7 @@ export const cadastrarUsuario = async (data) => {
 }
 
 export const cadastrarAdministrador = async (data) => {
-    return axios.post(`${BASE_URL}/administradores`, data, createConfig());
+    return axios.post(`${BASE_URL}/administradores`, data);
 }
 
 export const redefineSenha = async (data) => {
