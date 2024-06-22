@@ -14,59 +14,11 @@
   background-color: #F2F2F2;
 }
 
-.conteiner-conteudo-principal {
-  display: flex;
-  flex-direction: column;
-  width: 93.5%;
-
-}
-
-.filtros {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: row;
-  width: auto;
-  height: 30%;
-  background-color: #03161A;
-
-}
-
-.filtros input {
-  background-color: white;
-  border:none;
-  border-radius: 8px;
-  padding-left: 4px;
-  height: 30px;
-}
-
-.filtros span {
-  color: #ffffff;
-  font-weight: bold;
-}
-
-#mes, #situacao, #ordem {
-  padding: 0 7px 0 7px;
-}
-
 .conteiner-relatorio {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 70%;
-
-  
-}
-
-.conteiner-relatorio-mensal .campo {
-  display: flex;
-  flex-direction: column;
-  width: 190px;
-}
-
-.conteiner-relatorio-mensal .menu-suspenso {
-  display: flex;
-  flex-direction: column;
-  margin: 0 50px;
+  width: 93.5%;
+  box-sizing: border-box;
 }
