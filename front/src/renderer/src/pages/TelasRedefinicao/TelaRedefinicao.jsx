@@ -46,33 +46,37 @@ const TelaRedefinicao = () => {
           id="voltar"
           icone={<HiArrowUturnLeft size={20} style={{ marginRight: "5px" }} />}
           texto="Voltar"
-          cor="#032026"
+          cor="#03161A"
+          corTexto="#fff"
           largura={"130px"}
           aoClicar={() => {
             navegar("/tela-recuperacao");
           }}
         />
       </div>
-      <div className="formulario">
-        <img id='img-icone' src={Icone} alt="icone" />
+      <div className="conteiner-campos2">
+        <img src={Icone} alt="icone" />
         <h1>Redefinir senha</h1>
-        <form className="formulario-senha" onSubmit={handleSubmit(aoEnviar)}>
-          <input
-            type="password" id="senha" placeholder="Digite a nova senha"
-            {...register("senha", { required: "Este campo é obrigatório" })} 
-            onChange={(e) => lidarComMudancaNoInput(e)}
-            name="novaSenha"
-            />
-          {errors.senha && <p className="mensagem-erro">{errors.senha.message}</p>}
-          <input type="password" id="confirmarSenha"
-            {...register("confirmarSenha", { required: "Confirmação de senha é obrigatória", validate: value => value === senha || "As senhas não coincidem" })}
-            placeholder="Digite novamente a senha" 
-            onChange={(e) => lidarComMudancaNoInput(e)}
-            name="novaSenhaConfirmacao"
-            />
-          {errors.confirmarSenha && <p className="mensagem-erro">{errors.confirmarSenha.message}</p>}
-        </form>
-        <Botao id='botao-red' largura={'26%'} cor={'#FFA800'} corTexto={'#032026'} texto={'Recuperar'}
+        <div className="conteiner-senha">
+          <form className="formulario-senha" onSubmit={handleSubmit(aoEnviar)}>
+            <input
+              type="password" id="senha" placeholder="Digite a nova senha"
+              {...register("senha", { required: "Este campo é obrigatório" })} 
+              onChange={(e) => lidarComMudancaNoInput(e)}
+              name="novaSenha"
+              />
+            {errors.senha && <p className="mensagem-erro">{errors.senha.message}</p>}
+            <input type="password" id="confirmarSenha"
+              {...register("confirmarSenha", { required: "Confirmação de senha é obrigatória", validate: value => value === senha || "As senhas não coincidem" })}
+              placeholder="Digite novamente a senha" 
+              onChange={(e) => lidarComMudancaNoInput(e)}
+              name="novaSenhaConfirmacao"
+              />
+            {errors.confirmarSenha && <p className="mensagem-erro">{errors.confirmarSenha.message}</p>}
+          </form>
+        </div>
+        <div className="conteiner-botao-redefinir">
+        <Botao id='botao-red' largura={'45%'} cor={'#fff'} corTexto={'#032026'} texto={'Recuperar'}
           aoClicar={async (e) => {
             e.preventDefault();
             try {
@@ -90,15 +94,9 @@ const TelaRedefinicao = () => {
             }
           }}
         />
+        </div>
       </div>
-
-
-
     </div>
-
-
-
-
   );
 };
 export default TelaRedefinicao; 
