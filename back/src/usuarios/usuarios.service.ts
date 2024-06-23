@@ -13,15 +13,23 @@ export class UsuariosService {
   ) {}
 
   async create(createUsuarioDto: CreateUsuarioDto) {
-    const newUser = new this.usuarioModel(createUsuarioDto);
-    return await newUser.save();
+    const newUser = await this.usuarioModel.create(createUsuarioDto);
+    return newUser;
   }
 
-  async findAll() {
-    return await this.usuarioModel.find().exec();
+  async findAll(): Promise<Usuario[]> {
+    try {
+      return await this.usuarioModel.find().exec();
+    } catch (error) {
+      throw new InternalServerErrorException('Falha ao buscar usuários', error.message);
+    }
   }
 
   async findByNameOrMatriculaOrId(nomeCompleto?: string, matricula?: string, id?: string) {
+    if (!id && !nomeCompleto && !matricula) {
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+    }
+  
     try {
       if (id && isValidObjectId(id)) {
         return await this.usuarioModel.findById(id).exec();
@@ -29,8 +37,6 @@ export class UsuariosService {
         return await this.usuarioModel.find({ nomeCompleto: { $regex: nomeCompleto, $options: 'i' } }).exec();
       } else if (matricula) {
         return await this.usuarioModel.findOne({ matricula }).exec();
-      } else {
-        throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
       }
     } catch (error) {
       throw new InternalServerErrorException('Falha ao encontrar usuário', error.message);
@@ -38,6 +44,9 @@ export class UsuariosService {
   }
 
   async update(updateUsuarioDto: UpdateUsuarioDto, nomeCompleto?: string, matricula?: string, id?: string) {
+    if (!nomeCompleto && !matricula && !id) {
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+    }
     try {
       let filter = {};
       if (id && isValidObjectId(id)) {
@@ -89,6 +98,9 @@ export class UsuariosService {
         throw new NotFoundException('Usuário não encontrado');
       }
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new InternalServerErrorException('Falha ao remover usuário', error.message);
     }
   }
