@@ -6,11 +6,14 @@
 }
 
 .botao-voltar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   width: 100%;
-  margin-top: 0;
+  padding: 2% 0;
+}
+
+.botao-voltar button {
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .container-redefinicao {
@@ -20,45 +23,13 @@
   justify-content: start;
   height: 100vh;
   width: 100%;
-  background-color: #032026;
-}
-
-.container-redefinicao input {
-  width: 24.5%;
-  height: 5vh;
-  margin: 1% 0;
-  border-radius: 8px;
-  border: none;
-  padding: 0 1%;
-  font-size: 1.2em;
   background-color: #03161A;
-  box-shadow: 0.5px 0.5px 0px #FFA800;
-  color: white;
-}
-
-.container-redefinicao input::placeholder {
-  color: white;
-  font-size: 16px;
-}
-
-.container-redefinicao button {
-  height: 5vh;
-  margin: 1.5% 0;
-  border-radius: 8px;
-  border: none;
-  padding: 0 1vw;
-  font-size: 1em;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
 }
 
 .container-redefinicao h1 {
   color: white;
-  font-size: 1.5em;
-  margin: 2vh 0;
+  font-size: 1.5rem;
 }
-
 
 #img-icone {
   width: 67%;
@@ -66,20 +37,98 @@
   margin: 0 0 3% 0;
 }
 
+.conteiner-senha {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 15%;
+}
+
 .formulario-senha {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
   width: 100%;
+  height: 100%;
+
 }
 
-.formulario {
+.formulario-senha input {
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background-color: #032026;
+  box-shadow: 0.5px 0.5px 0px #FFA800;
+  color: #fff;
+  margin-top: 16px;
+
+  height: 35%;
+  padding-left: 2%;
+
+  width: 43%;
+}
+
+.formulario-senha input::placeholder {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #979797;
+}
+
+.conteiner-campos2 button {
+  border-radius: 4px;
+  border: none;
+  font-size: 0.75rem;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  margin-top: 16px;
+
+  height: 35%;
+}
+
+.conteiner-campos2 img {
+  width: 15%;
+  height: 10%;
+  margin-bottom: 25%;
+}
+
+.conteiner-campos2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  
+  height: 100%;
+
+  width: 50%;
+
+}
+
+.conteiner-botao-redefinir {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 100%;
+  height: 15%;
+}
+
+.conteiner-botao-redefinir button {
+  border-radius: 4px;
+  border: none;
+  font-size: 0.75rem;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  margin: 16px;
+
+  height: 35%;
 }
 
 .mensagem-erro {
