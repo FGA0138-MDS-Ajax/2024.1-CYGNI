@@ -9,67 +9,19 @@
   color: white;
 }
 
-
-
-
-.css-upzhda {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid red;
-}
-
-.teste {
-  display: flex;
-  width: 80%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid red;
-}
-
-#email-perfil, #nome-perfil, #usuario, #senha {
+.teste #email,
+#login,
+#senha {
   background-color: #032026;
   color: white;
-  width: 100%;
   border-radius: 8px;
-  padding: 3%;
-  font-size: 0.9rem;;
-  box-shadow: 1px 1px 0 0 #FFA800;
-}
-
-/* #email-perfil, #nome-perfil, #usuario, #senha {
-  width: 100%;
-} */
-
-.modal-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  color: white;
-}
-
-#salvar {
-  background-color: #588C7E;
-  color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 3%;
+  font-size: 0.9rem;
+  box-shadow: 1px 1px 0 0 #FFA800;
+  margin-top: 15%;
 }
 
-#salvar:hover {
-  background-color: #466D5D;
-}
-
-.modal-content {
-  background-color: #03161A;
-  padding: 20px;
-  border-radius: 8px;
+.teste #privilegios {
+  margin-top: 10%;
 }

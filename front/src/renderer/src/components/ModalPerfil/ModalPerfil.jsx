@@ -5,11 +5,10 @@ import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
 import Backdrop from '@mui/material/Backdrop';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import BotaoRadio from "../../components/BotaoRadio/BotaoRadio.jsx";
-import Botao from "../../components/Botao/Botao.jsx";
 import Campo from '../../components/Campo/Campo.jsx';
-import * as api from '../../services/api.jsx'
-
+import * as api from '../../services/api.jsx';
 
 import './ModalPerfil.css';
 
@@ -20,15 +19,21 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: '35%',
   height: '60%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
   color: 'white',
   bgcolor: '#03161A',
   boxShadow: 2,
-  p: 4,
 };
 
 export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    reset();
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   const {
@@ -36,23 +41,25 @@ export default function TransitionsModal() {
     setValue,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
   const privilegioValor = watch("privilegios", false);
 
   const aoEnviar = async (data) => {
+    console.log(data);
     try {
       await api.cadastrarAdministrador(data);
       handleClose();
+      reset();
     } catch (error) {
       throw new Error(error);
     }
   };
 
   return (
-    <div className=''>
-      <Botao aoClicar={handleOpen} largura={'130px'} altura={'30px'} texto="Cadastrar admin" cor="black" />
+    <div>
       <form className="formulario-cadastro-perfil" onSubmit={handleSubmit(aoEnviar)}>
         <Modal
           aria-labelledby="transition-modal-title"
@@ -69,10 +76,21 @@ export default function TransitionsModal() {
         >
           <Fade in={open}>
             <Box sx={style}>
-              <Typography id="transition-modal-title" variant="h6" component="h2">
+              <Typography sx={{
+                border: '1px solid green',
+                width: '100%'
+              }} id="transition-modal-title" variant="h6" component="h2" >
                 Cadastrar Usuário
               </Typography>
-              <div className='teste'>
+              <Box className='teste' sx={{
+                display: 'flex',
+                width: '90%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                border: '2px solid yellow'
+
+              }}>
                 <Campo
                   id="email"
                   placeholder="Email"
@@ -95,7 +113,7 @@ export default function TransitionsModal() {
                 <Campo
                   id="senha"
                   placeholder="Senha"
-                  tipo="text"
+                  tipo="password"
                   registro={register}
                   erros={errors}
                   opcoes={{
@@ -111,21 +129,40 @@ export default function TransitionsModal() {
                   nome={""}
                 />
 
-                <Botao
-                  id="salvar"
-                  icone=""
-                  texto="Cadastrar"
-                  cor="#588C7E"
-                  largura={"130px"}
-                  aoClicar={(e) => {
+                <Button
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#032026',
+                    marginTop: '10%',
+                    fontWeight: 'bold',
+                    borderRadius: '8px',
+                    border: '1px solid white',
+                    width: '50%',
+                    height: '40%',
+                    textTransform: 'none',
+                    '&:hover': {
+                      color: 'white',
+                      backgroundColor: '#032026',
+                    },
+                  }}
+                  className='salvar-perfil'
+                  onClick={(e) => {
                     e.preventDefault();
                     handleSubmit(aoEnviar)();
-                  }} />
-              </div>
+                  }}>Cadastrar</Button>
+              </Box>
             </Box>
           </Fade>
         </Modal>
       </form>
+      <Button onClick={handleOpen} sx={{
+        color: 'white',
+        fontWeight: 'bold',
+        textTransform: 'none',
+        '&:hover': {
+          backgroundColor: 'transparent',
+        },
+      }}>Cadastrar adm</Button>
     </div>
   );
 }
