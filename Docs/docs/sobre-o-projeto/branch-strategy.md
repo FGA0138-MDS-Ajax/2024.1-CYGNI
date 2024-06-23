@@ -53,6 +53,7 @@ Ao abrir o Pull Request você irá se deparar com o seguinte questionário na de
 - [x] Uma nova Feature
 - [ ] Refatoração de uma Feature já existente
 - [ ] Atualização da documentação
+- [ ] Fix/[Problema resolvido]
 
 ## Issue
 - [ ] Possui uma Issue relacionada? 
