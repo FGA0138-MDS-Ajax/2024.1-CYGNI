@@ -23,6 +23,9 @@ evolui. O backlog do produto está detalhado na seguinte tabela
 | 07        | sprint 04            | Funcional         | Should                   | Os usuários não podem editar nenhum tipo de informação no sistema. Como usuário, devo ser capaz de acessar as informações e relatórios que eu tiver acesso. | Como usuário, desejo visualizar informações e relatórios disponíveis no sistema. |
 | 08        | sprint 04            | Funcional         | Could                    | O administrador tem total acesso ao sistema, podendo inclusive atribuir acessos de leitura aos usuários. Como administrador, devo poder atribuir diferentes formas de acesso aos arquivos e relatórios gerados. | Como administrador, desejo configurar diferentes níveis de acesso para os usuários. |
 | 09        | sprint 07            | Funcional         | Must                     | O administrador deve ser capaz de redefinir e recuperar sua senha de acesso ao sistema em caso de esquecimento ou necessidade de alteração. Como um administrador, quero redefinir e recuperar minha senha para garantir a continuidade do meu acesso ao sistema. | Como administrador, desejo redefinir minha senha em caso de esquecimento para manter o acesso ao sistema. |
+| 10  | Sprint 05 | Funcional | Must | O administrador deve ter acesso a relatórios detalhados de todos os funcionários cadastrados no sistema para análise e gestão eficiente. | Como administrador, desejo visualizar relatórios detalhados de todos os funcionários cadastrados no sistema para facilitar a análise e a gestão eficiente. |
+
+
 
 
 

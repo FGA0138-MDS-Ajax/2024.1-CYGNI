@@ -14,8 +14,8 @@ sidebar_position: 4
 | Sprint 4 | CRUD ficha gerencial; Criação do Menu Lateral; Tela Inicial e de Cadastro | 22/05/2024 | 29/05/2024 | Tela inicial e cadastro e Menu Lateral; CRUD ficha gerencial.       | Todos        | 100%        |
 | Sprint 5 | CRUDs de endereço e documentação; Telas de afastamento, recuperação de senha e relatório. | 29/05/2024 | 05/06/2024 | CRUDs endereço e documentação Telas de afastamento, relatório e redefinição de senhas    | Todos        | 100%        |
 | Sprint 6 | Tela de campanha; Refatoração da tela inicial e login; Refatoração do menu lateral; CRUD admin    | 05/06/2024 | 12/06/2024 | Tela campanha, inicial e login;  | Todos        | 75%        |
-| Sprint 7 | Continuação da Integração; Tratamento de datas;Redefinição de senha no backend   | 12/06/2024 | 19/06/2024 | Datas tratadas; Redifinição de senhas; Busca de funcionários e Geração de Campanha    | Todos        | 0%        |
-| Sprint 8 | Testes dos códigos; Revisão dos códigos.   | 12/06/2024 | 19/06/2024 | -                                                | Todos        | 0%        |
+| Sprint 7 | Continuação da Integração; Tratamento de datas;Redefinição de senha no backend   | 12/06/2024 | 19/06/2024 | Datas tratadas; Redifinição de senhas; Busca de funcionários e Geração de Campanha    | Todos        | 100%        |
+| Sprint 8 | Testes dos códigos; Revisão dos códigos.   | 19/06/2024 | 26/06/2024 |  Testes unitários prontos e o projeto final funcionando.                                              | Todos        | 50%        |
 
 
 # Releases
