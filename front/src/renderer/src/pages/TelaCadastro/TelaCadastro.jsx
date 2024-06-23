@@ -43,7 +43,6 @@ const TelaCadastro = () => {
 	useEffect(() => {
 		if (funcionario) {
 			reset({
-				
 				//cadastro geral
 				matricula: funcionario.matricula,
 				nomeGuerra: funcionario.nomeGuerra,
@@ -94,8 +93,64 @@ const TelaCadastro = () => {
 				dataTermino: funcionario.dataTermino ? new Date(funcionario.dataTermino).toISOString().split('T')[0] : '',
 				dias: funcionario.dias,
 				observacoes: funcionario.observacoes,
-			})
+			})	
 		}
+
+		else {
+      // Resetar os campos para um estado inicial
+			reset({
+				//cadastro geral
+				matricula: '',
+				nomeGuerra: '',
+				nomeCompleto: '',
+				sexo: 'M',
+				dataDeNascimento: '',
+				tipoSanguineo: 'AB+',
+				nomeMae: '',
+				nomePai: '',
+				email: '',
+				telefone: '',
+				postGrad: '',
+				escolaridade: '',
+				estadoCivil: 'Solteiro(a)',
+
+				//documentacao
+				rg: '',
+				cpf: '',
+				matSiape: '',
+				cnhCategoria: 'A',
+				cnhValidade: '',
+				cnhProntuario: '',
+
+				//endereco
+				cep: '',
+				cidade: '',
+				bairro: '',
+				uf: '',
+				logradouro: '',
+
+				//ficha gerencial
+				classificacao: '',
+				funcao: '',
+				escala: '8 x 40',
+				horarioEscala: '',
+				lotacao: '',
+				comportamento: '',
+				porteArma: true,
+				apresentacao: '',
+				admissao: '',
+				validadeBienal: '',
+				validadeTAF: '',
+
+				//afastamento
+				motivo: '',
+				anoReferencia: '',
+				dataInicio: '',
+				dataTermino: '',
+				dias: '',
+				observacoes: '',
+			})	
+    }
 	}, [funcionario, reset, setValue]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
