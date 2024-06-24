@@ -466,6 +466,7 @@ const TelaCadastro = () => {
 						icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
 						texto="Voltar"
 						cor="#032026"
+						corTexto="white"
 						largura={"130px"}
 						aoClicar={(e) => { navegar("/inicial") }}
 					/>
@@ -477,6 +478,7 @@ const TelaCadastro = () => {
 							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
 							texto="Excluir"
 							cor="#8C1C45"
+							corTexto="white"
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();
@@ -491,6 +493,7 @@ const TelaCadastro = () => {
 							icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
 							texto="Atualizar"
 							cor="#F29B30"
+							corTexto="white"
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();
@@ -506,6 +509,7 @@ const TelaCadastro = () => {
 							icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
 							texto="Salvar"
 							cor="#588C7E"
+							corTexto="white"
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();
