@@ -7,7 +7,7 @@ import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
 import Campo from "../../components/Campo/Campo.jsx";
 import MenuSuspenso from "../../components/MenuSuspenso/MenuSuspenso.jsx";
 import Botao from "../../components/Botao/Botao.jsx";
-import RadioBotao from "../../components/RadioBotao/RadioBotao.jsx";
+import BotaoRadio from "../../components/BotaoRadio/BotaoRadio.jsx";
 
 import { HiArrowDownTray } from "react-icons/hi2";
 import { HiArrowPathRoundedSquare } from "react-icons/hi2";
@@ -159,7 +159,7 @@ const TelaCadastro = () => {
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
 
 			else
-				await api.CadastrarUsuario(dadosDoFormulario);
+				await api.cadastrarUsuario(dadosDoFormulario);
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error(error);
@@ -391,12 +391,14 @@ const TelaCadastro = () => {
 									</div>
 									<div className="linha">
 										<Campo id="comportamento" texto="Comportamento" tipo="text" registro={register} erros={errors} />
-										<div className="botao-porte-arma">
-											<label style={{ color: "#898989", fontWeight: "bold", fontSize: "14px" }} htmlFor="porteArma">
-												Porte de Arma
-											</label>
-											<RadioBotao id="porteArma" value={porteArmaValor} onChange={(value) => setValue("porteArma", value)} />
-										</div>
+										<BotaoRadio
+											id="porteArma"
+											value={porteArmaValor}
+											onChange={(value) => setValue("porteArma", value)}
+											opcao1={"Sim"}
+											opcao2={"Não"}
+											nome={"Porte de Arma"}
+										/>
 										<Campo id="apresentacao" texto="Apresentação" tipo="date" registro={register} erros={errors} />
 										<Campo id="admissao" texto="Admissão" tipo="date" registro={register} erros={errors} />
 										<Campo id="validadeBienal" texto="Validade Bienal" tipo="date" registro={register} erros={errors} />
@@ -440,7 +442,7 @@ const TelaCadastro = () => {
 										<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
 										<Campo id="dias" texto="Dias" tipo="text" registro={register} erros={errors} />
 									</div>
-									<div className="container-observacao">
+									<div className="conteiner-observacao">
 										<span>Observações</span>
 										<p>*opcional</p>
 									</div>

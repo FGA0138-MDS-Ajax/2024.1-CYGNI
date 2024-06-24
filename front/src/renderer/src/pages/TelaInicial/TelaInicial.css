@@ -188,3 +188,11 @@
     margin-left: 16px;
 }
 
+.cadastro-perfil {
+    width: 15%;
+    height: 10%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-right: -65%;
+}

@@ -8,6 +8,7 @@ import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import "./TelaRelatorio.css";
 import { DataTable } from '../../components/TabelaRelatorio/Tabela'
 
+
 const TelaRelatorio = () => {
 	const {
 		register,
