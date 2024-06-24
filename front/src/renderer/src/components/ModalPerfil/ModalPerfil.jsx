@@ -77,21 +77,19 @@ export default function TransitionsModal() {
           <Fade in={open}>
             <Box sx={style}>
               <Typography sx={{
-                border: '1px solid green',
-                width: '100%'
               }} id="transition-modal-title" variant="h6" component="h2" >
-                Cadastrar Usuário
+                Cadastro Admin
               </Typography>
-              <Box className='teste' sx={{
+              <Box sx={{
                 display: 'flex',
-                width: '90%',
+                width: '80%',
                 justifyContent: 'center',
                 alignItems: 'center',
+                gap: 1,
                 flexDirection: 'column',
-                border: '2px solid yellow'
-
               }}>
                 <Campo
+                  style={{width: '100%', display: 'flex', justifyContent: 'center'}}
                   id="email"
                   placeholder="Email"
                   tipo="email"
@@ -102,6 +100,7 @@ export default function TransitionsModal() {
                   }}
                 />
                 <Campo
+                  style={{width: '100%', display: 'flex', justifyContent: 'center'}}
                   id="login"
                   placeholder="Usuário"
                   tipo="text"
@@ -111,6 +110,7 @@ export default function TransitionsModal() {
                     required: "*Campo obrigatório",
                   }} />
                 <Campo
+                  style={{width: '100%', display: 'flex', justifyContent: 'center'}}
                   id="senha"
                   placeholder="Senha"
                   tipo="password"
@@ -133,11 +133,11 @@ export default function TransitionsModal() {
                   sx={{
                     backgroundColor: 'white',
                     color: '#032026',
-                    marginTop: '10%',
+                    marginTop: '5%',
                     fontWeight: 'bold',
                     borderRadius: '8px',
                     border: '1px solid white',
-                    width: '50%',
+                    width: '65%',
                     height: '40%',
                     textTransform: 'none',
                     '&:hover': {
@@ -162,7 +162,7 @@ export default function TransitionsModal() {
         '&:hover': {
           backgroundColor: 'transparent',
         },
-      }}>Cadastrar adm</Button>
+      }}>Cadastrar Admin</Button>
     </div>
   );
 }

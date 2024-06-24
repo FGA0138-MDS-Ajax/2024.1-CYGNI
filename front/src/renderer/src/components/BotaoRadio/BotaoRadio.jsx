@@ -3,16 +3,14 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import { colors } from '@mui/material';
-import { pink } from '@mui/material/colors';
 
 const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2 }) => {
   const estiloRadio = {
     display: "flex",
-    marginRight: "65px",
+    marginRight: "70px",
     width: "15px",
     height: "15px",
-    marginTop: "30px",
+    marginTop: "12px",
     justifyItens: "center",
   };
 
@@ -25,13 +23,13 @@ const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2 }) => {
         name="row-radio-buttons-group"
       >
         <FormControlLabel
-          sx={{ ...estiloRadio, marginRight: "95px" }}
+          sx={{ ...estiloRadio, marginRight: "145px" }}
           checked={value === true}
           onChange={() => onChange(true)}
           control={<Radio sx={{
             color: "#032026",
             '&.Mui-checked': {
-              color: "#8C1C45",
+              color: "#FFA800",
             },
           }} />}
           label={opcao1} />
@@ -43,7 +41,7 @@ const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2 }) => {
           control={<Radio sx={{
             color: "#032026",
             '&.Mui-checked': {
-              color: "#8C1C45",
+              color: "#FFA800",
             },
           }} />}
           label={opcao2} />

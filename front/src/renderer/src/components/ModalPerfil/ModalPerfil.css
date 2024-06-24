@@ -9,19 +9,17 @@
   color: white;
 }
 
-.teste #email,
-#login,
-#senha {
+.MuiBox-root #email, #login, #senha {
+  display: flex;
   background-color: #032026;
   color: white;
+  width: 60%;
+  height: 31%;
   border-radius: 8px;
   border: none;
   padding: 3%;
   font-size: 0.9rem;
   box-shadow: 1px 1px 0 0 #FFA800;
-  margin-top: 15%;
-}
-
-.teste #privilegios {
-  margin-top: 10%;
+  margin-top: 7%;
+  margin-bottom: 2%;
 }

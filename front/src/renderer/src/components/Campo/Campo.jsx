@@ -1,9 +1,9 @@
 import React from "react";
 import "./Campo.css";
 
-const Campo = ({ texto, tipo, id, registro, erros, opcoes, placeholder }) => {
+const Campo = ({ texto, tipo, id, registro, erros, opcoes, placeholder, style }) => {
 	return (
-		<div className="campo">
+		<div className="campo" style={style}>
 			<span>{texto}</span>
 			<input
 				placeholder={placeholder}
