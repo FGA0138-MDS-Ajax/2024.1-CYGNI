@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { FiHome, FiCalendar, FiClipboard } from "react-icons/fi";
+import { FiHome, FiCalendar, FiClipboard, FiUser } from "react-icons/fi";
 import { BiLogOut } from "react-icons/bi";
 
 import Logo from "../../assets/img/IconeAGIS.svg";
@@ -15,6 +15,7 @@ const MenuLateral = () => {
 		{ icon: <FiHome />, text: "Início", path: "/inicial" },
 		{ icon: <FiCalendar />, text: "Relatório", path: "/tela-relatorio" },
 		{ icon: <FiClipboard />, text: "Campanha" },
+		{ icon: <FiUser />, text: "Admins", path: "/tela-adm" },
 	];
 
 	const logoutItem = { icon: <BiLogOut />, text: "Sair", path: "/" };
