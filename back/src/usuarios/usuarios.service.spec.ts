@@ -70,7 +70,9 @@ const mockUsuarioModel = {
   findOneAndUpdate: jest.fn().mockReturnValue({
     exec: jest.fn().mockResolvedValue({ _id: 'someId', ...mockUsuario })
   }),
-  //deleteOne: jest.fn().mockResolvedValue({ deletedCount: 1 }),
+  findOneAndDelete: jest.fn().mockReturnValue({
+    exec: jest.fn().mockResolvedValue(mockUsuario)
+  }),
 };
 
 describe('UsuariosService', () => {
@@ -221,14 +223,49 @@ describe('UsuariosService', () => {
       const updateUsuarioDto: UpdateUsuarioDto = { ...mockUsuario };
       await expect(service.update(updateUsuarioDto)).rejects.toThrow(BadRequestException);
     });
-    /*describe('remove', () => {
+    describe('remove', () => {
       it('should remove a user by id', async () => {
         jest.spyOn(mongoose, 'isValidObjectId').mockReturnValue(true);
+        (mockUsuarioModel.findOneAndDelete().exec as jest.Mock).mockResolvedValueOnce(mockUsuario);
     
         const result = await service.remove(undefined, undefined, 'someId');
-        expect(result).toBe('Usuário removido com sucesso');
-        expect(mockUsuarioModel.deleteOne).toHaveBeenCalledWith({ _id: 'someId' });
+        expect(result).toEqual('Usuário removido com sucesso');
+        expect(mockUsuarioModel.findOneAndDelete).toHaveBeenCalledWith({ _id: 'someId' });
       });
-    });*/
+    
+      it('should throw a NotFoundException if user is not found by id', async () => {
+        jest.spyOn(mongoose, 'isValidObjectId').mockReturnValue(true);
+        (mockUsuarioModel.findOneAndDelete().exec as jest.Mock).mockResolvedValueOnce(null);
+    
+        await expect(service.remove(undefined, undefined, 'someId')).rejects.toThrow(NotFoundException);
+      });
+    
+      it('should remove a user by nomeCompleto', async () => {
+        (mockUsuarioModel.findOneAndDelete().exec as jest.Mock).mockResolvedValueOnce(mockUsuario);
+    
+        const result = await service.remove('Test User');
+        expect(result).toEqual('Usuário removido com sucesso');
+        expect(mockUsuarioModel.findOneAndDelete).toHaveBeenCalledWith({ nomeCompleto: 'Test User' });
+      });
+    
+      it('should remove a user by matricula', async () => {
+        (mockUsuarioModel.findOneAndDelete().exec as jest.Mock).mockResolvedValueOnce(mockUsuario);
+    
+        const result = await service.remove(undefined, '12345');
+        expect(result).toEqual('Usuário removido com sucesso');
+        expect(mockUsuarioModel.findOneAndDelete).toHaveBeenCalledWith({ matricula: '12345' });
+      });
+    
+      it('should throw a BadRequestException if no parameters are provided', async () => {
+        await expect(service.remove()).rejects.toThrow(BadRequestException);
+      });
+    
+      it('should throw an InternalServerErrorException for other errors', async () => {
+        jest.spyOn(mongoose, 'isValidObjectId').mockReturnValue(true);
+        (mockUsuarioModel.findOneAndDelete().exec as jest.Mock).mockRejectedValueOnce(new Error('Test Error'));
+    
+        await expect(service.remove(undefined, undefined, 'someId')).rejects.toThrow(InternalServerErrorException);
+      });
+    });    
   });
 });

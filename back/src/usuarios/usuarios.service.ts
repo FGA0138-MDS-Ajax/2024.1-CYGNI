@@ -79,6 +79,9 @@ export class UsuariosService {
   }
 
   async remove(nomeCompleto?: string, matricula?: string, id?: string) {
+    if (!nomeCompleto && !matricula && !id) {
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+    }
     try {
       let filter = {};
       if (id && isValidObjectId(id)) {
