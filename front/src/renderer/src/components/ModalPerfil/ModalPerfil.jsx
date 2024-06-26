@@ -89,7 +89,17 @@ export default function TransitionsModal() {
                 flexDirection: 'column',
               }}>
                 <Campo
-                  style={{width: '100%', display: 'flex', justifyContent: 'center'}}
+                  style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+                  id="login"
+                  placeholder="Usuário"
+                  tipo="text"
+                  registro={register}
+                  erros={errors}
+                  opcoes={{
+                    required: "*Campo obrigatório",
+                  }} />
+                <Campo
+                  style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
                   id="email"
                   placeholder="Email"
                   tipo="email"
@@ -100,17 +110,7 @@ export default function TransitionsModal() {
                   }}
                 />
                 <Campo
-                  style={{width: '100%', display: 'flex', justifyContent: 'center'}}
-                  id="login"
-                  placeholder="Usuário"
-                  tipo="text"
-                  registro={register}
-                  erros={errors}
-                  opcoes={{
-                    required: "*Campo obrigatório",
-                  }} />
-                <Campo
-                  style={{width: '100%', display: 'flex', justifyContent: 'center'}}
+                  style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
                   id="senha"
                   placeholder="Senha"
                   tipo="password"
