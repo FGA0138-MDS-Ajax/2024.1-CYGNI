@@ -1,56 +1,86 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../services/api.jsx';
+import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate } from "react-router-dom";
-import { DataGrid, GridLoadingOverlay } from '@mui/x-data-grid';
-
 import Box from '@mui/material/Box';
-import { set } from 'react-hook-form';
+import * as api from '../../services/api.jsx';
 
-
+const formatarData = (dataISO) => {
+  const data = new Date(dataISO);
+  const dia = data.getUTCDate().toString().padStart(2, '0');
+  const mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
+  const ano = data.getUTCFullYear();
+  return `${dia}/${mes}/${ano}`;
+};
 
 const negrito = (params) => (
   <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>
 );
 
-const renderBoolean = (params) => (
-  params.value ? <span>Editor</span> : <span>Leitor</span>
-);
-
 const columns = [
   {
-    field: 'login',
-    headerName: 'Nome de login',
-    flex: 1, // esta coluna será duas vezes mais larga que as outras
+    field: 'nomeCompleto',
+    headerName: 'Nome',
+    flex: 2, // esta coluna será duas vezes mais larga que as outras
     headerClassName: 'super-app-theme--header',
     hideable: false,
     resizable: false,
     renderHeader: negrito,
   },
   {
-    field: 'email',
-    headerName: 'Email',
-    flex: 1,
-    headerClassName: 'super-app-theme--header',
-    hideable: false,
-    resizable: false,
-    renderHeader: negrito,
-  },
-  {
-    field: 'privilegios',
-    headerName: 'Privilégio',
+    field: 'matricula',
+    headerName: 'Matrícula',
     flex: 1,
     headerClassName: 'super-app-theme--header',
     hideable: false,
     resizable: false,
     filterable: false,
     renderHeader: negrito,
-    renderCell: renderBoolean,
+  },
+  {
+    field: 'motivo',
+    headerName: 'Situação',
+    flex: 2,
+    headerClassName: 'super-app-theme--header',
+    hideable: false,
+    resizable: false,
+    renderHeader: negrito,
+  },
+  {
+    field: 'anoReferencia',
+    headerName: 'Ano',
+    flex: 1,
+    headerClassName: 'super-app-theme--header',
+    hideable: false,
+    resizable: false,
+    renderHeader: negrito,
+  },
+  {
+    field: 'dataInicio',
+    headerName: 'Data Início',
+    flex: 1,
+    renderCell: (params) => params.value ? formatarData(params.value) : '',
+    headerClassName: 'super-app-theme--header',
+    hideable: false,
+    resizable: false,
+    filterable: false,
+    renderHeader: negrito,
+  },
+  {
+    field: 'dataTermino',
+    headerName: 'Data Término',
+    flex: 1,
+    renderCell: (params) => params.value ? formatarData(params.value) : '',
+    headerClassName: 'super-app-theme--header',
+    hideable: false,
+    resizable: false,
+    filterable: false,
+    renderHeader: negrito,
   },
 ];
 
 const textoLocalCustomizado = {
-  noRowsLabel: 'Nenhum administrador cadastrado.',
-  noResultsOverlayLabel: 'Nenhum administrador encontrado.',
+  noRowsLabel: 'Nenhum funcionário cadastrado.',
+  noResultsOverlayLabel: 'Nenhum funcionário encontrado.',
   columnHeaderFiltersTooltipActive: (count) => `${count} ${count !== 1 ? 'filtros' : 'filtro'} ativo${count !== 1 ? 's' : ''}`,
   columnHeaderFiltersLabel: 'Mostrar filtros',
   columnHeaderSortIconLabel: 'Ordenar',
@@ -88,14 +118,14 @@ const textoLocalCustomizado = {
 };
 
 export function DataTable() {
+  const navegar = useNavigate();
   const [funcionarios, setFuncionarios] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [apaga, setApaga] = useState(false);
 
   useEffect(() => {
     const fetchRows = async () => {
       try {
-        const response = await api.buscarAdministradores();
+        const response = await api.buscarUsuarios();
         setFuncionarios(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -116,11 +146,9 @@ export function DataTable() {
     };
   }, []);
 
-
   const handleFuncionarioSelecionado = (params) => {
     const funcionario = params.row;
-    api.excluirAdministrador(funcionario._id);   
-    setApaga(true); 
+    navegar('/tela-cadastro', { state: { funcionario } });
   }
 
   return (
@@ -128,9 +156,11 @@ export function DataTable() {
       height: '100vh', width: '100vw', '& .super-app-theme--header': {
         backgroundColor: '#03161A',
       },
+
       '.css-ptiqhd-MuiSvgIcon-root': {
         color: 'white',
       },
+
       '.css-n3fyjk-MuiDataGrid-root .MuiDataGrid-sortIcon': {
         display: 'none',
       },
@@ -153,12 +183,9 @@ export function DataTable() {
         }}
         rows={funcionarios}
         columns={columns}
-        localeText={{
-          ...textoLocalCustomizado,
-        }}        
+        localeText={textoLocalCustomizado}
         getRowId={(row) => row._id}
         onRowDoubleClick={handleFuncionarioSelecionado}
-    
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 15 },

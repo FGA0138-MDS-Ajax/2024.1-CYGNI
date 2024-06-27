@@ -1,5 +1,5 @@
 import React from "react";
-import { DataTable } from '../../components/TabelaRelatorio/Tabela'
+import { DataTable } from '../../components/Tabelas/TabelaRelatorio'
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import "./TelaRelatorio.css";
 

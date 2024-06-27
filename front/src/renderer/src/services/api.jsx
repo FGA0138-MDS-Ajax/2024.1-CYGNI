@@ -23,6 +23,10 @@ export const buscarAdministradores = async (data) => {
     return axios.get(`${BASE_URL}/administradores`, data);
 }
 
+export const editarAdministrador = async (id, data) => {
+    return axios.patch(`${BASE_URL}/administradores/${id}`, data);
+}
+
 export const excluirAdministrador = async (id) => {
     return axios.delete(`${BASE_URL}/administradores/${id}`);
 }
@@ -47,13 +51,13 @@ export const cadastrarUsuario = async (data) => {
 }
 
 export const buscarUsuarios = async () => {
-    return axios.get(`${BASE_URL}/usuarios`,createConfig());
+    return axios.get(`${BASE_URL}/usuarios`, createConfig());
 }
 
 export const editarUsuario = async (id, data) => {
-    return await axios.patch(`${BASE_URL}/usuarios/atualizar?id=${id}`, data,createConfig());
+    return await axios.patch(`${BASE_URL}/usuarios/atualizar?id=${id}`, data, createConfig());
 }
 
 export const excluirUsuario = async (id) => {
-    return await axios.delete(`${BASE_URL}/usuarios/remover?id=${id}`,createConfig());
+    return await axios.delete(`${BASE_URL}/usuarios/remover?id=${id}`, createConfig());
 }

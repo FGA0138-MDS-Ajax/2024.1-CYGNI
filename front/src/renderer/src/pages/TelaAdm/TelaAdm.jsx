@@ -1,5 +1,5 @@
 import React from "react";
-import { DataTable } from "../../components/TabelaAdm/TabelaAdm.jsx";
+import { DataTable } from "../../components/Tabelas/TabelaAdm.jsx";
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
 
 import "./TelaAdm.css";
