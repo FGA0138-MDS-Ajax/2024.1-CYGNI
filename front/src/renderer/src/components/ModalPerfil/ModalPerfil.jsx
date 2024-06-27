@@ -109,6 +109,16 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
               }}>
                 <Campo
                   style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+                  id="login"
+                  placeholder="Usuário"
+                  tipo="text"
+                  registro={register}
+                  erros={errors}
+                  opcoes={{
+                    required: "*Campo obrigatório",
+                  }} />
+                <Campo
+                  style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
                   id="email"
                   placeholder="Email"
                   tipo="email"
@@ -118,16 +128,6 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
                     required: "*Campo obrigatório",
                   }}
                 />
-                <Campo
-                  style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-                  id="login"
-                  placeholder="Usuário"
-                  tipo="text"
-                  registro={register}
-                  erros={errors}
-                  opcoes={{
-                    required: "*Campo obrigatório",
-                  }} />
 
                 {!isEdit && (
                   <Campo
