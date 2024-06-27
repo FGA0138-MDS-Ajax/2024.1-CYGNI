@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import TelaAdm from "./pages/TelaAdm/TelaAdm.jsx";
 import TelaLogin from "./pages/TelaLogin/TelaLogin.jsx";
 import TelaInicial from "./pages/TelaInicial/TelaInicial.jsx";
 import TelaCadastro from "./pages/TelaCadastro/TelaCadastro.jsx";
 import TelaRelatorio from "./pages/TelaRelatorio/TelaRelatorio.jsx";
-import TelaRecuperacao from "./pages/TelasRedefinicao/TelaRecuperacao.jsx";
 import TelaRedefinicao from "./pages/TelasRedefinicao/TelaRedefinicao.jsx";
-
-import { RedefinicaoProvider } from "./pages/TelasRedefinicao/redefinicaoContext.jsx";
+import TelaRecuperacao from "./pages/TelasRedefinicao/TelaRecuperacao.jsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RedefinicaoProvider } from "./pages/TelasRedefinicao/redefinicaoContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
@@ -22,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					<Route path="/tela-relatorio" element={<TelaRelatorio />} />
 					<Route path="/tela-recuperacao" element={<TelaRecuperacao />} />
 					<Route path="/tela-redefinicao" element={<TelaRedefinicao />} />
+					<Route path="/tela-adm" element={<TelaAdm />} />
 				</Routes>
 			</BrowserRouter>
 		</RedefinicaoProvider>

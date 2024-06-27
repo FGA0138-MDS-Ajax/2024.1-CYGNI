@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid, GridFooterPlaceholder } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import * as api from '../../services/api.jsx';
-import { PaginationItem, TablePagination } from '@mui/material';
 
 const formatarData = (dataISO) => {
   const data = new Date(dataISO);
-  const dia = data.getDate().toString().padStart(2, '0');
-  let mes = (data.getMonth() + 1).toString().padStart(2, '0');
-  const ano = data.getFullYear();
+  const dia = data.getUTCDate().toString().padStart(2, '0');
+  const mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
+  const ano = data.getUTCFullYear();
   return `${dia}/${mes}/${ano}`;
 };
 
@@ -80,8 +79,8 @@ const columns = [
 ];
 
 const textoLocalCustomizado = {
-  noRowsLabel: 'Nenhum funcionário cadastrado',
-  noResultsOverlayLabel: 'Nenhum funcionário cadastrado.',
+  noRowsLabel: 'Nenhum funcionário cadastrado.',
+  noResultsOverlayLabel: 'Nenhum funcionário encontrado.',
   columnHeaderFiltersTooltipActive: (count) => `${count} ${count !== 1 ? 'filtros' : 'filtro'} ativo${count !== 1 ? 's' : ''}`,
   columnHeaderFiltersLabel: 'Mostrar filtros',
   columnHeaderSortIconLabel: 'Ordenar',
@@ -184,11 +183,7 @@ export function DataTable() {
         }}
         rows={funcionarios}
         columns={columns}
-        localeText={{
-          ...textoLocalCustomizado,
-          
-        }}
-
+        localeText={textoLocalCustomizado}
         getRowId={(row) => row._id}
         onRowDoubleClick={handleFuncionarioSelecionado}
         initialState={{

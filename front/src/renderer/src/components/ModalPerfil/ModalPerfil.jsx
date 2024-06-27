@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
@@ -28,14 +28,7 @@ const style = {
   boxShadow: 2,
 };
 
-export default function TransitionsModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    reset();
-    setOpen(true);
-  };
-  const handleClose = () => setOpen(false);
-
+export default function TransitionsModal({ open, admin, isEdit, closeModal, setIsModalOpen }) {
   const {
     register,
     setValue,
@@ -45,13 +38,39 @@ export default function TransitionsModal() {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (isEdit && admin) {
+      setValue("email", admin.email);
+      setValue("login", admin.login);
+      setValue("senha", admin.senha);
+      setValue("privilegios", admin.privilegios);
+    } 
+    
+    else reset();
+  }, [isEdit, admin, setValue, reset]);
+
+  
+  const handleClose = () => {
+    open = false;
+    closeModal();
+  }
+
+  const handleOpen = () => {
+    setIsModalOpen(true);
+  }
+
   const privilegioValor = watch("privilegios", false);
 
   const aoEnviar = async (data) => {
     console.log(data);
     try {
-      await api.cadastrarAdministrador(data);
-      handleClose();
+      if (isEdit) {
+        await api.editarAdministrador(admin._id, data);
+      }
+      else {
+        await api.cadastrarAdministrador(data);
+      }
+      closeModal();
       reset();
     } catch (error) {
       throw new Error(error);
@@ -78,7 +97,7 @@ export default function TransitionsModal() {
             <Box sx={style}>
               <Typography sx={{
               }} id="transition-modal-title" variant="h6" component="h2" >
-                Cadastro Admin
+                {isEdit ? 'Editar Admin' : 'Cadastro Admin'}
               </Typography>
               <Box sx={{
                 display: 'flex',
@@ -97,7 +116,8 @@ export default function TransitionsModal() {
                   erros={errors}
                   opcoes={{
                     required: "*Campo obrigatório",
-                  }} />
+                  }}
+                />
                 <Campo
                   style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
                   id="email"
@@ -109,16 +129,19 @@ export default function TransitionsModal() {
                     required: "*Campo obrigatório",
                   }}
                 />
-                <Campo
+
+                {!isEdit && (
+                  <Campo
                   style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
                   id="senha"
                   placeholder="Senha"
-                  tipo="password"
+                  tipo="text"
                   registro={register}
                   erros={errors}
                   opcoes={{
                     required: "*Campo obrigatório",
                   }} />
+                )}
 
                 <BotaoRadio
                   id="privilegios"
@@ -149,7 +172,7 @@ export default function TransitionsModal() {
                   onClick={(e) => {
                     e.preventDefault();
                     handleSubmit(aoEnviar)();
-                  }}>Cadastrar</Button>
+                  }}>{isEdit ? 'Salvar' : 'Cadastrar'}</Button>
               </Box>
             </Box>
           </Fade>

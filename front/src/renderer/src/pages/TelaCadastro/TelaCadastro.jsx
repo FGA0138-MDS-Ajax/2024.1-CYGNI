@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation, createPath } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as api from "../../services/api.jsx";
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
@@ -19,8 +19,9 @@ import "./TelaCadastro.css";
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
 	const location = useLocation();
-	const funcionario = location.state?.funcionario;
 	const navegar = useNavigate();
+	const funcionario = location.state?.funcionario;
+
 	const {
 		register,
 		setValue,
@@ -157,7 +158,6 @@ const TelaCadastro = () => {
 		try {
 			if (funcionario)
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
-
 			else
 				await api.cadastrarUsuario(dadosDoFormulario);
 			navegar("/inicial");
@@ -166,9 +166,9 @@ const TelaCadastro = () => {
 		}
 	};
 
-	const excluirUsuario = async (data) => {
+	const excluirUsuario = async () => {
 		try {
-			await api.excluirUsuario(data._id);
+			await api.excluirUsuario(funcionario._id);
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error("Erro ao excluir usuário");
@@ -472,7 +472,6 @@ const TelaCadastro = () => {
 					/>
 
 					{funcionario && (
-
 						<Botao
 							id="excluir"
 							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
