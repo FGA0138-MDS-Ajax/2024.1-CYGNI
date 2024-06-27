@@ -56,6 +56,7 @@ export class AdministradoresController {
   }
 
   @Post('redefine-senha')
+  @HttpCode(200)
   async trocaSenha(@Body() redefineSenhaDto: RedefineSenhaDto) {
     return await this.administradoresService.redefineSenha(redefineSenhaDto);
   }

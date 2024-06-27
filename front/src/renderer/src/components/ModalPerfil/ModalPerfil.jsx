@@ -116,7 +116,8 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
                   erros={errors}
                   opcoes={{
                     required: "*Campo obrigatório",
-                  }} />
+                  }}
+                />
                 <Campo
                   style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
                   id="email"
