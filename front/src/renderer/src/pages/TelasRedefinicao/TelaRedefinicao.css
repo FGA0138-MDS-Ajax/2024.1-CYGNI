@@ -79,19 +79,6 @@
   color: #979797;
 }
 
-.conteiner-campos2 button {
-  border-radius: 4px;
-  border: none;
-  font-size: 0.75rem;
-
-  cursor: pointer;
-  font-weight: bold;
-
-  margin-top: 16px;
-
-  height: 35%;
-}
-
 .conteiner-campos2 img {
   width: 15%;
   height: 10%;
@@ -104,7 +91,6 @@
   align-items: center;
   
   height: 100%;
-
   width: 50%;
 
 }
@@ -119,7 +105,7 @@
 }
 
 .conteiner-botao-redefinir button {
-  border-radius: 4px;
+  border-radius: 8px;
   border: none;
   font-size: 0.75rem;
 

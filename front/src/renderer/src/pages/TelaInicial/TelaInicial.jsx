@@ -78,10 +78,10 @@ const TelaInicial = () => {
 				<div className="div-inferior">
 					<h1>Principais Funcionalidades</h1>
 					<div className="cartoes-definicoes">
-						<button>
+						<div className="div-nova">
 							<FiUserPlus size={20} style={{ marginRight: "8px" }} />
 							<span>Cadastrar</span>
-						</button>
+						</div>
 						<div className="cartoes-conteiner">
 							<div className="titulo-cartoes">
 								<FiUsers size={22} color="#FFA800" style={{ marginRight: "8px" }} />
@@ -91,10 +91,10 @@ const TelaInicial = () => {
 						</div>
 					</div>
 					<div className="cartoes-definicoes">
-						<button>
+						<div className="div-nova">
 							<FiUserX size={20} style={{ marginRight: "8px" }} />
 							<span>Afastamento</span>
-						</button>
+						</div>
 						<div className="cartoes-conteiner">
 							<div className="titulo-cartoes">
 								<FiAlertCircle size={22} color="#FFA800" style={{ marginRight: "8px" }} />
@@ -107,10 +107,10 @@ const TelaInicial = () => {
 						</div>
 					</div>
 					<div className="cartoes-definicoes">
-						<button>
+						<div className="div-nova">
 							<FiCalendar size={20} style={{ marginRight: "8px" }} />
 							<span>Campanha</span>
-						</button>
+						</div>
 						<div className="cartoes-conteiner">
 							<div className="titulo-cartoes">
 								<FiCreditCard size={22} color="#FFA800" style={{ marginRight: "8px" }} />
@@ -123,10 +123,10 @@ const TelaInicial = () => {
 						</div>
 					</div>
 					<div className="cartoes-definicoes">
-						<button>
+						<div className="div-nova">
 							<FiClipboard size={20} style={{ marginRight: "8px" }} />
 							<span>Relatório</span>
-						</button>
+						</div>
 						<div className="cartoes-conteiner">
 							<div className="titulo-cartoes">
 								<FiFile size={22} color="#FFA800" style={{ marginRight: "8px" }} />

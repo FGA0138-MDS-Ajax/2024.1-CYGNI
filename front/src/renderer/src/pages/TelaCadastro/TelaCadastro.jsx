@@ -420,6 +420,7 @@ const TelaCadastro = () => {
 											texto="Motivo"
 											largura="190px"
 											opcoes={[
+												" ",
 												"Abono",
 												"LTSP",
 												"Férias",
