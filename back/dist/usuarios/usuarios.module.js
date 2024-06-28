@@ -12,14 +12,21 @@ const usuarios_service_1 = require("./usuarios.service");
 const usuarios_controller_1 = require("./usuarios.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const usuario_schema_1 = require("./schemas/usuario.schema");
+const extrair_usuario_1 = require("../middlewares/extrair.usuario");
+const jwt_1 = require("@nestjs/jwt");
 let UsuariosModule = class UsuariosModule {
+    configure(consumer) {
+        consumer
+            .apply(extrair_usuario_1.ExtrairUsuarioMiddleware)
+            .forRoutes({ path: 'usuarios', method: common_1.RequestMethod.POST }, { path: 'usuarios/atualizar', method: common_1.RequestMethod.PATCH }, { path: 'usuarios/remover', method: common_1.RequestMethod.DELETE }, { path: 'usuarios/buscar', method: common_1.RequestMethod.GET });
+    }
 };
 exports.UsuariosModule = UsuariosModule;
 exports.UsuariosModule = UsuariosModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Usuario', schema: usuario_schema_1.UsuarioModel }])],
         controllers: [usuarios_controller_1.UsuariosController],
-        providers: [usuarios_service_1.UsuariosService],
+        providers: [usuarios_service_1.UsuariosService, jwt_1.JwtService],
     })
 ], UsuariosModule);
 //# sourceMappingURL=usuarios.module.js.map
