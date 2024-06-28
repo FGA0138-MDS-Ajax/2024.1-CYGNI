@@ -4,6 +4,7 @@ import * as api from "../../services/api.jsx";
 import { debounce } from 'lodash';
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
+import ModalPerfil from "../../components/ModalPerfil/ModalPerfil.jsx";
 
 import { FiUserPlus } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
@@ -19,6 +20,7 @@ import "./TelaInicial.css";
 import { set } from "react-hook-form";
 
 const TelaInicial = () => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [funcionarios, setFuncionarios] = useState([]);
 	const [pesquisa, setPesquisa] = useState("");
 	const navegar = useNavigate();
@@ -30,16 +32,16 @@ const TelaInicial = () => {
 		};
 		fetchFuncionarios();
 	}, []);
-	
+
 	const handleSearch = debounce((searchTerm) => {
 		setPesquisa(searchTerm);
 	}, 300);
 
 	const funcionariosFiltrados = pesquisa.trim() ? funcionarios.filter(funcionario =>
-		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase()) || 
+		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase()) ||
 		funcionario.matricula.includes(pesquisa)
 	) : [];
-	
+
 	const handleFuncionarioSelecionado = (funcionario) => {
 		navegar('/tela-cadastro', { state: { funcionario } });
 	}
@@ -47,7 +49,11 @@ const TelaInicial = () => {
 	const irParaTelaCadastro = () => {
 		navegar("/tela-cadastro");
 	};
-	
+
+	const closeModal = () => {
+    setIsModalOpen(false);
+  }
+
 	return (
 		<div className="tela-inicial">
 			<MenuLateral />
@@ -128,6 +134,15 @@ const TelaInicial = () => {
 							</div>
 							<p>Acompanhamento detalhado dos resultados mensais, proporcionando agilidade na gestão dos dados.</p>
 						</div>
+					</div>
+					<div className="cadastro-perfil">
+						<ModalPerfil
+							open={isModalOpen}
+							admin={false}
+							isEdit={false}
+							closeModal={closeModal}
+							setIsModalOpen={setIsModalOpen}
+						/>
 					</div>
 				</div>
 			</div>
