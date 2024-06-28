@@ -6,7 +6,6 @@ const Botao = ({ icone, texto, cor, largura, aoClicar, altura, corTexto }) => {
 				color: corTexto,
 				backgroundColor: cor,
 				width: largura,
-				height: altura,
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",

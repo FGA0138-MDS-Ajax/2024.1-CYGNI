@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation, createPath } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as api from "../../services/api.jsx";
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
 import Campo from "../../components/Campo/Campo.jsx";
 import MenuSuspenso from "../../components/MenuSuspenso/MenuSuspenso.jsx";
 import Botao from "../../components/Botao/Botao.jsx";
-import RadioBotao from "../../components/RadioBotao/RadioBotao.jsx";
+import BotaoRadio from "../../components/BotaoRadio/BotaoRadio.jsx";
 
 import { HiArrowDownTray } from "react-icons/hi2";
 import { HiArrowPathRoundedSquare } from "react-icons/hi2";
@@ -20,8 +20,9 @@ import "./TelaCadastro.css";
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
 	const location = useLocation();
-	const funcionario = location.state?.funcionario;
 	const navegar = useNavigate();
+	const funcionario = location.state?.funcionario;
+
 	const {
 		register,
 		setValue,
@@ -46,7 +47,6 @@ const TelaCadastro = () => {
 	useEffect(() => {
 		if (funcionario) {
 			reset({
-				
 				//cadastro geral
 				matricula: funcionario.matricula,
 				nomeGuerra: funcionario.nomeGuerra,
@@ -99,24 +99,79 @@ const TelaCadastro = () => {
 				observacoes: funcionario.observacoes,
 			})
 		}
+
+		else {
+			// Resetar os campos para um estado inicial
+			reset({
+				//cadastro geral
+				matricula: '',
+				nomeGuerra: '',
+				nomeCompleto: '',
+				sexo: 'M',
+				dataDeNascimento: '',
+				tipoSanguineo: 'AB+',
+				nomeMae: '',
+				nomePai: '',
+				email: '',
+				telefone: '',
+				postGrad: '',
+				escolaridade: '',
+				estadoCivil: 'Solteiro(a)',
+
+				//documentacao
+				rg: '',
+				cpf: '',
+				matSiape: '',
+				cnhCategoria: 'A',
+				cnhValidade: '',
+				cnhProntuario: '',
+
+				//endereco
+				cep: '',
+				cidade: '',
+				bairro: '',
+				uf: '',
+				logradouro: '',
+
+				//ficha gerencial
+				classificacao: '',
+				funcao: '',
+				escala: '8 x 40',
+				horarioEscala: '',
+				lotacao: '',
+				comportamento: '',
+				porteArma: true,
+				apresentacao: '',
+				admissao: '',
+				validadeBienal: '',
+				validadeTAF: '',
+
+				//afastamento
+				motivo: '',
+				anoReferencia: '',
+				dataInicio: '',
+				dataTermino: '',
+				dias: '',
+				observacoes: '',
+			})
+		}
 	}, [funcionario, reset, setValue]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
 		try {
 			if (funcionario)
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
-
 			else
-				await api.CadastrarUsuario(dadosDoFormulario);
+				await api.cadastrarUsuario(dadosDoFormulario);
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error(error);
 		}
 	};
 
-	const excluirUsuario = async (data) => {
+	const excluirUsuario = async () => {
 		try {
-			await api.excluirUsuario(data._id);
+			await api.excluirUsuario(funcionario._id);
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error("Erro ao excluir usuário");
@@ -188,21 +243,21 @@ const TelaCadastro = () => {
 									}}
 								/>
 								<div className="linha">
-									<MenuSuspenso 
-									id="sexo" 
-									texto="Sexo" 
-									opcoes={["M", "F"]} 
-									largura="40px" 
-									value={sexoValor} 
-									onChange={(value) => setValue("sexo", value)} /> 
-						
+									<MenuSuspenso
+										id="sexo"
+										texto="Sexo"
+										opcoes={["M", "F"]}
+										largura="40px"
+										value={sexoValor}
+										onChange={(value) => setValue("sexo", value)} />
+
 									<Campo id="dataDeNascimento" texto="Nascimento" tipo="date" registro={register} erros={errors} />
 									<MenuSuspenso
 										id="tipoSanguineo"
 										texto="Tipo Sanguíneo"
 										largura="100%"
 										opcoes={["AB+", "AB-", "A+", "A-", "B+", "B-", "O+", "O-"]}
-										value={tipoSanguineoValor} 
+										value={tipoSanguineoValor}
 										onChange={(value) => setValue("tipoSanguineo", value)}
 									/>
 								</div>
@@ -232,7 +287,7 @@ const TelaCadastro = () => {
 									texto="Estado Civil"
 									opcoes={["Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)"]}
 									largura="100%"
-									value={estadoCivilValor} 
+									value={estadoCivilValor}
 									onChange={(value) => setValue("estadoCivil", value)}
 								/>
 							</fieldset>
@@ -278,7 +333,7 @@ const TelaCadastro = () => {
 												texto="CNH Categoria"
 												largura="100%"
 												opcoes={["A", "AB", "AC", "AD", "AE", "B", "C", "D", "E"]}
-												value={cnhCategoriaValor} 
+												value={cnhCategoriaValor}
 												onChange={(value) => setValue("cnhCategoria", value)}
 											/>
 											<Campo id="cnhValidade" texto="CNH Validade" tipo="date" registro={register} erros={errors} />
@@ -340,7 +395,7 @@ const TelaCadastro = () => {
 											texto="Escala"
 											largura="125px"
 											opcoes={["8 x 40", "12 x 36", "12 x 60", "24 x 72", "Expediente"]}
-											value={escalaValor} 
+											value={escalaValor}
 											onChange={(value) => setValue("escala", value)}
 										/>
 										<Campo id="horarioEscala" texto="Horário" tipo="text" registro={register} erros={errors} />
@@ -348,12 +403,14 @@ const TelaCadastro = () => {
 									</div>
 									<div className="linha">
 										<Campo id="comportamento" texto="Comportamento" tipo="text" registro={register} erros={errors} />
-										<div className="botao-porte-arma">
-											<label style={{ color: "#898989", fontWeight: "bold", fontSize: "14px" }} htmlFor="porteArma">
-												Porte de Arma
-											</label>
-											<RadioBotao id="porteArma" value={porteArmaValor} onChange={(value) => setValue("porteArma", value)} />
-										</div>
+										<BotaoRadio
+											id="porteArma"
+											value={porteArmaValor}
+											onChange={(value) => setValue("porteArma", value)}
+											opcao1={"Sim"}
+											opcao2={"Não"}
+											nome={"Porte de Arma"}
+										/>
 										<Campo id="apresentacao" texto="Apresentação" tipo="date" registro={register} erros={errors} />
 										<Campo id="admissao" texto="Admissão" tipo="date" registro={register} erros={errors} />
 										<Campo id="validadeBienal" texto="Validade Bienal" tipo="date" registro={register} erros={errors} />
@@ -389,7 +446,7 @@ const TelaCadastro = () => {
 												"Atestado de Acompanhamento",
 												"Outros",
 											]}
-											value={motivoValor} 
+											value={motivoValor}
 											onChange={(value) => setValue("motivo", value)}
 										/>
 										<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
@@ -397,15 +454,15 @@ const TelaCadastro = () => {
 										<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
 										<Campo id="dias" texto="Dias" tipo="text" registro={register} erros={errors} />
 									</div>
-									<div className="container-observacao">
-									<span>Observações</span>
-									<p>*opcional</p>
+									<div className="conteiner-observacao">
+										<span>Observações</span>
+										<p>*opcional</p>
 									</div>
 									<textarea
-									name="Observacao" 
-									id="observacoes" 
-									value={observacoes} 
-									onChange={(value) => setValue("observacoes", event.target.value)} />
+										name="Observacao"
+										id="observacoes"
+										value={observacoes}
+										onChange={(value) => setValue("observacoes", event.target.value)} />
 								</section>
 							</form>
 						</div>
@@ -421,17 +478,18 @@ const TelaCadastro = () => {
 						icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
 						texto="Voltar"
 						cor="#032026"
+						corTexto="white"
 						largura={"130px"}
 						aoClicar={(e) => { navegar("/inicial") }}
 					/>
 
 					{funcionario && (
-
 						<Botao
 							id="excluir"
 							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
 							texto="Excluir"
 							cor="#8C1C45"
+							corTexto="white"
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();
@@ -446,6 +504,7 @@ const TelaCadastro = () => {
 							icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
 							texto="Atualizar"
 							cor="#F29B30"
+							corTexto="white"
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();
@@ -461,6 +520,7 @@ const TelaCadastro = () => {
 							icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
 							texto="Salvar"
 							cor="#588C7E"
+							corTexto="white"
 							largura={"130px"}
 							aoClicar={(e) => {
 								e.preventDefault();

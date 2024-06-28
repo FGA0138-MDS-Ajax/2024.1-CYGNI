@@ -1,8 +1,9 @@
 import { BadRequestException, ForbiddenException, Get, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { verify } from 'jsonwebtoken';
-import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 import * as crypto from "crypto";
+import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { EmailService } from 'src/email/email.services';
 import { CreateAdministradorDto } from './dto/create-administrador.dto';
@@ -22,6 +23,8 @@ export class AdministradoresService {
   ) { }
 
   async create(CreateAdministradorDto: CreateAdministradorDto) {
+    CreateAdministradorDto.senha = await bcrypt.hash(CreateAdministradorDto.senha, parseInt(process.env.SALT));
+    //Logger.log(CreateAdministradorDto);
     const newAdmin = new this.administradorModel(CreateAdministradorDto);
     return await newAdmin.save();
   }
@@ -34,8 +37,7 @@ export class AdministradoresService {
     try {
       const administrador = await this.administradorModel.findOne({ login }).exec();
       if (!administrador) throw new ForbiddenException('usuário não existe ou senha inválida');
-      if (senha !== administrador.senha) throw new ForbiddenException('usuário não existe ou senha inválida');
-
+      if (!await bcrypt.compare(senha,administrador.senha)) throw new ForbiddenException('usuário não existe ou senha inválida');
       const token = this.jwtService.sign(
         {
           login: administrador.login,
@@ -103,14 +105,14 @@ export class AdministradoresService {
 
   async enviaTokenRedefinirSenha(email: string): Promise<void> {
     try {
-      Logger.log("início da função");
+      //Logger.log("início da função");
       const usuario = await this.administradorModel.findOne({ email });
       if (!usuario) {
         throw new NotFoundException("Usuario nao encontrado");
       }
-      Logger.log(usuario, email);
+      //Logger.log(usuario, email);
       const token = crypto.randomBytes(3).toString('hex');
-      Logger.log(token);
+      //Logger.log(token);
       await new this.TokenDeConfirmacaoModel({
         email: email,
         token
@@ -155,21 +157,23 @@ export class AdministradoresService {
   }
   async redefineSenha({email, novaSenha, novaSenhaConfirmacao, token}: RedefineSenhaDto) {
     try {
+      //Logger.log(novaSenha);
       if (novaSenha !== novaSenhaConfirmacao) throw new BadRequestException;
 
       const tokenValidado = await this.verificaToken(email, token);
-
+      //Logger.log("token validado:" + tokenValidado);
       if (!tokenValidado) {
         throw new NotFoundException('Token inválido ou expirado');
       }
       const usuario = await this.administradorModel.findOne({ email });
       if (!usuario) {
+        Logger.log("não encontrou usuario", usuario);
         throw new NotFoundException('Usuário não encontrado');
       }
-      usuario.senha = novaSenha;
+      usuario.senha = await bcrypt.hash(novaSenha, parseInt(process.env.SALT));
+      //Logger.log(usuario);
       await usuario.save();
       await this.TokenDeConfirmacaoModel.deleteOne({ email, token });
-      return 'Senha Alterada'
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
