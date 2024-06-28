@@ -23,19 +23,16 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
-import { HydratedDocument } from "mongoose";
-export type fichaGerencialDocument = HydratedDocument<FichaGerencial>;
-export declare class FichaGerencial {
-    id: number;
-    classificacao: string;
-    funcao: string;
-    escala: string;
-    horarioEscala: number;
-    lotacao: string;
-    comportamento: string;
-    porteDeArma: boolean;
-    admissao: number;
-    apresentacao: string;
-    validadeBienal: number;
-    validadeTAF: number;
+import { Document } from 'mongoose';
+export type TokenDeConfirmacaoDocument = TokenDeConfirmacao & Document;
+export declare class TokenDeConfirmacao {
+    email: string;
+    token: string;
+    valido: boolean;
+    createdAt: Date;
 }
+export declare const TokenDeConfirmacaoSchema: import("mongoose").Schema<TokenDeConfirmacao, import("mongoose").Model<TokenDeConfirmacao, any, any, any, Document<unknown, any, TokenDeConfirmacao> & TokenDeConfirmacao & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, TokenDeConfirmacao, Document<unknown, {}, import("mongoose").FlatRecord<TokenDeConfirmacao>> & import("mongoose").FlatRecord<TokenDeConfirmacao> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;

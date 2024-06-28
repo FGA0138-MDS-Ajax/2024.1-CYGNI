@@ -14,7 +14,8 @@ const MenuLateral = () => {
 	const menuItems = [
 		{ icon: <FiHome />, text: "Início", path: "/inicial" },
 		{ icon: <FiCalendar />, text: "Relatório", path: "/tela-relatorio" },
-		{ icon: <FiClipboard />, text: "Campanha" },
+		{ icon: <FiClipboard />, text: "Campanha", path:'/tela-campanha' },
+		
 	];
 
 	const logoutItem = { icon: <BiLogOut />, text: "Sair", path: "/" };

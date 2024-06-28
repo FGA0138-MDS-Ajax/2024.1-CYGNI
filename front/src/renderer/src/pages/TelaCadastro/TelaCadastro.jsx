@@ -14,6 +14,7 @@ import { HiArrowPathRoundedSquare } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
+
 import "./TelaCadastro.css";
 
 const TelaCadastro = () => {
@@ -39,6 +40,8 @@ const TelaCadastro = () => {
 	const escalaValor = watch("escala", '8 x 40');
 	const motivoValor = watch("motivo", 'Abono');
 	const observacoes = watch("observacoes", '');
+	const dataInicioISO = funcionario.dataInicio.map(date => date ? new Date(date).toISOString().split('T')[0] : '');
+	const dataTerminoISO = funcionario.dataTermino.map(date => date ? new Date(date).toISOString().split('T')[0] : '');
 
 	useEffect(() => {
 		if (funcionario) {
@@ -90,8 +93,8 @@ const TelaCadastro = () => {
 				//afastamento
 				motivo: funcionario.motivo,
 				anoReferencia: funcionario.anoReferencia,
-				dataInicio: funcionario.dataInicio ? new Date(funcionario.dataInicio).toISOString().split('T')[0] : '',
-				dataTermino: funcionario.dataTermino ? new Date(funcionario.dataTermino).toISOString().split('T')[0] : '',
+				dataInicio: dataInicioISO,
+				dataTermino: dataTerminoISO,
 				dias: funcionario.dias,
 				observacoes: funcionario.observacoes,
 			})
@@ -125,6 +128,10 @@ const TelaCadastro = () => {
 		if (camposPreenchidos) setAfastamento(!afastamento);
 	};
 
+	const campanha = (funcionario) => {
+		navegar("/tela-campanha", {state:{funcionario}});
+	}
+
 	return (
 		<div className="cadastro">
 			<MenuLateral />
@@ -142,6 +149,11 @@ const TelaCadastro = () => {
 						>
 							Afastamento
 						</button>
+						<button 
+						type="submit"
+						onClick={(e)=>{campanha(funcionario)}}
+						>campanha</button>
+					 
 					</div>
 					<hr />
 				</div>

@@ -9,44 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Endereco = void 0;
+exports.AdministradorModel = exports.Administrador = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-let Endereco = class Endereco {
+let Administrador = class Administrador {
 };
-exports.Endereco = Endereco;
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", Number)
-], Endereco.prototype, "id", void 0);
+exports.Administrador = Administrador;
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Endereco.prototype, "CEP", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: false }),
-    __metadata("design:type", String)
-], Endereco.prototype, "quadra", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: false }),
-    __metadata("design:type", String)
-], Endereco.prototype, "conjunto", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: false }),
-    __metadata("design:type", String)
-], Endereco.prototype, "casa", void 0);
+], Administrador.prototype, "login", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Endereco.prototype, "bairro", void 0);
+], Administrador.prototype, "senha", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Boolean)
+], Administrador.prototype, "privilegios", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Endereco.prototype, "cidade", void 0);
+], Administrador.prototype, "nome", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Endereco.prototype, "UF", void 0);
-exports.Endereco = Endereco = __decorate([
+], Administrador.prototype, "email", void 0);
+exports.Administrador = Administrador = __decorate([
     (0, mongoose_1.Schema)()
-], Endereco);
-//# sourceMappingURL=endereco.schema.js.map
+], Administrador);
+exports.AdministradorModel = mongoose_1.SchemaFactory.createForClass(Administrador);
+//# sourceMappingURL=administrador.schema.js.map

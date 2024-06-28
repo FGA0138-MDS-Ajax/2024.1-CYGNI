@@ -23,15 +23,17 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
-import { HydratedDocument } from "mongoose";
-export type enderecoDocument = HydratedDocument<Endereco>;
-export declare class Endereco {
-    id: number;
-    CEP: string;
-    quadra: string;
-    conjunto: string;
-    casa: string;
-    bairro: string;
-    cidade: string;
-    UF: string;
+import { HydratedDocument } from 'mongoose';
+export type AdministradorDocument = HydratedDocument<Administrador>;
+export declare class Administrador {
+    login: string;
+    senha: string;
+    privilegios: boolean;
+    nome: string;
+    email: string;
 }
+export declare const AdministradorModel: import("mongoose").Schema<Administrador, import("mongoose").Model<Administrador, any, any, any, import("mongoose").Document<unknown, any, Administrador> & Administrador & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Administrador, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Administrador>> & import("mongoose").FlatRecord<Administrador> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;

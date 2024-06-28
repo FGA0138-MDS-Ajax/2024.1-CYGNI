@@ -7,6 +7,8 @@ import MenuLateral from "../../components/MenuLateral/MenuLateral";
 
 import "./TelaRelatorio.css";
 import { DataTable } from '../../components/TabelaRelatorio/Tabela'
+import {DateCalendarServerRequest} from '../../components/calendario/calendario.jsx'
+
 
 const TelaRelatorio = () => {
 	const {
@@ -21,8 +23,7 @@ const TelaRelatorio = () => {
 			<MenuLateral />
 
 			<div className="conteiner-relatorio">
-				<DataTable
-				/>
+				<DataTable/>
 			</div>
 		</div>
 	);

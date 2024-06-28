@@ -9,36 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Documentacao = void 0;
+exports.TokenDeConfirmacaoSchema = exports.TokenDeConfirmacao = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-let Documentacao = class Documentacao {
+let TokenDeConfirmacao = class TokenDeConfirmacao {
 };
-exports.Documentacao = Documentacao;
+exports.TokenDeConfirmacao = TokenDeConfirmacao;
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Documentacao.prototype, "id", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Documentacao.prototype, "RG", void 0);
+], TokenDeConfirmacao.prototype, "email", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Documentacao.prototype, "matSiape", void 0);
+], TokenDeConfirmacao.prototype, "token", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Documentacao.prototype, "CNHProntuario", void 0);
+    __metadata("design:type", Boolean)
+], TokenDeConfirmacao.prototype, "valido", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Documentacao.prototype, "CNHCategoria", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Documentacao.prototype, "CNHValidade", void 0);
-exports.Documentacao = Documentacao = __decorate([
+    (0, mongoose_1.Prop)({ required: true, default: Date.now, expires: 3600 }),
+    __metadata("design:type", Date)
+], TokenDeConfirmacao.prototype, "createdAt", void 0);
+exports.TokenDeConfirmacao = TokenDeConfirmacao = __decorate([
     (0, mongoose_1.Schema)()
-], Documentacao);
-//# sourceMappingURL=documentacao.schema.js.map
+], TokenDeConfirmacao);
+exports.TokenDeConfirmacaoSchema = mongoose_1.SchemaFactory.createForClass(TokenDeConfirmacao);
+//# sourceMappingURL=tokenDeConfirmacao.schema.js.map

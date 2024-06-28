@@ -90,10 +90,13 @@ export class Usuario {
     @Prop({required: false, default: null})
     funcao: string | null
 
-    @Prop({required: false, default: null})
+    @Prop({required: false, default: null}) //tipo de escala
     escala: string | null
 
-    @Prop({required: false, default: null})
+    @Prop({required: false, default: null,type: Date}) //dia inicial da escala
+    escalaInicio: Date | null
+
+    @Prop({required: false, default: null})  //n precisa agora
     horarioEscala: string | null
 
     @Prop({required: false, default: null})
@@ -119,20 +122,21 @@ export class Usuario {
 
     // Afastamento
 
-    @Prop({required: false, default: null})
-    motivo: string | null
+    @Prop({ required: false, default: () => [] })  //lista de motivos
+    motivo: (string | null)[];
 
-    @Prop({required: false, default: null})
-    anoReferencia: number | null
+    @Prop({ required: false, default: () => [] })  //não precisa
+    anoReferencia: (number | null)[];
 
-    @Prop({required: false, default: null, type: Date})
-    dataInicio: Date | null
+    @Prop({ required: false, default: () => [], type: [Date] })  //inicio afastamento
+    dataInicio: (Date | null)[];
 
-    @Prop({required: false, default: null, type: Date})
-    dataTermino: Date | null
+    @Prop({ required: false, default: () => [], type: [Date] })  //final do afastamento
+    dataTermino: (Date | null)[];
 
-    @Prop({required: false, default: null})
-    dias: number | null
+    @Prop({ required: false, default: () => [] })  //quantidade de dias, tb n precisa
+    dias: (number | null)[];
+
     
     @Prop({required: false, default: null})
     observacoes: string | null

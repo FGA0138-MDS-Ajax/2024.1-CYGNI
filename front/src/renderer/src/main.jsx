@@ -6,6 +6,8 @@ import TelaCadastro from "./pages/TelaCadastro/TelaCadastro.jsx";
 import TelaRelatorio from "./pages/TelaRelatorio/TelaRelatorio.jsx";
 import TelaRecuperacao from "./pages/TelasRedefinicao/TelaRecuperacao.jsx";
 import TelaRedefinicao from "./pages/TelasRedefinicao/TelaRedefinicao.jsx";
+import TelaCampanha from '../src/pages/TelaCampanha/TelaCampanha.jsx'
+import TelaCalendario from "./pages/TelaCalendario/telaCalendario.jsx";
 
 import { RedefinicaoProvider } from "./pages/TelasRedefinicao/redefinicaoContext.jsx";
 
@@ -22,6 +24,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					<Route path="/tela-relatorio" element={<TelaRelatorio />} />
 					<Route path="/tela-recuperacao" element={<TelaRecuperacao />} />
 					<Route path="/tela-redefinicao" element={<TelaRedefinicao />} />
+					<Route path="/tela-campanha" element={<TelaCampanha />} />
+					<Route path="/tela-calendario" element={<TelaCalendario />} />
+
 				</Routes>
 			</BrowserRouter>
 		</RedefinicaoProvider>
