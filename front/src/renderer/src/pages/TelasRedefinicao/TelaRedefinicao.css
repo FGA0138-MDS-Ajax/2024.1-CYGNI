@@ -44,7 +44,7 @@
   align-items: center;
 
   width: 100%;
-  height: 15%;
+  height: 20%;
 }
 
 .formulario-senha {
@@ -52,10 +52,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 100%;
   height: 100%;
-
 }
 
 .formulario-senha input {
@@ -65,9 +63,9 @@
   background-color: #032026;
   box-shadow: 0.5px 0.5px 0px #FFA800;
   color: #fff;
-  margin-top: 16px;
+  margin-top: 4%;
 
-  height: 35%;
+  height: 30%;
   padding-left: 2%;
 
   width: 43%;
@@ -89,7 +87,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   height: 100%;
   width: 50%;
 
@@ -108,18 +106,15 @@
   border-radius: 8px;
   border: none;
   font-size: 0.75rem;
-
   cursor: pointer;
   font-weight: bold;
-
-  margin: 16px;
-
+  margin-top: 25px;
   height: 35%;
 }
 
-.mensagem-erro {
-  color: red;
-  margin-top: 5px;
-  font-size: 0.875em;
-  width: 20%;
+.formulario-senha .mensagem-erro {
+  color: rgb(255, 72, 72);
+  font-size: 0.75rem;
+  font-weight: bold;
+  transform: translateY(20%);
 }

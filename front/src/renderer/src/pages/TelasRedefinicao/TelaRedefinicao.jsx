@@ -19,30 +19,35 @@ const TelaRedefinicao = () => {
 
   const navegar = useNavigate();
   const [alert, setAlert] = useState(null); // Estado para o alerta
-  const [formData, setFormData] = useState({
-    novaSenha: "",
-    novaSenhaConfirmacao: ""
-  })
+  const { email, token } = useContext(RedefinicaoContext);
 
   const handleCloseAlert = () => {
     setAlert(null);
   };
 
-  function lidarComMudancaNoInput({ target }) {
-    setFormData({ ...formData, [target.name]: target.value });
-  }
-
-  const { email, token } = useContext(RedefinicaoContext);
-
-  const aoEnviar = () => {
-    navegar("/");
-  };
-
-  const aoVoltar = () => {
-    navegar("/tela-recuperacao");
-  };
-
   const senha = watch("senha");
+
+  const aoEnviar = async (data) => {
+    try {
+      const payload = {
+        email: email,
+        novaSenha: data.senha,
+        novaSenhaConfirmacao: data.confirmarSenha,
+        token: token
+      };
+      await api.redefineSenha(payload);
+      setAlert({ type: "success", message: "Senha alterada com sucesso!" });
+      setTimeout(() => {
+        navegar("/");
+      }, 1000);
+    } catch (error) {
+      const errorMessage =
+        error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      setAlert({ type: "error", message: `Erro ao alterar a senha: ${errorMessage}` });
+    }
+  };
 
   return (
     <div className="container-redefinicao">
@@ -65,49 +70,38 @@ const TelaRedefinicao = () => {
         <div className="conteiner-senha">
           <form className="formulario-senha" onSubmit={handleSubmit(aoEnviar)}>
             <input
-              type="password"
+              type="text"
               id="senha"
               placeholder="Digite a nova senha"
-              {...register("senha", { required: true })}
-              onChange={(e) => lidarComMudancaNoInput(e)}
-              name="novaSenha"
+              {...register("senha", {
+                required: "Este campo é obrigatório",
+                minLength: {
+                  value: 6,
+                  message: "A senha deve ter pelo menos 6 caracteres"
+                }
+              })}
             />
-            {errors?.senha?.type === "required" && <p className="mensagem-erro">Preenchimento obrigatório.</p>}
+            {errors?.senha?.message && <p className="mensagem-erro">{errors.senha.message}</p>}
             <input
-              type="password"
+              type="text"
               id="confirmarSenha"
-              {...register("confirmarSenha", { required: true, validate: value => value === senha || "As senhas não coincidem" })}
               placeholder="Digite novamente a senha"
-              onChange={(e) => lidarComMudancaNoInput(e)}
-              name="novaSenhaConfirmacao"
+              {...register("confirmarSenha", {
+                required: "Confirmação de senha é obrigatória",
+                validate: value => value === senha || "As senhas não coincidem"
+              })}
             />
-            {errors?.password?.type === "required" && <p className="mensagem-erro">{errors.confirmarSenha.message}</p>}
+            {errors?.confirmarSenha?.message && <p className="mensagem-erro">{errors.confirmarSenha.message}</p>}
           </form>
         </div>
         <div className="conteiner-botao-redefinir">
-          <Botao id='botao-red' largura={'45%'} cor={'#fff'} corTexto={'#032026'} texto={'Recuperar'}
-            aoClicar={async (e) => {
-              e.preventDefault();
-              try {
-                const payload = {
-                  email: email,
-                  novaSenha: formData.novaSenha,
-                  novaSenhaConfirmacao: formData.novaSenhaConfirmacao,
-                  token: token
-                }
-                await api.redefineSenha(payload);
-                setAlert({ type: "success", message: "Senha alterada com sucesso!" });
-                setTimeout(() => {
-                  navegar("/");
-                }, 1000);
-              } catch (error) {
-                const errorMessage =
-                  error.response && error.response.data && error.response.data.message
-                    ? error.response.data.message
-                    : error.message;
-                setAlert({ type: "error", message: `Erro ao alterar a senha: ${errorMessage}` });
-              }
-            }}
+          <Botao
+            id='botao-red'
+            largura={'45%'}
+            cor={'#fff'}
+            corTexto={'#032026'}
+            texto={'Recuperar'}
+            aoClicar={handleSubmit(aoEnviar)}
           />
         </div>
       </div>
@@ -115,4 +109,5 @@ const TelaRedefinicao = () => {
     </div>
   );
 };
-export default TelaRedefinicao; 
+
+export default TelaRedefinicao;
