@@ -1,3 +1,5 @@
 **/node_modules
 **/*.Identifier
 back/.env
+back/server.key
+back/server.cert
