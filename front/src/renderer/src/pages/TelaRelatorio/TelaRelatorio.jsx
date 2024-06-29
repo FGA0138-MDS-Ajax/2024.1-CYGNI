@@ -1,29 +1,20 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-
-import MenuSuspenso from "../../components/MenuSuspenso/MenuSuspenso";
+import { DataTable } from '../../components/Tabelas/TabelaRelatorio'
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
-
-
 import "./TelaRelatorio.css";
-import { DataTable } from '../../components/TabelaRelatorio/Tabela'
-
 
 const TelaRelatorio = () => {
-	const {
-		register,
-		handleSubmit,
-		trigger,
-		formState: { errors },
-	} = useForm();
-
 	return (
 		<div className="conteiner-relatorio-mensal">
 			<MenuLateral />
-
 			<div className="conteiner-relatorio">
-				<DataTable
-				/>
+				<div className="divisao-titulo-relatorio">
+					<h1>Relatórios</h1>
+					<p>Visão geral sobre a situação de cada funcionário.</p>
+				</div>
+				<div className="divisao-tabela-relatorio">
+					<DataTable />
+				</div>
 			</div>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation, createPath } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as api from "../../services/api.jsx";
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
@@ -14,13 +14,15 @@ import { HiArrowPathRoundedSquare } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
+
 import "./TelaCadastro.css";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
 	const location = useLocation();
-	const funcionario = location.state?.funcionario;
 	const navegar = useNavigate();
+	const funcionario = location.state?.funcionario;
+
 	const {
 		register,
 		setValue,
@@ -39,6 +41,8 @@ const TelaCadastro = () => {
 	const escalaValor = watch("escala", '8 x 40');
 	const motivoValor = watch("motivo", 'Abono');
 	const observacoes = watch("observacoes", '');
+	
+
 
 	useEffect(() => {
 		if (funcionario) {
@@ -89,8 +93,8 @@ const TelaCadastro = () => {
 				//afastamento
 				motivo: funcionario.motivo,
 				anoReferencia: funcionario.anoReferencia,
-				dataInicio: funcionario.dataInicio ? new Date(funcionario.dataInicio).toISOString().split('T')[0] : '',
-				dataTermino: funcionario.dataTermino ? new Date(funcionario.dataTermino).toISOString().split('T')[0] : '',
+				dataInicio: funcionario.dataInicio.map(date => date ? new Date(date).toISOString().split('T')[0] : ''),
+				dataTermino: funcionario.dataTermino.map(date => date ? new Date(date).toISOString().split('T')[0] : ''),
 				dias: funcionario.dias,
 				observacoes: funcionario.observacoes,
 			})
@@ -157,7 +161,6 @@ const TelaCadastro = () => {
 		try {
 			if (funcionario)
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
-
 			else
 				await api.cadastrarUsuario(dadosDoFormulario);
 			navegar("/inicial");
@@ -166,9 +169,9 @@ const TelaCadastro = () => {
 		}
 	};
 
-	const excluirUsuario = async (data) => {
+	const excluirUsuario = async () => {
 		try {
-			await api.excluirUsuario(data._id);
+			await api.excluirUsuario(funcionario._id);
 			navegar("/inicial");
 		} catch (error) {
 			throw new Error("Erro ao excluir usuário");
@@ -179,6 +182,10 @@ const TelaCadastro = () => {
 		const camposPreenchidos = await trigger(["matricula", "nomeCompleto"]);
 		if (camposPreenchidos) setAfastamento(!afastamento);
 	};
+
+	const campanha = (funcionario) => {
+		navegar("/tela-campanha", {state:{funcionario}});
+	}
 
 	return (
 		<div className="cadastro">
@@ -197,6 +204,11 @@ const TelaCadastro = () => {
 						>
 							Afastamento
 						</button>
+						<button 
+						type="submit"
+						onClick={(e)=>{campanha(funcionario)}}
+						>campanha</button>
+					 
 					</div>
 					<hr />
 				</div>
@@ -472,7 +484,6 @@ const TelaCadastro = () => {
 					/>
 
 					{funcionario && (
-
 						<Botao
 							id="excluir"
 							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}

@@ -61,7 +61,7 @@ export class UsuariosService {
 
       const atualizaUsuario = await this.usuarioModel.findOneAndUpdate(
         filter, 
-        updateUsuarioDto, 
+        { updateUsuarioDto, $push: { motivo: updateUsuarioDto.motivo}},
         { new: true }
       ).exec();
 
