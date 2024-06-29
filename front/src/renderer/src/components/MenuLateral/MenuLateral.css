@@ -9,9 +9,9 @@
     flex-direction: column;
     align-items: center;
     width: 6.5%;
-    background-color: #032026;
+    background-color: #03161A;
 }
-  
+
 .logo {
     margin-top: 20%;
     display: flex;
@@ -24,7 +24,7 @@
     width: 100%;
     height: 100%;
 }
-  
+
 .link-paginas {
     display: flex;
     flex-direction: column;
@@ -33,29 +33,30 @@
     margin-top: 30%;
     width: 100%;
 }
-  
+
 .link-paginas ul {
     list-style: none;
     width: 100%;
     padding: 0;
 }
-  
+
 .link-paginas li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; /* Permite o posicionamento absoluto do span */
+    position: relative;
+    /* Permite o posicionamento absoluto do span */
     margin: 30px 0;
     text-align: center;
     width: 100%;
 }
-  
+
 .link-paginas button {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #032026;
+    background-color: #03161A;
     border: none;
     cursor: pointer;
     width: 40%;
@@ -71,7 +72,7 @@
 }
 
 .link-paginas .active-link {
-  background-color: white;
+    background-color: white;
 }
 
 .link-paginas span {
@@ -79,7 +80,8 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    white-space: nowrap; /* Impede quebra de linha no texto */
+    white-space: nowrap;
+    /* Impede quebra de linha no texto */
     width: fit-content;
     border-radius: 2px;
     padding: 2.5%;
@@ -88,7 +90,7 @@
     color: #032026;
     width: fit-content;
 }
-  
+
 .link-paginas span.active-span {
     color: #ffffff;
 }
