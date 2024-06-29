@@ -1,4 +1,3 @@
 **/node_modules
 **/*.Identifier
 back/.env
-back/dist
