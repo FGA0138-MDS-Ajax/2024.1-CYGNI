@@ -21,28 +21,42 @@ let UsuariosController = class UsuariosController {
     constructor(usuariosService) {
         this.usuariosService = usuariosService;
     }
-    create(createUsuarioDto) {
+    create(createUsuarioDto, req) {
+        const nomeDoAdministrador = req['usuario'];
+        createUsuarioDto.ultimoEditor = nomeDoAdministrador;
         return this.usuariosService.create(createUsuarioDto);
     }
     findAll() {
         return this.usuariosService.findAll();
     }
-    findOne(id) {
-        return this.usuariosService.findOne(id);
+    async findByNameOrMatriculaOrId(nomeCompleto, matricula, id) {
+        if (!nomeCompleto && !matricula && !id) {
+            throw new common_1.BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+        }
+        return this.usuariosService.findByNameOrMatriculaOrId(nomeCompleto, matricula, id);
     }
-    update(id, updateUsuarioDto) {
-        return this.usuariosService.update(+id, updateUsuarioDto);
+    async update(updateUsuarioDto, req, nomeCompleto, matricula, id) {
+        if (!nomeCompleto && !matricula && !id) {
+            throw new common_1.BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+        }
+        const nomeDoAdministrador = req['usuario'];
+        updateUsuarioDto.ultimoEditor = nomeDoAdministrador;
+        return this.usuariosService.update(updateUsuarioDto, nomeCompleto, matricula, id);
     }
-    remove(id) {
-        return this.usuariosService.remove(id);
+    async remove(nomeCompleto, matricula, id) {
+        if (!nomeCompleto && !matricula && !id) {
+            throw new common_1.BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+        }
+        return this.usuariosService.remove(nomeCompleto, matricula, id);
     }
 };
 exports.UsuariosController = UsuariosController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_usuario_dto_1.CreateUsuarioDto]),
+    __metadata("design:paramtypes", [create_usuario_dto_1.CreateUsuarioDto, Request]),
     __metadata("design:returntype", void 0)
 ], UsuariosController.prototype, "create", null);
 __decorate([
@@ -52,27 +66,34 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsuariosController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)('buscar'),
+    __param(0, (0, common_1.Query)('nomeCompleto')),
+    __param(1, (0, common_1.Query)('matricula')),
+    __param(2, (0, common_1.Query)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-
-    __metadata("design:returntype", void 0)
-], UsuariosController.prototype, "findOne", null);
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], UsuariosController.prototype, "findByNameOrMatriculaOrId", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Patch)('atualizar'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Query)('nomeCompleto')),
+    __param(3, (0, common_1.Query)('matricula')),
+    __param(4, (0, common_1.Query)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_usuario_dto_1.UpdateUsuarioDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [update_usuario_dto_1.UpdateUsuarioDto,
+        Request, String, String, String]),
+    __metadata("design:returntype", Promise)
 ], UsuariosController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)('remover'),
+    __param(0, (0, common_1.Query)('nomeCompleto')),
+    __param(1, (0, common_1.Query)('matricula')),
+    __param(2, (0, common_1.Query)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
 ], UsuariosController.prototype, "remove", null);
 exports.UsuariosController = UsuariosController = __decorate([
     (0, common_1.Controller)('usuarios'),

@@ -27,21 +27,22 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Model } from 'mongoose';
 import { Usuario } from './schemas/usuario.schema';
-import { Types } from 'mongoose';
 export declare class UsuariosService {
     private usuarioModel;
     constructor(usuarioModel: Model<Usuario>);
     create(createUsuarioDto: CreateUsuarioDto): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
-        _id: Types.ObjectId;
+        _id: import("mongoose").Types.ObjectId;
     }>;
     findAll(): Promise<(import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
-        _id: Types.ObjectId;
+        _id: import("mongoose").Types.ObjectId;
     })[]>;
-    findOne(id: number): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
-        _id: Types.ObjectId;
+    findByNameOrMatriculaOrId(nomeCompleto?: string, matricula?: string, id?: string): Promise<(import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: import("mongoose").Types.ObjectId;
+    }) | (import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
+    update(updateUsuarioDto: UpdateUsuarioDto, nomeCompleto?: string, matricula?: string, id?: string): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
+        _id: import("mongoose").Types.ObjectId;
     }>;
-    update(id: number, updateUsuarioDto: UpdateUsuarioDto): Promise<import("mongoose").Document<unknown, {}, Usuario> & Usuario & {
-        _id: Types.ObjectId;
-    }>;
-    remove(id: string): Promise<string>;
+    remove(nomeCompleto?: string, matricula?: string, id?: string): Promise<string>;
 }
