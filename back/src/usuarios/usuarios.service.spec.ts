@@ -44,7 +44,7 @@ const mockUsuario = {
   apresentacao: new Date('2020-01-02'),
   validadeBienal: new Date('2022-01-01'),
   validadeTAF: new Date('2022-01-01'),
-  motivo: 'Reason',
+  motivo: ['Reason'],
   anoReferencia: 2021,
   dataInicio: new Date('2021-01-01'),
   dataTermino: new Date('2021-01-10'),
@@ -173,7 +173,7 @@ describe('UsuariosService', () => {
       expect(result).toEqual({ _id: 'someId', ...mockUsuario });
       expect(mockUsuarioModel.findOneAndUpdate).toHaveBeenCalledWith(
         { _id: 'someId' },
-        updateUsuarioDto,
+        { updateUsuarioDto, $push: { motivo: updateUsuarioDto.motivo}},
         { new: true }
       );
     });
@@ -194,14 +194,15 @@ describe('UsuariosService', () => {
     });
 
     it('should update a user by nomeCompleto', async () => {
+      jest.spyOn(mongoose, 'isValidObjectId').mockReturnValue(true);
       const updateUsuarioDto: UpdateUsuarioDto = { ...mockUsuario };
-      (mockUsuarioModel.findOneAndUpdate().exec as jest.Mock).mockResolvedValueOnce({ _id: 'someId', ...mockUsuario });
+      (mockUsuarioModel.findOneAndUpdate().exec as jest.Mock).mockResolvedValueOnce({ nomeCompleto: 'Test User', ...mockUsuario });
 
       const result = await service.update(updateUsuarioDto, 'Test User');
-      expect(result).toEqual({ _id: 'someId', ...mockUsuario });
+      expect(result).toEqual({ nomeCompleto: 'Test User', ...mockUsuario });
       expect(mockUsuarioModel.findOneAndUpdate).toHaveBeenCalledWith(
         { nomeCompleto: 'Test User' },
-        updateUsuarioDto,
+        { updateUsuarioDto, $push: { motivo: updateUsuarioDto.motivo}},
         { new: true }
       );
     });
@@ -214,7 +215,7 @@ describe('UsuariosService', () => {
       expect(result).toEqual({ _id: 'someId', ...mockUsuario });
       expect(mockUsuarioModel.findOneAndUpdate).toHaveBeenCalledWith(
         { matricula: '12345' },
-        updateUsuarioDto,
+        { updateUsuarioDto, $push: { motivo: updateUsuarioDto.motivo}},
         { new: true }
       );
     });

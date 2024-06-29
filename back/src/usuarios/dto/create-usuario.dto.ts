@@ -43,7 +43,7 @@ export class CreateUsuarioDto {
     validadeTAF: Date
 
     // afastamento
-    motivo: string
+    motivo: string[]
     anoReferencia: number
     dataInicio: Date
     dataTermino: Date
