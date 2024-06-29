@@ -41,8 +41,8 @@ const TelaCadastro = () => {
 	const escalaValor = watch("escala", '8 x 40');
 	const motivoValor = watch("motivo", 'Abono');
 	const observacoes = watch("observacoes", '');
-	const dataInicioISO = funcionario.dataInicio.map(date => date ? new Date(date).toISOString().split('T')[0] : '');
-	const dataTerminoISO = funcionario.dataTermino.map(date => date ? new Date(date).toISOString().split('T')[0] : '');
+	
+
 
 	useEffect(() => {
 		if (funcionario) {
@@ -93,8 +93,8 @@ const TelaCadastro = () => {
 				//afastamento
 				motivo: funcionario.motivo,
 				anoReferencia: funcionario.anoReferencia,
-				dataInicio: dataInicioISO,
-				dataTermino: dataTerminoISO,
+				dataInicio: funcionario.dataInicio.map(date => date ? new Date(date).toISOString().split('T')[0] : ''),
+				dataTermino: funcionario.dataTermino.map(date => date ? new Date(date).toISOString().split('T')[0] : ''),
 				dias: funcionario.dias,
 				observacoes: funcionario.observacoes,
 			})
