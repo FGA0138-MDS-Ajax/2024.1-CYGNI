@@ -5,19 +5,19 @@ import * as bcrypt from 'bcrypt';
 import * as crypto from "crypto";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { EmailService } from 'src/email/email.services';
+import { EmailService } from '../email/email.services';
 import { CreateAdministradorDto } from './dto/create-administrador.dto';
 import { LoginDTO } from './dto/login.dto';
 import { UpdateAdministradorDto } from './dto/update-administrador.dto';
-import { Administrador } from './schemas/administrador.schema';
+import { Administrador } from '../administradores/schemas/administrador.schema'
 import { TokenDeConfirmacao, TokenDeConfirmacaoDocument } from './schemas/tokenDeConfirmacao.schema';
 import { RedefineSenhaDto } from './dto/troca-senha.dto';
 
 @Injectable()
 export class AdministradoresService {
   constructor(
-    @InjectModel(TokenDeConfirmacao.name) private TokenDeConfirmacaoModel: Model<TokenDeConfirmacaoDocument>,
     @InjectModel(Administrador.name) private administradorModel: Model<Administrador>,
+    @InjectModel(TokenDeConfirmacao.name) private TokenDeConfirmacaoModel: Model<TokenDeConfirmacaoDocument>,
     private jwtService: JwtService,
     private readonly emailService: EmailService
   ) { }
@@ -25,8 +25,8 @@ export class AdministradoresService {
   async create(CreateAdministradorDto: CreateAdministradorDto) {
     CreateAdministradorDto.senha = await bcrypt.hash(CreateAdministradorDto.senha, parseInt(process.env.SALT));
     //Logger.log(CreateAdministradorDto);
-    const newAdmin = new this.administradorModel(CreateAdministradorDto);
-    return await newAdmin.save();
+    const newAdmin = await this.administradorModel.create(CreateAdministradorDto);
+    return  newAdmin;
   }
 
   async findAll() {
@@ -60,11 +60,19 @@ export class AdministradoresService {
       if (!Types.ObjectId.isValid(id)) {
         throw new BadRequestException('ID inválido');
       }
-      return await this.administradorModel.findById(id).exec();
+      const admin = await this.administradorModel.findById(id).exec();
+      if (!admin) {
+        throw new NotFoundException('Administrador não encontrado');
+      }
+      return admin;
     } catch (error) {
+      if (error instanceof NotFoundException || error instanceof BadRequestException) {
+        throw error;
+      }
       throw new InternalServerErrorException('Falha ao encontrar administrador', error.message);
     }
   }
+  
 
 
 
