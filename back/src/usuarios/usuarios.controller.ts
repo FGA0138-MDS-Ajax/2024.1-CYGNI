@@ -10,6 +10,10 @@ export class UsuariosController {
   @Post()
   create(@Body() createUsuarioDto: CreateUsuarioDto,@Req() req: Request) {
     const nomeDoAdministrador = req['usuario'];
+    const privilegio = req['permissao'];
+    if(!privilegio){
+      throw new BadRequestException("Você não tem permissão para isso")
+    }
     createUsuarioDto.ultimoEditor = nomeDoAdministrador;
     //Logger.log(nomeDoAdministrador);
     return this.usuariosService.create(createUsuarioDto);
@@ -45,6 +49,10 @@ export class UsuariosController {
     }
 
     const nomeDoAdministrador = req['usuario'];
+    const privilegio = req['permissao'];
+    if(!privilegio){
+      throw new BadRequestException("Você não tem permissão para isso")
+    }
     updateUsuarioDto.ultimoEditor = nomeDoAdministrador;
     //Logger.log(nomeDoAdministrador);
     return this.usuariosService.update(updateUsuarioDto, nomeCompleto, matricula, id);
@@ -52,12 +60,17 @@ export class UsuariosController {
 
   @Delete('remover')
   async remove(
+    @Req() req: Request,
     @Query('nomeCompleto') nomeCompleto?: string, 
     @Query('matricula') matricula?: string,
     @Query('id') id?: string
   ) {
     if (!nomeCompleto && !matricula && !id) {
       throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+    }
+    const privilegio = req['permissao'];
+    if(!privilegio){
+      throw new BadRequestException("Você não tem permissão para isso")
     }
     return this.usuariosService.remove(nomeCompleto, matricula, id);
   }

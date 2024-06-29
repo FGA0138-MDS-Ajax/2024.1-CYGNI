@@ -23,6 +23,9 @@ export class ExtrairUsuarioMiddleware implements NestMiddleware {
       const decoded = this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
       //Logger.log(decoded);
       req['usuario'] = decoded.login;
+      req['permissao'] = decoded.privilegios;
+      // Logger.log(decoded.login);
+      // Logger.log(decoded.privilegios);
       next();
     } catch (error) {
       if (error.login === 'TokenExpiredError') {
