@@ -153,7 +153,7 @@ export function DataTable() {
 
   return (
     <Box sx={{
-      height: '100vh', width: '100vw', '& .super-app-theme--header': {
+      height: '88vh', width: '80vw', '& .super-app-theme--header': {
         backgroundColor: '#03161A',
       },
 
@@ -168,6 +168,7 @@ export function DataTable() {
     }} >
       <DataGrid
         sx={{
+          backgroundColor: '#fff',
           '.MuiDataGrid-row.Mui-selected': {
             backgroundColor: 'rgba(255, 255, 255, 0.5)',
             '&:hover': {
@@ -179,7 +180,7 @@ export function DataTable() {
           },
 
           '--unstable_DataGrid-radius': 'none',
-          width: '100%', fontSize: '16px', border: "none",
+          width: '100%', fontSize: '16px', border: "none"
         }}
         rows={funcionarios}
         columns={columns}
