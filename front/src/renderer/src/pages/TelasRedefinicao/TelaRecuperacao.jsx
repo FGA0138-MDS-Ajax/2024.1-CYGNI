@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Alert from "../../components/Alerta/Alerta.jsx";
 import { RedefinicaoContext } from "./redefinicaoContext.jsx";
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import Botao from "../../components/Botao/Botao.jsx";
@@ -13,7 +13,8 @@ const TelaRecuperacao = () => {
 
   const navegar = useNavigate();
 
-  const {email, setEmail, token, setToken} = useContext(RedefinicaoContext);
+  const { email, setEmail, token, setToken } = useContext(RedefinicaoContext);
+  const [alert, setAlert] = useState(null); // Estado para o alerta
 
   const lidarComMudancaNoInputEmail = (e) => {
     setEmail(e.target.value);
@@ -22,6 +23,10 @@ const TelaRecuperacao = () => {
   const lidarComMudancaNoInputToken = (e) => {
     setToken(e.target.value);
   }
+
+  const handleCloseAlert = () => {
+    setAlert(null);
+  };
 
   return (
     <div className="container-recuperacao">
@@ -45,13 +50,18 @@ const TelaRecuperacao = () => {
           <input type="email" name="email" id="" placeholder="Digite o seu e-mail"
             onChange={(e) => lidarComMudancaNoInputEmail(e)}
           />
-          <Botao className="botao-rec" id='botao-rec' largura={'45%'} cor={'#fff'} corTexto={'#032026'} texto={'Enviar'} 
+          <Botao className="botao-rec" id='botao-rec' largura={'45%'} cor={'#fff'} corTexto={'#032026'} texto={'Enviar'}
             aoClicar={async (e) => {
               e.preventDefault()
               try {
-                await api.enviarEmailDeRedefinicao({email: email});
+                await api.enviarEmailDeRedefinicao({ email: email });
+                setAlert({ type: "success", message: "Verifique seu email!" });
               } catch (error) {
-                alert(error)
+                const errorMessage =
+                  error.response && error.response.data && error.response.data.message
+                    ? error.response.data.message
+                    : error.message;
+                setAlert({ type: "error", message: `Email inválido: ${errorMessage}` });
               }
             }}
           />
@@ -64,16 +74,22 @@ const TelaRecuperacao = () => {
             aoClicar={async (e) => {
               e.preventDefault();
               try {
-                alert(email);
-                await api.verificaToken({token: token, email: email})
-                navegar('/tela-redefinicao');
+                await api.verificaToken({ token: token, email: email })
+                setTimeout(() => {
+                  navegar('/tela-redefinicao');
+                }, 1000);
               } catch (error) {
-                alert(error);
+                const errorMessage =
+                  error.response && error.response.data && error.response.data.message
+                    ? error.response.data.message
+                    : error.message;
+                setAlert({ type: "error", message: `Token inválido: ${errorMessage}` });
               }
             }}
           />
         </div>
       </div>
+      {alert && <Alert message={alert.message} type={alert.type} onClose={handleCloseAlert} />}
     </div>
   );
 }

@@ -41,7 +41,7 @@ const TelaCadastro = () => {
 	const escalaValor = watch("escala", '8 x 40');
 	const motivoValor = watch("motivo", 'Abono');
 	const observacoes = watch("observacoes", '');
-	
+
 
 
 	useEffect(() => {
@@ -91,11 +91,11 @@ const TelaCadastro = () => {
 				validadeTAF: funcionario.validadeTAF ? new Date(funcionario.validadeTAF).toISOString().split('T')[0] : '',
 
 				//afastamento
-				motivo: funcionario.motivo,
-				anoReferencia: funcionario.anoReferencia,
-				dataInicio: funcionario.dataInicio.map(date => date ? new Date(date).toISOString().split('T')[0] : ''),
-				dataTermino: funcionario.dataTermino.map(date => date ? new Date(date).toISOString().split('T')[0] : ''),
-				dias: funcionario.dias,
+				motivo: '',
+				anoReferencia: '',
+				dataInicio: '',
+				dataTermino: '',
+				dias: '',
 				observacoes: funcionario.observacoes,
 			})
 		}
@@ -184,7 +184,7 @@ const TelaCadastro = () => {
 	};
 
 	const campanha = (funcionario) => {
-		navegar("/tela-campanha", {state:{funcionario}});
+		navegar("/tela-campanha", { state: { funcionario } });
 	}
 
 	return (
@@ -204,11 +204,11 @@ const TelaCadastro = () => {
 						>
 							Afastamento
 						</button>
-						<button 
-						type="submit"
-						onClick={(e)=>{campanha(funcionario)}}
+						<button
+							type="submit"
+							onClick={(e) => { campanha(funcionario) }}
 						>campanha</button>
-					 
+
 					</div>
 					<hr />
 				</div>
@@ -432,6 +432,7 @@ const TelaCadastro = () => {
 											texto="Motivo"
 											largura="190px"
 											opcoes={[
+												" ",
 												"Abono",
 												"LTSP",
 												"Férias",

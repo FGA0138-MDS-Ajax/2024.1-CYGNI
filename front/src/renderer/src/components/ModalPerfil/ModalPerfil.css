@@ -9,7 +9,7 @@
   color: white;
 }
 
-.MuiBox-root #email, #login, #senha {
+.MuiBox-root #email, .MuiBox-root #login, .MuiBox-root #senha {
   display: flex;
   background-color: #032026;
   color: white;
