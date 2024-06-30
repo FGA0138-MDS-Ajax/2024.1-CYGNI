@@ -78,14 +78,13 @@
 }
 
 .conteiner-email button {
-  border-radius: 4px;
+  border-radius: 8px;
   border: none;
-  font-size: 0.75rem;
-
+  font-size: 0.85rem;
   cursor: pointer;
   font-weight: bold;
 
-  margin-top: 16px;
+  margin-top: 20px;
 
   height: 35%;
 }
@@ -128,13 +127,17 @@
 }
 
 .container-verificacao button {
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 0px 8px 8px 0px;
   border: none;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0.5px 0.5px 0px #FFA800;
 
   height: 35%;
+}
+
+.conteiner-botao-redefinir button {
+  font-size: 0.85rem;
 }

@@ -154,7 +154,6 @@
     color: white;
     border-radius: 8px;
     border: none;
-    cursor: none;
     font-size: 0.9rem;
     font-weight: bold;
 }
@@ -195,4 +194,19 @@
     justify-content: end;
     align-items: end;
     margin-right: -65%;
+}
+
+.div-nova {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 80%;
+    font-weight: bold;
+    background-color: #032026;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
