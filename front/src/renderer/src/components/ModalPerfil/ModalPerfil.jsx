@@ -44,12 +44,12 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
       setValue("login", admin.login);
       setValue("senha", admin.senha);
       setValue("privilegios", admin.privilegios);
-    } 
-    
+    }
+
     else reset();
   }, [isEdit, admin, setValue, reset]);
 
-  
+
   const handleClose = () => {
     open = false;
     closeModal();
@@ -132,15 +132,15 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
 
                 {!isEdit && (
                   <Campo
-                  style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-                  id="senha"
-                  placeholder="Senha"
-                  tipo="text"
-                  registro={register}
-                  erros={errors}
-                  opcoes={{
-                    required: "*Campo obrigatório",
-                  }} />
+                    style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+                    id="senha"
+                    placeholder="Senha"
+                    tipo="text"
+                    registro={register}
+                    erros={errors}
+                    opcoes={{
+                      required: "*Campo obrigatório",
+                    }} />
                 )}
 
                 <BotaoRadio
@@ -185,7 +185,7 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
         '&:hover': {
           backgroundColor: 'transparent',
         },
-      }}>Cadastrar Admin</Button>
+      }}></Button>
     </div>
   );
 }

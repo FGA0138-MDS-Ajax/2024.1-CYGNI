@@ -5,8 +5,8 @@ import icon from '../../resources/icon(1).png?asset'
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 1440,
-    height: 1024,
+    width: 1280,
+    height: 720,
     show: false,
     icon: icon,
     autoHideMenuBar: true,
