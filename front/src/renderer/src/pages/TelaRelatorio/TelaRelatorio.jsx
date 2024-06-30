@@ -8,7 +8,13 @@ const TelaRelatorio = () => {
 		<div className="conteiner-relatorio-mensal">
 			<MenuLateral />
 			<div className="conteiner-relatorio">
-				<DataTable />
+				<div className="divisao-titulo-relatorio">
+					<h1>Relatórios</h1>
+					<p>Visão geral sobre a situação de cada funcionário.</p>
+				</div>
+				<div className="divisao-tabela-relatorio">
+					<DataTable />
+				</div>
 			</div>
 		</div>
 	);
