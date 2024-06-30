@@ -75,10 +75,6 @@ const TelaRedefinicao = () => {
               placeholder="Digite a nova senha"
               {...register("senha", {
                 required: "Este campo é obrigatório",
-                minLength: {
-                  value: 6,
-                  message: "A senha deve ter pelo menos 6 caracteres"
-                }
               })}
             />
             {errors?.senha?.message && <p className="mensagem-erro">{errors.senha.message}</p>}
