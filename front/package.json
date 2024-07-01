@@ -28,6 +28,7 @@
     "dayjs": "^1.11.11",
     "electron-updater": "^6.1.7",
     "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "npm": "^10.8.1",
     "styled-components": "^6.1.11"
   },

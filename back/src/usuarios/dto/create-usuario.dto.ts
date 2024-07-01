@@ -47,9 +47,7 @@ export class CreateUsuarioDto {
     anoReferencia: number
     dataInicio: Date
     dataTermino: Date
-    dias: number
     observacoes: string
     //editor
     ultimoEditor :string
-    
 }

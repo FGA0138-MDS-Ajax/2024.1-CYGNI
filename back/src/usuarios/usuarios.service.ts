@@ -10,7 +10,7 @@ import { isValidObjectId } from 'mongoose';
 export class UsuariosService {
   constructor(
     @InjectModel(Usuario.name) private usuarioModel: Model<Usuario>,
-  ) {}
+  ) { }
 
   async create(createUsuarioDto: CreateUsuarioDto) {
     const newUser = await this.usuarioModel.create(createUsuarioDto);
@@ -29,7 +29,7 @@ export class UsuariosService {
     if (!id && !nomeCompleto && !matricula) {
       throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
     }
-  
+
     try {
       if (id && isValidObjectId(id)) {
         return await this.usuarioModel.findById(id).exec();
@@ -59,11 +59,26 @@ export class UsuariosService {
         throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
       }
 
-      const atualizaUsuario = await this.usuarioModel.findOneAndUpdate(
-        filter, 
-        { updateUsuarioDto, $push: { motivo: updateUsuarioDto.motivo}},
-        { new: true }
-      ).exec();
+      // Criação do objeto de atualização
+    const updateFields: any = { ...updateUsuarioDto };
+
+    // Remover o motivo do updateFields para tratá-lo separadamente
+    const { motivo, ...restUpdateDto } = updateUsuarioDto;
+
+    // Adição do operador $push para o campo motivo se estiver presente
+    let updateQuery: any = { ...restUpdateDto };
+    if (motivo) {
+      updateQuery = {
+        ...restUpdateDto,
+        $push: { motivo }
+      };
+    }
+
+    const atualizaUsuario = await this.usuarioModel.findOneAndUpdate(
+      filter,
+      updateQuery,
+      { new: true }
+    ).exec();
 
       if (!atualizaUsuario) {
         throw new NotFoundException('Usuário não encontrado');
