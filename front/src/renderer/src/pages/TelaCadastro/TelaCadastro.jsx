@@ -177,16 +177,20 @@ const TelaCadastro = () => {
 		try {
 			if (funcionario) {
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
+				setAlert({ type: "success", message: "Editado com sucesso!"});
+				setTimeout(() => {
+					navegar("/inicial");
+				}, 1250);
 			}
 			else {
 				await api.cadastrarUsuario(dadosDoFormulario);
-				setAlert({ type: "success", message: "Cadastro realizado com sucesso!" });
+				setAlert({ type: "success", message: "Cadastro realizado com sucesso!"});
 				setTimeout(() => {
 					navegar("/inicial");
 				}, 1250);
 			}
 		} catch (error) {
-			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
+			setAlert({ type: "error", message: "Não foi possível realizar essa ação!"});
 		}
 	};
 
@@ -482,7 +486,7 @@ const TelaCadastro = () => {
 										<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
 										<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
 										<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
-										<Campo id="dias" texto="Dias" tipo="text" registro={register} erros={errors} />
+										
 									</div>
 									<div className="conteiner-observacao">
 										<span>Observações</span>

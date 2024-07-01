@@ -62,7 +62,6 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
   const privilegioValor = watch("privilegios", false);
 
   const aoEnviar = async (data) => {
-    console.log(data);
     try {
       if (isEdit) {
         await api.editarAdministrador(admin._id, data);
