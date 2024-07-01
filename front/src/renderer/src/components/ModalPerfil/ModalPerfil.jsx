@@ -145,6 +145,7 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
 
                 <BotaoRadio
                   id="privilegios"
+
                   value={privilegioValor}
                   onChange={(value) => setValue("privilegios", value)}
                   opcao1={"Editor"}
@@ -185,7 +186,7 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
         '&:hover': {
           backgroundColor: 'transparent',
         },
-      }}></Button>
+      }}>Cadastrar Admin</Button>
     </div>
   );
 }

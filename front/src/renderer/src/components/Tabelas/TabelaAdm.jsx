@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import ModalPerfil from '../../components/ModalPerfil/ModalPerfil.jsx';
+import { jwtDecode } from "jwt-decode";
 
 const negrito = (params) => (
   <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>
@@ -91,6 +92,7 @@ export function DataTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAdmin, setSelectedAdmin] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
+  const [privilegio, setPrivilegio] = useState(false);
 
   const fetchRows = async () => {
     try {
@@ -103,6 +105,15 @@ export function DataTable() {
 
   useEffect(() => {
     fetchRows();
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decodificado = jwtDecode(token);
+        setPrivilegio(decodificado.privilegios);
+      } catch (error) {
+        console.error("erro ao decodificar token:", error);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -175,7 +186,7 @@ export function DataTable() {
         rows={admins}
         columns={[
           ...columns,
-          {
+          ...(privilegio ? [{
             field: 'actions',
             type: 'actions',
             getActions: (params) => [
@@ -192,7 +203,7 @@ export function DataTable() {
                 onClick={() => deletarAoClicar(params.row)}
               />,
             ],
-          }
+          }] : []),
         ]}
         localeText={textoLocalCustomizado}
         getRowId={(row) => row._id}

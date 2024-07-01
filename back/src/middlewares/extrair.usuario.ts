@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 
 @Injectable()
 export class ExtrairUsuarioMiddleware implements NestMiddleware {
-  constructor(private jwtService: JwtService) {}
+  constructor(private jwtService: JwtService) { }
 
   use(req: Request, res: Response, next: NextFunction) {
     Logger.log(req.headers.authorization);
@@ -19,13 +19,15 @@ export class ExtrairUsuarioMiddleware implements NestMiddleware {
       if (!token) {
         throw new UnauthorizedException('Token de autorização ausente');
       }
-  
+
       const decoded = this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
       //Logger.log(decoded);
       req['usuario'] = decoded.login;
       req['permissao'] = decoded.privilegios;
       // Logger.log(decoded.login);
       // Logger.log(decoded.privilegios);
+      res.locals.usuario = decoded.login;
+      res.locals.permissao = decoded.privilegios;
       next();
     } catch (error) {
       if (error.login === 'TokenExpiredError') {
