@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as api from "../../services/api.jsx";
 import Alert from "../../components/Alerta/Alerta.jsx"; // Importe o componente de alerta
@@ -8,6 +8,7 @@ import ImagemOficial from "../../assets/img/oficial-imagem-login.svg";
 import "./TelaLogin.css";
 
 const TelaLogin = () => {
+	const [disabled, setDisabled] = useState(false);
 	const [formData, setFormData] = useState({
 		login: "",
 		senha: "",
@@ -62,9 +63,11 @@ const TelaLogin = () => {
 					/>
 					{errors?.password?.type === "required" && <p className="mensagem-erro">Preenchimento obrigatório.</p>}
 					<button
+						disabled={disabled}
 						type="submit"
 						onClick={async (e) => {
 							e.preventDefault();
+							setDisabled(true);
 							try {
 								const resposta = await api.login(formData);
 								localStorage.setItem("token", resposta.data);
@@ -72,7 +75,9 @@ const TelaLogin = () => {
 								setTimeout(() => {
 									handleSubmit(aoEnviar)();
 								}, 1000);
+								setDisabled(false);
 							} catch (error) {
+								setDisabled(false);
 								const errorMessage =
 									error.response && error.response.data && error.response.data.message
 										? error.response.data.message
