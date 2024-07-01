@@ -13,6 +13,7 @@ import { HiArrowDownTray } from "react-icons/hi2";
 import { HiArrowPathRoundedSquare } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
+import Alert from "../../components/Alerta/Alerta.jsx";
 
 import "./TelaCadastro.css";
 import { jwtDecode } from "jwt-decode";
@@ -20,6 +21,7 @@ import { jwtDecode } from "jwt-decode";
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
 	const [privilegio, setPrivilegio] = useState(false);
+	const [alert, setAlert] = useState(null);
 	const location = useLocation();
 	const navegar = useNavigate();
 	const funcionario = location.state?.funcionario;
@@ -43,7 +45,9 @@ const TelaCadastro = () => {
 	const motivoValor = watch("motivo", 'Abono');
 	const observacoes = watch("observacoes", '');
 
-
+	const handleCloseAlert = () => {
+		setAlert(null);
+	};
 
 	useEffect(() => {
 		if (funcionario) {
@@ -171,22 +175,30 @@ const TelaCadastro = () => {
 
 	const aoEnviar = async (dadosDoFormulario) => {
 		try {
-			if (funcionario)
+			if (funcionario) {
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
-			else
+			}
+			else {
 				await api.cadastrarUsuario(dadosDoFormulario);
-			navegar("/inicial");
+				setAlert({ type: "success", message: "Cadastro realizado com sucesso!" });
+				setTimeout(() => {
+					navegar("/inicial");
+				}, 1250);
+			}
 		} catch (error) {
-			throw new Error(error);
+			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
 		}
 	};
 
 	const excluirUsuario = async () => {
 		try {
 			await api.excluirUsuario(funcionario._id);
-			navegar("/inicial");
+			setAlert({ type: "success", message: "Funcionário removido com sucesso!" });
+			setTimeout(() => {
+				navegar("/inicial");
+			}, 1250);
 		} catch (error) {
-			throw new Error("Erro ao excluir usuário");
+			setAlert({ type: "error", message: "Errro ao remover funcionario" });
 		}
 	}
 
@@ -217,13 +229,13 @@ const TelaCadastro = () => {
 							>
 								Afastamento
 							</button>
-						)} 
+						)}
 						{privilegio && (
-								<button
-									type="submit"
-									onClick={(e) => { campanha(funcionario) }}
-								>campanha</button>
-							)}
+							<button
+								type="submit"
+								onClick={(e) => { campanha(funcionario) }}
+							>campanha</button>
+						)}
 
 					</div>
 					<hr />
@@ -548,6 +560,7 @@ const TelaCadastro = () => {
 					)}
 				</div>
 			</div>
+			{alert && <Alert message={alert.message} type={alert.type} onClose={handleCloseAlert} />}
 		</div>
 	);
 };
