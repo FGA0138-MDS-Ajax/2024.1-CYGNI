@@ -15,9 +15,11 @@ import { FiArrowUpCircle } from "react-icons/fi";
 import { FiArrowRightCircle } from "react-icons/fi";
 
 import "./TelaInicial.css";
+import { jwtDecode } from "jwt-decode";
 
 const TelaInicial = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [privilegio, setPrivilegio] = useState(false);
 	const [funcionarios, setFuncionarios] = useState([]);
 	const [pesquisa, setPesquisa] = useState("");
 	const navegar = useNavigate();
@@ -28,6 +30,16 @@ const TelaInicial = () => {
 			setFuncionarios(response.data);
 		};
 		fetchFuncionarios();
+
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const decodificado = jwtDecode(token);
+				setPrivilegio(decodificado.privilegios);
+			} catch (error) {
+				console.error("erro ao decodificar token:", error);
+			}
+		}
 	}, []);
 
 	const handleSearch = debounce((searchTerm) => {
@@ -77,23 +89,26 @@ const TelaInicial = () => {
 					<div className="div-inferior-esquerda">
 						<img src={TextoTelaInicial} alt="texto-tela-inicial" />
 						<div className="div-inferior-botoes">
-							<Botao
-								texto="Cadastrar Funcionário"
-								icone={<FiArrowRightCircle size={20} style={{ marginRight: "5px" }} />}
-								cor="#fff"
-								corTexto="#032026"
-								largura={"30%"}
-								aoClicar={irParaTelaCadastro}
-							/>
-							<Botao
-								texto="Cadastrar Administrador"
-								icone={<FiArrowUpCircle size={20} style={{ marginRight: "5px" }} />}
-								cor="#fff"
-								corTexto="#032026"
-								largura={"30%"}
-								aoClicar={openModal}
-							>
-							</Botao>
+							{privilegio && (
+								<Botao
+									texto="Cadastrar Funcionário"
+									icone={<FiArrowRightCircle size={20} style={{ marginRight: "5px" }} />}
+									cor="#fff"
+									corTexto="#032026"
+									largura={"30%"}
+									aoClicar={irParaTelaCadastro}
+								/>
+							)}
+							{privilegio && (
+								<Botao
+									texto="Cadastrar Administrador"
+									icone={<FiArrowUpCircle size={20} style={{ marginRight: "5px" }} />}
+									cor="#fff"
+									corTexto="#032026"
+									largura={"30%"}
+									aoClicar={openModal}
+								/>
+							)}
 							<div className="modal-none">
 								<ModalPerfil
 									open={isModalOpen}

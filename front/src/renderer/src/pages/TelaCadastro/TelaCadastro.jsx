@@ -14,11 +14,12 @@ import { HiArrowPathRoundedSquare } from "react-icons/hi2";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 
-
 import "./TelaCadastro.css";
+import { jwtDecode } from "jwt-decode";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
+	const [privilegio, setPrivilegio] = useState(false);
 	const location = useLocation();
 	const navegar = useNavigate();
 	const funcionario = location.state?.funcionario;
@@ -155,6 +156,17 @@ const TelaCadastro = () => {
 				observacoes: '',
 			})
 		}
+
+		const token = localStorage.getItem("token");
+		if (token) {
+			try {
+				const decodificado = jwtDecode(token);
+				setPrivilegio(decodificado.privilegios);
+			} catch (error) {
+				console.error("erro ao decodificar token:", error);
+			}
+		}
+
 	}, [funcionario, reset, setValue]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
@@ -197,22 +209,26 @@ const TelaCadastro = () => {
 						<button type="button" className={`botao-dados ${afastamento ? "" : "selecionado"}`} onClick={botaoMudanca}>
 							Dados pessoais
 						</button>
-						<button
-							type="button"
-							className={`botao-afastamento ${afastamento ? "selecionado" : ""}`}
-							onClick={botaoMudanca}
-						>
-							Afastamento
-						</button>
-						<button
-							type="submit"
-							onClick={(e) => { campanha(funcionario) }}
-						>campanha</button>
+						{privilegio && (
+							<button
+								type="button"
+								className={`botao-afastamento ${afastamento ? "selecionado" : ""}`}
+								onClick={botaoMudanca}
+							>
+								Afastamento
+							</button>
+						)} 
+						{privilegio && (
+								<button
+									type="submit"
+									onClick={(e) => { campanha(funcionario) }}
+								>campanha</button>
+							)}
 
 					</div>
 					<hr />
 				</div>
-				<div className="conteiner">
+				<div className={`conteiner ${!privilegio ? "modoLeitor" : ""}`}>
 					<div className={`dados-pessoais ${afastamento ? "modoLeitor" : ""}`}>
 						<h3>Cadastro Geral</h3>
 						<form className="formulario-cadastro" onSubmit={handleSubmit(aoEnviar)}>
@@ -404,6 +420,7 @@ const TelaCadastro = () => {
 									<div className="linha">
 										<Campo id="comportamento" texto="Comportamento" tipo="text" registro={register} erros={errors} />
 										<BotaoRadio
+											privilegio={!privilegio}
 											id="porteArma"
 											value={porteArmaValor}
 											onChange={(value) => setValue("porteArma", value)}
@@ -484,7 +501,7 @@ const TelaCadastro = () => {
 						aoClicar={(e) => { navegar("/inicial") }}
 					/>
 
-					{funcionario && (
+					{funcionario && privilegio && (
 						<Botao
 							id="excluir"
 							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
@@ -499,7 +516,7 @@ const TelaCadastro = () => {
 						/>
 					)}
 
-					{funcionario && (
+					{funcionario && privilegio && (
 						<Botao
 							id="atualizar"
 							icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}

@@ -4,7 +4,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2 }) => {
+const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2, privilegio }) => {
   const estiloRadio = {
     display: "flex",
     marginRight: "70px",
@@ -25,6 +25,7 @@ const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2 }) => {
         <FormControlLabel
           sx={{ ...estiloRadio, marginRight: "145px" }}
           checked={value === true}
+          disabled={privilegio}
           onChange={() => onChange(true)}
           control={<Radio sx={{
             color: "#032026",
@@ -37,6 +38,7 @@ const BotaoRadio = ({ nome, value, onChange, opcao1, opcao2 }) => {
         <FormControlLabel
           sx={estiloRadio}
           checked={value === false}
+          disabled={privilegio}
           onChange={() => onChange(false)}
           control={<Radio sx={{
             color: "#032026",

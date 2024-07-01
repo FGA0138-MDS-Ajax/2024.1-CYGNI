@@ -269,7 +269,9 @@ h3 {
 }
 
 .dados-pessoais.modoLeitor input,
-.dados-pessoais.modoLeitor select {
+.dados-pessoais.modoLeitor select,
+.conteiner.modoLeitor input,
+.conteiner.modoLeitor select {
   pointer-events: none;
   background-color: #dedede;
   box-shadow: 0.5px 0.5px 2px 0px rgba(0, 0, 0, 0.2);
