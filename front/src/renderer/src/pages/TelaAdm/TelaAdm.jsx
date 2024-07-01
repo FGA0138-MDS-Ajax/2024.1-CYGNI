@@ -9,8 +9,14 @@ const TelaAdm = () => {
   return (
     <div className="conteiner-adm">
       <MenuLateral />
-      <div className="conteiner-tabela-adm">
-        <DataTable />      
+      <div className="conteiner-telaadm">
+        <div className="divisao-titulo-telaadm">
+          <h1>Administradores</h1>
+          <p>Listagem dos administradores cadastrados no sistema.</p>
+        </div>
+        <div className="divisao-tabela-telaadm">
+          <DataTable />
+        </div>
       </div>
     </div>
   );
