@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
@@ -29,6 +29,7 @@ const style = {
 };
 
 export default function TransitionsModal({ open, admin, isEdit, closeModal, setIsModalOpen }) {
+  const [disabled, setDisabled] = useState(false);
   const {
     register,
     setValue,
@@ -62,6 +63,7 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
   const privilegioValor = watch("privilegios", false);
 
   const aoEnviar = async (data) => {
+    setDisabled(true);
     try {
       if (isEdit) {
         await api.editarAdministrador(admin._id, data);
@@ -69,9 +71,11 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
       else {
         await api.cadastrarAdministrador(data);
       }
+      setDisabled(false);
       closeModal();
       reset();
     } catch (error) {
+      setDisabled(false);
       throw new Error(error);
     }
   };
@@ -168,6 +172,7 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
                       backgroundColor: '#032026',
                     },
                   }}
+                  disabled={disabled}
                   className='salvar-perfil'
                   onClick={(e) => {
                     e.preventDefault();

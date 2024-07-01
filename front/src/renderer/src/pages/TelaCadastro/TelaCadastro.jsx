@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as api from "../../services/api.jsx";
 
@@ -22,6 +22,7 @@ const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
 	const [privilegio, setPrivilegio] = useState(false);
 	const [alert, setAlert] = useState(null);
+	const [disabled, setDisabled] = useState(false);
 	const location = useLocation();
 	const navegar = useNavigate();
 	const funcionario = location.state?.funcionario;
@@ -174,35 +175,43 @@ const TelaCadastro = () => {
 	}, [funcionario, reset, setValue]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
+		setDisabled(true);
 		try {
 			if (funcionario) {
 				await api.editarUsuario(funcionario._id, dadosDoFormulario);
-				setAlert({ type: "success", message: "Editado com sucesso!"});
+				setAlert({ type: "success", message: "Editado com sucesso!" });
 				setTimeout(() => {
+					setDisabled(false);
 					navegar("/inicial");
 				}, 1250);
 			}
 			else {
 				await api.cadastrarUsuario(dadosDoFormulario);
-				setAlert({ type: "success", message: "Cadastro realizado com sucesso!"});
+				setAlert({ type: "success", message: "Cadastro realizado com sucesso!" });
 				setTimeout(() => {
+					setDisabled(false);
 					navegar("/inicial");
 				}, 1250);
 			}
 		} catch (error) {
-			setAlert({ type: "error", message: "Não foi possível realizar essa ação!"});
+			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
+			setDisabled(false);
 		}
 	};
 
 	const excluirUsuario = async () => {
+		setDisabled(true);
 		try {
 			await api.excluirUsuario(funcionario._id);
 			setAlert({ type: "success", message: "Funcionário removido com sucesso!" });
 			setTimeout(() => {
+				setDisabled(false);
 				navegar("/inicial");
 			}, 1250);
-		} catch (error) {
+		}
+		catch (error) {
 			setAlert({ type: "error", message: "Errro ao remover funcionario" });
+			setDisabled(false);
 		}
 	}
 
@@ -486,7 +495,7 @@ const TelaCadastro = () => {
 										<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
 										<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
 										<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
-										
+
 									</div>
 									<div className="conteiner-observacao">
 										<span>Observações</span>
@@ -525,6 +534,7 @@ const TelaCadastro = () => {
 							cor="#8C1C45"
 							corTexto="white"
 							largura={"130px"}
+							disabled={disabled}
 							aoClicar={(e) => {
 								e.preventDefault();
 								excluirUsuario(funcionario);
@@ -540,6 +550,7 @@ const TelaCadastro = () => {
 							cor="#F29B30"
 							corTexto="white"
 							largura={"130px"}
+							disabled={disabled}
 							aoClicar={(e) => {
 								e.preventDefault();
 								handleSubmit(aoEnviar)();
@@ -556,6 +567,7 @@ const TelaCadastro = () => {
 							cor="#588C7E"
 							corTexto="white"
 							largura={"130px"}
+							disabled={disabled}
 							aoClicar={(e) => {
 								e.preventDefault();
 								handleSubmit(aoEnviar)();
