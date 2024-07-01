@@ -137,7 +137,8 @@ h3 {
 #apresentacao,
 #admissao,
 #dataInicio,
-#dataTermino {
+#dataTermino, 
+#escalaInicio {
   width: 90%;
   padding: 0 7px 0px 7px;
 
@@ -248,8 +249,13 @@ h3 {
 /* Afastamento */
 
 .afastamento {
-  width: 85.5%;
+  width: 60%;
   margin-top: 50px;
+}
+
+.lista-afastamento {
+  width: 40%;
+  margin-top: 50px
 }
 
 #anoReferencia {
