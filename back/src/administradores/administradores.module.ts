@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, Patch, RequestMethod } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AdministradoresController } from './administradores.controller';
 import { AdministradoresService } from './administradores.service';
 import { Administrador, AdministradorModel } from './schemas/administrador.schema';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { TokenDeConfirmacao, TokenDeConfirmacaoSchema } from './schemas/tokenDeConfirmacao.schema';
 import { EmailService } from 'src/email/email.services';
+import { ExtrairUsuarioMiddleware } from 'src/middlewares/extrair.usuario';
 
 @Module({
   imports: [
@@ -13,6 +14,18 @@ import { EmailService } from 'src/email/email.services';
     JwtModule
   ],
   controllers: [AdministradoresController],
-  providers: [AdministradoresService, EmailService],
+  providers: [AdministradoresService, EmailService,JwtService],
 })
-export class AdministradoresModule {}
+export class AdministradoresModule implements NestModule{
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(ExtrairUsuarioMiddleware)
+      .forRoutes(
+        { path: 'administradores', method: RequestMethod.POST},
+        { path: 'administradores/:id', method: RequestMethod.DELETE},
+        { path: 'administradores/:id',method:RequestMethod.PATCH}
+      );
+  }
+
+
+}
