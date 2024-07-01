@@ -12,12 +12,12 @@ export class UsuariosService {
     @InjectModel(Usuario.name) private usuarioModel: Model<Usuario>,
   ) { }
 
-  async create(createUsuarioDto: CreateUsuarioDto) {
+  async create(createUsuarioDto: CreateUsuarioDto) { 
     const newUser = await this.usuarioModel.create(createUsuarioDto);
     return newUser;
   }
 
-  async findAll(): Promise<Usuario[]> {
+  async findAll(): Promise<Usuario[]> { 
     try {
       return await this.usuarioModel.find().exec();
     } catch (error) {
@@ -25,8 +25,8 @@ export class UsuariosService {
     }
   }
 
-  async findByNameOrMatriculaOrId(nomeCompleto?: string, matricula?: string, id?: string) {
-    if (!id && !nomeCompleto && !matricula) {
+  async findByNameOrMatriculaOrId(nomeCompleto?: string, matricula?: string, id?: string) { 
+    if (!id && !nomeCompleto && !matricula) { //verificação se o parametro existe
       throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
     }
 
@@ -95,7 +95,7 @@ export class UsuariosService {
 
   async remove(nomeCompleto?: string, matricula?: string, id?: string) {
     if (!nomeCompleto && !matricula && !id) {
-      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id'); //mesma logica do create e findby
     }
     try {
       let filter = {};

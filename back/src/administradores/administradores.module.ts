@@ -16,12 +16,12 @@ import { ExtrairUsuarioMiddleware } from 'src/middlewares/extrair.usuario';
   controllers: [AdministradoresController],
   providers: [AdministradoresService, EmailService,JwtService],
 })
-export class AdministradoresModule implements NestModule{
-  configure(consumer: MiddlewareConsumer) {
+export class AdministradoresModule implements NestModule{ // adição do NestModule para uso do middleware
+  configure(consumer: MiddlewareConsumer) { // Identifica que um middleware será utilizado
     consumer
-      .apply(ExtrairUsuarioMiddleware)
-      .forRoutes(
-        { path: 'administradores', method: RequestMethod.POST},
+      .apply(ExtrairUsuarioMiddleware) //aplica o middleware especifico
+      .forRoutes( //seleciona as rotas especificas do module que será utilizado o middleware
+        { path: 'administradores', method: RequestMethod.POST}, 
         { path: 'administradores/:id', method: RequestMethod.DELETE},
         { path: 'administradores/:id',method:RequestMethod.PATCH}
       );
