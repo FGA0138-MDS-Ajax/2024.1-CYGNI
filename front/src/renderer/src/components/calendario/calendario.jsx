@@ -31,6 +31,8 @@ function ServerDay(props) {
 }
 
 function markNonWorkDays(escalaInicio, escala) {
+  console.log('markNonWorkDays - escalaInicio:', escalaInicio, 'escala:', escala);
+
   const allDays = [];
   const workDays = new Set();
   let startOfDay = dayjs.utc(escalaInicio).startOf('day'); // Garantir que comece no início do dia
@@ -42,7 +44,7 @@ function markNonWorkDays(escalaInicio, escala) {
   }
 
   switch (escala) {
-    case 'expediente':
+    case 'Expediente':
       // Segunda a sexta-feira, trabalho; sábado e domingo, folga
       for (let i = 0; i < 365; i++) {
         const currentDate = startOfDay.add(i, 'day');
@@ -51,52 +53,55 @@ function markNonWorkDays(escalaInicio, escala) {
         }
       }
       break;
-    case '12x36':
-      // A cada 2 dias, 24 horas de trabalho seguidas por 12 horas de folga
-      for (let i = 0; i < 365; i += 3) {
-        const currentDate = startOfDay.add(i * 2, 'day'); // 24 horas de trabalho
-        workDays.add(currentDate.format('YYYY-MM-DD'));
-        workDays.add(currentDate.add(1, 'day').format('YYYY-MM-DD')); // 12 horas de folga
-      }
-      break;
-    case '24x72':
-      // A cada 3 dias de trabalho seguidos por 4 dias de folga
-      for (let i = 0; i < 365; i += 7) {
-        const currentDate = startOfDay.add(i * 3, 'day'); // 3 dias de trabalho
-        workDays.add(currentDate.format('YYYY-MM-DD'));
-        workDays.add(currentDate.add(1, 'day').format('YYYY-MM-DD'));
-        workDays.add(currentDate.add(2, 'day').format('YYYY-MM-DD'));
-      }
-      break;
-    case '8x40':
-      // A cada 7 dias, 40 horas de trabalho
-      for (let i = 0; i < 365; i += 7) {
-        const currentDate = startOfDay.add(i, 'day');
-        workDays.add(currentDate.format('YYYY-MM-DD')); // segunda-feira
-        workDays.add(currentDate.add(2, 'day').format('YYYY-MM-DD')); // quarta-feira
-        workDays.add(currentDate.add(4, 'day').format('YYYY-MM-DD')); // sexta-feira
-      }
-      break;
-    case '12x60':
-      // A cada 7 dias, 60 horas de trabalho
-      for (let i = 0; i < 365; i += 7) {
-        const currentDate = startOfDay.add(i, 'day');
-        workDays.add(currentDate.format('YYYY-MM-DD'));
-        workDays.add(currentDate.add(1, 'day').format('YYYY-MM-DD'));
-        workDays.add(currentDate.add(2, 'day').format('YYYY-MM-DD'));
-        workDays.add(currentDate.add(3, 'day').format('YYYY-MM-DD'));
-      }
-      break;
+    case '12 x 36':
+        // trabalha um dia e folga um dia
+        for (let i = 0; i < 365; i += 2) { // Incrementa de 2 em 2 dias para cada ciclo de trabalho+folga
+          const currentDate = startOfDay.add(i, 'day'); // Calcula o dia atual de trabalho
+          workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona o dia de trabalho
+        }
+        break;
+    case '24 x 72':
+          // trabalha um dia e folga três dias
+        for (let i = 0; i < 365; i += 4) { // Incrementa de 4 em 4 dias para cada ciclo de trabalho+folga
+          const currentDate = startOfDay.add(i, 'day'); // Calcula o dia atual de trabalho
+          workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona o dia de trabalho
+        }
+        break;
+        case '8 x 40':
+          // Trabalha segunda-feira, quarta-feira e sexta-feira em uma semana;
+          // na outra semana, terça-feira, quinta-feira e sábado, nunca domingo.
+          for (let i = 0; i < 365; i += 7) {
+            const weekStart = startOfDay.add(i, 'days');
+            if (Math.floor(i / 7) % 2 === 0) { // Semana par: segunda, quarta, sexta
+              workDays.add(weekStart.format('YYYY-MM-DD')); // Segunda-feira
+              workDays.add(weekStart.add(2, 'days').format('YYYY-MM-DD')); // Quarta-feira
+              workDays.add(weekStart.add(4, 'days').format('YYYY-MM-DD')); // Sexta-feira
+            } else { // Semana ímpar: terça, quinta, sábado
+              workDays.add(weekStart.add(1, 'days').format('YYYY-MM-DD')); // Terça-feira
+              workDays.add(weekStart.add(3, 'days').format('YYYY-MM-DD')); // Quinta-feira
+              workDays.add(weekStart.add(5, 'days').format('YYYY-MM-DD')); // Sábado
+            }
+          }
+          break;
+          case '12 x 60':
+            // trabalha um dia e folga dois
+            for (let i = 0; i < 365; i += 3) { // Incrementa i por 3 para cada ciclo de trabalho+folga
+              const currentDate = startOfDay.add(i, 'day');
+              workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona apenas um dia de trabalho
+            }
+            break;
     default:
       break;
   }
 
   // Filtra os dias não trabalhados
   const nonWorkDays = allDays.filter(day => !workDays.has(day));
+  console.log('markNonWorkDays - nonWorkDays:', nonWorkDays);
   return nonWorkDays;
 }
 
 export function DateCalendarServerRequest({ user }) {
+  console.log('DateCalendarServerRequest - user:', user);
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDaysFromServer, setHighlightedDaysFromServer] = React.useState([]);
@@ -105,27 +110,29 @@ export function DateCalendarServerRequest({ user }) {
   const fetchHighlightedDays = React.useCallback(() => {
     const controller = new AbortController();
     requestAbortController.current = controller;
-
+  
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        if (!user || !user.dataInicio || !user.dataTermino) {
+        if (!user || !user.escalaInicio || !user.escala) {
           throw new Error('No user or data found');
         }
-
-        const filteredInicioDates = user.dataInicio.filter((date) => date !== null);
-        const filteredFinalDates = user.dataTermino.filter((date) => date !== null);
-
-        const combinedHighlightedDays = filteredInicioDates.map((inicio, index) => {
-          const final = filteredFinalDates[index];
-          if (!final) return inicio; // Handle case where final date is missing
-          return `${inicio}_${final}`;
-        });
-
-        if (combinedHighlightedDays.length === 0) {
-          throw new Error('No funcionario data found');
+  
+        let combinedHighlightedDays = [];
+  
+        if (user.dataInicio && user.dataTermino) {
+          const filteredInicioDates = user.dataInicio.filter((date) => date !== null);
+          const filteredFinalDates = user.dataTermino.filter((date) => date !== null);
+  
+          combinedHighlightedDays = filteredInicioDates.map((inicio, index) => {
+            const final = filteredFinalDates[index];
+            if (!final) return inicio; // Handle case where final date is missing
+            return `${inicio}_${final}`;
+          });
         }
-
+  
+        console.log('fetchHighlightedDays - combinedHighlightedDays:', combinedHighlightedDays);
+  
         setHighlightedDaysFromServer(combinedHighlightedDays);
         setErrorMessage('');
       } catch (error) {
@@ -137,47 +144,69 @@ export function DateCalendarServerRequest({ user }) {
         setIsLoading(false);
       }
     };
-
+  
     fetchData();
-
+  
     return () => controller.abort();
   }, [user]);
-
-  React.useEffect(() => {
-    fetchHighlightedDays();
-  }, [fetchHighlightedDays]);
-
+  
   const markedDays = React.useMemo(() => {
-    if (!user || !user.escalaInicio || !user.escala) return [];
-
-    const daysToMark = markNonWorkDays(user.escalaInicio, user.escala);
-
-    const allHighlightedDays = [
-      ...highlightedDaysFromServer,
-      ...daysToMark
-    ];
-
+    if (!user) return [];
+  
+    let daysToMark = [];
+  
+    if (user.escalaInicio && user.escala) {
+      daysToMark = markNonWorkDays(user.escalaInicio, user.escala);
+    }
+  
+    let allHighlightedDays = [...daysToMark];
+  
+    if (user.dataInicio && user.dataTermino) {
+      const filteredInicioDates = user.dataInicio.filter((date) => date !== null);
+      const filteredFinalDates = user.dataTermino.filter((date) => date !== null);
+  
+      const combinedHighlightedDays = filteredInicioDates.map((inicio, index) => {
+        const final = filteredFinalDates[index];
+        if (!final) return inicio; // Handle case where final date is missing
+        return `${inicio}_${final}`;
+      });
+  
+      allHighlightedDays = [
+        ...allHighlightedDays,
+        ...combinedHighlightedDays
+      ];
+    }
+  
+    console.log('markedDays - allHighlightedDays:', allHighlightedDays);
+  
     // Convert highlighted days ranges into individual days
     const expandedHighlightedDays = allHighlightedDays.flatMap((range) => {
       if (range.includes('_')) {
         const [start, end] = range.split('_');
+  
         let current = dayjs.utc(start);
         const endDate = dayjs.utc(end);
         const days = [];
-
+  
         while (current.isSameOrBefore(endDate)) {
-          days.push(current.format('YYYY-MM-DD'));
+          const formattedDate = current.format('YYYY-MM-DD');
+          days.push(formattedDate);
           current = current.add(1, 'day');
         }
-
+  
         return days;
       } else {
         return [range];
       }
     });
-
+  
+    console.log('markedDays - expandedHighlightedDays:', expandedHighlightedDays);
+  
     return [...new Set(expandedHighlightedDays)];
-  }, [user, highlightedDaysFromServer]);
+  }, [user]);
+  
+  
+  
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

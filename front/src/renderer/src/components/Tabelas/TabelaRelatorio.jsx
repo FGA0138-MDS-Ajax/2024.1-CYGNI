@@ -5,13 +5,20 @@ import Box from '@mui/material/Box';
 import * as api from '../../services/api.jsx';
 
 const formatarData = (dataISO) => {
+  if (!dataISO) return ''; // Return empty string if dataISO is falsy
+
   const data = new Date(dataISO);
+
+  if (isNaN(data.getTime())) {
+    return ''; // Return empty string if date is invalid
+  }
+
   const dia = data.getUTCDate().toString().padStart(2, '0');
-  const mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
+  let mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
   const ano = data.getUTCFullYear();
+
   return `${dia}/${mes}/${ano}`;
 };
-
 const negrito = (params) => (
   <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>
 );
