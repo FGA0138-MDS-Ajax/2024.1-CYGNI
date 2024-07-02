@@ -20,6 +20,7 @@ import { jwtDecode } from "jwt-decode";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
+	const [campanha, setCampanha] = useState(false);
 	const [privilegio, setPrivilegio] = useState(false);
 	const [alert, setAlert] = useState(null);
 	const [disabled, setDisabled] = useState(false);
@@ -222,9 +223,14 @@ const TelaCadastro = () => {
 		if (camposPreenchidos) setAfastamento(!afastamento);
 	};
 
-	const campanha = (funcionario) => {
-		navegar("/tela-campanha", { state: { funcionario } });
+	const botaoCampanha = async () => {
+		setCampanha(!campanha);
 	}
+
+
+	const acessarCampanha = (params) => {
+		navegar('/tela-calendario', { state: { funcionario: params } });
+	};
 
 	return (
 		<div className="cadastro">
@@ -245,11 +251,12 @@ const TelaCadastro = () => {
 								Afastamento
 							</button>
 						)}
-						{privilegio && (
+						{privilegio && funcionario && (
 							<button
 								type="submit"
-								onClick={(e) => { campanha(funcionario) }}
-							>campanha</button>
+								className={"botao-campanha"}
+								onClick={(e) => { acessarCampanha(funcionario) }}
+							>Campanha Individual</button>
 						)}
 
 					</div>
