@@ -72,19 +72,18 @@ h3 {
 }
 
 .dados-pessoais {
-  margin-top: 30px;
+  margin-top: 2%;
 }
 
 .bloco-central {
   display: flex;
   justify-content: space-between;
 
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 2%;
 }
 
 .ficha-gerencial {
-  margin-bottom: 40px;
+  margin-top: 2%;
 }
 
 #matricula,
@@ -219,21 +218,37 @@ h3 {
   flex-basis: 80%;
 }
 
+.div-botoes {
+  display: flex;
+  align-items: center;
+  padding: 0 5% 0 5%;
+}
+
 .botoes {
   display: flex;
-  height: 20%;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 1%;
+  padding-left: 5%;
+  width: 70%;
 }
 
 .botoes button {
-  margin-right: 2.7%;
+  margin-left: 4%;
   padding: 10px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  height: fit-content;
+}
+
+.div-ultimoEditor {
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+  margin-bottom: 1%;
 }
 
 .formulario-cadastro .mensagem-erro {
@@ -258,13 +273,10 @@ h3 {
 }
 
 #ultimoEditor {
-  width: 35%;
   display: flex;
-  color: #032026;
-  margin: 0 23% 0 5%;
-  align-items: flex-end;
+  color: #303030;
   font-weight: bold;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .dados-pessoais.modoLeitor input,
