@@ -17,6 +17,7 @@ import Alert from "../../components/Alerta/Alerta.jsx";
 
 import "./TelaCadastro.css";
 import { jwtDecode } from "jwt-decode";
+import { DataTable } from "../../components/Tabelas/TabelaAfastamentos.jsx";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
@@ -506,11 +507,8 @@ const TelaCadastro = () => {
 						)}
 						{afastamento && (
 							<div className="lista-afastamentos">
-								<h3>Lista afastamento</h3>
-								<section>
-
-									
-								</section>
+								<h3>Histórico de Afastamento</h3>
+									<DataTable funcionario={funcionario}/>
 							</div>
 						)}
 					</div>

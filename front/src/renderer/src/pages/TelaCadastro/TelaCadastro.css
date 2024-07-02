@@ -253,9 +253,9 @@ h3 {
   margin-top: 50px;
 }
 
-.lista-afastamento {
-  width: 40%;
-  margin-top: 50px
+.lista-afastamentos {
+  width: 35%;
+  margin-top: 50px;
 }
 
 #anoReferencia {
@@ -299,8 +299,7 @@ h3 {
 textarea {
   display: flex;
   width: 96.5%;
-  height: 180px;
-
+  height: 25vh;
   resize: none;
   border: none;
   margin-top: 6px;

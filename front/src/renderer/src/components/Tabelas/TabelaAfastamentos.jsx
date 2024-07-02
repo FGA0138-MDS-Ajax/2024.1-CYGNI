@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../services/api.jsx';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
+import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
+import * as api from '../../services/api.jsx';
 import { HiOutlineTrash } from "react-icons/hi2";
-import { HiOutlinePencilSquare } from "react-icons/hi2";
-import ModalPerfil from '../../components/ModalPerfil/ModalPerfil.jsx';
-import { jwtDecode } from "jwt-decode";
+
+const formatarData = (dataISO) => {
+  const data = new Date(dataISO);
+  const dia = data.getUTCDate().toString().padStart(2, '0');
+  const mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
+  const ano = data.getUTCFullYear();
+  return `${dia}/${mes}/${ano}`;
+};
 
 const negrito = (params) => (
-  <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>
-);
-
-const renderBoolean = (params) => (
-  params.value ? <span>Editor</span> : <span>Leitor</span>
+  <strong style={{ color: "white", fontSize: '14px' }}>{params.colDef.headerName}</strong>
 );
 
 const columns = [
   {
-    field: 'login',
-    headerName: 'Nome de login',
+    field: 'motivo',
+    headerName: 'Situação',
     flex: 1,
     headerClassName: 'super-app-theme--header',
     hideable: false,
@@ -26,30 +28,32 @@ const columns = [
     renderHeader: negrito,
   },
   {
-    field: 'email',
-    headerName: 'Email',
+    field: 'dataInicio',
+    headerName: 'Data Início',
     flex: 1,
-    headerClassName: 'super-app-theme--header',
-    hideable: false,
-    resizable: false,
-    renderHeader: negrito,
-  },
-  {
-    field: 'privilegios',
-    headerName: 'Privilégio',
-    flex: 1,
+    renderCell: (params) => params.value ? formatarData(params.value) : '',
     headerClassName: 'super-app-theme--header',
     hideable: false,
     resizable: false,
     filterable: false,
     renderHeader: negrito,
-    renderCell: renderBoolean,
-  }
+  },
+  {
+    field: 'dataTermino',
+    headerName: 'Data Término',
+    flex: 1,
+    renderCell: (params) => params.value ? formatarData(params.value) : '',
+    headerClassName: 'super-app-theme--header',
+    hideable: false,
+    resizable: false,
+    filterable: false,
+    renderHeader: negrito,
+  },
 ];
 
 const textoLocalCustomizado = {
-  noRowsLabel: 'Nenhum administrador cadastrado.',
-  noResultsOverlayLabel: 'Nenhum administrador encontrado.',
+  noRowsLabel: 'Nenhum funcionário cadastrado.',
+  noResultsOverlayLabel: 'Nenhum funcionário encontrado.',
   columnHeaderFiltersTooltipActive: (count) => `${count} ${count !== 1 ? 'filtros' : 'filtro'} ativo${count !== 1 ? 's' : ''}`,
   columnHeaderFiltersLabel: 'Mostrar filtros',
   columnHeaderSortIconLabel: 'Ordenar',
@@ -86,41 +90,15 @@ const textoLocalCustomizado = {
   footerRowSelected: () => '',
 };
 
-export function DataTable() {
-  const [admins, setAdmins] = useState([]);
+export function DataTable({funcionario}) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedAdmin, setSelectedAdmin] = useState(null);
-  const [isEdit, setIsEdit] = useState(false);
-  const [privilegio, setPrivilegio] = useState(false);
-
-  const fetchRows = async () => {
-    try {
-      const response = await api.buscarAdministradores();
-      setAdmins(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchRows();
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decodificado = jwtDecode(token);
-        setPrivilegio(decodificado.privilegios);
-      } catch (error) {
-        console.error("erro ao decodificar token:", error);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isModalOpen) {
-      fetchRows();
-    }
-  }, [isModalOpen]);
+  const {motivo, dataInicio, dataTermino} = funcionario;
+  const afastamentos = motivo.map((motivoItem, index) => ({
+    id: index,
+    motivo: motivoItem,
+    dataInicio: dataInicio[index],
+    dataTermino: dataTermino[index],
+  }));
 
   useEffect(() => {
     const handleResize = () => {
@@ -134,46 +112,30 @@ export function DataTable() {
     };
   }, []);
 
-  const deletarAoClicar = async (admin) => {
-    try {
-      await api.excluirAdministrador(admin._id);
-      setAdmins((prev) => prev.filter((item) => item._id !== admin._id));
-    } catch (error) {
-      console.error('Error deleting data:', error);
-    }
-  };
-
-  const editarAoClicar = (admin) => {
-    setSelectedAdmin(admin);
-    setIsEdit(true);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedAdmin(null);
-    setIsEdit(false);
-  }
+  
 
   return (
     <Box sx={{
-      height: '100vh', width: '100vw', '.super-app-theme--header': {
+      height: '88%', width: '100%', '& .super-app-theme--header': {
         backgroundColor: '#03161A',
       },
+
       '.css-ptiqhd-MuiSvgIcon-root': {
         color: 'white',
       },
+
       '.css-n3fyjk-MuiDataGrid-root .MuiDataGrid-sortIcon': {
         display: 'none',
       },
 
       '.css-1ebnjf9-MuiDataGrid-root .MuiDataGrid-columnHeader--last': {
         backgroundColor: '#03161A',
-      }
+      },
 
     }} >
       <DataGrid
         sx={{
+          backgroundColor: '#fff',
           '.MuiDataGrid-row.Mui-selected': {
             backgroundColor: 'rgba(255, 255, 255, 0.5)',
             '&:hover': {
@@ -184,22 +146,18 @@ export function DataTable() {
             outline: '1px solid rgba(140, 28, 69, 0.5)',
           },
 
-          '--unstable_DataGrid-radius': 'none',
-          width: '100%', fontSize: '16px', border: "none",
+          '--unstable_DataGrid-radius': '8px',
+          width: '100%', fontSize: '14px', border: "none"
         }}
-        rows={admins}
+        rows={afastamentos}
         columns={[
           ...columns,
-          ...(privilegio ? [{
+          ...[{
             field: 'actions',
             type: 'actions',
+            flex: 0,
+            width: 10,
             getActions: (params) => [
-              <GridActionsCellItem
-                style={{ color: 'black' }}
-                icon={<HiOutlinePencilSquare size={17} />}
-                label="Edit"
-                onClick={() => editarAoClicar(params.row)}
-              />,
               <GridActionsCellItem
                 style={{ color: 'black' }}
                 icon={<HiOutlineTrash size={17} />}
@@ -207,27 +165,19 @@ export function DataTable() {
                 onClick={() => deletarAoClicar(params.row)}
               />,
             ],
-          }] : []),
+          }],
         ]}
         localeText={textoLocalCustomizado}
-        getRowId={(row) => row._id}
+       
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 15 },
+            paginationModel: { page: 0, pageSize: 3 },
           },
         }}
-        pageSizeOptions={[15, 10, 5]}
+        pageSizeOptions={[3]}
         disableColumnSelector
         key={windowWidth}
       />
-      {isModalOpen && (
-        <ModalPerfil
-          open={isModalOpen}
-          admin={selectedAdmin}
-          isEdit={isEdit}
-          closeModal={closeModal}
-        />
-      )}
-    </Box>
+    </ Box >
   );
 };
