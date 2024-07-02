@@ -137,8 +137,8 @@ export class Usuario {
     @Prop({ required: false, default: () => [], type: [Date] })  //final do afastamento
     dataTermino: (Date | null)[];
     
-    @Prop({required: false, default: null})
-    observacoes: string | null
+    @Prop({required: false, default: () => []})
+    observacoes: (string | null)[];
 
     //ultimo adm a editar esta ficha
     @Prop({required: false, default: null})
