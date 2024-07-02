@@ -251,7 +251,7 @@ const TelaCadastro = () => {
 								Afastamento
 							</button>
 						)}
-						{privilegio && (
+						{privilegio && funcionario && (
 							<button
 								type="submit"
 								className={"botao-campanha"}
