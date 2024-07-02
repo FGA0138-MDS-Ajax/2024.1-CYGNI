@@ -44,10 +44,10 @@ export class CreateUsuarioDto {
 
     // afastamento
     motivo: string[]
-    anoReferencia: number
-    dataInicio: Date
-    dataTermino: Date
-    observacoes: string
+    anoReferencia: number[]
+    dataInicio: Date[]
+    dataTermino: Date[]
+    observacoes: string[]
     //editor
     ultimoEditor :string
 }
