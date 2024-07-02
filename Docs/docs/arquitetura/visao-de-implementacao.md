@@ -3,7 +3,7 @@ sidebar_position: 8
 sidebar_label: "Visão de Implementação"
 ---
 
-## Visão de Implementação
+# Visão de Implementação
 
 ![Representação da Visão de Implementação.](../../static/img/VisaodeImplementacao.png)
 

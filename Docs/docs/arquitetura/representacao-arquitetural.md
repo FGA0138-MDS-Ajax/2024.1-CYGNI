@@ -3,6 +3,8 @@ sidebar_position: 3
 sidebar_label: "Representação Arquitetural"
 ---
 
+# Representaçao Arquitetural
+
 ## 2.1 Definições
 O sistema seguirá uma Arquitetura em Camadas.
 
