@@ -511,69 +511,73 @@ const TelaCadastro = () => {
 						</div>
 					)}
 				</div>
-				<div className="botoes">
-					{funcionario && (
-						<p id="ultimoEditor">{`Editado por ${funcionario.ultimoEditor}`}</p>
-					)}
 
-					<Botao
-						id="voltar"
-						icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
-						texto="Voltar"
-						cor="#032026"
-						corTexto="white"
-						largura={"130px"}
-						aoClicar={(e) => { navegar("/inicial") }}
-					/>
-
-					{funcionario && privilegio && (
+				<div className="div-botoes">
+					<div className="div-ultimoEditor">
+						{funcionario && (
+							<p id="ultimoEditor">{`Último Editor: ${funcionario.ultimoEditor}`}</p>
+						)}
+					</div>
+					<div className="botoes">
 						<Botao
-							id="excluir"
-							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
-							texto="Excluir"
-							cor="#8C1C45"
+							id="voltar"
+							icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
+							texto="Voltar"
+							cor="#032026"
 							corTexto="white"
 							largura={"130px"}
-							disabled={disabled}
-							aoClicar={(e) => {
-								e.preventDefault();
-								excluirUsuario(funcionario);
-							}}
+							aoClicar={(e) => { navegar("/inicial") }}
 						/>
-					)}
 
-					{funcionario && privilegio && (
-						<Botao
-							id="atualizar"
-							icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
-							texto="Atualizar"
-							cor="#F29B30"
-							corTexto="white"
-							largura={"130px"}
-							disabled={disabled}
-							aoClicar={(e) => {
-								e.preventDefault();
-								handleSubmit(aoEnviar)();
-							}}
-						/>
-					)}
+						{funcionario && privilegio && (
+							<Botao
+								id="excluir"
+								icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
+								texto="Excluir"
+								cor="#8C1C45"
+								corTexto="white"
+								largura={"130px"}
+								disabled={disabled}
+								aoClicar={(e) => {
+									e.preventDefault();
+									excluirUsuario(funcionario);
+								}}
+							/>
+						)}
+
+						{funcionario && privilegio && (
+							<Botao
+								id="atualizar"
+								icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
+								texto="Atualizar"
+								cor="#F29B30"
+								corTexto="white"
+								largura={"130px"}
+								disabled={disabled}
+								aoClicar={(e) => {
+									e.preventDefault();
+									handleSubmit(aoEnviar)();
+								}}
+							/>
+						)}
 
 
-					{!funcionario && (
-						<Botao
-							id="salvar"
-							icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
-							texto="Salvar"
-							cor="#588C7E"
-							corTexto="white"
-							largura={"130px"}
-							disabled={disabled}
-							aoClicar={(e) => {
-								e.preventDefault();
-								handleSubmit(aoEnviar)();
-							}}
-						/>
-					)}
+						{!funcionario && (
+							<Botao
+								id="salvar"
+								icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
+								texto="Salvar"
+								cor="#588C7E"
+								corTexto="white"
+								largura={"130px"}
+								disabled={disabled}
+								aoClicar={(e) => {
+									e.preventDefault();
+									handleSubmit(aoEnviar)();
+								}}
+							/>
+						)}
+					</div>
 				</div>
 			</div>
 			{alert && <Alert message={alert.message} type={alert.type} onClose={handleCloseAlert} />}
