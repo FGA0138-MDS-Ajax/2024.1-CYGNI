@@ -3,7 +3,7 @@ sidebar_position: 10
 sidebar_label: "Restrições Adicionais"
 ---
 
-## Restrições Adicionais
+# Restrições Adicionais
 
 - **Rede Local**: 
   - O software deve ser usado a partir da rede local do cliente, exigindo a identificação e login do usuário.

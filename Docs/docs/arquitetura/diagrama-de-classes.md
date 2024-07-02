@@ -3,7 +3,7 @@ sidebar_position: 7
 sidebar_label: "Diagrama de Classes e Pacotes"
 ---
 
-## Diagrama de classes e Pacotes
+# Diagrama de Classes e Pacotes
 
 ![Representação do Diagrama de Estados.](../../static/img/DiagramadeClasses.png)
 
