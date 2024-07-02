@@ -180,8 +180,17 @@ const TelaCadastro = () => {
 	const aoEnviar = async (dadosDoFormulario) => {
 		setDisabled(true);
 		try {
+			// Filtrando dados válidos
+			const dadosValidos = Object.fromEntries(
+				Object.entries(dadosDoFormulario).filter(
+					([key, value]) => value !== '' && value !== null && value !== undefined
+				)
+			);
+	
+			console.log(dadosValidos); // Adicione este console.log para verificar os dados
+	
 			if (funcionario) {
-				await api.editarUsuario(funcionario._id, dadosDoFormulario);
+				await api.editarUsuario(funcionario._id, dadosValidos);
 				setAlert({ type: "success", message: "Editado com sucesso!" });
 				setTimeout(() => {
 					setDisabled(false);
@@ -189,7 +198,7 @@ const TelaCadastro = () => {
 				}, 1250);
 			}
 			else {
-				await api.cadastrarUsuario(dadosDoFormulario);
+				await api.cadastrarUsuario(dadosValidos);
 				setAlert({ type: "success", message: "Cadastro realizado com sucesso!" });
 				setTimeout(() => {
 					setDisabled(false);
@@ -197,10 +206,12 @@ const TelaCadastro = () => {
 				}, 1250);
 			}
 		} catch (error) {
+			console.error(error); // Adicione este console.log para verificar o erro
 			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
 			setDisabled(false);
 		}
 	};
+	
 
 	const excluirUsuario = async () => {
 		setDisabled(true);
