@@ -26,11 +26,11 @@ Este diagrama de atividades representa um fluxo de trabalho para um sistema de g
     - **Gerar Campanha**: Gera uma tabela com todos os funcionários aptos a trabalhar no dia/mês/ano.
     - **Afastar Funcionários**: Afastar funcionários por férias, abono, ou outros motivos de afastamento.
     - **Cadastrar/Editar/Excluir/Visualizar Ficha de Funcionário**: Gerenciar os dados dos funcionários.
+    - **Cadastrar/Editar/Excluir/Visualizar Administrador**: Gerenciar os dados dos administradores.
     - **Listagem de Funcionários**: Exibir uma lista de todos os funcionários.
 
 4. **Filtragem e Relatórios**:
     - Na Listagem de Funcionários, o usuário pode filtrar por:
-        - Cursos concluídos,
         - Afastamentos,
         - Funcionários aptos a trabalhar.
     - Também pode gerar Relatório com base nas informações filtradas.

@@ -5,9 +5,9 @@ sidebar_label: "Visão de Implementação"
 
 ## Visão de Implementação
 
-![Representação da Visão de Implementação.](../../static/img/DiagramadeEstados.png)
+![Representação da Visão de Implementação.](../../static/img/VisaodeImplementacao.png)
 
-*Figura 3: Desenho esquemático da visão de implementação*
+*Figura 7: Desenho esquemático da visão de implementação*
 
 1. **Usuário**
     - Representado por um ícone de pessoa.
