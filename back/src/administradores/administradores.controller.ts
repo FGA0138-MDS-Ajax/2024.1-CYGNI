@@ -15,9 +15,9 @@ export class AdministradoresController {
   create(
     @Body() createAdministradorDto: CreateAdministradorDto,
     @Req() req :Request) {
-    const privilegio = req['permissao'];
+    const privilegio = req['permissao']; //verifica o privilegio 
     if(!privilegio){
-      throw new BadRequestException("Você não tem permissão");
+      throw new BadRequestException("Você não tem permissão"); //sem privilegio não cadastra
     }
     // Logger.log(privilegio);
     return this.administradoresService.create(createAdministradorDto);
@@ -35,32 +35,32 @@ export class AdministradoresController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.administradoresService.findOne(id); //usado tipo string, para puxar pelo id do mongodb
+  findOne(@Param('id') id: string) {  //usado tipo string, para puxar pelo id do mongodb
+    return this.administradoresService.findOne(id); 
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAdministradorDto: UpdateAdministradorDto,@Req() req:Request) {
-    const privilegio = req['permissao'];
+    const privilegio = req['permissao'];  //verifica o privilegio do usuario logado
     if(!privilegio){
-      throw new BadRequestException("Você não tem permissão");
+      throw new BadRequestException("Você não tem permissão"); //se não tem o privilegio não permite editar
     }
     return this.administradoresService.update(id, updateAdministradorDto);
   }
 
   @Delete(':id')
-  async remove(@Req() req :Request,@Param('id') id: string){
-    const privilegio = req['permissao'];
+  async remove(@Req() req :Request,@Param('id') id: string){ 
+    const privilegio = req['permissao'];  //verifica o privilegio do usuario logado
     //Logger.log(privilegio);
     if(!privilegio){
-      throw new BadRequestException("Você não tem permissão");
+      throw new BadRequestException("Você não tem permissão");//se não tem o privilegio não permite excluir
     }
     return this.administradoresService.remove(id);
   }
 
   @Post('email-redefinicao')
   @HttpCode(200)
-  async enviaRedefinicaoDeSenha(@Body() enviaEmailDTO: EnviaEmailDTO) {
+  async enviaRedefinicaoDeSenha(@Body() enviaEmailDTO: EnviaEmailDTO) { 
     Logger.log(enviaEmailDTO);
     return this.administradoresService.enviaTokenRedefinirSenha(enviaEmailDTO.email);
   }

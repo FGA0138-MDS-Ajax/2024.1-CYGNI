@@ -23,7 +23,7 @@ export class AdministradoresService {
   ) { }
 
   async create(CreateAdministradorDto: CreateAdministradorDto) {
-    CreateAdministradorDto.senha = await bcrypt.hash(CreateAdministradorDto.senha, parseInt(process.env.SALT));
+    CreateAdministradorDto.senha = await bcrypt.hash(CreateAdministradorDto.senha, parseInt(process.env.SALT)); // hash da senha com SALT do .env
     //Logger.log(CreateAdministradorDto);
     const newAdmin = await this.administradorModel.create(CreateAdministradorDto);
     return  newAdmin;
@@ -35,16 +35,16 @@ export class AdministradoresService {
 
   async login({ login, senha }: LoginDTO) {
     try {
-      const administrador = await this.administradorModel.findOne({ login }).exec();
+      const administrador = await this.administradorModel.findOne({ login }).exec(); //procura pelo login especifico no banco
       if (!administrador) throw new ForbiddenException('usuário não existe ou senha inválida');
-      if (!await bcrypt.compare(senha,administrador.senha)) throw new ForbiddenException('usuário não existe ou senha inválida');
-      const token = this.jwtService.sign(
+      if (!await bcrypt.compare(senha,administrador.senha)) throw new ForbiddenException('usuário não existe ou senha inválida'); // compara a senha hash
+      const token = this.jwtService.sign( //envia um token jwt
         {
           login: administrador.login,
-          privilegios: administrador.privilegios
+          privilegios: administrador.privilegios //devolve privilegios e login no token para uso futuro
         },
         {
-          secret: process.env.JWT_SECRET
+          secret: process.env.JWT_SECRET //utiliza secret do .env
         }
       )
 
