@@ -176,7 +176,7 @@ const TelaCadastro = () => {
 			}
 		}
 
-	}, [funcionario, reset, setValue]);
+	}, [funcionario, reset]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
 		setDisabled(true);
@@ -198,7 +198,7 @@ const TelaCadastro = () => {
 				}, 1250);
 			}
 		} catch (error) {
-			setAlert({ type: "error", message: "Não foi possível realizar essa ação!", error });
+			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
 			setDisabled(false);
 		}
 	};
