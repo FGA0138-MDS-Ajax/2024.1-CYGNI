@@ -3,7 +3,7 @@ sidebar_position: 5
 sidebar_label: "Diagrama de Estados"
 ---
 
-## Representação do Diagrama de Estados
+# Representação do Diagrama de Estados
 
 ![Representação do Diagrama de Estados.](../../static/img/DiagramadeEstados.png)
 

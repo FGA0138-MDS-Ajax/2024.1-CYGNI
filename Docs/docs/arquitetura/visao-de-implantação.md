@@ -3,7 +3,7 @@ sidebar_position: 9
 sidebar_label: "Visão de Implantação"
 ---
 
-## Visão de Implantação
+# Visão de Implantação
 
 O software será implantado em um servidor local para ser executado em um desktop. Para o desenvolvimento, utilizaremos HTML, CSS e JavaScript como marcadores e linguagens de programação, em conjunto com o framework React para Front-End, visando uma experiência de usuário mais dinâmica e responsiva.
 

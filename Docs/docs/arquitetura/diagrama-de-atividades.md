@@ -3,7 +3,7 @@ sidebar_position: 6
 sidebar_label: "Diagrama de Atividades"
 ---
 
-## Diagramas de Atividades
+# Diagrama de Atividades
 
 ![Representação do Diagrama de Atividades.](../../static/img/DiagramadeAtividades.png)
 
