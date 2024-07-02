@@ -17,6 +17,7 @@ import Alert from "../../components/Alerta/Alerta.jsx";
 
 import "./TelaCadastro.css";
 import { jwtDecode } from "jwt-decode";
+import { DataTable } from "../../components/Tabelas/TabelaAfastamentos.jsx";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
@@ -104,7 +105,7 @@ const TelaCadastro = () => {
 				dataInicio: '',
 				dataTermino: '',
 				dias: '',
-				observacoes: funcionario.observacoes,
+				observacoes: '',
 			})
 		}
 
@@ -175,7 +176,7 @@ const TelaCadastro = () => {
 			}
 		}
 
-	}, [funcionario, reset, setValue]);
+	}, [funcionario, reset]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
 		setDisabled(true);
@@ -529,6 +530,12 @@ const TelaCadastro = () => {
 											onChange={(value) => setValue("observacoes", event.target.value)} />
 									</section>
 								</form>
+							</div>
+						)}
+						{afastamento && (
+							<div className="lista-afastamentos">
+								<h3>Histórico de Afastamento</h3>
+								<DataTable funcionario={funcionario} />
 							</div>
 						)}
 					</div>

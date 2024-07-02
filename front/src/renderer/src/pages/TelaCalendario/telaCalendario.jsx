@@ -14,7 +14,6 @@ const TelaCalendario = () => {
     const navegar = useNavigate();
     const location = useLocation();
     const funcionario = location.state?.funcionario;
-    console.log('funcionari', { funcionario })
     const {
         register,
         handleSubmit,

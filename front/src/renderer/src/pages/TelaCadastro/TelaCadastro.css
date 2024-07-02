@@ -263,7 +263,13 @@ h3 {
 /* Afastamento */
 
 .afastamento {
-  width: 85.5%;
+  width: 65%;
+  margin-top: 50px;
+}
+
+.lista-afastamentos {
+  width: 30%;
+  height: 91.5%;
   margin-top: 50px;
 }
 
@@ -305,7 +311,7 @@ h3 {
 textarea {
   display: flex;
   width: 96.5%;
-  height: 180px;
+  height: 30vh;
 
   resize: none;
   border: none;
