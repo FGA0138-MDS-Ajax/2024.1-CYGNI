@@ -44,7 +44,7 @@ const columns = [
     renderHeader: negrito,
   },
   {
-    field: 'motivo',
+    field: 'situacao',
     headerName: 'Situação',
     flex: 2,
     headerClassName: 'super-app-theme--header',
@@ -133,7 +133,26 @@ export function DataTable() {
     const fetchRows = async () => {
       try {
         const response = await api.buscarUsuarios();
-        setFuncionarios(response.data);
+        //console.log(response.data);
+        const dataAtual = new Date();
+        const funcionariosAtualizados = response.data.map(funcionario => {
+          // Inicializa a situacao como "Apto" por padrão
+          let situacao = "Apto";
+          
+          const dataInicio = new Date(funcionario.dataInicio[funcionario.dataInicio.length-1]);
+          const dataTermino = new Date(funcionario.dataTermino[funcionario.dataTermino.length-1]);
+          console.log(funcionario);
+          console.log("data inicio:",dataInicio);
+          console.log("data Termino:",dataTermino)
+          if (dataAtual >= dataInicio && dataAtual <= dataTermino) {
+            situacao = funcionario.motivo[funcionario.motivo.length-1]; //recebe o ultimo motivo do array
+          } 
+          // Atualiza a situacao do funcionário com o motivo encontrado ou "Apto"
+          funcionario.situacao = situacao;
+          return funcionario;
+        });
+    
+        setFuncionarios(funcionariosAtualizados);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

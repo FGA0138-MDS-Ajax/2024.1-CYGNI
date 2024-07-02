@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  list-style: none;
+  user-select: none;
+}
+
+.conteiner-tela-calendario {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  background-color: #032026;
+  color: white;
+}
+
+.conteiner-calendario {
+  display: flex;
+  flex-direction: column;
+  width: 93.5%;
+  box-sizing: border-box;
+
+}
+
+.conteiner-calendario h1 {
+  color: #FFA800;
+  font-weight: bold;
+  margin-left: 7.5%;
+  margin-top: 1%;
+}
+
+.conteiner-calendario h2 {
+  margin-left: 7.5%;
+  margin-top: 0.5%;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #C7C7C7;
+}
+
+.conteiner-calendario p {
+  font-size: 1.2rem;
+  color: #dbdbdb;
+  margin-left: 7.5%;
+  margin-bottom: 2.5%;
+}
+
+.botao-voltar {
+  padding: 2% 0;
+}
+
+.botao-voltar button {
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}

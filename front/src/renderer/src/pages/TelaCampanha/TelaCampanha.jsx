@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import { useLocation } from "react-router-dom";
 import "../TelaRelatorio/TelaRelatorio.css";
+<<<<<<< Feature/TabelaCampanha
 import Timeline, { DateHeader } from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
@@ -267,6 +268,14 @@ const TelaCampanha = () => {
                     />
                 </Timeline>
             </div>
+=======
+import TabelaFuncionarios from "../../components/TabelaCampanha/tabelaCampanha.jsx";
+
+const TelaCampanha = () => {
+    return (
+        <div className="conteiner-relatorio-mensal">
+            <MenuLateral />
+>>>>>>> Release/Sprint6-7-8
         </div>
     );
 };

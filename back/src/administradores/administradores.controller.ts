@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, Logger } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, Logger, Req, BadRequestException } from '@nestjs/common';
 import { AdministradoresService } from './administradores.service';
 import { CreateAdministradorDto } from './dto/create-administrador.dto';
 import { UpdateAdministradorDto } from './dto/update-administrador.dto';
@@ -12,7 +12,14 @@ export class AdministradoresController {
   constructor(private readonly administradoresService: AdministradoresService) { }
 
   @Post()
-  create(@Body() createAdministradorDto: CreateAdministradorDto) {
+  create(
+    @Body() createAdministradorDto: CreateAdministradorDto,
+    @Req() req :Request) {
+    const privilegio = req['permissao']; //verifica o privilegio 
+    if(!privilegio){
+      throw new BadRequestException("Você não tem permissão"); //sem privilegio não cadastra
+    }
+    // Logger.log(privilegio);
     return this.administradoresService.create(createAdministradorDto);
   }
 
@@ -23,27 +30,37 @@ export class AdministradoresController {
 
   @Get()
   findAll() {
+    
     return this.administradoresService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.administradoresService.findOne(id); //usado tipo string, para puxar pelo id do mongodb
+  findOne(@Param('id') id: string) {  //usado tipo string, para puxar pelo id do mongodb
+    return this.administradoresService.findOne(id); 
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAdministradorDto: UpdateAdministradorDto) {
+  update(@Param('id') id: string, @Body() updateAdministradorDto: UpdateAdministradorDto,@Req() req:Request) {
+    const privilegio = req['permissao'];  //verifica o privilegio do usuario logado
+    if(!privilegio){
+      throw new BadRequestException("Você não tem permissão"); //se não tem o privilegio não permite editar
+    }
     return this.administradoresService.update(id, updateAdministradorDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Req() req :Request,@Param('id') id: string){ 
+    const privilegio = req['permissao'];  //verifica o privilegio do usuario logado
+    //Logger.log(privilegio);
+    if(!privilegio){
+      throw new BadRequestException("Você não tem permissão");//se não tem o privilegio não permite excluir
+    }
     return this.administradoresService.remove(id);
   }
 
   @Post('email-redefinicao')
   @HttpCode(200)
-  async enviaRedefinicaoDeSenha(@Body() enviaEmailDTO: EnviaEmailDTO) {
+  async enviaRedefinicaoDeSenha(@Body() enviaEmailDTO: EnviaEmailDTO) { 
     Logger.log(enviaEmailDTO);
     return this.administradoresService.enviaTokenRedefinirSenha(enviaEmailDTO.email);
   }

@@ -14,11 +14,43 @@
   background-color: #F2F2F2;
 }
 
-.conteiner-tabela-adm {
-  flex: 1;
+.conteiner-telaadm {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   width: 93.5%;
   box-sizing: border-box;
+}
+
+.divisao-titulo-telaadm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  width: 100%;
+  height: 12vh;
+
+  background-color: #032026;
+}
+
+.divisao-titulo-telaadm h1 {
+  color: #FFA800;
+  font-weight: bold;
+  margin-left: 7.5%;
+}
+
+.divisao-titulo-telaadm p {
+  color: #C7C7C7;
+  font-weight: 500;
+  margin-left: 7.5%;
+  margin-top: 0.5%;
+}
+
+.divisao-tabela-telaadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88vh;
+  background-color: #032026;
 }

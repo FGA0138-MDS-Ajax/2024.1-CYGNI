@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../services/api.jsx';
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem, GridHeader } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import ModalPerfil from '../../components/ModalPerfil/ModalPerfil.jsx';
 import { jwtDecode } from "jwt-decode";
+import { propValidatorsDataGrid } from '@mui/x-data-grid/internals';
 
 const negrito = (params) => (
   <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>
@@ -157,7 +158,7 @@ export function DataTable() {
 
   return (
     <Box sx={{
-      height: '100vh', width: '100vw', '.super-app-theme--header': {
+      height: '88vh', width: '80vw', '.super-app-theme--header': {
         backgroundColor: '#03161A',
       },
       '.css-ptiqhd-MuiSvgIcon-root': {
@@ -166,10 +167,14 @@ export function DataTable() {
       '.css-n3fyjk-MuiDataGrid-root .MuiDataGrid-sortIcon': {
         display: 'none',
       },
+      '.css-1ebnjf9-MuiDataGrid-root .MuiDataGrid-columnHeader--last': {
+        backgroundColor: '#03161A',
+      }
 
     }} >
       <DataGrid
         sx={{
+          backgroundColor: '#fff',
           '.MuiDataGrid-row.Mui-selected': {
             backgroundColor: 'rgba(255, 255, 255, 0.5)',
             '&:hover': {
@@ -189,6 +194,7 @@ export function DataTable() {
           ...(privilegio ? [{
             field: 'actions',
             type: 'actions',
+            GridHeader: 0,
             getActions: (params) => [
               <GridActionsCellItem
                 style={{ color: 'black' }}

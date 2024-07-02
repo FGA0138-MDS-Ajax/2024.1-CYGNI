@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as api from "../../services/api.jsx";
 
@@ -17,11 +17,14 @@ import Alert from "../../components/Alerta/Alerta.jsx";
 
 import "./TelaCadastro.css";
 import { jwtDecode } from "jwt-decode";
+import { DataTable } from "../../components/Tabelas/TabelaAfastamentos.jsx";
 
 const TelaCadastro = () => {
 	const [afastamento, setAfastamento] = useState(false);
+	const [campanha, setCampanha] = useState(false);
 	const [privilegio, setPrivilegio] = useState(false);
 	const [alert, setAlert] = useState(null);
+	const [disabled, setDisabled] = useState(false);
 	const location = useLocation();
 	const navegar = useNavigate();
 	const funcionario = location.state?.funcionario;
@@ -102,7 +105,7 @@ const TelaCadastro = () => {
 				dataInicio: '',
 				dataTermino: '',
 				dias: '',
-				observacoes: funcionario.observacoes,
+				observacoes: '',
 			})
 		}
 
@@ -173,38 +176,57 @@ const TelaCadastro = () => {
 			}
 		}
 
-	}, [funcionario, reset, setValue]);
+	}, [funcionario, reset]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
+		setDisabled(true);
 		try {
+			// Filtrando dados válidos
+			const dadosValidos = Object.fromEntries(
+				Object.entries(dadosDoFormulario).filter(
+					([key, value]) => value !== '' && value !== null && value !== undefined
+				)
+			);
+	
+			console.log(dadosValidos); // Adicione este console.log para verificar os dados
+	
 			if (funcionario) {
-				await api.editarUsuario(funcionario._id, dadosDoFormulario);
+				await api.editarUsuario(funcionario._id, dadosValidos);
 				setAlert({ type: "success", message: "Editado com sucesso!" });
 				setTimeout(() => {
+					setDisabled(false);
 					navegar("/inicial");
 				}, 1250);
 			}
 			else {
-				await api.cadastrarUsuario(dadosDoFormulario);
+				await api.cadastrarUsuario(dadosValidos);
 				setAlert({ type: "success", message: "Cadastro realizado com sucesso!" });
 				setTimeout(() => {
+					setDisabled(false);
 					navegar("/inicial");
 				}, 1250);
 			}
 		} catch (error) {
+			console.error(error); // Adicione este console.log para verificar o erro
 			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
+			setDisabled(false);
 		}
 	};
+	
 
 	const excluirUsuario = async () => {
+		setDisabled(true);
 		try {
 			await api.excluirUsuario(funcionario._id);
 			setAlert({ type: "success", message: "Funcionário removido com sucesso!" });
 			setTimeout(() => {
+				setDisabled(false);
 				navegar("/inicial");
 			}, 1250);
-		} catch (error) {
+		}
+		catch (error) {
 			setAlert({ type: "error", message: "Errro ao remover funcionario" });
+			setDisabled(false);
 		}
 	}
 
@@ -213,9 +235,14 @@ const TelaCadastro = () => {
 		if (camposPreenchidos) setAfastamento(!afastamento);
 	};
 
-	const campanha = (funcionario) => {
-		navegar("/tela-campanha", { state: { funcionario } });
+	const botaoCampanha = async () => {
+		setCampanha(!campanha);
 	}
+
+
+	const acessarCampanha = (params) => {
+		navegar('/tela-calendario', { state: { funcionario: params } });
+	};
 
 	return (
 		<div className="cadastro">
@@ -236,11 +263,12 @@ const TelaCadastro = () => {
 								Afastamento
 							</button>
 						)}
-						{privilegio && (
+						{privilegio && funcionario && (
 							<button
 								type="submit"
-								onClick={(e) => { campanha(funcionario) }}
-							>campanha</button>
+								className={"botao-campanha"}
+								onClick={(e) => { acessarCampanha(funcionario) }}
+							>Campanha Individual</button>
 						)}
 
 					</div>
@@ -506,75 +534,79 @@ const TelaCadastro = () => {
 						)}
 						{afastamento && (
 							<div className="lista-afastamentos">
-								<h3>Lista afastamento</h3>
-								<section>
-
-									
-								</section>
+								<h3>Histórico de Afastamento</h3>
+								<DataTable funcionario={funcionario} />
 							</div>
 						)}
 					</div>
 				</div>
-				<div className="botoes">
-					{funcionario && (
-						<p id="ultimoEditor">{`Editado por ${funcionario.ultimoEditor}`}</p>
-					)}
 
-					<Botao
-						id="voltar"
-						icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
-						texto="Voltar"
-						cor="#032026"
-						corTexto="white"
-						largura={"130px"}
-						aoClicar={(e) => { navegar("/inicial") }}
-					/>
-
-					{funcionario && privilegio && (
+				<div className="div-botoes">
+					<div className="div-ultimoEditor">
+						{funcionario && (
+							<p id="ultimoEditor">{`Último Editor: ${funcionario.ultimoEditor}`}</p>
+						)}
+					</div>
+					<div className="botoes">
 						<Botao
-							id="excluir"
-							icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
-							texto="Excluir"
-							cor="#8C1C45"
+							id="voltar"
+							icone={<HiArrowPathRoundedSquare size={20} style={{ marginRight: "5px" }} />}
+							texto="Voltar"
+							cor="#032026"
 							corTexto="white"
 							largura={"130px"}
-							aoClicar={(e) => {
-								e.preventDefault();
-								excluirUsuario(funcionario);
-							}}
+							aoClicar={(e) => { navegar("/inicial") }}
 						/>
-					)}
 
-					{funcionario && privilegio && (
-						<Botao
-							id="atualizar"
-							icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
-							texto="Atualizar"
-							cor="#F29B30"
-							corTexto="white"
-							largura={"130px"}
-							aoClicar={(e) => {
-								e.preventDefault();
-								handleSubmit(aoEnviar)();
-							}}
-						/>
-					)}
+						{funcionario && privilegio && (
+							<Botao
+								id="excluir"
+								icone={<HiOutlineTrash size={20} style={{ marginRight: "5px" }} />}
+								texto="Excluir"
+								cor="#8C1C45"
+								corTexto="white"
+								largura={"130px"}
+								disabled={disabled}
+								aoClicar={(e) => {
+									e.preventDefault();
+									excluirUsuario(funcionario);
+								}}
+							/>
+						)}
+
+						{funcionario && privilegio && (
+							<Botao
+								id="atualizar"
+								icone={<HiOutlinePencilSquare size={20} style={{ marginRight: "5px" }} />}
+								texto="Atualizar"
+								cor="#F29B30"
+								corTexto="white"
+								largura={"130px"}
+								disabled={disabled}
+								aoClicar={(e) => {
+									e.preventDefault();
+									handleSubmit(aoEnviar)();
+								}}
+							/>
+						)}
 
 
-					{!funcionario && (
-						<Botao
-							id="salvar"
-							icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
-							texto="Salvar"
-							cor="#588C7E"
-							corTexto="white"
-							largura={"130px"}
-							aoClicar={(e) => {
-								e.preventDefault();
-								handleSubmit(aoEnviar)();
-							}}
-						/>
-					)}
+						{!funcionario && (
+							<Botao
+								id="salvar"
+								icone={<HiArrowDownTray size={20} style={{ marginRight: "5px" }} />}
+								texto="Salvar"
+								cor="#588C7E"
+								corTexto="white"
+								largura={"130px"}
+								disabled={disabled}
+								aoClicar={(e) => {
+									e.preventDefault();
+									handleSubmit(aoEnviar)();
+								}}
+							/>
+						)}
+					</div>
 				</div>
 			</div>
 			{alert && <Alert message={alert.message} type={alert.type} onClose={handleCloseAlert} />}

@@ -8,15 +8,17 @@ export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto,@Req() req: Request) {
-    const nomeDoAdministrador = req['usuario'];
-    const privilegio = req['permissao'];
+  create(
+  @Body() createUsuarioDto: CreateUsuarioDto,
+  @Req() req: Request) { // request utilizado na verificação se o funcionario atual tem essa permissão
+    const nomeDoAdministrador = req['usuario']; //salva nome de quem editou a ficha
+    const privilegio = req['permissao']; //pega a permissão do usuario logado a cada requisição deste tipo
     if(!privilegio){
       throw new BadRequestException("Você não tem permissão para isso")
     }
-    createUsuarioDto.ultimoEditor = nomeDoAdministrador;
+    createUsuarioDto.ultimoEditor = nomeDoAdministrador; //atribui o login ao campo ultimoEditor da ficha
     //Logger.log(nomeDoAdministrador);
-    return this.usuariosService.create(createUsuarioDto);
+    return this.usuariosService.create(createUsuarioDto); 
   }
 
   @Get()
@@ -27,20 +29,20 @@ export class UsuariosController {
   @Get('buscar')
   async findByNameOrMatriculaOrId(
     @Query('nomeCompleto') nomeCompleto?: string, 
-    @Query('matricula') matricula?: string,
+    @Query('matricula') matricula?: string, // querys para possibilitar vários tipos de pesquisa no campo ficha
     @Query('id') id?: string
   ) {
     if (!nomeCompleto && !matricula && !id) {
-      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
+      throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id'); 
     }
     return this.usuariosService.findByNameOrMatriculaOrId(nomeCompleto, matricula, id);
   }
 
   @Patch('atualizar')
   async update(
-    @Body() updateUsuarioDto: UpdateUsuarioDto,
-    @Req() req: Request,
-    @Query('nomeCompleto') nomeCompleto?: string, 
+    @Body() updateUsuarioDto: UpdateUsuarioDto, 
+    @Req() req: Request, //requisição para validação de usuario
+    @Query('nomeCompleto') nomeCompleto?: string, //querys para possibilitar vários tipos de pesquisa no campo ficha
     @Query('matricula') matricula?: string,
     @Query('id') id?: string
   ) {
@@ -49,26 +51,26 @@ export class UsuariosController {
     }
 
     const nomeDoAdministrador = req['usuario'];
-    const privilegio = req['permissao'];
+    const privilegio = req['permissao']; //para verificação de permissão
     if(!privilegio){
       throw new BadRequestException("Você não tem permissão para isso")
     }
-    updateUsuarioDto.ultimoEditor = nomeDoAdministrador;
+    updateUsuarioDto.ultimoEditor = nomeDoAdministrador; //ultimo editor da ficha
     //Logger.log(nomeDoAdministrador);
     return this.usuariosService.update(updateUsuarioDto, nomeCompleto, matricula, id);
   }
 
   @Delete('remover')
   async remove(
-    @Req() req: Request,
+    @Req() req: Request, //requisição para validação de usuario
     @Query('nomeCompleto') nomeCompleto?: string, 
-    @Query('matricula') matricula?: string,
+    @Query('matricula') matricula?: string, //querys para possibilitar vários tipos de pesquisa no campo ficha
     @Query('id') id?: string
   ) {
     if (!nomeCompleto && !matricula && !id) {
       throw new BadRequestException('É necessário fornecer nomeCompleto, matricula ou id');
     }
-    const privilegio = req['permissao'];
+    const privilegio = req['permissao']; // verificação de permissão
     if(!privilegio){
       throw new BadRequestException("Você não tem permissão para isso")
     }
