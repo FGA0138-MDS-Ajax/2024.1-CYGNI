@@ -128,11 +128,11 @@ export class Usuario {
     @Prop({ required: false, default: () => [] })  //não precisa
     anoReferencia: (number | null)[];
 
-    @Prop({ required: false, default: () => [], type: [Date] })  //inicio afastamento
-    dataInicio: (Date | null)[];
+    @Prop({ required: false, default: () => [], type: [Date] })
+            dataInicio: Date[];
 
     @Prop({ required: false, default: () => [], type: [Date] })  //final do afastamento
-    dataTermino: (Date | null)[];
+    dataTermino: Date[];
     
     @Prop({required: false, default: null})
     observacoes: string | null
