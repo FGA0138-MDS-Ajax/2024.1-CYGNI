@@ -32,7 +32,8 @@
     "jwt-decode": "^4.0.0",
     "npm": "^10.8.1",
     "react-calendar-timeline": "^0.28.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
