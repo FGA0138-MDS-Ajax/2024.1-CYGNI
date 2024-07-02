@@ -23,6 +23,7 @@ const TelaInicial = () => {
 	const [funcionarios, setFuncionarios] = useState([]);
 	const [pesquisa, setPesquisa] = useState("");
 	const navegar = useNavigate();
+	const [adminLog, setAdmin] = useState([]);
 
 	useEffect(() => {
 		const fetchFuncionarios = async () => {
@@ -36,11 +37,15 @@ const TelaInicial = () => {
 			try {
 				const decodificado = jwtDecode(token);
 				setPrivilegio(decodificado.privilegios);
+				setAdmin(decodificado.login)
 			} catch (error) {
 				console.error("erro ao decodificar token:", error);
 			}
 		}
 	}, []);
+
+
+	
 
 	const handleSearch = debounce((searchTerm) => {
 		setPesquisa(searchTerm);
@@ -83,7 +88,7 @@ const TelaInicial = () => {
 							))}
 						</div>
 					</div>
-					<h4>Boas-vindas, usuario!</h4>
+					<h4>Boas-vindas, {`${adminLog}`}!</h4>
 				</div>
 				<div className="div-inferior">
 					<div className="div-inferior-esquerda">

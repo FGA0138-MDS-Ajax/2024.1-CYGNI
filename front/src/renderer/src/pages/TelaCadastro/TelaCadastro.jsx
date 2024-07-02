@@ -87,6 +87,7 @@ const TelaCadastro = () => {
 				classificacao: funcionario.classificacao,
 				funcao: funcionario.funcao,
 				escala: funcionario.escala,
+				escalaInicio: funcionario.escalaInicio,
 				horarioEscala: funcionario.horarioEscala,
 				lotacao: funcionario.lotacao,
 				comportamento: funcionario.comportamento,
@@ -143,6 +144,7 @@ const TelaCadastro = () => {
 				classificacao: '',
 				funcao: '',
 				escala: '8 x 40',
+				escalaInicio: '',
 				horarioEscala: '',
 				lotacao: '',
 				comportamento: '',
@@ -439,6 +441,7 @@ const TelaCadastro = () => {
 											value={escalaValor}
 											onChange={(value) => setValue("escala", value)}
 										/>
+										<Campo id="escalaInicio" texto="Início Expediente" tipo="date" registro={register} erros={errors} />
 										<Campo id="horarioEscala" texto="Horário" tipo="text" registro={register} erros={errors} />
 										<Campo id="lotacao" texto="Lotação" tipo="text" registro={register} erros={errors} />
 									</div>
@@ -462,54 +465,55 @@ const TelaCadastro = () => {
 							</form>
 						</div>
 					)}
+					<div className="bloco-central">
+						{afastamento && (
+							<div className="afastamento">
+								<h3>Afastamento</h3>
+								<form className="formulario-afastamento">
+									<section>
+										<div className="linha">
+											<MenuSuspenso
+												id="motivo"
+												texto="Motivo"
+												largura="190px"
+												opcoes={[
+													" ",
+													"Abono",
+													"LTSP",
+													"Férias",
+													"LTIP",
+													"LTSPF",
+													"Núpcias",
+													"Licença Paternidade",
+													"Dispensa Recompensa",
+													" Restrição Médica",
+													"Recesso Final de Ano",
+													"Atestado de Comparecimento",
+													"Atestado de Acompanhamento",
+													"Outros",
+												]}
+												value={motivoValor}
+												onChange={(value) => setValue("motivo", value)}
+											/>
+											<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
+											<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
+											<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
 
-					{afastamento && (
-						<div className="afastamento">
-							<h3>Afastamento</h3>
-							<form className="formulario-afastamento">
-								<section>
-									<div className="linha">
-										<MenuSuspenso
-											id="motivo"
-											texto="Motivo"
-											largura="190px"
-											opcoes={[
-												" ",
-												"Abono",
-												"LTSP",
-												"Férias",
-												"LTIP",
-												"LTSPF",
-												"Núpcias",
-												"Licença Paternidade",
-												"Dispensa Recompensa",
-												" Restrição Médica",
-												"Recesso Final de Ano",
-												"Atestado de Comparecimento",
-												"Atestado de Acompanhamento",
-												"Outros",
-											]}
-											value={motivoValor}
-											onChange={(value) => setValue("motivo", value)}
-										/>
-										<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
-										<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
-										<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
-
-									</div>
-									<div className="conteiner-observacao">
-										<span>Observações</span>
-										<p>*opcional</p>
-									</div>
-									<textarea
-										name="Observacao"
-										id="observacoes"
-										value={observacoes}
-										onChange={(value) => setValue("observacoes", event.target.value)} />
-								</section>
-							</form>
-						</div>
-					)}
+										</div>
+										<div className="conteiner-observacao">
+											<span>Observações</span>
+											<p>*opcional</p>
+										</div>
+										<textarea
+											name="Observacao"
+											id="observacoes"
+											value={observacoes}
+											onChange={(value) => setValue("observacoes", event.target.value)} />
+									</section>
+								</form>
+							</div>
+						)}
+					</div>
 				</div>
 
 				<div className="div-botoes">

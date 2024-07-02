@@ -38,12 +38,21 @@ const TabelaFuncionarios = () => {
   };
 
   const formatarData = (dataISO) => {
+    if (!dataISO) return ''; // Return empty string if dataISO is falsy
+  
     const data = new Date(dataISO);
+  
+    if (isNaN(data.getTime())) {
+      return ''; // Return empty string if date is invalid
+    }
+  
     const dia = data.getUTCDate().toString().padStart(2, '0');
     let mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
     const ano = data.getUTCFullYear();
+  
     return `${dia}/${mes}/${ano}`;
   };
+  
 
   const negrito = (params) => (
     <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>
@@ -83,6 +92,7 @@ const TabelaFuncionarios = () => {
       field: 'escalaInicio',
       headerName: 'Inicio expediente',
       flex: 1,
+      renderCell: (params) => params.value ? formatarData(params.value) : '',
       headerClassName: 'super-app-theme--header',
       hideable: false,
       resizable: false,
@@ -92,7 +102,7 @@ const TabelaFuncionarios = () => {
       field: 'dataInicio',
       headerName: 'Início Afastamento',
       flex: 1,
-      renderCell: (params) => formatarData(params.value),
+      renderCell: (params) => params.value ? formatarData(params.value) : '',
       headerClassName: 'super-app-theme--header',
       hideable: false,
       resizable: false,
@@ -103,7 +113,7 @@ const TabelaFuncionarios = () => {
       field: 'dataTermino',
       headerName: 'Fim Afastamento',
       flex: 1,
-      renderCell: (params) => formatarData(params.value),
+      renderCell: (params) => params.value ? formatarData(params.value) : '',
       headerClassName: 'super-app-theme--header',
       hideable: false,
       resizable: false,
