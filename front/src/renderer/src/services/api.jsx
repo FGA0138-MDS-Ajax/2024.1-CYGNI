@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:80";
 
 const createConfig = () => {
     return {
@@ -16,7 +16,7 @@ export const login = async (data) => {
 }
 
 export const cadastrarAdministrador = async (data) => {
-    return axios.post(`${BASE_URL}/administradores`, data);
+    return axios.post(`${BASE_URL}/administradores`, data,createConfig());
 }
 
 export const buscarAdministradores = async (data) => {
@@ -24,11 +24,11 @@ export const buscarAdministradores = async (data) => {
 }
 
 export const editarAdministrador = async (id, data) => {
-    return axios.patch(`${BASE_URL}/administradores/${id}`, data);
+    return axios.patch(`${BASE_URL}/administradores/${id}`, data,createConfig());
 }
 
 export const excluirAdministrador = async (id) => {
-    return axios.delete(`${BASE_URL}/administradores/${id}`);
+    return axios.delete(`${BASE_URL}/administradores/${id}`,createConfig());
 }
 
 // redefinicao de senha

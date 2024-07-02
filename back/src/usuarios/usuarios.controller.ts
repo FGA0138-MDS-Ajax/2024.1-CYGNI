@@ -8,7 +8,9 @@ export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto,@Req() req: Request) {
+  create(
+  @Body() createUsuarioDto: CreateUsuarioDto,
+  @Req() req: Request) {
     const nomeDoAdministrador = req['usuario'];
     const privilegio = req['permissao'];
     if(!privilegio){
