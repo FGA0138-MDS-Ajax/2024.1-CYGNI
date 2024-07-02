@@ -60,25 +60,48 @@ export class UsuariosService {
       }
 
       // Criação do objeto de atualização
-    const updateFields: any = { ...updateUsuarioDto };
+      const { motivo, anoReferencia, dataInicio, dataTermino, observacoes, ...restUpdateDto } = updateUsuarioDto;
 
-    // Remover o motivo do updateFields para tratá-lo separadamente
-    const { motivo, ...restUpdateDto } = updateUsuarioDto;
+      // Converter para arrays se não forem
+      const motivoArray = Array.isArray(motivo) ? motivo : [motivo];
+      const observacoesArray = Array.isArray(observacoes) ? observacoes : [observacoes];
+      const anoReferenciaArray = Array.isArray(anoReferencia) ? anoReferencia : [anoReferencia];
+      const dataInicioArray = Array.isArray(dataInicio) ? dataInicio.map(date => new Date(date)) : [new Date(dataInicio)];
+      const dataTerminoArray = Array.isArray(dataTermino) ? dataTermino.map(date => new Date(date)) : [new Date(dataTermino)];
 
-    // Adição do operador $push para o campo motivo se estiver presente
-    let updateQuery: any = { ...restUpdateDto };
-    if (motivo) {
-      updateQuery = {
-        ...restUpdateDto,
-        $push: { motivo }
-      };
-    }
+      // Criação do objeto de atualização
+      let updateQuery: any = { ...restUpdateDto };
+      let arrayUpdate: any = {};
 
-    const atualizaUsuario = await this.usuarioModel.findOneAndUpdate(
-      filter,
-      updateQuery,
-      { new: true }
-    ).exec();
+      if (motivoArray.length > 0) {
+        arrayUpdate.motivo = { $each: motivoArray };
+      }
+      if (observacoesArray.length > 0)  {
+        arrayUpdate.observacoes  = { $each: observacoesArray };
+      }
+      if (anoReferenciaArray.length > 0) {
+        arrayUpdate.anoReferencia = { $each: anoReferenciaArray.map(Number) };
+      }
+      if (dataInicioArray.length > 0) {
+        arrayUpdate.dataInicio = { $each: dataInicioArray };
+      }
+      if (dataTerminoArray.length > 0) {
+        arrayUpdate.dataTermino = { $each: dataTerminoArray };
+      }
+
+      if (Object.keys(arrayUpdate).length > 0) {
+        updateQuery = {
+          ...updateQuery,
+          $push: arrayUpdate
+        };
+      }
+
+
+      const atualizaUsuario = await this.usuarioModel.findOneAndUpdate(
+        filter,
+        updateQuery,
+        { new: true }
+      ).exec();
 
       if (!atualizaUsuario) {
         throw new NotFoundException('Usuário não encontrado');
