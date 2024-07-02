@@ -9,6 +9,7 @@ import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 import utc from 'dayjs/plugin/utc';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import { Box } from '@mui/material';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
@@ -54,42 +55,42 @@ function markNonWorkDays(escalaInicio, escala) {
       }
       break;
     case '12 x 36':
-        // trabalha um dia e folga um dia
-        for (let i = 0; i < 365; i += 2) { // Incrementa de 2 em 2 dias para cada ciclo de trabalho+folga
-          const currentDate = startOfDay.add(i, 'day'); // Calcula o dia atual de trabalho
-          workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona o dia de trabalho
-        }
-        break;
+      // trabalha um dia e folga um dia
+      for (let i = 0; i < 365; i += 2) { // Incrementa de 2 em 2 dias para cada ciclo de trabalho+folga
+        const currentDate = startOfDay.add(i, 'day'); // Calcula o dia atual de trabalho
+        workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona o dia de trabalho
+      }
+      break;
     case '24 x 72':
-          // trabalha um dia e folga três dias
-        for (let i = 0; i < 365; i += 4) { // Incrementa de 4 em 4 dias para cada ciclo de trabalho+folga
-          const currentDate = startOfDay.add(i, 'day'); // Calcula o dia atual de trabalho
-          workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona o dia de trabalho
+      // trabalha um dia e folga três dias
+      for (let i = 0; i < 365; i += 4) { // Incrementa de 4 em 4 dias para cada ciclo de trabalho+folga
+        const currentDate = startOfDay.add(i, 'day'); // Calcula o dia atual de trabalho
+        workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona o dia de trabalho
+      }
+      break;
+    case '8 x 40':
+      // Trabalha segunda-feira, quarta-feira e sexta-feira em uma semana;
+      // na outra semana, terça-feira, quinta-feira e sábado, nunca domingo.
+      for (let i = 0; i < 365; i += 7) {
+        const weekStart = startOfDay.add(i, 'days');
+        if (Math.floor(i / 7) % 2 === 0) { // Semana par: segunda, quarta, sexta
+          workDays.add(weekStart.format('YYYY-MM-DD')); // Segunda-feira
+          workDays.add(weekStart.add(2, 'days').format('YYYY-MM-DD')); // Quarta-feira
+          workDays.add(weekStart.add(4, 'days').format('YYYY-MM-DD')); // Sexta-feira
+        } else { // Semana ímpar: terça, quinta, sábado
+          workDays.add(weekStart.add(1, 'days').format('YYYY-MM-DD')); // Terça-feira
+          workDays.add(weekStart.add(3, 'days').format('YYYY-MM-DD')); // Quinta-feira
+          workDays.add(weekStart.add(5, 'days').format('YYYY-MM-DD')); // Sábado
         }
-        break;
-        case '8 x 40':
-          // Trabalha segunda-feira, quarta-feira e sexta-feira em uma semana;
-          // na outra semana, terça-feira, quinta-feira e sábado, nunca domingo.
-          for (let i = 0; i < 365; i += 7) {
-            const weekStart = startOfDay.add(i, 'days');
-            if (Math.floor(i / 7) % 2 === 0) { // Semana par: segunda, quarta, sexta
-              workDays.add(weekStart.format('YYYY-MM-DD')); // Segunda-feira
-              workDays.add(weekStart.add(2, 'days').format('YYYY-MM-DD')); // Quarta-feira
-              workDays.add(weekStart.add(4, 'days').format('YYYY-MM-DD')); // Sexta-feira
-            } else { // Semana ímpar: terça, quinta, sábado
-              workDays.add(weekStart.add(1, 'days').format('YYYY-MM-DD')); // Terça-feira
-              workDays.add(weekStart.add(3, 'days').format('YYYY-MM-DD')); // Quinta-feira
-              workDays.add(weekStart.add(5, 'days').format('YYYY-MM-DD')); // Sábado
-            }
-          }
-          break;
-          case '12 x 60':
-            // trabalha um dia e folga dois
-            for (let i = 0; i < 365; i += 3) { // Incrementa i por 3 para cada ciclo de trabalho+folga
-              const currentDate = startOfDay.add(i, 'day');
-              workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona apenas um dia de trabalho
-            }
-            break;
+      }
+      break;
+    case '12 x 60':
+      // trabalha um dia e folga dois
+      for (let i = 0; i < 365; i += 3) { // Incrementa i por 3 para cada ciclo de trabalho+folga
+        const currentDate = startOfDay.add(i, 'day');
+        workDays.add(currentDate.format('YYYY-MM-DD')); // Adiciona apenas um dia de trabalho
+      }
+      break;
     default:
       break;
   }
@@ -110,29 +111,29 @@ export function DateCalendarServerRequest({ user }) {
   const fetchHighlightedDays = React.useCallback(() => {
     const controller = new AbortController();
     requestAbortController.current = controller;
-  
+
     const fetchData = async () => {
       setIsLoading(true);
       try {
         if (!user || !user.escalaInicio || !user.escala) {
           throw new Error('No user or data found');
         }
-  
+
         let combinedHighlightedDays = [];
-  
+
         if (user.dataInicio && user.dataTermino) {
           const filteredInicioDates = user.dataInicio.filter((date) => date !== null);
           const filteredFinalDates = user.dataTermino.filter((date) => date !== null);
-  
+
           combinedHighlightedDays = filteredInicioDates.map((inicio, index) => {
             const final = filteredFinalDates[index];
             if (!final) return inicio; // Handle case where final date is missing
             return `${inicio}_${final}`;
           });
         }
-  
+
         console.log('fetchHighlightedDays - combinedHighlightedDays:', combinedHighlightedDays);
-  
+
         setHighlightedDaysFromServer(combinedHighlightedDays);
         setErrorMessage('');
       } catch (error) {
@@ -144,89 +145,98 @@ export function DateCalendarServerRequest({ user }) {
         setIsLoading(false);
       }
     };
-  
+
     fetchData();
-  
+
     return () => controller.abort();
   }, [user]);
-  
+
   const markedDays = React.useMemo(() => {
     if (!user) return [];
-  
+
     let daysToMark = [];
-  
+
     if (user.escalaInicio && user.escala) {
       daysToMark = markNonWorkDays(user.escalaInicio, user.escala);
     }
-  
+
     let allHighlightedDays = [...daysToMark];
-  
+
     if (user.dataInicio && user.dataTermino) {
       const filteredInicioDates = user.dataInicio.filter((date) => date !== null);
       const filteredFinalDates = user.dataTermino.filter((date) => date !== null);
-  
+
       const combinedHighlightedDays = filteredInicioDates.map((inicio, index) => {
         const final = filteredFinalDates[index];
         if (!final) return inicio; // Handle case where final date is missing
         return `${inicio}_${final}`;
       });
-  
+
       allHighlightedDays = [
         ...allHighlightedDays,
         ...combinedHighlightedDays
       ];
     }
-  
+
     console.log('markedDays - allHighlightedDays:', allHighlightedDays);
-  
+
     // Convert highlighted days ranges into individual days
     const expandedHighlightedDays = allHighlightedDays.flatMap((range) => {
       if (range.includes('_')) {
         const [start, end] = range.split('_');
-  
+
         let current = dayjs.utc(start);
         const endDate = dayjs.utc(end);
         const days = [];
-  
+
         while (current.isSameOrBefore(endDate)) {
           const formattedDate = current.format('YYYY-MM-DD');
           days.push(formattedDate);
           current = current.add(1, 'day');
         }
-  
+
         return days;
       } else {
         return [range];
       }
     });
-  
+
     console.log('markedDays - expandedHighlightedDays:', expandedHighlightedDays);
-  
+
     return [...new Set(expandedHighlightedDays)];
   }, [user]);
-  
-  
-  
+
+
+
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {errorMessage ? (
-        <div>{errorMessage}</div>
-      ) : (
-        <DateCalendar
-          defaultValue={initialValue}
-          loading={isLoading}
-          renderLoading={() => <DayCalendarSkeleton />}
-          slots={{
-            day: ServerDay,
-          }}
-          slotProps={{
-            day: {
-              highlightedDays: markedDays,
-            },
-          }}
-        />
-      )}
-    </LocalizationProvider>
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        {errorMessage ? (
+          <div>{errorMessage}</div>
+        ) : (
+          <DateCalendar
+            sx={
+              {
+                border: "2px solid #004373",
+                height: 500,
+
+              }
+            }
+            defaultValue={initialValue}
+            loading={isLoading}
+            renderLoading={() => <DayCalendarSkeleton />}
+            slots={{
+              day: ServerDay,
+            }}
+            slotProps={{
+              day: {
+                highlightedDays: markedDays,
+              },
+            }}
+          />
+        )}
+      </LocalizationProvider>
+    </Box >
   );
 }

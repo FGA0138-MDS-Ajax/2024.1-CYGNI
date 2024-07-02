@@ -14,9 +14,9 @@ import { DateCalendarServerRequest } from '../../components/calendario/calendari
 const TelaCalendario = () => {
     const location = useLocation();
     const funcionario = location.state?.funcionario;
-    console.log('funcionari',{funcionario})
+    console.log('funcionari', { funcionario })
 
-   
+
 
     const {
         register,
@@ -29,7 +29,10 @@ const TelaCalendario = () => {
         <div className="conteiner-relatorio-mensal">
             <MenuLateral />
             <div className="conteiner-relatorio">
-            <DateCalendarServerRequest user={funcionario} />
+                <h1>Campanha Individual</h1>
+                <h2>Confira aqui os dias de trabalho e afastamento do funcionário selecionado</h2>
+                <h3>Funcionário selecionado: {`${funcionario.nomeCompleto}`}</h3>
+                <DateCalendarServerRequest user={funcionario} />
             </div>
         </div>
     );
