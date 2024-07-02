@@ -125,6 +125,9 @@ export class Usuario {
     @Prop({ required: false, default: () => [] })  //lista de motivos
     motivo: (string | null)[];
 
+    @Prop({ required: false , default:null})
+    situacao: (string | null);
+
     @Prop({ required: false, default: () => [] })  //não precisa
     anoReferencia: (number | null)[];
 

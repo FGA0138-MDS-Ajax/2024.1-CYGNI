@@ -44,6 +44,7 @@ export class CreateUsuarioDto {
 
     // afastamento
     motivo: string[]
+    situacao:string
     anoReferencia: number
     dataInicio: Date
     dataTermino: Date
