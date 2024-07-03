@@ -92,7 +92,7 @@ const textoLocalCustomizado = {
 export function DataTable({ funcionario }) {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const { motivo = [], dataInicio = [], dataTermino = [] } = funcionario || {};
-	
+
 	// Filtra e formata os dados de afastamentos para exibição na tabela
 	const afastamentos = motivo
 		.map((motivoItem, index) => ({

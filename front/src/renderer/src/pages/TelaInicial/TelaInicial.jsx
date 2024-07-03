@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as api from "../../services/api.jsx";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
 import MenuLateral from "../../components/MenuLateral/MenuLateral.jsx";
 import ModalPerfil from "../../components/ModalPerfil/ModalPerfil.jsx";
 
-import ImagemTelaInicial from "../../assets/img/imagem-tela-inicial.svg"
-import TextoTelaInicial from "../../assets/img/texto-imagem-inicial.svg"
-import Botao from "../../components/Botao/Botao.jsx"
+import ImagemTelaInicial from "../../assets/img/imagem-tela-inicial.svg";
+import TextoTelaInicial from "../../assets/img/texto-imagem-inicial.svg";
+import Botao from "../../components/Botao/Botao.jsx";
 
 import { FaSearch } from "react-icons/fa";
 import { FiArrowUpCircle } from "react-icons/fi";
@@ -19,9 +19,9 @@ import { jwtDecode } from "jwt-decode";
 
 const TelaInicial = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false); // Controle do estado do modal
-	const [privilegio, setPrivilegio] = useState(false);	// Controle do privilégio do usuário
+	const [privilegio, setPrivilegio] = useState(false); // Controle do privilégio do usuário
 	const [funcionarios, setFuncionarios] = useState([]); // Lista de funcionários
-	const [pesquisa, setPesquisa] = useState("");	// Termo de pesquisa
+	const [pesquisa, setPesquisa] = useState(""); // Termo de pesquisa
 	const navegar = useNavigate();
 	const [adminLog, setAdmin] = useState([]); // Login do administrador
 
@@ -37,7 +37,7 @@ const TelaInicial = () => {
 			try {
 				const decodificado = jwtDecode(token);
 				setPrivilegio(decodificado.privilegios);
-				setAdmin(decodificado.login)
+				setAdmin(decodificado.login);
 			} catch (error) {
 				console.error("erro ao decodificar token:", error);
 			}
@@ -49,16 +49,18 @@ const TelaInicial = () => {
 	}, 300);
 
 	// Filtragem de funcionários de acordo com o termo de pesquisa
-	const funcionariosFiltrados = pesquisa.trim() ? funcionarios.filter(funcionario =>
-		// Filtra funcionários cujo nome ou matrícula contenham o termo de pesquisa, ignorando maiúsculas/minúsculas
-		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase()) ||
-		funcionario.matricula.includes(pesquisa)
-	) : [];
-
+	const funcionariosFiltrados = pesquisa.trim()
+		? funcionarios.filter(
+				(funcionario) =>
+					// Filtra funcionários cujo nome ou matrícula contenham o termo de pesquisa, ignorando maiúsculas/minúsculas
+					funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase()) ||
+					funcionario.matricula.includes(pesquisa),
+			)
+		: [];
 
 	const handleFuncionarioSelecionado = (funcionario) => {
-		navegar('/tela-cadastro', { state: { funcionario } });
-	}
+		navegar("/tela-cadastro", { state: { funcionario } });
+	};
 
 	const irParaTelaCadastro = () => {
 		navegar("/tela-cadastro");
@@ -70,7 +72,7 @@ const TelaInicial = () => {
 
 	const closeModal = () => {
 		setIsModalOpen(false);
-	}
+	};
 
 	return (
 		<div className="tela-inicial">
@@ -79,10 +81,18 @@ const TelaInicial = () => {
 				<div className="div-superior">
 					<div className="barra-de-pesquisa">
 						<FaSearch size={25} className="icone-pesquisa" color="#777777" />
-						<input type="text" placeholder="Pesquise por matrícula ou nome do funcionário..." onChange={(e) => handleSearch(e.target.value)} />
+						<input
+							type="text"
+							placeholder="Pesquise por matrícula ou nome do funcionário..."
+							onChange={(e) => handleSearch(e.target.value)}
+						/>
 						<div className="lista-funcionarios">
 							{funcionariosFiltrados.map((funcionario) => (
-								<ul key={funcionario._id} className="funcionario-item" onClick={() => handleFuncionarioSelecionado(funcionario)}>
+								<ul
+									key={funcionario._id}
+									className="funcionario-item"
+									onClick={() => handleFuncionarioSelecionado(funcionario)}
+								>
 									<li>{`${funcionario.matricula} | ${funcionario.nomeCompleto}`}</li>
 								</ul>
 							))}
@@ -129,8 +139,8 @@ const TelaInicial = () => {
 						<img src={ImagemTelaInicial} alt="imagem-tela-inicial" />
 					</div>
 				</div>
-			</div >
-		</div >
+			</div>
+		</div>
 	);
 };
 

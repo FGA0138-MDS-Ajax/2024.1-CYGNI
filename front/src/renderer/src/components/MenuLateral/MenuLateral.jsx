@@ -14,7 +14,7 @@ const MenuLateral = () => {
 	const menuItems = [
 		{ icon: <FiHome />, text: "Início", path: "/inicial" },
 		{ icon: <FiCalendar />, text: "Relatório", path: "/tela-relatorio" },
-		{ icon: <FiClipboard />, text: "Campanha", path:'/tela-campanha' },
+		{ icon: <FiClipboard />, text: "Campanha", path: "/tela-campanha" },
 		{ icon: <FiUser />, text: "Admins", path: "/tela-adm" },
 	];
 

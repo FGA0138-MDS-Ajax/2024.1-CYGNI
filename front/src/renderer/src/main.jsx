@@ -7,9 +7,8 @@ import TelaCadastro from "./pages/TelaCadastro/TelaCadastro.jsx";
 import TelaRelatorio from "./pages/TelaRelatorio/TelaRelatorio.jsx";
 import TelaRedefinicao from "./pages/TelasRedefinicao/TelaRedefinicao.jsx";
 import TelaRecuperacao from "./pages/TelasRedefinicao/TelaRecuperacao.jsx";
-import TelaCampanha from '../src/pages/TelaCampanha/TelaCampanha.jsx'
+import TelaCampanha from "../src/pages/TelaCampanha/TelaCampanha.jsx";
 import TelaCalendario from "./pages/TelaCalendario/telaCalendario.jsx";
-
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { RedefinicaoProvider } from "./pages/TelasRedefinicao/redefinicaoContext.jsx";
