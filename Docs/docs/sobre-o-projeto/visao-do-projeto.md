@@ -48,4 +48,7 @@ O produto oferece uma solução confiável e eficiente para a criação de escal
 ## Atualização do escopo do projeto
 | Versão | Alteração | Motivo |
 |--------|-----------|--------|
-| 2.0    | Corte na criação de escalas de trabalho | Essa decisão foi tomada porque a escala era um objetivo secundário e, devido à sua complexidade de implementação, o grupo optou por concentrar seus esforços nas funcionalidades principais. |
+| 2.0    | Corte na criação de escalas de trabalho | Essa decisão foi tomada porque, além de ser um objetivo secundário, a criação de escalas apresentou dificuldades significativas na implementação. O grupo optou por concentrar seus esforços nas funcionalidades principais. |
+
+## Primeira versão do Documento de Visão
+Para acessar a versão 1.0 da Visão do Projeto, consulte o [PDF do Documento de Visão](../../static/files/Documento%20de%20Visão.pdf).
