@@ -214,7 +214,7 @@ export function DateCalendarServerRequest({ user }) {
                 backgroundColor: '#03161A',
 
                 '.css-1t0788u-MuiPickersSlideTransition-root-MuiDayCalendar-slideTransition': {
-                  overflow: 'hidden'
+                  overflow: 'visible'
                 },
                 // Números Dias
                 '.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root': {
