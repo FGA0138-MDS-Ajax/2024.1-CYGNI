@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException, BadRequestException, Logger } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -13,7 +13,13 @@ export class UsuariosService {
   ) { }
 
   async create(createUsuarioDto: CreateUsuarioDto) { 
+    const usuarioExistente = await this.usuarioModel.findOne({ matricula: createUsuarioDto.matricula }).exec();
+    Logger.log(usuarioExistente);
+    if (usuarioExistente) {
+      throw new BadRequestException('Já existe um usuário com esta matrícula.');
+    }
     const newUser = await this.usuarioModel.create(createUsuarioDto);
+    Logger.log(newUser);
     return newUser;
   }
 

@@ -208,7 +208,13 @@ const TelaCadastro = () => {
 			}
 		} catch (error) {
 			console.error(error); // Adicione este console.log para verificar o erro
-			setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
+			if (error.response && error.response.status === 400) {
+				// Trata especificamente o erro BadRequest
+				setAlert({ type: "error", message: "Matrícula já existente!" });
+			} else {
+				// Trata outros tipos de erro
+				setAlert({ type: "error", message: "Não foi possível realizar essa ação!" });
+			}
 			setDisabled(false);
 		}
 	};
