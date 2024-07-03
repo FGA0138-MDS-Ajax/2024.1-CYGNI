@@ -200,7 +200,7 @@ export function DateCalendarServerRequest({ user }) {
     return [...new Set(expandedHighlightedDays)];
   }, [user]);
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', }}>
+    <Box sx={{ margin: '0 10% 0 10%', height: '100%', width: '80%', display: 'flex', justifyItems: 'center' }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         {errorMessage ? (
           <div>{errorMessage}</div>
@@ -208,86 +208,76 @@ export function DateCalendarServerRequest({ user }) {
           <DateCalendar
             sx={
               {
-                width: '60%',
-                maxHeight: '700px',
-                height: '90%',
+                width: '100%',
+                maxHeight: '100%',
+                height: '70%',
                 backgroundColor: '#03161A',
+
+                // Números Dias
                 '.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root': {
-                  color: '#444444',
+                  color: '#fff',
                   fontWeight: 'bold',
-                  fontSize: '1.25rem'
+                  fontSize: '1rem'
                 },
+
+                // Dias Semana
                 '.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel': {
                   color: '#444444',
                   fontWeight: 'bold',
-                  fontSize: '1.25rem'
+                  fontSize: '1rem',
                 },
+                // Dia Atual da Semana
                 '.css-23p0if-MuiButtonBase-root-MuiPickersDay-root': {
                   color: '#03161A',
+                  fontSize: '1rem',
                   fontWeight: 'bold',
                 },
                 '.css-23p0if-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected)': {
-                  color: '#444444',
+                  color: '#fff',
                   border: '2.5px solid #D3D3D3',
                 },
                 '.css-6qnqtw-MuiDateCalendar-root .css-23p0if-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected)': {
-                  fontSize: '1.25rem'
-                },
-                '.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected': {
-                  backgroundColor: '#FFA800',
-                  fontSize: '1.25rem'
-                },
-                '.css-23p0if-MuiButtonBase-root-MuiPickersDay-root.Mui-selected': {
-                  backgroundColor: '#FFA800',
-                  fontSize: '1.25rem'
+                  fontSize: '1rem',
                 },
 
+                // Setinhas < >
                 '.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button': {
                   color: '#FFA800'
                 },
                 '.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button': {
                   color: '#FFA800'
                 },
+                // Expansor de meses \/
                 '.css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon': {
                   color: '#fff'
                 },
-                '.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected': {
-                  backgroundColor: '#FFA800'
-                },
-                '.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover': {
-                  backgroundColor: '#FFA800'
-                },
-                '.css-23p0if-MuiButtonBase-root-MuiPickersDay-root:focus.Mui-selected': {
-                  backgroundColor: '#FFA800'
-                },
+                // Cor da Barra de Meses
                 '.css-1aqny2q-MuiPickersCalendarHeader-root': {
                   backgroundColor: '#03161A',
-                  borderRadius: '8px'
-                },
-                '.css-189spg7-MuiDateCalendar-root': {
-                  backgroundColor: '#fff'
                 },
                 // Parte amarela que contém os dias da semana
                 '.css-i5q14k-MuiDayCalendar-header': {
                   backgroundColor: '#FFA800',
                   justifyContent: 'space-evenly',
+                  fontWeight: 'bold',
                   // marginLeft: '10%',
                   // marginRight: '10%',
                 },
                 // Parte branca que contém os dias de 1 a 30
                 '.css-2jurxj-MuiDayCalendar-slideTransition': {
-                  backgroundColor: '#fff'
+                  backgroundColor: '#03161A',
+                  // marginLeft: '10%',
+                  // marginRight: '10%',
                 },
                 // X
                 '.css-1r7ctd-MuiBadge-badge': {
-                  color: '#444444'
+                  color: 'red'
                 },
                 '.css-flbe84-MuiDayCalendar-weekContainer': {
                   justifyContent: 'space-evenly',
                   // marginLeft: '10%',
                   // marginRight: '10%',
-                  marginTop: '4%',
-                  marginBottom: '6%'
+                  marginTop: '1%'
                 }
               }
             }

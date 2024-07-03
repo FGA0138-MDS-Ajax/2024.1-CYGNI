@@ -11,7 +11,7 @@
   flex-direction: row;
   height: 100vh;
   width: 100vw;
-  background-color: #032026;
+  background-color: #06343D;
   color: white;
 }
 
@@ -26,23 +26,29 @@
 .conteiner-calendario h1 {
   color: #FFA800;
   font-weight: bold;
-  margin-left: 7.5%;
+  margin-left: 10%;
   margin-top: 1%;
 }
 
 .conteiner-calendario h2 {
-  margin-left: 7.5%;
+  margin-left: 10%;
   margin-top: 0.5%;
-  font-weight: 500;
   font-size: 1rem;
-  color: #C7C7C7;
+  color: #ffffff;
+  margin-bottom: 1%;
+  font-weight: 400;
 }
 
 .conteiner-calendario p {
-  font-size: 1.2rem;
-  color: #dbdbdb;
-  margin-left: 7.5%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10%;
   margin-bottom: 2.5%;
+}
+
+.conteiner-calendario span {
+  color: #FFA800;
 }
 
 .botao-voltar {

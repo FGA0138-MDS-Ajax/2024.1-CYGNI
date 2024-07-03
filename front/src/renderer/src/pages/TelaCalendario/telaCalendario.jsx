@@ -29,7 +29,7 @@ const TelaCalendario = () => {
                         id="voltar"
                         icone={<HiArrowUturnLeft size={20} style={{ marginRight: "5px" }} />}
                         texto="Voltar"
-                        cor="#032026"
+                        cor="#06343D"
                         corTexto="#fff"
                         largura={"130px"}
                         aoClicar={() => {
@@ -40,7 +40,7 @@ const TelaCalendario = () => {
                 <h1>Campanha Individual</h1>
                 <h2>Confira aqui os dias de trabalho e afastamento do funcionário selecionado.</h2>
                 <DateCalendarServerRequest user={funcionario} />
-                <p>Funcionário selecionado: {`${funcionario.nomeCompleto}`}</p>
+                <p>Funcionário atual: <span>{`${funcionario.nomeCompleto}`}</span></p>
             </div>
         </div>
     );
