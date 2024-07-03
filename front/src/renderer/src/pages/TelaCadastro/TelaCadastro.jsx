@@ -89,7 +89,7 @@ const TelaCadastro = () => {
 				classificacao: funcionario.classificacao,
 				funcao: funcionario.funcao,
 				escala: funcionario.escala,
-				escalaInicio: funcionario.escalaInicio,
+				escalaInicio: funcionario.escalaInicio ? new Date(funcionario.escalaInicio).toISOString().split('T')[0] : '',
 				horarioEscala: funcionario.horarioEscala,
 				lotacao: funcionario.lotacao,
 				comportamento: funcionario.comportamento,
@@ -187,9 +187,9 @@ const TelaCadastro = () => {
 					([key, value]) => value !== '' && value !== null && value !== undefined
 				)
 			);
-	
+
 			console.log(dadosValidos); // Adicione este console.log para verificar os dados
-	
+
 			if (funcionario) {
 				await api.editarUsuario(funcionario._id, dadosValidos);
 				setAlert({ type: "success", message: "Editado com sucesso!" });
@@ -212,7 +212,7 @@ const TelaCadastro = () => {
 			setDisabled(false);
 		}
 	};
-	
+
 
 	const excluirUsuario = async () => {
 		setDisabled(true);
