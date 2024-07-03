@@ -29,7 +29,7 @@ const TelaCalendario = () => {
                         id="voltar"
                         icone={<HiArrowUturnLeft size={20} style={{ marginRight: "5px" }} />}
                         texto="Voltar"
-                        cor="#06343D"
+                        cor="#032026"
                         corTexto="#fff"
                         largura={"130px"}
                         aoClicar={() => {
