@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import { useLocation } from "react-router-dom";
-import "../TelaRelatorio/TelaRelatorio.css";
-import Timeline, { DateHeader } from 'react-calendar-timeline';
+import "../TelaCampanha/TelaCampanha.css";
+import Timeline, { DateHeader, TimelineHeaders } from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
+import { FiDownload } from "react-icons/fi";
 import axios from 'axios';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import Botao from "../../components/Botao/Botao";
 import * as XLSX from 'xlsx'; // Importação da biblioteca XLSX para manipulação de Excel
 dayjs.extend(utc);
 
@@ -134,11 +136,11 @@ const TelaCampanha = () => {
                         isWorkDay: true,
                         itemProps: {
                             style: {
-                                color: "green", // Cor para dias de trabalho
+                                color: "#307764", // Cor para dias de trabalho
                                 background: "none", // Fundo transparente
-                                fontWeight:"bold",
-                                border:"none",
-                                left:0 
+                                fontWeight: "bold",
+                                border: "none",
+                                left: 0
                             }
                         }
                     })).concat(
@@ -153,9 +155,9 @@ const TelaCampanha = () => {
                                 style: {
                                     color: "red", // Cor para dias sem trabalho
                                     background: "none",
-                                    fontWeight:"bold" ,
-                                    border:"none",
-                                    left:0
+                                    fontWeight: "bold",
+                                    border: "none",
+                                    left: 0
                                 }
                             }
                         }))
@@ -179,8 +181,8 @@ const TelaCampanha = () => {
                                     style: {
                                         color: "blue", // Cor para dias sem trabalho
                                         background: "none",
-                                        fontWeight:"bold",
-                                        border:"none" 
+                                        fontWeight: "bold",
+                                        border: "none"
                                     }
                                 }
                             });
@@ -238,16 +240,33 @@ const TelaCampanha = () => {
         });
 
         const ws = XLSX.utils.aoa_to_sheet(dataToExport);
-        XLSX.utils.book_append_sheet(workbook, ws, 'Funcionários');
+        XLSX.utils.book_append_sheet(workbook, ws, "Funcionários");
 
-        XLSX.writeFile(workbook, 'timeline_data.xlsx');
+        XLSX.writeFile(workbook, "campanha.xlsx");
     };
-
     return (
-        <div className="conteiner-relatorio-mensal">
+        <div className="campanha">
             <MenuLateral />
-            <div className="conteiner-relatorio">
-                <button onClick={exportToExcel}>Exportar para Excel</button>
+            <div className="conteiner-campanha">
+                <div className="conteiner-textos-campanhas">
+                    <h1>Campanha</h1>
+                    <p>Gerenciamento da disponibilidade de funcionários para todos os dias da semana.</p>
+                    <div className="botao-exportar">
+                        <div className="titulo-legenda">
+                            <p>SV = serviço  </p>
+                            <p>X = indisponível  </p>
+                            <p>AF = afastado  </p>
+                        </div>
+                        <Botao
+                            texto="Exportar para Excel"
+                            icone={<FiDownload size={20} style={{ marginRight: "5px" }} />}
+                            cor="#fff"
+                            corTexto="#032026"
+                            largura={"20%"}
+                            aoClicar={exportToExcel}
+                        />
+                    </div>
+                </div>
                 <Timeline
                     groups={groups}
                     items={items}
@@ -260,10 +279,11 @@ const TelaCampanha = () => {
                     lineHeight={50}
                     itemHeightRatio={0.75}
                     stackItems
+                    sidebarWidth={150}
+                    style={{ height: "85%", width: "92%", backgroundColor: "white" }}
                 >
                     <DateHeader
                         unit="primaryHeader"
-                        style={{ color: "green" }} // Cor do cabeçalho das datas
                     />
                 </Timeline>
             </div>

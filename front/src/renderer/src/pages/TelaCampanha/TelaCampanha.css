@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.campanha {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  background-color: #032026;
+}
+
+.conteiner-textos-campanhas {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  width: 92%;
+  height: fit-content;
+  margin-bottom: 1%;
+}
+
+.conteiner-textos-campanhas h1 {
+  color: #FFA800;
+  margin-top: 2%;
+}
+
+.conteiner-textos-campanhas p {
+  color: #c7c7c7;
+  margin-top: 0.5%;
+}
+
+
+.conteiner-campanha {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 93.5%;
+  box-sizing: border-box;
+}
+
+.botao-exportar {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100%;
+  align-items: center;
+}
+
+.botao-exportar button {
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bolder;
+  height: 50%;
+  padding: 1.5%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-legenda{
+  display: flex;
+  flex-direction: row;
+  width: 35%;
+  justify-content: space-between;
+}
+
+.titulo-legenda p {
+  color: white;
+}
+
+.p-af {
+  color: blue;
+}
+
+.p-x {
+  color: red;
+}
+
+.p-sv {
+  color: green;
+}

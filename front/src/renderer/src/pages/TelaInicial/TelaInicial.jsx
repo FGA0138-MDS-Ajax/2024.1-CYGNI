@@ -44,9 +44,6 @@ const TelaInicial = () => {
 		}
 	}, []);
 
-
-	
-
 	const handleSearch = debounce((searchTerm) => {
 		setPesquisa(searchTerm);
 	}, 300);
