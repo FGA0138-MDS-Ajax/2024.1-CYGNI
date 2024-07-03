@@ -10,7 +10,7 @@ import { isValidObjectId } from 'mongoose';
 
 const mockUsuario = {
   nomeCompleto: 'Test User',
-  matricula: '12345',
+  matricula: '926543',
   nomeGuerra: 'TUser',
   nomeMae: 'Test Mother',
   nomePai: 'Test Father',
@@ -102,18 +102,21 @@ describe('UsuariosService', () => {
   describe('create', () => {
     it('should create a new user', async () => {
       const createUsuarioDto: CreateUsuarioDto = { ...mockUsuario };
+      (mockUsuarioModel.findOne as jest.Mock).mockReturnValue({
+          exec: jest.fn().mockResolvedValueOnce(null)
+      });
 
       const result = await service.create(createUsuarioDto);
       expect(result).toEqual({ _id: 'someId', ...createUsuarioDto });
       expect(mockUsuarioModel.create).toHaveBeenCalledWith(createUsuarioDto);
-    });
+  });
 
     it('should throw an error if create fails', async () => {
-      jest.spyOn(mockUsuarioModel, 'create').mockRejectedValueOnce(new Error('Test Error'));
+      jest.spyOn(mockUsuarioModel, 'create').mockRejectedValueOnce(new Error("Já existe um funcionario com esta matrícula."));
 
       const createUsuarioDto: CreateUsuarioDto = { ...mockUsuario };
 
-      await expect(service.create(createUsuarioDto)).rejects.toThrow('Test Error');
+      await expect(service.create(createUsuarioDto)).rejects.toThrow("Já existe um funcionario com esta matrícula.");
     });
   });
 
