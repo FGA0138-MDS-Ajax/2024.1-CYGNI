@@ -16,7 +16,7 @@ export class UsuariosService {
     const usuarioExistente = await this.usuarioModel.findOne({ matricula: createUsuarioDto.matricula }).exec();
     Logger.log(usuarioExistente);
     if (usuarioExistente) {
-      throw new BadRequestException('Já existe um usuário com esta matrícula.');
+      throw new BadRequestException('Já existe um funcionario com esta matrícula.');
     }
     const newUser = await this.usuarioModel.create(createUsuarioDto);
     Logger.log(newUser);

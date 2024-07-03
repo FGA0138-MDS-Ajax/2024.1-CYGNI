@@ -50,8 +50,8 @@ const columns = [
 ];
 
 const textoLocalCustomizado = {
-	noRowsLabel: "Nenhum funcionário cadastrado.",
-	noResultsOverlayLabel: "Nenhum funcionário encontrado.",
+	noRowsLabel: "Nenhum afastamento cadastrado.",
+	noResultsOverlayLabel: "Nenhum afastamento encontrado.",
 	columnHeaderFiltersTooltipActive: (count) =>
 		`${count} ${count !== 1 ? "filtros" : "filtro"} ativo${count !== 1 ? "s" : ""}`,
 	columnHeaderFiltersLabel: "Mostrar filtros",
