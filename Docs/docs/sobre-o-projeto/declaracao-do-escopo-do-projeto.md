@@ -34,3 +34,4 @@ evolui. O backlog do produto está detalhado na seguinte tabela
 |---|-------------------|-------------------------------|--------------------------|
 | `<1>` | Administrador     | O administrador tem acesso a todas as áreas da aplicação, pode acessar e editar fichas de pessoas, gerar relatórios, gerir os afastamentos, cadastrar outro administrador e gerir escalas. | - Acessar e editar fichas de pessoas, que contém nome, endereço, telefone, curso, tipo de trabalho. - Gerar relatórios de afastamentos, abono, contingente e férias. - Administrar escalas de trabalho. |
 | `<2>` | Usuário (Leitor)   | Apenas ler informações inseridas pelos administradores. | Leitura. |
+'

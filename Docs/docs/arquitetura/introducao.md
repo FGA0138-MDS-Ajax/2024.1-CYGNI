@@ -8,3 +8,6 @@ Esta seção descreve a arquitetura do sistema AGIS, sendo desenvolvido pelo gru
 
 # 2. Escopo
 O software AGIS é uma aplicação que busca otimizar a organização do trabalho do cliente. Ele permite o cadastro de funcionários e suas respectivas especificidades e, a partir disso, fornece ferramentas para analisar esses cadastros por meio de persistência e gestão de dados de forma a possibilitar a geração de relatórios de forma eficiente. O detalhamento do escopo se encontra no documento de visão do produto(seção anterior).
+
+## Primeira versão do Documento de Arquitetura
+Para acessar a versão 1.0 da Arquitetura do Projeto, consulte o [PDF do Documento de Arquitetura](../../static/files/DocumentodeArquitetura-Cygni.pdf).
