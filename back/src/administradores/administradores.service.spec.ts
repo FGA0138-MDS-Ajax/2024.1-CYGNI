@@ -24,7 +24,9 @@ describe('AdministradoresService', () => {
           provide: getModelToken(Administrador.name),
           useValue: {
             find: jest.fn(),
-            findOne: jest.fn(),
+            findOne: jest.fn().mockImplementation(() => ({
+              exec: jest.fn().mockResolvedValue(null),
+            })),
             findById: jest.fn().mockImplementation((id) => {
               if (id === 'validId') {
                 return { exec: jest.fn().mockResolvedValue({ name: 'Admin' }) };
@@ -41,7 +43,9 @@ describe('AdministradoresService', () => {
         {
           provide: getModelToken(TokenDeConfirmacao.name),
           useValue: {
-            findOne: jest.fn(),
+            findOne: jest.fn().mockImplementation(() => ({
+              exec: jest.fn().mockResolvedValue(null),
+            })),
             create: jest.fn(),
             save: jest.fn(),
             deleteOne: jest.fn(),
@@ -90,6 +94,9 @@ describe('AdministradoresService', () => {
       };
   
       jest.spyOn(administradorModel, 'create').mockResolvedValue(newAdmin as any);
+      jest.spyOn(administradorModel, 'findOne').mockImplementation(() => ({
+        exec: jest.fn().mockResolvedValue(null),
+      }));
       console.log(createAdministradorDto)
       const result = await service.create(createAdministradorDto);
   
