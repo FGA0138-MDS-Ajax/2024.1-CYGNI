@@ -1,3 +1,8 @@
+---
+sidebar_position: 11
+sidebar_label: "Relatorio de Testes"
+---
+
 # Relatório de Testes: Serviços e Controladores da Aplicação
 
 ## 1. `AdministradoresService` caso de teste
