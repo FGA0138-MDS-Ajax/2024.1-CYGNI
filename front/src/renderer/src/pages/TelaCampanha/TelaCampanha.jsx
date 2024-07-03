@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
-import { useLocation } from "react-router-dom";
 import "../TelaCampanha/TelaCampanha.css";
-import Timeline, { DateHeader, TimelineHeaders } from 'react-calendar-timeline';
+import Timeline, { DateHeader } from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
 import { FiDownload } from "react-icons/fi";
@@ -11,11 +9,12 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import Botao from "../../components/Botao/Botao";
-import * as XLSX from 'xlsx'; // Importação da biblioteca XLSX para manipulação de Excel
+import * as XLSX from 'xlsx';
 dayjs.extend(utc);
 
 const BASE_URL = "http://localhost:80";
 
+// Configuração padrão para requisições com token de autorização
 const createConfig = () => {
     return {
         headers: {
@@ -24,6 +23,7 @@ const createConfig = () => {
     }
 };
 
+// Função para marcar dias não úteis baseado na escala de trabalho
 const markNonWorkDays = (escalaInicio, escala) => {
     const allDays = [];
     const workDays = new Set();
@@ -83,6 +83,7 @@ const markNonWorkDays = (escalaInicio, escala) => {
     return { workDays: Array.from(workDays), nonWorkDays };
 }
 
+// Função para calcular dias indisponíveis de um funcionário
 const calculateUnavailableDays = (dataInicio, dataTermino) => {
     const unavailableDays = [];
     const startDate = dayjs.utc(dataInicio).startOf('day');
@@ -98,20 +99,11 @@ const calculateUnavailableDays = (dataInicio, dataTermino) => {
 }
 
 const TelaCampanha = () => {
-    const location = useLocation();
-    const funcionario = location.state?.funcionario;
-
     const [groups, setGroups] = useState([]);
     const [items, setItems] = useState([]);
 
-    const {
-        register,
-        handleSubmit,
-        trigger,
-        formState: { errors },
-    } = useForm();
-
     useEffect(() => {
+        // Função para buscar funcionários e configurar grupos e itens da timeline
         const fetchFuncionarios = async () => {
             try {
                 const response = await axios.get(`${BASE_URL}/usuarios`, createConfig());
@@ -202,6 +194,7 @@ const TelaCampanha = () => {
         fetchFuncionarios();
     }, []);
 
+    // Função para exportar os dados da campanha para Excel
     const exportToExcel = () => {
         const workbook = XLSX.utils.book_new();
         const dataToExport = [['Funcionário']];

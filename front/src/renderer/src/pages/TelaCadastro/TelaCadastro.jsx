@@ -188,8 +188,6 @@ const TelaCadastro = () => {
 				)
 			);
 
-			console.log(dadosValidos); // Adicione este console.log para verificar os dados
-
 			if (funcionario) {
 				await api.editarUsuario(funcionario._id, dadosValidos);
 				setAlert({ type: "success", message: "Editado com sucesso!" });

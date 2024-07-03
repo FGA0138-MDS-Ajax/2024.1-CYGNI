@@ -18,12 +18,12 @@ import "./TelaInicial.css";
 import { jwtDecode } from "jwt-decode";
 
 const TelaInicial = () => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [privilegio, setPrivilegio] = useState(false);
-	const [funcionarios, setFuncionarios] = useState([]);
-	const [pesquisa, setPesquisa] = useState("");
+	const [isModalOpen, setIsModalOpen] = useState(false); // Controle do estado do modal
+	const [privilegio, setPrivilegio] = useState(false);	// Controle do privilégio do usuário
+	const [funcionarios, setFuncionarios] = useState([]); // Lista de funcionários
+	const [pesquisa, setPesquisa] = useState("");	// Termo de pesquisa
 	const navegar = useNavigate();
-	const [adminLog, setAdmin] = useState([]);
+	const [adminLog, setAdmin] = useState([]); // Login do administrador
 
 	useEffect(() => {
 		const fetchFuncionarios = async () => {
@@ -45,13 +45,16 @@ const TelaInicial = () => {
 	}, []);
 
 	const handleSearch = debounce((searchTerm) => {
-		setPesquisa(searchTerm);
+		setPesquisa(searchTerm); // Atualiza o termo de pesquisa com debounce
 	}, 300);
 
+	// Filtragem de funcionários de acordo com o termo de pesquisa
 	const funcionariosFiltrados = pesquisa.trim() ? funcionarios.filter(funcionario =>
+		// Filtra funcionários cujo nome ou matrícula contenham o termo de pesquisa, ignorando maiúsculas/minúsculas
 		funcionario.nomeCompleto.toLowerCase().includes(pesquisa.toLowerCase()) ||
 		funcionario.matricula.includes(pesquisa)
 	) : [];
+
 
 	const handleFuncionarioSelecionado = (funcionario) => {
 		navegar('/tela-cadastro', { state: { funcionario } });

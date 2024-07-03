@@ -1,5 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import MenuLateral from "../../components/MenuLateral/MenuLateral";
 import { useLocation } from "react-router-dom";
 import "../TelaRelatorio/TelaRelatorio.css";
@@ -11,15 +10,9 @@ import { useNavigate } from "react-router-dom";
 import './telaCalendario.css'
 
 const TelaCalendario = () => {
-    const navegar = useNavigate();
-    const location = useLocation();
+    const navegar = useNavigate(); // hook para navegacao
+    const location = useLocation(); 
     const funcionario = location.state?.funcionario;
-    const {
-        register,
-        handleSubmit,
-        trigger,
-        formState: { errors },
-    } = useForm();
     return (
         <div className="conteiner-tela-calendario">
             <MenuLateral />

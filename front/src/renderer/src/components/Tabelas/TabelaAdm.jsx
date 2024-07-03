@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../services/api.jsx';
-import { DataGrid, GridActionsCellItem, GridHeader } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import ModalPerfil from '../../components/ModalPerfil/ModalPerfil.jsx';
 import { jwtDecode } from "jwt-decode";
-import { propValidatorsDataGrid } from '@mui/x-data-grid/internals';
 
 const negrito = (params) => (
   <strong style={{ color: "white", fontSize: '16px' }}>{params.colDef.headerName}</strong>

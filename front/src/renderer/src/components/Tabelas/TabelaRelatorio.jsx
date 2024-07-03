@@ -133,7 +133,6 @@ export function DataTable() {
     const fetchRows = async () => {
       try {
         const response = await api.buscarUsuarios();
-        //console.log(response.data);
         const dataAtual = new Date();
         const funcionariosAtualizados = response.data.map(funcionario => {
           // Inicializa a situacao como "Apto" por padrão
@@ -141,9 +140,6 @@ export function DataTable() {
           
           const dataInicio = new Date(funcionario.dataInicio[funcionario.dataInicio.length-1]);
           const dataTermino = new Date(funcionario.dataTermino[funcionario.dataTermino.length-1]);
-          console.log(funcionario);
-          console.log("data inicio:",dataInicio);
-          console.log("data Termino:",dataTermino)
           if (dataAtual >= dataInicio && dataAtual <= dataTermino) {
             situacao = funcionario.motivo[funcionario.motivo.length-1]; //recebe o ultimo motivo do array
           } 

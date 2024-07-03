@@ -39,6 +39,7 @@ export default function TransitionsModal({ open, admin, isEdit, closeModal, setI
     formState: { errors },
   } = useForm();
 
+  // Preenche os campos do formulário se estiver em modo de edição
   useEffect(() => {
     if (isEdit && admin) {
       setValue("email", admin.email);

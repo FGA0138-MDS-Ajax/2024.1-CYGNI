@@ -32,7 +32,6 @@ function ServerDay(props) {
 }
 
 function markNonWorkDays(escalaInicio, escala) {
-  console.log('markNonWorkDays - escalaInicio:', escalaInicio, 'escala:', escala);
 
   const allDays = [];
   const workDays = new Set();
@@ -97,15 +96,13 @@ function markNonWorkDays(escalaInicio, escala) {
 
   // Filtra os dias não trabalhados
   const nonWorkDays = allDays.filter(day => !workDays.has(day));
-  console.log('markNonWorkDays - nonWorkDays:', nonWorkDays);
   return nonWorkDays;
 }
 
 export function DateCalendarServerRequest({ user }) {
-  console.log('DateCalendarServerRequest - user:', user);
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [highlightedDaysFromServer, setHighlightedDaysFromServer] = React.useState([]);
+  const [setHighlightedDaysFromServer] = React.useState([]);
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const fetchHighlightedDays = React.useCallback(() => {
@@ -127,12 +124,10 @@ export function DateCalendarServerRequest({ user }) {
 
           combinedHighlightedDays = filteredInicioDates.map((inicio, index) => {
             const final = filteredFinalDates[index];
-            if (!final) return inicio; // Handle case where final date is missing
+            if (!final) return inicio; // Trata o caso em que a data final está faltando
             return `${inicio}_${final}`;
           });
         }
-
-        console.log('fetchHighlightedDays - combinedHighlightedDays:', combinedHighlightedDays);
 
         setHighlightedDaysFromServer(combinedHighlightedDays);
         setErrorMessage('');
@@ -175,7 +170,6 @@ export function DateCalendarServerRequest({ user }) {
         ...combinedHighlightedDays
       ];
     }
-    console.log('markedDays - allHighlightedDays:', allHighlightedDays);
     // Convert highlighted days ranges into individual days
     const expandedHighlightedDays = allHighlightedDays.flatMap((range) => {
       if (range.includes('_')) {
@@ -196,7 +190,6 @@ export function DateCalendarServerRequest({ user }) {
         return [range];
       }
     });
-    console.log('markedDays - expandedHighlightedDays:', expandedHighlightedDays);
     return [...new Set(expandedHighlightedDays)];
   }, [user]);
   return (
@@ -264,14 +257,10 @@ export function DateCalendarServerRequest({ user }) {
                   backgroundColor: '#FFA800',
                   justifyContent: 'space-evenly',
                   fontWeight: 'bold',
-                  // marginLeft: '10%',
-                  // marginRight: '10%',
                 },
                 // Parte branca que contém os dias de 1 a 30
                 '.css-2jurxj-MuiDayCalendar-slideTransition': {
                   backgroundColor: '#03161A',
-                  // marginLeft: '10%',
-                  // marginRight: '10%',
                 },
                 // X
                 '.css-1r7ctd-MuiBadge-badge': {
@@ -279,8 +268,6 @@ export function DateCalendarServerRequest({ user }) {
                 },
                 '.css-flbe84-MuiDayCalendar-weekContainer': {
                   justifyContent: 'space-evenly',
-                  // marginLeft: '10%',
-                  // marginRight: '10%',
                   marginTop: '1%'
                 },
                 // '*': {
