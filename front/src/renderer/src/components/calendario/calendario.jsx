@@ -200,7 +200,7 @@ export function DateCalendarServerRequest({ user }) {
     return [...new Set(expandedHighlightedDays)];
   }, [user]);
   return (
-    <Box sx={{ margin: '0 10% 0 10%', height: '100%', width: '80%', display: 'flex', justifyItems: 'center' }}>
+    <Box sx={{ margin: '0 10% 0 10%', height: '100%', width: '80%', display: 'flex', justifyItems: 'center', overflow: 'hidden' }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         {errorMessage ? (
           <div>{errorMessage}</div>
@@ -213,6 +213,9 @@ export function DateCalendarServerRequest({ user }) {
                 height: '70%',
                 backgroundColor: '#03161A',
 
+                '.css-1t0788u-MuiPickersSlideTransition-root-MuiDayCalendar-slideTransition': {
+                  overflow: 'hidden'
+                },
                 // Números Dias
                 '.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root': {
                   color: '#fff',
@@ -250,6 +253,7 @@ export function DateCalendarServerRequest({ user }) {
                 // Expansor de meses \/
                 '.css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon': {
                   color: '#fff'
+
                 },
                 // Cor da Barra de Meses
                 '.css-1aqny2q-MuiPickersCalendarHeader-root': {
@@ -278,7 +282,10 @@ export function DateCalendarServerRequest({ user }) {
                   // marginLeft: '10%',
                   // marginRight: '10%',
                   marginTop: '1%'
-                }
+                },
+                // '*': {
+                //   overflow: 'hidden'
+                // }
               }
             }
             defaultValue={initialValue}
