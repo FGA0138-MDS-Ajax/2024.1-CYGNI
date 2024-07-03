@@ -23,6 +23,14 @@ export class AdministradoresService {
   ) { }
 
   async create(CreateAdministradorDto: CreateAdministradorDto) {
+    const usuarioExisteEmail = await this.administradorModel.findOne({ email: CreateAdministradorDto.email }).exec();
+    if (usuarioExisteEmail) { //verificação de email antes de criar usuario
+      throw new BadRequestException('Já existe um usuário com este email');
+    }
+    const usuarioExisteLogin = await this.administradorModel.findOne({login:CreateAdministradorDto.email}).exec();
+    if (usuarioExisteLogin) { //verificação de login antes de criar usuario
+      throw new BadRequestException('Já existe um usuário com este login');
+    }
     CreateAdministradorDto.senha = await bcrypt.hash(CreateAdministradorDto.senha, parseInt(process.env.SALT)); // hash da senha com SALT do .env
     //Logger.log(CreateAdministradorDto);
     const newAdmin = await this.administradorModel.create(CreateAdministradorDto);
