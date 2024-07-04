@@ -40,13 +40,13 @@ const TelaCadastro = () => {
 	} = useForm();
 
 	const porteArmaValor = watch("porteArma", true);
-	const sexoValor = watch("sexo", 'M');
-	const tipoSanguineoValor = watch("tipoSanguineo", 'AB+');
-	const estadoCivilValor = watch("estadoCivil", 'Solteiro(a)');
-	const cnhCategoriaValor = watch("cnhCategoria", 'A');
-	const escalaValor = watch("escala", '8 x 40');
-	const motivoValor = watch("motivo", 'Abono');
-	const observacoes = watch("observacoes", '');
+	const sexoValor = watch("sexo", "M");
+	const tipoSanguineoValor = watch("tipoSanguineo", "AB+");
+	const estadoCivilValor = watch("estadoCivil", "Solteiro(a)");
+	const cnhCategoriaValor = watch("cnhCategoria", "A");
+	const escalaValor = watch("escala", "8 x 40");
+	const motivoValor = watch("motivo", "Abono");
+	const observacoes = watch("observacoes", "");
 
 	const handleCloseAlert = () => {
 		setAlert(null);
@@ -60,7 +60,9 @@ const TelaCadastro = () => {
 				nomeGuerra: funcionario.nomeGuerra,
 				nomeCompleto: funcionario.nomeCompleto,
 				sexo: funcionario.sexo,
-				dataDeNascimento: funcionario.dataDeNascimento ? new Date(funcionario.dataDeNascimento).toISOString().split('T')[0] : '',
+				dataDeNascimento: funcionario.dataDeNascimento
+					? new Date(funcionario.dataDeNascimento).toISOString().split("T")[0]
+					: "",
 				tipoSanguineo: funcionario.tipoSanguineo,
 				nomeMae: funcionario.nomeMae,
 				nomePai: funcionario.nomePai,
@@ -75,7 +77,7 @@ const TelaCadastro = () => {
 				cpf: funcionario.cpf,
 				matSiape: funcionario.matSiape,
 				cnhCategoria: funcionario.cnhCategoria,
-				cnhValidade: funcionario.cnhValidade ? new Date(funcionario.cnhValidade).toISOString().split('T')[0] : '',
+				cnhValidade: funcionario.cnhValidade ? new Date(funcionario.cnhValidade).toISOString().split("T")[0] : "",
 				cnhProntuario: funcionario.cnhProntuario,
 
 				//endereco
@@ -89,81 +91,81 @@ const TelaCadastro = () => {
 				classificacao: funcionario.classificacao,
 				funcao: funcionario.funcao,
 				escala: funcionario.escala,
-				escalaInicio: funcionario.escalaInicio ? new Date(funcionario.escalaInicio).toISOString().split('T')[0] : '',
+				escalaInicio: funcionario.escalaInicio ? new Date(funcionario.escalaInicio).toISOString().split("T")[0] : "",
 				horarioEscala: funcionario.horarioEscala,
 				lotacao: funcionario.lotacao,
 				comportamento: funcionario.comportamento,
 				porteArma: funcionario.porteArma,
-				apresentacao: funcionario.apresentacao ? new Date(funcionario.apresentacao).toISOString().split('T')[0] : '',
-				admissao: funcionario.admissao ? new Date(funcionario.admissao).toISOString().split('T')[0] : '',
-				validadeBienal: funcionario.validadeBienal ? new Date(funcionario.validadeBienal).toISOString().split('T')[0] : '',
-				validadeTAF: funcionario.validadeTAF ? new Date(funcionario.validadeTAF).toISOString().split('T')[0] : '',
+				apresentacao: funcionario.apresentacao ? new Date(funcionario.apresentacao).toISOString().split("T")[0] : "",
+				admissao: funcionario.admissao ? new Date(funcionario.admissao).toISOString().split("T")[0] : "",
+				validadeBienal: funcionario.validadeBienal
+					? new Date(funcionario.validadeBienal).toISOString().split("T")[0]
+					: "",
+				validadeTAF: funcionario.validadeTAF ? new Date(funcionario.validadeTAF).toISOString().split("T")[0] : "",
 
 				//afastamento
-				motivo: '',
-				anoReferencia: '',
-				dataInicio: '',
-				dataTermino: '',
-				dias: '',
-				observacoes: '',
-			})
-		}
-
-		else {
+				motivo: "",
+				anoReferencia: "",
+				dataInicio: "",
+				dataTermino: "",
+				dias: "",
+				observacoes: "",
+			});
+		} else {
 			// Resetar os campos para um estado inicial
 			reset({
 				//cadastro geral
-				matricula: '',
-				nomeGuerra: '',
-				nomeCompleto: '',
-				sexo: 'M',
-				dataDeNascimento: '',
-				tipoSanguineo: 'AB+',
-				nomeMae: '',
-				nomePai: '',
-				email: '',
-				telefone: '',
-				postGrad: '',
-				escolaridade: '',
-				estadoCivil: 'Solteiro(a)',
+				matricula: "",
+				nomeGuerra: "",
+				nomeCompleto: "",
+				sexo: "M",
+				dataDeNascimento: "",
+				tipoSanguineo: "AB+",
+				nomeMae: "",
+				nomePai: "",
+				email: "",
+				telefone: "",
+				postGrad: "",
+				escolaridade: "",
+				estadoCivil: "Solteiro(a)",
 
 				//documentacao
-				rg: '',
-				cpf: '',
-				matSiape: '',
-				cnhCategoria: 'A',
-				cnhValidade: '',
-				cnhProntuario: '',
+				rg: "",
+				cpf: "",
+				matSiape: "",
+				cnhCategoria: "A",
+				cnhValidade: "",
+				cnhProntuario: "",
 
 				//endereco
-				cep: '',
-				cidade: '',
-				bairro: '',
-				uf: '',
-				logradouro: '',
+				cep: "",
+				cidade: "",
+				bairro: "",
+				uf: "",
+				logradouro: "",
 
 				//ficha gerencial
-				classificacao: '',
-				funcao: '',
-				escala: '8 x 40',
-				escalaInicio: '',
-				horarioEscala: '',
-				lotacao: '',
-				comportamento: '',
+				classificacao: "",
+				funcao: "",
+				escala: "8 x 40",
+				escalaInicio: "",
+				horarioEscala: "",
+				lotacao: "",
+				comportamento: "",
 				porteArma: true,
-				apresentacao: '',
-				admissao: '',
-				validadeBienal: '',
-				validadeTAF: '',
+				apresentacao: "",
+				admissao: "",
+				validadeBienal: "",
+				validadeTAF: "",
 
 				//afastamento
-				motivo: '',
-				anoReferencia: '',
-				dataInicio: '',
-				dataTermino: '',
-				dias: '',
-				observacoes: '',
-			})
+				motivo: "",
+				anoReferencia: "",
+				dataInicio: "",
+				dataTermino: "",
+				dias: "",
+				observacoes: "",
+			});
 		}
 
 		const token = localStorage.getItem("token");
@@ -175,7 +177,6 @@ const TelaCadastro = () => {
 				console.error("erro ao decodificar token:", error);
 			}
 		}
-
 	}, [funcionario, reset]);
 
 	const aoEnviar = async (dadosDoFormulario) => {
@@ -184,11 +185,9 @@ const TelaCadastro = () => {
 			// Filtrando dados válidos
 			const dadosValidos = Object.fromEntries(
 				Object.entries(dadosDoFormulario).filter(
-					([key, value]) => value !== '' && value !== null && value !== undefined
-				)
+					([key, value]) => value !== "" && value !== null && value !== undefined,
+				),
 			);
-
-			console.log(dadosValidos); // Adicione este console.log para verificar os dados
 
 			if (funcionario) {
 				await api.editarUsuario(funcionario._id, dadosValidos);
@@ -197,8 +196,7 @@ const TelaCadastro = () => {
 					setDisabled(false);
 					navegar("/inicial");
 				}, 1250);
-			}
-			else {
+			} else {
 				await api.cadastrarUsuario(dadosValidos);
 				setAlert({ type: "success", message: "Cadastro realizado com sucesso!" });
 				setTimeout(() => {
@@ -207,7 +205,7 @@ const TelaCadastro = () => {
 				}, 1250);
 			}
 		} catch (error) {
-			console.error(error); // Adicione este console.log para verificar o erro
+			console.error(error);
 			if (error.response && error.response.status === 400) {
 				// Trata especificamente o erro BadRequest
 				setAlert({ type: "error", message: "Matrícula já existente!" });
@@ -219,7 +217,6 @@ const TelaCadastro = () => {
 		}
 	};
 
-
 	const excluirUsuario = async () => {
 		setDisabled(true);
 		try {
@@ -229,12 +226,11 @@ const TelaCadastro = () => {
 				setDisabled(false);
 				navegar("/inicial");
 			}, 1250);
-		}
-		catch (error) {
+		} catch (error) {
 			setAlert({ type: "error", message: "Errro ao remover funcionario" });
 			setDisabled(false);
 		}
-	}
+	};
 
 	const botaoMudanca = async () => {
 		const camposPreenchidos = await trigger(["matricula", "nomeCompleto"]);
@@ -243,11 +239,10 @@ const TelaCadastro = () => {
 
 	const botaoCampanha = async () => {
 		setCampanha(!campanha);
-	}
-
+	};
 
 	const acessarCampanha = (params) => {
-		navegar('/tela-calendario', { state: { funcionario: params } });
+		navegar("/tela-calendario", { state: { funcionario: params } });
 	};
 
 	return (
@@ -273,10 +268,13 @@ const TelaCadastro = () => {
 							<button
 								type="submit"
 								className={"botao-campanha"}
-								onClick={(e) => { acessarCampanha(funcionario) }}
-							>Campanha Individual</button>
+								onClick={(e) => {
+									acessarCampanha(funcionario);
+								}}
+							>
+								Campanha Individual
+							</button>
 						)}
-
 					</div>
 					<hr />
 				</div>
@@ -317,7 +315,8 @@ const TelaCadastro = () => {
 										opcoes={["M", "F"]}
 										largura="40px"
 										value={sexoValor}
-										onChange={(value) => setValue("sexo", value)} />
+										onChange={(value) => setValue("sexo", value)}
+									/>
 
 									<Campo id="dataDeNascimento" texto="Nascimento" tipo="date" registro={register} erros={errors} />
 									<MenuSuspenso
@@ -523,7 +522,6 @@ const TelaCadastro = () => {
 											<Campo id="anoReferencia" texto="Ano Referência" tipo="text" registro={register} erros={errors} />
 											<Campo id="dataInicio" texto="Data Início" tipo="date" registro={register} erros={errors} />
 											<Campo id="dataTermino" texto="Data Término" tipo="date" registro={register} erros={errors} />
-
 										</div>
 										<div className="conteiner-observacao">
 											<span>Observações</span>
@@ -533,7 +531,8 @@ const TelaCadastro = () => {
 											name="Observacao"
 											id="observacoes"
 											value={observacoes}
-											onChange={(value) => setValue("observacoes", event.target.value)} />
+											onChange={(value) => setValue("observacoes", event.target.value)}
+										/>
 									</section>
 								</form>
 							</div>
@@ -549,9 +548,7 @@ const TelaCadastro = () => {
 
 				<div className="div-botoes">
 					<div className="div-ultimoEditor">
-						{funcionario && (
-							<p id="ultimoEditor">{`Último Editor: ${funcionario.ultimoEditor}`}</p>
-						)}
+						{funcionario && <p id="ultimoEditor">{`Último Editor: ${funcionario.ultimoEditor}`}</p>}
 					</div>
 					<div className="botoes">
 						<Botao
@@ -561,7 +558,9 @@ const TelaCadastro = () => {
 							cor="#032026"
 							corTexto="white"
 							largura={"130px"}
-							aoClicar={(e) => { navegar("/inicial") }}
+							aoClicar={(e) => {
+								navegar("/inicial");
+							}}
 						/>
 
 						{funcionario && privilegio && (
@@ -595,7 +594,6 @@ const TelaCadastro = () => {
 								}}
 							/>
 						)}
-
 
 						{!funcionario && (
 							<Botao

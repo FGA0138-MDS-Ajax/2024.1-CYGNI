@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuSuspenso = ({ texto, opcoes, largura, onChange,value }) => {
+const MenuSuspenso = ({ texto, opcoes, largura, onChange, value }) => {
 	return (
 		<div className="menu-suspenso">
 			<span>{texto}</span>
@@ -15,7 +15,7 @@ const MenuSuspenso = ({ texto, opcoes, largura, onChange,value }) => {
 					paddingLeft: "5px",
 				}}
 			>
-				{opcoes.map(opcao => (
+				{opcoes.map((opcao) => (
 					<option key={opcao} value={opcao}>
 						{opcao}
 					</option>

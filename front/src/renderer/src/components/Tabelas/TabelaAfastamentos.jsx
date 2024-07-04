@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import { useNavigate } from "react-router-dom";
+import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import * as api from "../../services/api.jsx";
-import { HiOutlineTrash } from "react-icons/hi2";
 
+// Função para formatar data no formato DD/MM/AAAA
 const formatarData = (dataISO) => {
 	const data = new Date(dataISO);
 	const dia = data.getUTCDate().toString().padStart(2, "0");
@@ -13,6 +11,7 @@ const formatarData = (dataISO) => {
 	return `${dia}/${mes}/${ano}`;
 };
 
+// Customização para o cabeçalho das colunas
 const negrito = (params) => <strong style={{ color: "white", fontSize: "14px" }}>{params.colDef.headerName}</strong>;
 
 const columns = [
@@ -49,6 +48,7 @@ const columns = [
 	},
 ];
 
+// Textos customizados para a interface da tabela
 const textoLocalCustomizado = {
 	noRowsLabel: "Nenhum afastamento cadastrado.",
 	noResultsOverlayLabel: "Nenhum afastamento encontrado.",
@@ -92,6 +92,8 @@ const textoLocalCustomizado = {
 export function DataTable({ funcionario }) {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const { motivo = [], dataInicio = [], dataTermino = [] } = funcionario || {};
+
+	// Filtra e formata os dados de afastamentos para exibição na tabela
 	const afastamentos = motivo
 		.map((motivoItem, index) => ({
 			id: index,

@@ -97,7 +97,6 @@ describe('AdministradoresService', () => {
       jest.spyOn(administradorModel, 'findOne').mockImplementation(() => ({
         exec: jest.fn().mockResolvedValue(null),
       }));
-      console.log(createAdministradorDto)
       const result = await service.create(createAdministradorDto);
   
       expect(administradorModel.create).toHaveBeenCalledWith(createAdministradorDto);

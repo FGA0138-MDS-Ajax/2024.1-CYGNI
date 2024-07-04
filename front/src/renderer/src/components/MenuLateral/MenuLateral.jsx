@@ -14,7 +14,7 @@ const MenuLateral = () => {
 	const menuItems = [
 		{ icon: <FiHome />, text: "Início", path: "/inicial" },
 		{ icon: <FiCalendar />, text: "Relatório", path: "/tela-relatorio" },
-		{ icon: <FiClipboard />, text: "Campanha", path:'/tela-campanha' },
+		{ icon: <FiClipboard />, text: "Campanha", path: "/tela-campanha" },
 		{ icon: <FiUser />, text: "Admins", path: "/tela-adm" },
 	];
 
@@ -28,7 +28,6 @@ const MenuLateral = () => {
 			<div className="link-paginas">
 				<ul>
 					{menuItems.map((item, index) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<li key={index} className={location.pathname === item.path ? "active" : ""}>
 							{location.pathname === item.path && <span className="active-span">{item.text}</span>}
 							<button type="button" className={location.pathname === item.path ? "active" : ""}>
