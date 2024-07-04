@@ -1,86 +1,135 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-lateral {
-    background-color: #032026;
-    width: 20vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    flex-grow: 0;
-    flex-shrink: 1;
+    align-items: center;
+    width: 6.5%;
+    background-color: #03161A;
 }
 
-.conteiner-superior {
+.logo {
+    margin-top: 20%;
     display: flex;
     align-items: center;
-    justify-content: space-around;  
-    height: 130px;
+    justify-content: center;
+    width: 65%;
 }
 
-.menu-lateral.fechado {
-    width: 5vw;
+.logo img {
+    width: 100%;
+    height: 100%;
 }
 
-.conteiner-superior button {
-    width: 5vw;
-    height: 5vh;
-    cursor: pointer;
+.link-paginas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin-top: 30%;
+    width: 100%;
+}
+
+.link-paginas ul {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+
+.link-paginas li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    /* Permite o posicionamento absoluto do span */
+    margin: 30px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.link-paginas button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
-    border: none;  
+    border: none;
+    cursor: pointer;
+    width: 40%;
 }
 
-.menu-lateral.fechado .conteiner-conteudo li a img,
-.menu-lateral.fechado .conteiner-saida img {
-    margin-left: -0.4vw;
+.link-paginas a {
+    background-color: transparent;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 60%;
+    align-items: center;
 }
 
-.menu-lateral.fechado #icone {
-    display: none;
+.link-paginas .active-link {
+    background-color: white;
 }
 
-#icone {
-    width: 9vw;
-    height: 7vh;
+.link-paginas span {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    /* Impede quebra de linha no texto */
+    width: fit-content;
+    border-radius: 2px;
+    padding: 2.5%;
+    font-size: 0.75rem;
+    font-weight: medium;
+    color: #032026;
+    width: fit-content;
 }
 
-.conteiner-conteudo {
+.link-paginas span.active-span {
+    color: #ffffff;
+}
+
+/*BOTAO SAIR*/
+
+.sair-conteiner {
     display: flex;
     flex-direction: column;
-    margin: 18vh 0 35vh 2vw;
+    align-items: center;
+    color: white;
+    margin-top: 30%;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 20px;
 }
 
-.conteiner-conteudo ul {
+.botao-sair {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-direction: column;
-    list-style: none;  
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #032026;
+    border: none;
+    cursor: pointer;
+    width: 40%;
 }
 
-.conteiner-conteudo li a {
+.link-sair {
+    background-color: #FFA800;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin: auto;
-    padding: 1vw 0;
+    text-align: center;
+    justify-content: center;
 }
 
-.conteiner-conteudo li img {
-    margin-right: 1.5vw;
-}
-
-.conteiner-saida a {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: row;
-    margin: 0 0 0 2vw;
-}
-
-.conteiner-saida img {
-    margin-right: 1.5vw;
+.link-sair:hover {
+    background-color: #ffffff;
+    transition: 0.25s;
 }

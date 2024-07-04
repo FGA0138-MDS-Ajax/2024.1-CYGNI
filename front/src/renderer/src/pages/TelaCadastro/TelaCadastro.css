@@ -10,10 +10,10 @@ hr {
   height: 0px;
   width: 90%;
   margin: 0 auto;
-  
+
 }
 
-.linha-horizontal hr{
+.linha-horizontal hr {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@ hr {
   color: #898989;
   background-color: transparent;
   border: none;
-  
+
   margin-left: 5%;
 }
 
@@ -43,25 +43,25 @@ hr {
 
 .botao-dados.selecionado {
   color: #004373;
-  
+
 }
 
 .botao-afastamento.selecionado {
   color: #004373;
 }
 
-h3{
+h3 {
   font-size: 20px;
   margin-bottom: 16px;
   font-weight: bold;
 }
 
 .cadastro {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 
-    background-color: #E6E6E6;
+  background-color: #E6E6E6;
 }
 
 .linha {
@@ -71,33 +71,50 @@ h3{
   justify-items: center;
 }
 
-.dados-pessoais{
-  margin-top: 30px;
+.dados-pessoais {
+  margin-top: 2%;
 }
 
 .bloco-central {
   display: flex;
   justify-content: space-between;
 
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 2%;
 }
 
-.ficha-gerencial{ 
-  margin-bottom: 40px;
+.ficha-gerencial {
+  margin-top: 2%;
 }
 
-#matricula, #nomeGuerra, #nomeCompleto,
-#nomeMae, #nomePai, #email, #telefone,
-#postGrad, #escolaridade, #rg, #cpf, #matSiape,
-#cnhCategoria, #cnhProntuario, #classificacao, #funcao, #escala, #horario,
-#lotacao, #comportamento  {
+#matricula,
+#nomeGuerra,
+#nomeCompleto,
+#nomeMae,
+#nomePai,
+#telefone,
+#postGrad,
+#escolaridade,
+#rg,
+#cpf,
+#matSiape,
+#cnhCategoria,
+#cnhProntuario,
+#classificacao,
+#funcao,
+#horario,
+#lotacao,
+#comportamento {
   width: 100%;
   margin-bottom: 9px;
 }
 
+.conteiner #email {
+  width: 117%;
+}
 
-#cep, #cidade, #bairro {
+#cep,
+#cidade,
+#bairro {
   width: 90%;
   margin-bottom: 9px;
 }
@@ -112,13 +129,21 @@ h3{
   margin-bottom: 9px;
 }
 
-#nascimento, #cnhValidade, #validadeBienal, #validadeTAF, #apresentacao, #admissao, #dataInicio, #dataTermino {
+#nascimento,
+#cnhValidade,
+#validadeBienal,
+#validadeTAF,
+#apresentacao,
+#admissao,
+#dataInicio,
+#dataTermino {
   width: 90%;
   padding: 0 7px 0px 7px;
-  
+
 }
 
-#secao1, #secao2 {
+#secao1,
+#secao2 {
   width: 35%;
 }
 
@@ -126,7 +151,9 @@ h3{
   width: 15%;
 }
 
-#secao4, #secao5, #secao6 {
+#secao4,
+#secao5,
+#secao6 {
   width: 100%;
 }
 
@@ -138,7 +165,7 @@ h3{
   width: 44%;
 }
 
-.ficha-gerencial{
+.ficha-gerencial {
   width: 100%;
 }
 
@@ -151,7 +178,7 @@ h3{
 
 .conteiner input {
   background-color: white;
-  border:none;
+  border: none;
   border-radius: 8px;
   padding-left: 4px;
   height: 30px;
@@ -175,13 +202,12 @@ h3{
 .conteiner {
   display: flex;
   padding: 0 5% 0 5%;
-  
+
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 80vw;
   height: 80%;
-
 }
 
 .conteudo-principal {
@@ -192,24 +218,40 @@ h3{
   flex-basis: 80%;
 }
 
+.div-botoes {
+  display: flex;
+  align-items: center;
+  padding: 0 5% 0 5%;
+}
+
 .botoes {
   display: flex;
-  height: 20%;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 1%;
+  padding-left: 5%;
+  width: 70%;
 }
 
 .botoes button {
-  margin-right: 2.7%;
+  margin-left: 4%;
   padding: 10px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  height: fit-content;
 }
 
-.mensagem-erro {
+.div-ultimoEditor {
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+  margin-bottom: 1%;
+}
+
+.formulario-cadastro .mensagem-erro {
   margin-top: 0px;
   margin-bottom: -1px;
   transform: translateY(-8px);
@@ -220,34 +262,60 @@ h3{
 
 /* Afastamento */
 
-.afastamento{
-  width: 85.5%;
+.afastamento {
+  width: 65%;
   margin-top: 50px;
 }
 
-#dias, #anoReferencia {
+.lista-afastamentos {
+  width: 30%;
+  height: 91.5%;
+  margin-top: 50px;
+}
+
+#anoReferencia {
   margin-bottom: 9px;
   width: 100%;
 }
 
-#observacoes {
+#ultimoEditor {
   display: flex;
-  
-  width: 100%;
-  height: 200px;
-
-  max-width: 100%;
+  color: #303030;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
-.dados-pessoais.modoLeitor input, .dados-pessoais.modoLeitor select {
+.dados-pessoais.modoLeitor input,
+.dados-pessoais.modoLeitor select,
+.conteiner.modoLeitor input,
+.conteiner.modoLeitor select {
   pointer-events: none;
   background-color: #dedede;
-  box-shadow: 0.5px 0.5px 2px 0px rgba(0,0,0, 0.2);  
+  box-shadow: 0.5px 0.5px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.formulario-afastamento p {
+  font-size: 12px;
+  color: #028090;
+}
+
+.container-observacao {
+  display: flex;
+}
+
+.container-observacao p {
+  margin-left: 6px;
+  margin-top: 2px;
 }
 
 textarea {
+  display: flex;
+  width: 96.5%;
+  height: 30vh;
+
   resize: none;
   border: none;
   margin-top: 6px;
   border-radius: 8px;
+  padding: 10px 15px;
 }

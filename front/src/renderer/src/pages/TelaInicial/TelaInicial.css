@@ -11,124 +11,224 @@
     flex-direction: row;
     height: 100vh;
     width: 100vw;
-    background-color: #E6E6E6;
+    background-color: #F2F2F2;
 }
 
-.conteiner-cabecalho {
+.conteiner-inicial {
     display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    align-items: center;
-    justify-content: space-between;
-    flex-basis: 80vw;
-    height: 15vh;
+    flex-direction: column;
+    height: 100vh;
+    width: 93.5%;
+    background-color: #F2F2F2;
 }
 
-.lista-suspensa {
+.div-superior {
     display: flex;
-    position: relative;
     justify-content: space-around;
-    width: 140px;
-    height: 50px;
-    background-color: #004373;
-    border-radius: 10px 10px 5px 5px;
-    cursor: pointer;
-    align-items: center;
-}
-
-.lista-suspensa span {
-    color: white;
-    font-size: 16px;
-}
-
-.opcoes-lista-suspensa {
-    position: absolute;
-    max-height: 0;
-    top: 3.3rem;
-    left: 0;
     width: 100%;
-    border-radius: 5px 5px 10px 10px;
-
-    background-color: white;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
-}
-
-.lista-suspensa:hover .opcoes-lista-suspensa {
-    max-height: 300px;
-}
-
-.opcoes-lista-suspensa li {
-    padding: 0.5rem 0 0.5rem 0.5rem;
-    cursor: pointer;
-    transition: margin-left 0.25s;
-}
-
-.opcoes-lista-suspensa li:hover {
-    margin-left: 0.5rem;
-    color: #004373;
-}
-
-.busca {
-    display: flex;
-    width: 645px;
+    height: 20vh;
+    position: relative;
     align-items: center;
-    border-radius: 10px;
-    background: #FAF9F6;
-    transition: background 0.25s;
-    margin-left: 5%;
+    background-color: #032026;
 }
 
-.busca:focus-within {
-    background: white;
+.div-superior h4 {
+    color: #c5c5c5;
+    font-weight: 500;
 }
 
-.busca input {
-    font-size: 16px;
-    /*font-family: 'Times New Roman', Times, serif;*/
-    color: #000000;
-    margin-left: 10px;
+.icone-pesquisa {
+    color: #ffffff;
+    margin-left: 24px;
+}
+
+.barra-de-pesquisa {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 40%;
+    height: 40%;
+}
+
+.barra-de-pesquisa input {
+    background: none;
     border: none;
     outline: none;
-    background: transparent;
-    width: 460px;
-    height: 30px;
+    color: #000000;
+    width: 100%;
+    margin-left: 16px;
+    font-size: 1rem;
 }
 
-.busca input::placeholder {
-    color: #919191;
+.barra-de-pesquisa input::placeholder {
+    color: #777777;
 }
 
-.conteiner-cabecalho button {
-    width: 12vw;
-    height: 5.93vh;
+.div-inferior {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+    background-color: #032026;
+}
+
+.div-inferior h1 {
+    color: #fff;
+    height: fit-content;
+    margin-left: 12.5%;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.div-inferior-esquerda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.div-inferior-esquerda img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+
+.div-inferior-direita {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 90%;
+}
+
+.div-inferior-direita img {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 95%;
+    margin-right: 10%;
+}
+
+.barra-de-pesquisa ul {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.barra-de-pesquisa ul li:hover {
+    color: #028090;
+
+    transition: 0.1s;
+}
+
+.lista-funcionarios {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 74%;
+    background-color: white;
+    border-radius: 8px;
+    max-height: 150px;
+    width: 40%;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.funcionario-item {
+    cursor: pointer;
+}
+
+.lista-funcionarios::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+.lista-funcionarios::-webkit-scrollbar-thumb {
+    background: #028090;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.lista-funcionarios::-webkit-scrollbar-thumb:hover {
+    background: #028090e4;
+}
+
+.cartoes-definicoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8.5%;
+    width: 85%;
+    height: 10%;
+}
+
+.cartoes-conteiner {
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+    width: 100%;
+    height: fit-content;
+    margin-left: 15%;
+}
+
+.titulo-cartoes h2 {
+    color: #FFA800;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.cartoes-conteiner p {
+    color: #DFDFDF;
+    margin-top: 5px;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.titulo-cartoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.cadastro-perfil {
+    width: 15%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    background-color: #032026;
+}
+
+.div-inferior-botoes {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #032026;
+    margin-top: 5%;
+}
+
+.div-inferior-botoes button {
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bolder;
+    height: 60%;
     background-color: #032026;
     color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 14px;
-    cursor: pointer;
-    font-size: 16px;
-    transform: translateX(-10%);
-    text-align: center;
-    transition: background 0.25s;
-    font-weight: bold;
-    border: 2px solid #FAF9F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
 }
 
-.conteiner-cabecalho button:hover {
-    background-color: #13515E;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-input[type="search"]::-moz-search-clear-button {
-    display: none;
-}
-
-input[type="search"]::-ms-clear {
+.modal-none {
     display: none;
 }

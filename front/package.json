@@ -17,7 +17,23 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
-    "electron-updater": "^6.1.7"
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mobiscroll/react": "npm:@mobiscroll/react-trial@^5.30.1",
+    "@mui/material": "^5.15.20",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@mui/x-data-grid": "^7.7.0",
+    "@mui/x-date-pickers": "^7.7.1",
+    "axios": "^1.7.2",
+    "date-fns": "^3.6.0",
+    "dayjs": "^1.11.11",
+    "electron-updater": "^6.1.7",
+    "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
+    "npm": "^10.8.1",
+    "react-calendar-timeline": "^0.28.0",
+    "styled-components": "^6.1.11",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",

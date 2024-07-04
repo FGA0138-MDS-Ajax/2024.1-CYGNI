@@ -1,10 +1,12 @@
 import React from "react";
 
-const MenuSuspenso = ({ texto, opcoes, largura }) => {
+const MenuSuspenso = ({ texto, opcoes, largura, onChange, value }) => {
 	return (
 		<div className="menu-suspenso">
 			<span>{texto}</span>
 			<select
+				value={value}
+				onChange={(e) => onChange(e.target.value)}
 				style={{
 					border: "none",
 					borderRadius: "8px",
@@ -13,8 +15,8 @@ const MenuSuspenso = ({ texto, opcoes, largura }) => {
 					paddingLeft: "5px",
 				}}
 			>
-				{opcoes.map((opcao, index) => (
-					<option key={index} value={index + 1}>
+				{opcoes.map((opcao) => (
+					<option key={opcao} value={opcao}>
 						{opcao}
 					</option>
 				))}

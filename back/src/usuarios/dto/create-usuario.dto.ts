@@ -1,13 +1,55 @@
 export class CreateUsuarioDto {
+    // dados pessoais gerais
     nomeCompleto: string
-    nomeDaMae: string
-    nomeDoPai: string
+    matricula: string
+    nomeGuerra: string
+    nomeMae: string
+    nomePai: string
     sexo: string
-    dataDeNaschimento: number
+    dataDeNascimento: Date
     tipoSanguineo: string
     estadoCivil: string
     email: string
     telefone: string
-    senha: string
-    privilegios: number
+    postGrad: string
+    escolaridade: string
+
+    // documentacao
+    rg: string
+    cpf: string
+    matSiape: string
+    cnhProntuario: string
+    cnhCategoria: string
+    cnhValidade: Date
+
+    // endereco
+    cep: string
+    bairro: string
+    cidade: string
+    uf: string
+    logradouro: string
+
+    // ficha gerencial
+    classificacao: string
+    funcao: string
+    escala: string
+    horarioEscala: string
+    lotacao: string
+    comportamento: string
+    porteArma: boolean
+    admissao: Date
+    apresentacao: Date
+    validadeBienal: Date
+    validadeTAF: Date
+
+    // afastamento
+    motivo: string[]
+    situacao:string
+    anoReferencia: number[]
+    dataInicio: Date[]
+    dataTermino: Date[]
+    observacoes: string[]
+
+    //editor
+    ultimoEditor :string
 }

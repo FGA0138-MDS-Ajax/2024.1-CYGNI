@@ -1,9 +1,10 @@
-const Botao = ({ icone, texto, cor, largura, aoClicar }) => {
+const Botao = ({ icone, texto, cor, largura, aoClicar, corTexto, disabled }) => {
 	return (
 		<button
+			disabled={disabled}
 			type="submit"
 			style={{
-				color: "white",
+				color: corTexto,
 				backgroundColor: cor,
 				width: largura,
 				display: "flex",

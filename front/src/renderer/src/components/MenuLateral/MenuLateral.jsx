@@ -1,64 +1,56 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
-import Icone from "../../assets/img/IconeAGIS.svg";
-import Inicio from "../../assets/img/Inicio.svg";
-import Campanha from "../../assets/img/Calendário.svg";
-import Escala from "../../assets/img/Escalas.svg";
-import Relatorio from "../../assets/img/Relatorio.svg";
-import Sair from "../../assets/img/Sair.svg";
-import hamburguer from "../../assets/img/Hamburguer.svg";
+import { FiHome, FiCalendar, FiClipboard, FiUser } from "react-icons/fi";
+import { BiLogOut } from "react-icons/bi";
+
+import Logo from "../../assets/img/IconeAGIS.svg";
 
 import "./MenuLateral.css";
 
 const MenuLateral = () => {
-	const [menu, setMenu] = useState(true);
+	const location = useLocation();
 
-	const abrirMenu = () => {
-		setMenu(!menu);
-	};
+	const menuItems = [
+		{ icon: <FiHome />, text: "Início", path: "/inicial" },
+		{ icon: <FiCalendar />, text: "Relatório", path: "/tela-relatorio" },
+		{ icon: <FiClipboard />, text: "Campanha", path: "/tela-campanha" },
+		{ icon: <FiUser />, text: "Admins", path: "/tela-adm" },
+	];
+
+	const logoutItem = { icon: <BiLogOut />, text: "Sair", path: "/" };
 
 	return (
-		<div className={`menu-lateral ${menu ? "" : "fechado"}`}>
-			<div className="conteiner-superior">
-				<img src={Icone} alt="icone" id="icone" />
-				<button onClick={abrirMenu} type="button">
-					<img src={hamburguer} alt="menu" />
-				</button>
+		<div className="menu-lateral">
+			<div className="logo">
+				<img src={Logo} alt="logo" />
 			</div>
-			<div className="conteiner-conteudo">
+			<div className="link-paginas">
 				<ul>
-					<li>
-						<Link to="/inicial">
-							<img src={Inicio} alt="tela inicial" />
-							{menu ? "Tela Inicial" : ""}
-						</Link>
-					</li>
-					<li>
-						<Link to="">
-							<img src={Campanha} alt="campanha" />
-							{menu ? "Campanha" : ""}
-						</Link>
-					</li>
-					<li>
-						<Link to="">
-							<img src={Escala} alt="escala" />
-							{menu ? "Escala" : ""}
-						</Link>
-					</li>
-					<li>
-						<Link to="/tela-relatorio">
-							<img src={Relatorio} alt="relatorio mensal" />
-							{menu ? "Relatório" : ""}
-						</Link>
-					</li>
+					{menuItems.map((item, index) => (
+						<li key={index} className={location.pathname === item.path ? "active" : ""}>
+							{location.pathname === item.path && <span className="active-span">{item.text}</span>}
+							<button type="button" className={location.pathname === item.path ? "active" : ""}>
+								<Link to={item.path} className={location.pathname === item.path ? "active-link" : ""}>
+									{React.cloneElement(item.icon, {
+										color: location.pathname === item.path ? "#032026" : "white",
+										size: 24,
+									})}
+								</Link>
+							</button>
+						</li>
+					))}
 				</ul>
 			</div>
-			<div className="conteiner-saida">
-				<Link to="/">
-					<img src={Sair} alt="sair" />
-					<span>{menu ? "Sair" : ""}</span>
-				</Link>
+			<div className="sair-conteiner">
+				<button type="button" className="botao-sair">
+					<Link to={logoutItem.path} className="link-sair">
+						{React.cloneElement(logoutItem.icon, {
+							color: "#032026",
+							size: 24,
+						})}
+					</Link>
+				</button>
 			</div>
 		</div>
 	);
