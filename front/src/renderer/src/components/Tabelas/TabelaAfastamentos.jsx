@@ -1,58 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import * as api from "../../services/api.jsx";
 
+// Função para formatar data no formato DD/MM/AAAA
 const formatarData = (dataISO) => {
-	if (!dataISO) return ""; // Return empty string if dataISO is falsy
-
 	const data = new Date(dataISO);
-
-	if (isNaN(data.getTime())) {
-		return ""; // Return empty string if date is invalid
-	}
-
 	const dia = data.getUTCDate().toString().padStart(2, "0");
-	let mes = (data.getUTCMonth() + 1).toString().padStart(2, "0");
+	const mes = (data.getUTCMonth() + 1).toString().padStart(2, "0");
 	const ano = data.getUTCFullYear();
-
 	return `${dia}/${mes}/${ano}`;
 };
-const negrito = (params) => <strong style={{ color: "white", fontSize: "16px" }}>{params.colDef.headerName}</strong>;
+
+// Customização para o cabeçalho das colunas
+const negrito = (params) => <strong style={{ color: "white", fontSize: "14px" }}>{params.colDef.headerName}</strong>;
 
 const columns = [
 	{
-		field: "nomeCompleto",
-		headerName: "Nome",
-		flex: 2, // esta coluna será duas vezes mais larga que as outras
-		headerClassName: "super-app-theme--header",
-		hideable: false,
-		resizable: false,
-		renderHeader: negrito,
-	},
-	{
-		field: "matricula",
-		headerName: "Matrícula",
-		flex: 1,
-		headerClassName: "super-app-theme--header",
-		hideable: false,
-		resizable: false,
-		filterable: false,
-		renderHeader: negrito,
-	},
-	{
-		field: "situacao",
-		headerName: "Situação",
-		flex: 2,
-		headerClassName: "super-app-theme--header",
-		hideable: false,
-		resizable: false,
-		renderHeader: negrito,
-	},
-	{
-		field: "anoReferencia",
-		headerName: "Ano",
+		field: "motivo",
+		headerName: "Motivo",
 		flex: 1,
 		headerClassName: "super-app-theme--header",
 		hideable: false,
@@ -83,9 +48,10 @@ const columns = [
 	},
 ];
 
+// Textos customizados para a interface da tabela
 const textoLocalCustomizado = {
-	noRowsLabel: "Nenhum funcionário cadastrado.",
-	noResultsOverlayLabel: "Nenhum funcionário encontrado.",
+	noRowsLabel: "Nenhum afastamento cadastrado.",
+	noResultsOverlayLabel: "Nenhum afastamento encontrado.",
 	columnHeaderFiltersTooltipActive: (count) =>
 		`${count} ${count !== 1 ? "filtros" : "filtro"} ativo${count !== 1 ? "s" : ""}`,
 	columnHeaderFiltersLabel: "Mostrar filtros",
@@ -123,39 +89,27 @@ const textoLocalCustomizado = {
 	footerRowSelected: () => "",
 };
 
-export function DataTable() {
-	const navegar = useNavigate();
-	const [funcionarios, setFuncionarios] = useState([]);
+export function DataTable({ funcionario }) {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const { motivo = [], dataInicio = [], dataTermino = [] } = funcionario || {};
 
-	useEffect(() => {
-		const fetchRows = async () => {
-			try {
-				const response = await api.buscarUsuarios();
-				const dataAtual = new Date();
-				const funcionariosAtualizados = response.data.map((funcionario) => {
-					// Inicializa a situacao como "Apto" por padrão
-					let situacao = "Serviço";	
-			  for (let i = 0; i < funcionario.dataInicio.length; i++) {
-				  const dataInicio = new Date(funcionario.dataInicio[i]);
-          const dataTermino = new Date(funcionario.dataTermino[i]);
-          if (dataAtual >= dataInicio && dataAtual <= dataTermino) {
-            situacao = funcionario.motivo[i]; // Recebe o motivo correspondente do array
-            break; 
-          }
-        }
-					// Atualiza a situacao do funcionário com o motivo encontrado ou "Apto"
-					funcionario.situacao = situacao;
-					return funcionario;
-				});
-
-				setFuncionarios(funcionariosAtualizados);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
-		};
-		fetchRows();
-	}, []);
+	// Filtra e formata os dados de afastamentos para exibição na tabela
+	const afastamentos = motivo
+		.map((motivoItem, index) => ({
+			id: index,
+			motivo: motivoItem,
+			dataInicio: dataInicio[index],
+			dataTermino: dataTermino[index],
+		}))
+		.filter(
+			(afastamento) =>
+				afastamento.motivo !== "" &&
+				afastamento.dataInicio !== "" &&
+				afastamento.dataTermino !== "" &&
+				afastamento.motivo !== null &&
+				afastamento.dataInicio !== null &&
+				afastamento.dataTermino !== null,
+		);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -169,16 +123,11 @@ export function DataTable() {
 		};
 	}, []);
 
-	const handleFuncionarioSelecionado = (params) => {
-		const funcionario = params.row;
-		navegar("/tela-cadastro", { state: { funcionario } });
-	};
-
 	return (
 		<Box
 			sx={{
-				height: "88vh",
-				width: "80vw",
+				height: "88%",
+				width: "100%",
 				"& .super-app-theme--header": {
 					backgroundColor: "#03161A",
 				},
@@ -189,6 +138,10 @@ export function DataTable() {
 
 				".css-n3fyjk-MuiDataGrid-root .MuiDataGrid-sortIcon": {
 					display: "none",
+				},
+
+				".css-1ebnjf9-MuiDataGrid-root .MuiDataGrid-columnHeader--last": {
+					backgroundColor: "#03161A",
 				},
 			}}
 		>
@@ -205,22 +158,20 @@ export function DataTable() {
 						outline: "1px solid rgba(140, 28, 69, 0.5)",
 					},
 
-					"--unstable_DataGrid-radius": "none",
+					"--unstable_DataGrid-radius": "8px",
 					width: "100%",
-					fontSize: "16px",
+					fontSize: "14px",
 					border: "none",
 				}}
-				rows={funcionarios}
+				rows={afastamentos}
 				columns={columns}
 				localeText={textoLocalCustomizado}
-				getRowId={(row) => row._id}
-				onRowDoubleClick={handleFuncionarioSelecionado}
 				initialState={{
 					pagination: {
-						paginationModel: { page: 0, pageSize: 15 },
+						paginationModel: { page: 0, pageSize: 5 },
 					},
 				}}
-				pageSizeOptions={[15, 10, 5]}
+				pageSizeOptions={[5]}
 				disableColumnSelector
 				key={windowWidth}
 			/>
