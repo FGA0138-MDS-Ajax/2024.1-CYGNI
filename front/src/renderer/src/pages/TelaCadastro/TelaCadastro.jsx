@@ -205,7 +205,7 @@ const TelaCadastro = () => {
 				}, 1250);
 			}
 		} catch (error) {
-			console.error(error); // Adicione este console.log para verificar o erro
+			console.error(error);
 			if (error.response && error.response.status === 400) {
 				// Trata especificamente o erro BadRequest
 				setAlert({ type: "error", message: "Matrícula já existente!" });
