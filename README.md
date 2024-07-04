@@ -5,7 +5,7 @@ Este repositório contém o projeto AGIS desenvolvido com Node.js, React, TypeSc
 
 ## Sobre o projeto
 
-O AGIS é uma aplicação desktop de gestão de recursos humanos, que visa fornecer todas as funcionalidades desejadas pelo cliente, como a geração de relatórios, criação de escalas de trabalho e comunicação interna das fichas dos funcionários, e geração de campanhas - calendário que mostra quem está apto a trabalhar no dia e mês.
+O AGIS é uma aplicação desktop de gestão de recursos humanos, que visa fornecer todas as funcionalidades desejadas pelo cliente, como a geração de relatórios e geração de campanhas - calendário que mostra quem está apto a trabalhar no dia e mês.
 
 ##### Autores:
 
