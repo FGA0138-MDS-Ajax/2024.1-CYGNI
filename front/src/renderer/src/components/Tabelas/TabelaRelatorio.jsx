@@ -135,13 +135,15 @@ export function DataTable() {
 				const dataAtual = new Date();
 				const funcionariosAtualizados = response.data.map((funcionario) => {
 					// Inicializa a situacao como "Apto" por padrão
-					let situacao = "Apto";
-
-					const dataInicio = new Date(funcionario.dataInicio[funcionario.dataInicio.length - 1]);
-					const dataTermino = new Date(funcionario.dataTermino[funcionario.dataTermino.length - 1]);
-					if (dataAtual >= dataInicio && dataAtual <= dataTermino) {
-						situacao = funcionario.motivo[funcionario.motivo.length - 1]; //recebe o ultimo motivo do array
-					}
+					let situacao = "Serviço";	
+			  for (let i = 0; i < funcionario.dataInicio.length; i++) {
+				  const dataInicio = new Date(funcionario.dataInicio[i]);
+          const dataTermino = new Date(funcionario.dataTermino[i]);
+          if (dataAtual >= dataInicio && dataAtual <= dataTermino) {
+            situacao = funcionario.motivo[i]; // Recebe o motivo correspondente do array
+            break; 
+          }
+        }
 					// Atualiza a situacao do funcionário com o motivo encontrado ou "Apto"
 					funcionario.situacao = situacao;
 					return funcionario;
