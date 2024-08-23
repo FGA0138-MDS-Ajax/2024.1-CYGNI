@@ -61,18 +61,32 @@ docker compose up --build
 
 Isso iniciará o servidor e você poderá acessá-lo através da sua máquina no endereço `http://localhost:80`.
 
-## Passo 5: Iniciar o Docker 
+## Passo 5: Iniciar o Docker pelo terminal
 
 O projeto roda localmente no Docker. Após executar o comando anterior, acesse o contêiner do backend e banco de dados, em MongoDB 6.0 (mongodb:6.0). Navegue até o banco de dados (em "Exec") e execute os seguintes comandos para criar um administrador:
 
 ```bash
-docker exec mongodb mongosh —username agisagent 
-Agis@2024
-db.administradors.insertOne({login: "SeuNome", senha: "HashdeSuaSenha", privilegios:true, email: "seuemail@gmail.com"});
-db.administradors.find()
-```
+docker exec mongodb mongosh --username agisagent 
 
-A última linha de código serve para conferir se seu cadastro foi um sucesso ou não.
+password: Agis@2024
+
+db.administradors.insertOne({login: "SeuNome", senha: "HashdeSuaSenha", privilegios: true, email: "seuemail@gmail.com"});
+
+db.administradors.find() // serve para conferir se seu cadastro foi um sucesso ou não.
+```
+## Passo 5.1 Iniciar o Docker pelo Docker Desktop
+
+ Pelo Docker Desktop acessando o contêiner do backend e banco de dados, em MongoDB 6.0 (mongodb:6.0). Navegue até o banco de dados (em "Exec") e execute os seguintes comandos para criar um administrador:
+
+```bash
+mongosh --username agisagent 
+
+password: Agis@2024
+
+db.administradors.insertOne({login: "SeuNome", senha: "HashdeSuaSenha", privilegios: true, email: "seuemail@gmail.com"});
+
+db.administradors.find() // serve para conferir se seu cadastro foi um sucesso ou não.
+```
 
 ## Passo 6: Rodar o Front-end
 
@@ -96,7 +110,7 @@ Para transformar sua senha em hash, siga os passos abaixo:
    ```javascript
    import * as bcrypt from "bcrypt";
 
-   const senha = "suaSenha";
+   const senha = "suaSenha"; // aqui você modifica para a senha que desejar
 
    const hasher = async () => {
        const hash = await bcrypt.hash(senha, 16);
@@ -105,7 +119,19 @@ Para transformar sua senha em hash, siga os passos abaixo:
 
    hasher();
 
-3. **Instale as dependências:**
+3. **Mude o package.json**
+  - Abra o package.json e embaixo de "name: index" digite "type": "module".
+  Assim que deve ficar seu package modificado:
+
+  ```Bash
+  {
+  "name": "index",
+  "type": "module",
+  ...
+  }
+  ```
+
+4. **Instale as dependências:**
    - Abra o PowerShell, navegue até a pasta `bcrypt` e execute os seguintes comandos:
 
    ```bash
